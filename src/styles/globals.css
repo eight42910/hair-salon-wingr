@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* プライマリカラー（ブラウン系） */
+  --primary-50: #faf7f2;
+  --primary-100: #f5ede0;
+  --primary-500: #8b5e3c;
+  --primary-700: #6b4423;
+  --primary-900: #4a2c16;
+
+  /* セカンダリカラー（ベージュ系） */
+  --secondary-50: #fdfcfa;
+  --secondary-100: #f9f6f0;
+  --secondary-500: #d4c4a8;
+  --secondary-700: #b8a082;
+
+  /* アクセントカラー（クリーム系） */
+  --accent-50: #fffef9;
+  --accent-100: #fffcf0;
+  --accent-500: #f5e6d3;
+}
+
+@layer components {
+  .heading-1 {
+    @apply text-4xl font-bold text-primary-900;
+  }
+  .heading-2 {
+    @apply text-3xl font-semibold text-primary-800;
+  }
+  .heading-3 {
+    @apply text-2xl font-medium text-primary-700;
+  }
+
+  .body-lg {
+    @apply text-lg text-gray-700 leading-relaxed;
+  }
+  .body-md {
+    @apply text-base text-gray-600 leading-relaxed;
+  }
+  .body-sm {
+    @apply text-sm text-gray-500 leading-normal;
+  }
+}
