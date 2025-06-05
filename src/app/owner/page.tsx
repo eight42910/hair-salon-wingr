@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Scissors, Award, Heart, Star } from 'lucide-react';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'オーナー・スタッフ紹介 | 美容室ウイング R',
@@ -9,54 +10,26 @@ export const metadata: Metadata = {
 
 const staff = [
   {
-    name: '山田 太郎',
+    name: '村瀬 律子',
+    filename: 'ritsuko.jpg',
     role: 'オーナー・トップスタイリスト',
     experience: '41年',
     specialties: ['カット', 'パーマ', '頭皮ケア', '経営'],
     message:
       '創業から41年、お客様との信頼関係を一番大切にしています。技術の向上はもちろん、お客様が安心してくつろげる空間づくりを心がけています。',
-    background: 'bg-primary-100',
+    background: 'bg-accent-100',
     icon: Award,
   },
   {
-    name: '山田 花子',
-    role: 'スタイリスト・カラーリスト',
-    experience: '25年',
-    specialties: ['カラー', 'カット', 'トリートメント', 'アップスタイル'],
-    message:
-      '女性のお客様の美しさを引き出すお手伝いをさせていただいています。トレンドを取り入れながらも、お客様に似合うスタイルをご提案いたします。',
-    background: 'bg-pink-100',
+    name: '村瀬 孝介',
+    filename: 'kousuke.jpg',
+    role: 'フロアスタッフ',
+    experience: '41年',
+    specialties: ['接客', 'フロア管理', 'フロアマネジメント'],
+    message: 'お客様のご要望に寄り添い、お客様のご満足を第一に考えています。',
+    background: 'bg-primary-100',
     icon: Heart,
   },
-  {
-    name: '山田 次郎',
-    role: 'スタイリスト',
-    experience: '15年',
-    specialties: ['メンズカット', 'デジタルパーマ', 'ヘッドスパ', 'セット'],
-    message:
-      'メンズスタイルを得意としています。お客様のライフスタイルに合わせて、スタイリングしやすいカットをご提案いたします。',
-    background: 'bg-blue-100',
-    icon: Scissors,
-  },
-  {
-    name: '田中 美咲',
-    role: 'ジュニアスタイリスト',
-    experience: '5年',
-    specialties: ['アシスタント', 'シャンプー', 'ブロー', '接客'],
-    message:
-      '新しい技術を学びながら、お客様に心地よい時間を過ごしていただけるよう努めています。明るい笑顔でお迎えいたします。',
-    background: 'bg-green-100',
-    icon: Star,
-  },
-];
-
-const qualifications = [
-  '美容師免許',
-  'ヘッドスパ認定資格',
-  'カラーリスト検定',
-  'デジタルパーマ技術認定',
-  '着付け技能士',
-  '接客マナー検定',
 ];
 
 export default function OwnerPage() {
@@ -68,9 +41,9 @@ export default function OwnerPage() {
           <div className="text-center">
             <h1 className="heading-1 mb-6">オーナー・スタッフ紹介</h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-              確かな技術と温かい心で、
+              41年の経験と家族経営の温かさで、
               <br />
-              お客様の美しさをサポートするプロフェッショナル集団です
+              お客様一人ひとりに寄り添います
             </p>
           </div>
         </div>
@@ -93,7 +66,7 @@ export default function OwnerPage() {
                 >
                   {/* スタッフ情報 */}
                   <div className={isEven ? '' : 'md:col-start-2'}>
-                    <div className="space-y-4">
+                    <div className="space-y-4 h-full flex flex-col ">
                       <div className="flex items-center space-x-3">
                         <div
                           className={`p-3 ${member.background} rounded-full`}
@@ -148,52 +121,20 @@ export default function OwnerPage() {
                   {/* 写真プレースホルダー */}
                   <div className={isEven ? '' : 'md:col-start-1'}>
                     <div
-                      className={`${member.background} rounded-lg shadow-lg p-8 h-80 flex items-center justify-center`}
+                      className={`${member.background} rounded-lg shadow-lg h-full min-h-[400px]`}
                     >
-                      <div className="text-center">
-                        <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                          <IconComponent className="w-12 h-12 text-primary-700" />
-                        </div>
-                        <p className="text-gray-600 font-medium">
-                          {member.name}
-                        </p>
-                        <p className="text-gray-500 text-sm">{member.role}</p>
-                      </div>
+                      <Image
+                        src={`/images/owner/${member.filename}`}
+                        alt={`${member.name}の写真`}
+                        className="object-cover rounded-lg"
+                        width={500}
+                        height={500}
+                      />
                     </div>
                   </div>
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* 資格・技術認定セクション */}
-      <section className="bg-primary-50 py-16 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="heading-2 mb-6 text-primary-800">
-              保有資格・技術認定
-            </h2>
-            <p className="body-lg text-gray-600">
-              スタッフ一同、常に技術向上に努め、
-              <br />
-              様々な資格・認定を取得しています
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {qualifications.map((qualification) => (
-              <div
-                key={qualification}
-                className="bg-white rounded-lg shadow-lg p-4 text-center"
-              >
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Award className="w-6 h-6 text-primary-700" />
-                </div>
-                <p className="font-medium text-gray-800">{qualification}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

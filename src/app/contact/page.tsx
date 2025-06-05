@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Phone, Clock, MapPin, Mail } from 'lucide-react';
+import { AccessMap } from '@/components/map/GoogleMap';
 
 export const metadata: Metadata = {
   title: 'お問い合わせ・ご予約 | 美容室ウイング R',
@@ -302,11 +303,8 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="mt-6 bg-gray-100 rounded-lg p-4 text-center">
-                <p className="text-gray-600 font-medium">Google Mapsで確認</p>
-                <p className="text-xs text-gray-500 mt-1">
-                  （地図機能は今後実装予定）
-                </p>
+              <div className="mt-6">
+                <AccessMap />
               </div>
             </div>
           </div>

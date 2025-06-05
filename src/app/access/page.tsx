@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { AccessMap } from '@/components/map/GoogleMap';
 
 export const metadata: Metadata = {
   title: 'サロン情報・アクセス | 美容室ウイング R',
@@ -27,15 +28,15 @@ export default function AccessPage() {
             <div className="space-y-6">
               <div>
                 <h3 className="font-medium text-gray-900 mb-2">店舗名</h3>
-                <p className="text-gray-600">美容室ウイング R</p>
+                <p className="text-gray-600 body-md">美容室ウイング R</p>
               </div>
 
               <div>
                 <h3 className="font-medium text-gray-900 mb-2">住所</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 body-md">
                   〒500-8234
                   <br />
-                  岐阜県岐阜市芋島1-2-3
+                  岐阜県岐阜市加野2-25-8
                   <br />
                   ウイングビル1F
                 </p>
@@ -43,19 +44,19 @@ export default function AccessPage() {
 
               <div>
                 <h3 className="font-medium text-gray-900 mb-2">電話番号</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 body-md">
                   <a
-                    href="tel:058-123-4567"
+                    href="tel:058-241-3375"
                     className="text-primary-600 hover:text-primary-700"
                   >
-                    058-123-4567
+                    058-241-3375
                   </a>
                 </p>
               </div>
 
               <div>
                 <h3 className="font-medium text-gray-900 mb-2">営業時間</h3>
-                <div className="text-gray-600">
+                <div className="text-gray-600 body-md">
                   <p>平日: 9:00 - 19:00</p>
                   <p>土曜: 9:00 - 18:00</p>
                   <p>日曜・祝日: 9:00 - 17:00</p>
@@ -64,17 +65,19 @@ export default function AccessPage() {
 
               <div>
                 <h3 className="font-medium text-gray-900 mb-2">定休日</h3>
-                <p className="text-gray-600">毎週火曜日、第3月曜日</p>
+                <p className="text-gray-600 body-md">
+                  毎週火曜日、第2火曜日、第3日曜日
+                </p>
               </div>
 
               <div>
                 <h3 className="font-medium text-gray-900 mb-2">駐車場</h3>
-                <p className="text-gray-600">専用駐車場5台完備</p>
+                <p className="text-gray-600 body-md">専用駐車場5台完備</p>
               </div>
 
               <div>
                 <h3 className="font-medium text-gray-900 mb-2">席数</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 body-md">
                   カット席: 4席
                   <br />
                   シャンプー台: 2台
@@ -94,7 +97,7 @@ export default function AccessPage() {
                 <h3 className="font-medium text-gray-900 mb-2 flex items-center">
                   🚗 お車でお越しの場合
                 </h3>
-                <div className="text-gray-600 space-y-2">
+                <div className="text-gray-600 space-y-2 body-md">
                   <p>• 岐阜駅から約10分</p>
                   <p>• 国道156号線「芋島交差点」から徒歩2分</p>
                   <p>• 東海北陸自動車道「岐阜各務原IC」から約15分</p>
@@ -108,7 +111,7 @@ export default function AccessPage() {
                 <h3 className="font-medium text-gray-900 mb-2 flex items-center">
                   🚌 バスでお越しの場合
                 </h3>
-                <div className="text-gray-600 space-y-2">
+                <div className="text-gray-600 space-y-2 body-md">
                   <p>• JR岐阜駅からバス約15分</p>
                   <p>• 「芋島」バス停下車、徒歩3分</p>
                   <p>• 岐阜バス・市内循環バスをご利用ください</p>
@@ -119,7 +122,7 @@ export default function AccessPage() {
                 <h3 className="font-medium text-gray-900 mb-2 flex items-center">
                   🚶 徒歩・自転車でお越しの場合
                 </h3>
-                <div className="text-gray-600 space-y-2">
+                <div className="text-gray-600 space-y-2 body-md">
                   <p>• JR岐阜駅から徒歩約25分</p>
                   <p>• 自転車駐輪場あり（無料）</p>
                 </div>
@@ -129,13 +132,7 @@ export default function AccessPage() {
             {/* 地図エリア */}
             <div className="mt-8">
               <h3 className="font-medium text-gray-900 mb-4">アクセスマップ</h3>
-              <div className="h-64 bg-gray-200 rounded-lg flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <div className="text-4xl mb-2">🗺️</div>
-                  <p>Google Maps</p>
-                  <p className="text-sm">（実装時に埋め込み予定）</p>
-                </div>
-              </div>
+              <AccessMap />
             </div>
           </section>
         </div>

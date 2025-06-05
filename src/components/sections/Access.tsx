@@ -1,5 +1,6 @@
 import { MapPin, Clock, Phone, Car } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { AccessMap } from '@/components/map/GoogleMap';
 
 const accessInfo = [
   {
@@ -107,16 +108,10 @@ export const Access = () => {
           {/* 地図エリア */}
           <div>
             <h3 className="heading-3 mb-6">地図</h3>
-            <div className="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
-              <p className="text-gray-500">
-                Googleマップ埋め込み予定
-                <br />
-                <span className="text-sm">※実装時にGoogle Maps APIを使用</span>
-              </p>
-            </div>
+            <AccessMap />
             <div className="mt-4 text-center">
               <a
-                href="https://maps.google.com/?q=岐阜県岐阜市加野2-25-8"
+                href="https://maps.app.goo.gl/GaDvUi3ZvoXj3cxq9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-primary-700 hover:text-primary-900 transition-colors"
