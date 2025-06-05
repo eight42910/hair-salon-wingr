@@ -8,6 +8,7 @@
   --primary-100: #f5ede0;
   --primary-500: #8b5e3c;
   --primary-700: #6b4423;
+  --primary-800: #5a3820;
   --primary-900: #4a2c16;
 
   /* セカンダリカラー（ベージュ系） */
@@ -27,7 +28,7 @@
     @apply text-4xl font-bold text-primary-900;
   }
   .heading-2 {
-    @apply text-3xl font-semibold text-primary-800;
+    @apply text-3xl font-semibold text-primary-900;
   }
   .heading-3 {
     @apply text-2xl font-medium text-primary-700;
