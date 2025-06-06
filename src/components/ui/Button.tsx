@@ -1,38 +1,38 @@
-import { ButtonHTMLAttributes } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { ReactNode, ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
+  children: ReactNode;
 }
 
-const variantStyles = {
-  primary: 'bg-primary-500 text-white hover:bg-primary-700',
-  secondary: 'bg-secondary-500 text-primary-900 hover:bg-secondary-700',
-  outline: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-50',
-};
-
-const sizeStyles = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg',
-};
-
-export const Button = ({
-  variant = 'primary',
-  size = 'md',
-  className,
-  ...props
+export const Button = ({ 
+  variant = 'primary', 
+  size = 'md', 
+  children, 
+  className = '',
+  ...props 
 }: ButtonProps) => {
+  const baseStyles = 'font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
+  
+  const variantStyles = {
+    primary: 'bg-primary-600 hover:bg-primary-700 text-white focus:ring-primary-500',
+    secondary: 'bg-gray-600 hover:bg-gray-700 text-white focus:ring-gray-500',
+    outline: 'border border-gray-300 hover:bg-gray-50 text-gray-700 focus:ring-primary-500'
+  };
+
+  const sizeStyles = {
+    sm: 'px-3 py-1.5 text-sm rounded',
+    md: 'px-4 py-2 text-sm rounded-md',
+    lg: 'px-6 py-3 text-base rounded-lg'
+  };
+
   return (
     <button
-      className={twMerge(
-        'rounded-md font-medium transition-colors duration-200',
-        variantStyles[variant],
-        sizeStyles[size],
-        className
-      )}
+      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
       {...props}
-    />
+    >
+      {children}
+    </button>
   );
 };

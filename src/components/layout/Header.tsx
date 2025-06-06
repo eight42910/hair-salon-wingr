@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Phone } from 'lucide-react';
 import { MobileMenu } from './MobileMenu';
+import { LineButton } from '@/components/ui/LineButton';
 
 const navigation = [
   { name: 'HOME', href: '/' },
@@ -17,6 +18,11 @@ const navigation = [
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navLinks = [
+    ...navigation,
+    { href: '/booking', label: 'ご予約' },
+  ];
 
   return (
     <>
@@ -33,7 +39,7 @@ export const Header = () => {
 
             {/* デスクトップナビゲーション - 1000px以上のみ */}
             <div className="hidden xl:flex items-center space-x-6">
-              {navigation.map((item) => (
+              {navLinks.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -53,9 +59,7 @@ export const Header = () => {
                 <Phone className="w-4 h-4 mr-2" />
                 <span className="font-medium text-sm">058-241-3375</span>
               </a>
-              <Link href="/booking">
-                <Button size="sm">ご予約</Button>
-              </Link>
+              <LineButton variant="primary" text="LINE予約" className="hidden lg:flex" />
             </div>
 
             {/* タブレット用電話番号 - 768px-1000px */}

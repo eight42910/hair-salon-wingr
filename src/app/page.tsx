@@ -1,11 +1,13 @@
 import { Button } from '@/components/ui/Button';
 import { Feature } from '@/components/sections/Feature';
 import { Testimonials } from '@/components/sections/Testimonials';
+import { FAQ } from '@/components/sections/FAQ';
 import { Access } from '@/components/sections/Access';
 import Link from 'next/link';
 //画像
 import heroImage from '@/public/images/salon/salon-bg.jpg';
 import Image from 'next/image';
+import { LineReservation } from '@/components/sections/LineReservation';
 
 export default function Home() {
   return (
@@ -55,8 +57,14 @@ export default function Home() {
       {/* お客様の声セクション */}
       <Testimonials />
 
+      {/* よくある質問セクション */}
+      <FAQ />
+
       {/* アクセスセクション */}
       <Access />
+
+      {/* LINE予約セクション */}
+      <LineReservation />
     </main>
   );
 }

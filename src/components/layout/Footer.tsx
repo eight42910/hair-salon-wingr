@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { MapPin, Phone, Clock } from 'lucide-react';
+import { LineButton } from '@/components/ui/LineButton';
 
 const navigation = [
   { name: 'CONCEPT', href: '/concept' },
@@ -70,6 +71,19 @@ export const Footer = () => {
               <p className="text-primary-300 mt-2">定休日:</p>
               <p>第2火曜日・第3日曜日</p>
             </div>
+          </div>
+        </div>
+
+        <div className="text-center mb-8">
+          <h3 className="text-lg font-bold text-gray-800 mb-4">簡単予約・お問い合わせ</h3>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <LineButton variant="secondary" />
+            <a
+              href="tel:058-243-6478"
+              className="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg transition-colors"
+            >
+              📞 058-243-6478
+            </a>
           </div>
         </div>
 

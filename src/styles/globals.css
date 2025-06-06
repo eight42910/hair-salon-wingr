@@ -20,6 +20,15 @@
   --accent-50: #fffef9;
   --accent-100: #fffcf0;
   --accent-500: #f5e6d3;
+
+  /* セクションタイトル用の変数 */
+  --section-title-color: #111827;
+  --section-title-font-weight: 700;
+  --section-title-line-height: 1.2;
+  --section-title-margin-bottom: 1rem;
+  --section-divider-color: #111827;
+  --section-divider-height: 2px;
+  --section-divider-width: 6rem;
 }
 
 @layer components {
@@ -121,6 +130,122 @@
 
   .flex-responsive-reverse {
     @apply flex flex-col-reverse md:flex-row items-stretch md:items-center;
+  }
+
+  .section-title {
+    color: var(--section-title-color);
+    font-weight: var(--section-title-font-weight);
+    line-height: var(--section-title-line-height);
+    margin-bottom: var(--section-title-margin-bottom);
+  }
+
+  .section-divider {
+    background-color: var(--section-divider-color);
+    height: var(--section-divider-height);
+    width: var(--section-divider-width);
+  }
+
+  /* コンセプトページ専用アニメーション */
+  .concept-section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: conceptFadeIn 0.8s ease-out forwards;
+  }
+
+  .concept-section:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .concept-section:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  .concept-section:nth-child(4) {
+    animation-delay: 0.6s;
+  }
+
+  /* リッチなホバー効果 */
+  .rich-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .rich-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* グラデーションボーダー効果 */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(white, white) padding-box,
+      linear-gradient(45deg, var(--primary-500), var(--accent-500)) border-box;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+  }
+
+  /* 背景のリッチ効果 */
+  .rich-background {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(250, 247, 242, 0.9) 50%,
+      rgba(255, 254, 249, 0.9) 100%
+    );
+    backdrop-filter: blur(10px);
+  }
+
+  /* コンセプトページ用アニメーション */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 0.6s;
+  }
+}
+
+@keyframes conceptFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* スクロール連動アニメーション（将来実装） */
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
