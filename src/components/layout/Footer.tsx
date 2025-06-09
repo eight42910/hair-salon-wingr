@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { MapPin, Phone, Clock } from 'lucide-react';
-import { LineButton } from '@/components/ui/LineButton';
 
 const navigation = [
   { name: 'CONCEPT', href: '/concept' },
@@ -74,20 +73,34 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="text-center mb-8">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">簡単予約・お問い合わせ</h3>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <LineButton variant="secondary" />
-            <a
-              href="tel:058-243-6478"
-              className="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg transition-colors"
-            >
-              📞 058-243-6478
-            </a>
+        {/* 予約・お問い合わせ */}
+        <div className="border-t border-primary-700 mt-8 pt-8">
+          <div className="text-center mb-6">
+            <h3 className="text-lg font-bold text-white mb-4">
+              ご予約・お問い合わせ
+            </h3>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a
+                href="tel:058-241-3375"
+                className="bg-primary-600 hover:bg-primary-500 text-white px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2"
+              >
+                <Phone className="w-5 h-5" />
+                <span>058-241-3375</span>
+              </a>
+              <Link
+                href="/contact"
+                className="bg-secondary-600 hover:bg-secondary-500 text-white px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105"
+              >
+                お問い合わせフォーム
+              </Link>
+            </div>
+            <p className="text-primary-200 text-sm mt-3">
+              LINE公式アカウントでの予約システムは準備中です
+            </p>
           </div>
         </div>
 
-        <div className="border-t border-primary-700 mt-8 pt-8 text-center">
+        <div className="border-t border-primary-700 pt-6 text-center">
           <p className="text-primary-100 text-sm">
             © 2024 美容室ウイング R. All rights reserved.
           </p>

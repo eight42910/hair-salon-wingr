@@ -19,10 +19,7 @@ const navigation = [
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navLinks = [
-    ...navigation,
-    { href: '/booking', label: 'ご予約' },
-  ];
+  const navLinks = [...navigation, { href: '/booking', label: 'ご予約' }];
 
   return (
     <>
@@ -59,7 +56,11 @@ export const Header = () => {
                 <Phone className="w-4 h-4 mr-2" />
                 <span className="font-medium text-sm">058-241-3375</span>
               </a>
-              <LineButton variant="primary" text="LINE予約" className="hidden lg:flex" />
+              <LineButton
+                variant="brand-primary"
+                text="LINE予約"
+                className="hidden lg:flex"
+              />
             </div>
 
             {/* タブレット用電話番号 - 768px-1000px */}

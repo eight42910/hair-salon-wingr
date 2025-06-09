@@ -6,20 +6,38 @@
   /* プライマリカラー（ブラウン系） */
   --primary-50: #faf7f2;
   --primary-100: #f5ede0;
+  --primary-200: #ede0d0;
+  --primary-300: #e0cec0;
+  --primary-400: #c4a78a;
   --primary-500: #8b5e3c;
+  --primary-600: #7a4d2f;
   --primary-700: #6b4423;
+  --primary-800: #5a3820;
   --primary-900: #4a2c16;
 
   /* セカンダリカラー（ベージュ系） */
   --secondary-50: #fdfcfa;
   --secondary-100: #f9f6f0;
+  --secondary-200: #f3eee5;
+  --secondary-300: #ede5d8;
+  --secondary-400: #d9cbb7;
   --secondary-500: #d4c4a8;
+  --secondary-600: #c4b193;
   --secondary-700: #b8a082;
+  --secondary-800: #a08b6f;
+  --secondary-900: #8a745b;
 
   /* アクセントカラー（クリーム系） */
   --accent-50: #fffef9;
   --accent-100: #fffcf0;
+  --accent-200: #fff8e6;
+  --accent-300: #fff2d6;
+  --accent-400: #ffe8b8;
   --accent-500: #f5e6d3;
+  --accent-600: #ead7be;
+  --accent-700: #dfc7a6;
+  --accent-800: #d4b88e;
+  --accent-900: #c9a876;
 
   /* セクションタイトル用の変数 */
   --section-title-color: #111827;

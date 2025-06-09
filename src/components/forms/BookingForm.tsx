@@ -142,7 +142,10 @@ export const BookingForm = () => {
           <p className="text-gray-600 mb-4">
             24時間いつでも簡単予約！LINEなら予約の確認・変更もスムーズです
           </p>
-          <LineButton text="LINE公式アカウントで予約する" />
+          <LineButton
+            variant="line-official"
+            text="LINE公式アカウントで予約する"
+          />
           <p className="text-gray-500 text-sm mt-3">
             ↓ またはこちらのWebフォームからもご予約いただけます
           </p>

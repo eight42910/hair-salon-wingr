@@ -3,14 +3,14 @@
 import { useState } from 'react';
 
 interface LineButtonProps {
-  variant?: 'primary' | 'secondary' | 'large';
+  variant?: 'line-official' | 'brand-primary' | 'brand-secondary' | 'large';
   text?: string;
   showQR?: boolean;
   className?: string;
 }
 
 export const LineButton = ({
-  variant = 'primary',
+  variant = 'line-official',
   text = 'LINE公式アカウントで予約',
   showQR = false,
   className = '',
@@ -21,10 +21,13 @@ export const LineButton = ({
   const lineUrl = 'https://line.me/R/ti/p/@your-line-id';
 
   const variantStyles = {
-    primary: 'bg-[#06C755] hover:bg-[#05B04A] text-white px-6 py-3 text-base',
-    secondary:
-      'bg-white hover:bg-gray-50 text-[#06C755] border-2 border-[#06C755] px-6 py-3 text-base',
-    large: 'bg-[#06C755] hover:bg-[#05B04A] text-white px-8 py-4 text-lg',
+    'line-official':
+      'bg-line-primary hover:bg-line-dark text-white px-6 py-3 text-base',
+    'brand-primary':
+      'bg-primary-600 hover:bg-line-primary text-white px-6 py-3 text-base transition-colors duration-300',
+    'brand-secondary':
+      'bg-white hover:bg-line-primary text-primary-600 hover:text-white border-2 border-primary-600 hover:border-line-primary px-6 py-3 text-base transition-all duration-300',
+    large: 'bg-line-primary hover:bg-line-dark text-white px-8 py-4 text-lg',
   };
 
   const handleLineClick = () => {

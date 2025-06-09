@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Card } from '@/components/ui/Card';
+import { Heart, Star, Users, Award, UserCheck, User, Baby } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'コンセプト | 美容室ウイング R',
@@ -16,39 +17,106 @@ export default function ConceptPage() {
         title="41年間変わらない想い"
         subtitle="昭和58年の創業から今日まで、私たちが大切にしてきたのは「お客様一人ひとりとの心のつながり」です"
       >
-        {/* 創業の想い - リッチデザイン */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16 animate-fade-in-up">
-          <div className="space-y-6">
-            <SectionTitle level="h2" align="left" showDivider={true}>
-              創業の想い
-            </SectionTitle>
-            <div className="space-y-6 text-gray-700 text-base leading-relaxed">
-              <p className="relative pl-6 border-l-4 border-primary-500 bg-white/60 backdrop-blur-sm p-4 rounded-r-lg shadow-sm transition-all duration-300 hover:shadow-md">
-                昭和58年、岐阜市芋島にて「美容室ウイング」として歩み始めました。
-                当時から変わらない信念は、「技術と心で、お客様の美しさを引き出す」ことです。
-              </p>
-              <p className="relative pl-6 border-l-4 border-primary-300 bg-white/60 backdrop-blur-sm p-4 rounded-r-lg shadow-sm transition-all duration-300 hover:shadow-md">
-                小さな美容室でしたが、一人ひとりのお客様と向き合い、
-                丁寧にカウンセリングを行い、その方に最適なヘアスタイルを提案する——
-                そんな当たり前のことを、当たり前に続けてきました。
-              </p>
-              <p className="relative pl-6 border-l-4 border-primary-500 bg-white/60 backdrop-blur-sm p-4 rounded-r-lg shadow-sm transition-all duration-300 hover:shadow-md">
-                そして現在「美容室ウイング R」として、
-                創業からの想いを受け継ぎながら、新しい時代のニーズにもお応えしています。
-              </p>
-            </div>
-          </div>
-          <Card className="text-center relative overflow-hidden group transition-all duration-300 hover:scale-105">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-primary-100 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
-            <div className="relative z-10">
-              <div className="w-32 h-32 bg-gradient-to-br from-primary-500 to-primary-700 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-                <span className="text-4xl font-bold text-white">1983</span>
+        {/* 創業の想い - 改善されたデザイン */}
+        <div className="mb-16">
+          <SectionTitle level="h2" align="center" showDivider={true}>
+            創業の想い
+          </SectionTitle>
+
+          {/* メインビジュアル */}
+          <div className="relative mb-12">
+            <Card className="text-center bg-gradient-to-br from-primary-50 to-primary-100 border-2 border-primary-200 overflow-hidden">
+              <div className="relative py-12">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-100/50 to-transparent"></div>
+                <div className="relative z-10">
+                  <div className="flex justify-center mb-6">
+                    <div className="relative">
+                      <div className="w-32 h-32 bg-gradient-to-br from-primary-500 to-primary-700 rounded-full flex items-center justify-center shadow-2xl">
+                        <span className="text-4xl font-bold text-white">
+                          1983
+                        </span>
+                      </div>
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                        <Star className="w-5 h-5 text-yellow-700" />
+                      </div>
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-bold text-primary-900 mb-4">
+                    昭和58年創業
+                  </h3>
+                  <p className="text-lg text-primary-800 max-w-2xl mx-auto leading-relaxed">
+                    岐阜市芋島にて「美容室ウイング」として歩み始めました
+                  </p>
+                </div>
               </div>
-              <h3 className="font-bold text-xl text-primary-900 mb-3">創業</h3>
-              <p className="text-gray-700 text-base leading-relaxed">
-                昭和58年、岐阜市芋島にて
+            </Card>
+          </div>
+
+          {/* 創業の想いストーリー */}
+          <div className="grid lg:grid-cols-3 gap-8 mb-12">
+            <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-l-4 border-blue-400 hover:shadow-lg transition-all duration-300">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Heart className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg text-primary-900 mb-2">
+                    技術と心で
+                  </h4>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    当時から変わらない信念は、「技術と心で、お客様の美しさを引き出す」ことです。
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-green-50 to-green-100 border-l-4 border-green-400 hover:shadow-lg transition-all duration-300">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg text-primary-900 mb-2">
+                    一人ひとりと向き合う
+                  </h4>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    小さな美容室でしたが、丁寧にカウンセリングを行い、その方に最適なヘアスタイルを提案してきました。
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-l-4 border-purple-400 hover:shadow-lg transition-all duration-300">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Award className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg text-primary-900 mb-2">
+                    想いを受け継いで
+                  </h4>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    現在「美容室ウイング
+                    R」として、創業からの想いを受け継ぎながら、新しい時代のニーズにもお応えしています。
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+
+          {/* 創業者メッセージ */}
+          <Card className="bg-gradient-to-r from-primary-50 to-secondary-50 border-2 border-primary-200">
+            <div className="text-center py-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Heart className="w-8 h-8 text-white" />
+              </div>
+              <blockquote className="text-lg text-primary-900 italic max-w-3xl mx-auto leading-relaxed">
+                「当たり前のことを、当たり前に続ける。
                 <br />
-                「美容室ウイング」として開業
+                それが、お客様との信頼関係を築く一番の方法だと信じています。」
+              </blockquote>
+              <p className="text-primary-700 font-semibold mt-4">
+                — 美容室ウイング R —
               </p>
             </div>
           </Card>
@@ -68,7 +136,7 @@ export default function ConceptPage() {
             <Card className="text-center relative overflow-hidden group bg-gradient-to-br from-red-50 to-pink-50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
               <div className="relative z-10">
                 <div className="w-20 h-20 bg-gradient-to-br from-red-100 to-red-200 rounded-full mx-auto mb-6 flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110">
-                  <span className="text-3xl">👵</span>
+                  <UserCheck className="w-10 h-10 text-red-600" />
                 </div>
                 <h3 className="font-bold text-lg text-primary-900 mb-3">
                   第1世代
@@ -97,7 +165,7 @@ export default function ConceptPage() {
             <Card className="text-center relative overflow-hidden group bg-gradient-to-br from-blue-50 to-indigo-50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
               <div className="relative z-10">
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full mx-auto mb-6 flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110">
-                  <span className="text-3xl">👩</span>
+                  <User className="w-10 h-10 text-blue-600" />
                 </div>
                 <h3 className="font-bold text-lg text-primary-900 mb-3">
                   第2世代
@@ -126,7 +194,7 @@ export default function ConceptPage() {
             <Card className="text-center relative overflow-hidden group bg-gradient-to-br from-green-50 to-emerald-50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
               <div className="relative z-10">
                 <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full mx-auto mb-6 flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110">
-                  <span className="text-3xl">👧</span>
+                  <Baby className="w-10 h-10 text-green-600" />
                 </div>
                 <h3 className="font-bold text-lg text-primary-900 mb-3">
                   第3世代
@@ -198,36 +266,19 @@ export default function ConceptPage() {
           </div>
         </div>
 
-        {/* 未来への想い - リッチデザイン */}
-        <div className="animate-fade-in-up animation-delay-600">
-          <Card className="text-center relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-50 border-primary-200">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-100/20 to-accent-100/20"></div>
-            <div className="relative z-10">
-              <SectionTitle level="h2" align="center" showDivider={false}>
-                これからも、変わらずに
-              </SectionTitle>
-              <div className="space-y-6 text-gray-700 text-base leading-relaxed max-w-3xl mx-auto">
-                <p className="text-xl font-medium text-primary-800">
-                  時代は変わっても、私たちの根本にある想いは変わりません。
-                </p>
-                <p className="bg-white/70 backdrop-blur-sm p-4 rounded-lg">
-                  お客様一人ひとりと向き合い、その方の魅力を最大限に引き出すこと。
-                  技術とおもてなしの心で、皆様の日常に彩りを添えること。
-                </p>
-                <p className="bg-white/70 backdrop-blur-sm p-4 rounded-lg">
-                  これからも美容室ウイング
-                  Rは、3世代、4世代と続くお客様との絆を大切に、
-                  地域に愛される美容室であり続けます。
-                </p>
-              </div>
-              <div className="text-right mt-8">
-                <p className="text-primary-800 font-bold text-lg">
-                  美容室ウイング R 一同
-                </p>
-              </div>
+        {/* 未来への想い */}
+        <Card className="bg-gradient-to-br from-primary-900 to-primary-800 text-white text-center">
+          <div className="py-12">
+            <h3 className="text-2xl font-bold mb-6">これからも、ずっと</h3>
+            <p className="text-lg text-primary-100 max-w-2xl mx-auto leading-relaxed mb-8">
+              41年間変わらない想いを胸に、これからも皆様の美しさと笑顔のために、
+              心を込めてサービスをお届けしてまいります。
+            </p>
+            <div className="flex justify-center">
+              <div className="w-20 h-1 bg-gradient-to-r from-secondary-400 to-accent-400 rounded-full"></div>
             </div>
-          </Card>
-        </div>
+          </div>
+        </Card>
       </PageLayout>
     </div>
   );
