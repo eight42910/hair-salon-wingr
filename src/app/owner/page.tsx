@@ -20,7 +20,7 @@ const staff = [
     specialties: ['カット', 'パーマ', '頭皮ケア', '経営'],
     message:
       '創業から41年、お客様との信頼関係を一番大切にしています。技術の向上はもちろん、お客様が安心してくつろげる空間づくりを心がけています。',
-    icon: Award,
+    imagePath: '/images/owner/ritsuko.jpg',
   },
   {
     name: '村瀬 孝介',
@@ -29,7 +29,7 @@ const staff = [
     experience: '41年',
     specialties: ['接客', 'フロア管理', 'フロアマネジメント'],
     message: 'お客様のご要望に寄り添い、お客様のご満足を第一に考えています。',
-    icon: Heart,
+    imagePath: '/images/owner/kousuke.jpg',
   },
 ];
 
@@ -37,12 +37,12 @@ export default function OwnerPage() {
   return (
     <PageLayout
       title="オーナー・スタッフ紹介"
+      titleEn="Owner & Staff"
       subtitle="41年の経験と家族経営の温かさで、お客様一人ひとりに寄り添います"
     >
       {/* スタッフ紹介 */}
       <div className="grid gap-12">
         {staff.map((member, index) => {
-          const IconComponent = member.icon;
           const isEven = index % 2 === 0;
 
           return (
@@ -57,7 +57,12 @@ export default function OwnerPage() {
                 <Card>
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="p-3 bg-gray-100 rounded-full">
-                      <IconComponent className="w-6 h-6 text-gray-700" />
+                      <Image
+                        src={member.imagePath}
+                        alt={member.name}
+                        width={24}
+                        height={24}
+                      />
                     </div>
                     <div>
                       <h2 className="text-xl font-bold text-gray-900">
@@ -102,14 +107,14 @@ export default function OwnerPage() {
 
               {/* 写真エリア */}
               <div className={isEven ? '' : 'md:col-start-1'}>
-                <Card className="h-96 flex items-center justify-center bg-gray-50">
-                  <div className="text-center text-gray-500">
-                    <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-2 flex items-center justify-center">
-                      <IconComponent className="w-8 h-8" />
-                    </div>
-                    <p className="text-sm">{member.name}</p>
-                    <p className="text-xs">写真準備中</p>
-                  </div>
+                <Card className="h-96 relative overflow-hidden">
+                  <Image
+                    src={member.imagePath}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </Card>
               </div>
             </div>
@@ -119,17 +124,27 @@ export default function OwnerPage() {
 
       {/* 店内の雰囲気 */}
       <div className="mt-12">
-        <SectionTitle level="h2" align="left" showDivider={true}>
-          アットホームな店内
-        </SectionTitle>
+        <SectionTitle
+          level="h2"
+          align="left"
+          showDivider={true}
+          mainTitle="アットホームな店内"
+          subTitle="Cozy Salon Interior"
+        />
         <p className="text-gray-600 text-sm mb-8">
           家族経営ならではの温かい雰囲気の中で、リラックスして美容時間をお過ごしください
         </p>
 
         <div className="grid md:grid-cols-3 gap-6">
           <Card hover className="text-center">
-            <div className="h-48 bg-gray-50 rounded mb-4 flex items-center justify-center">
-              <Scissors className="w-12 h-12 text-gray-400" />
+            <div className="h-48 relative overflow-hidden rounded mb-4">
+              <Image
+                src="/images/gallery/cut/cut-stand.jpg"
+                alt="カットエリアの写真"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+              />
             </div>
             <h3 className="font-medium text-gray-900 mb-2">カットエリア</h3>
             <p className="text-gray-600 text-sm">
@@ -138,8 +153,14 @@ export default function OwnerPage() {
           </Card>
 
           <Card hover className="text-center">
-            <div className="h-48 bg-gray-50 rounded mb-4 flex items-center justify-center">
-              <Heart className="w-12 h-12 text-gray-400" />
+            <div className="h-48 relative overflow-hidden rounded mb-4">
+              <Image
+                src="/images/gallery/shampoo-stand.jpg"
+                alt="シャンプーエリアの写真"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+              />
             </div>
             <h3 className="font-medium text-gray-900 mb-2">シャンプーエリア</h3>
             <p className="text-gray-600 text-sm">
@@ -148,8 +169,14 @@ export default function OwnerPage() {
           </Card>
 
           <Card hover className="text-center">
-            <div className="h-48 bg-gray-50 rounded mb-4 flex items-center justify-center">
-              <Star className="w-12 h-12 text-gray-400" />
+            <div className="h-48 relative overflow-hidden rounded mb-4">
+              <Image
+                src="/images/gallery/cut/cut-stand.jpg"
+                alt="待合エリアの写真"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+              />
             </div>
             <h3 className="font-medium text-gray-900 mb-2">待合エリア</h3>
             <p className="text-gray-600 text-sm">

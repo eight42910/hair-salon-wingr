@@ -55,7 +55,7 @@ export default function Home() {
       <Feature />
 
       {/* お客様の声セクション */}
-      <Testimonials />
+      {/* <Testimonials /> */}
 
       {/* よくある質問セクション */}
       <FAQ />

@@ -14,14 +14,19 @@ export default function ConceptPage() {
   return (
     <div className="bg-gradient-to-b from-primary-50 via-white to-accent-50">
       <PageLayout
-        title="41年間変わらない想い"
+        title="私たちのコンセプト"
+        titleEn="Our Concept"
         subtitle="昭和58年の創業から今日まで、私たちが大切にしてきたのは「お客様一人ひとりとの心のつながり」です"
       >
         {/* 創業の想い - 改善されたデザイン */}
         <div className="mb-16">
-          <SectionTitle level="h2" align="center" showDivider={true}>
-            創業の想い
-          </SectionTitle>
+          <SectionTitle 
+            level="h2" 
+            align="center" 
+            showDivider={true}
+            mainTitle="創業の想い"
+            subTitle="Our Foundation Story"
+          />
 
           {/* メインビジュアル */}
           <div className="relative mb-12">
@@ -124,9 +129,13 @@ export default function ConceptPage() {
 
         {/* 3世代のつながり - リッチデザイン */}
         <div className="mb-16 animate-fade-in-up animation-delay-200">
-          <SectionTitle level="h2" align="left" showDivider={true}>
-            3世代にわたるお客様との絆
-          </SectionTitle>
+          <SectionTitle 
+            level="h2" 
+            align="left" 
+            showDivider={true}
+            mainTitle="3世代にわたるお客様との絆"
+            subTitle="Three Generations Connection"
+          />
           <p className="text-gray-700 text-lg mb-12 bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-sm border-l-4 border-primary-400">
             おばあさまからお母さま、そしてお嬢さまへ。家族の成長と共に歩んできた、かけがえのない関係があります。
           </p>
@@ -223,9 +232,13 @@ export default function ConceptPage() {
 
         {/* 私たちの価値観 - リッチデザイン */}
         <div className="mb-16 animate-fade-in-up animation-delay-400">
-          <SectionTitle level="h2" align="left" showDivider={true}>
-            私たちが大切にしていること
-          </SectionTitle>
+          <SectionTitle 
+            level="h2" 
+            align="left" 
+            showDivider={true}
+            mainTitle="私たちが大切にしていること"
+            subTitle="Our Values"
+          />
 
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="bg-gradient-to-br from-primary-50 to-primary-100 border-l-4 border-primary-300 group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">

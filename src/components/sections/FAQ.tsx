@@ -112,9 +112,13 @@ export const FAQ = () => {
     <section className="py-16 bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <SectionTitle level="h2" align="center" showDivider={true}>
-            よくある質問
-          </SectionTitle>
+          <SectionTitle
+            level="h2"
+            align="center"
+            showDivider={true}
+            mainTitle="よくある質問"
+            subTitle="Frequently Asked Questions"
+          />
           <p className="text-gray-600 text-sm mt-4">
             お客様からよくいただくご質問をまとめました。
             その他ご不明な点がございましたら、お気軽にお問い合わせください。

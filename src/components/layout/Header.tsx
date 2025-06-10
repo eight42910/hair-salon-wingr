@@ -1,25 +1,21 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
 import { Phone } from 'lucide-react';
 import { MobileMenu } from './MobileMenu';
 import { LineButton } from '@/components/ui/LineButton';
 
 const navigation = [
-  { name: 'HOME', href: '/' },
-  { name: 'CONCEPT', href: '/concept' },
-  { name: 'FEATURE', href: '/feature' },
-  { name: 'MENU', href: '/menu' },
-  { name: 'OWNER', href: '/owner' },
-  { name: 'ACCESS', href: '/access' },
-  { name: 'CONTACT', href: '/contact' },
+  { nameJa: 'ホーム', nameEn: 'Home', href: '/' },
+  { nameJa: 'コンセプト', nameEn: 'Concept', href: '/concept' },
+  { nameJa: 'メニュー', nameEn: 'Menu', href: '/menu' },
+  { nameJa: 'オーナー', nameEn: 'Owner', href: '/owner' },
+  { nameJa: 'アクセス', nameEn: 'Access', href: '/access' },
+  { nameJa: 'お問い合わせ', nameEn: 'Contact', href: '/contact' },
 ];
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const navLinks = [...navigation, { href: '/booking', label: 'ご予約' }];
 
   return (
     <>
@@ -31,18 +27,23 @@ export const Header = () => {
               href="/"
               className="text-xl lg:text-2xl font-bold text-primary-900 flex-shrink-0"
             >
-              ウイング R
+              美容室ウイング R
             </Link>
 
-            {/* デスクトップナビゲーション - 1000px以上のみ */}
+            {/* デスクトップナビゲーション - 日英併記 */}
             <div className="hidden xl:flex items-center space-x-6">
-              {navLinks.map((item) => (
+              {navigation.map((item) => (
                 <Link
-                  key={item.name}
+                  key={item.href}
                   href={item.href}
-                  className="text-sm font-medium text-primary-700 hover:text-primary-900 transition-colors whitespace-nowrap"
+                  className="text-center group hover:text-primary-900 transition-colors"
                 >
-                  {item.name}
+                  <div className="text-sm font-bold text-primary-900 group-hover:text-primary-900">
+                    {item.nameJa}
+                  </div>
+                  <div className="text-xs text-primary-600 uppercase tracking-wide">
+                    {item.nameEn}
+                  </div>
                 </Link>
               ))}
             </div>

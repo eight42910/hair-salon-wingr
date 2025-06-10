@@ -1,6 +1,7 @@
 import { MapPin, Clock, Phone, Car } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { AccessMap } from '@/components/map/GoogleMap';
+import { SectionTitle } from '@/components/ui/SectionTitle';
 
 const accessInfo = [
   {
@@ -41,7 +42,12 @@ export const Access = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="heading-2 mb-4">アクセス</h2>
+          <SectionTitle
+            level="h2"
+            align="center"
+            mainTitle="アクセス・店舗情報"
+            subTitle="Access & Store Information"
+          />
           <p className="body-lg text-gray-600 max-w-2xl mx-auto">
             岐阜市加野、アクセス良好な立地にございます
           </p>

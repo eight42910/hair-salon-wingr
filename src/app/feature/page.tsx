@@ -96,8 +96,9 @@ export default function FeaturePage() {
   return (
     <div className="bg-gradient-to-b from-primary-50 via-white to-accent-50">
       <PageLayout
-        title="私たちの4つの特徴"
-        subtitle="41年間の経験と最新技術で、お客様一人ひとりに最高の美容体験をお届けします"
+        title="私たちの特徴"
+        titleEn="Our Features"
+        subtitle="美容室ウイング Rの4つの特徴をご紹介。お客様に愛され続ける理由がここにあります。"
       >
         {/* 特徴詳細セクション */}
         <div className="space-y-20">

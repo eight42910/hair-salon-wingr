@@ -4,6 +4,7 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 interface PageLayoutProps {
   children: ReactNode;
   title: string;
+  titleEn?: string;
   subtitle?: string;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '4xl' | '6xl';
   className?: string;
@@ -12,6 +13,7 @@ interface PageLayoutProps {
 export const PageLayout = ({
   children,
   title,
+  titleEn,
   subtitle,
   maxWidth = '4xl',
   className = '',
@@ -31,9 +33,12 @@ export const PageLayout = ({
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className={`${maxWidthClasses[maxWidth]} mx-auto`}>
-            <SectionTitle level="h1" align="center">
-              {title}
-            </SectionTitle>
+            <SectionTitle 
+              level="h1" 
+              align="center"
+              mainTitle={title}
+              subTitle={titleEn}
+            />
             {subtitle && (
               <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
                 {subtitle}

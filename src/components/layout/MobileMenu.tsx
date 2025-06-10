@@ -9,13 +9,12 @@ interface MobileMenuProps {
 }
 
 const navigation = [
-  { name: 'HOME', href: '/', icon: '🏠' },
-  { name: 'CONCEPT', href: '/concept', icon: '💭' },
-  { name: 'FEATURE', href: '/feature', icon: '✨' },
-  { name: 'MENU', href: '/menu', icon: '📋' },
-  { name: 'OWNER', href: '/owner', icon: '👨‍💼' },
-  { name: 'ACCESS', href: '/access', icon: '🗺️' },
-  { name: 'CONTACT', href: '/contact', icon: '📞' },
+  { nameJa: 'ホーム', nameEn: 'Home', href: '/' },
+  { nameJa: 'コンセプト', nameEn: 'Concept', href: '/concept' },
+  { nameJa: 'メニュー', nameEn: 'Menu', href: '/menu' },
+  { nameJa: 'オーナー', nameEn: 'Owner', href: '/owner' },
+  { nameJa: 'アクセス', nameEn: 'Access', href: '/access' },
+  { nameJa: 'お問い合わせ', nameEn: 'Contact', href: '/contact' },
 ];
 
 export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
@@ -42,7 +41,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 xl:hidden">
+    <div className={`fixed inset-0 z-50 ${isOpen ? 'block' : 'hidden'}`}>
       {/* オーバーレイ */}
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
@@ -50,7 +49,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
       />
 
       {/* メニューパネル */}
-      <div className="absolute right-0 top-0 h-full w-full max-w-sm bg-white shadow-2xl">
+      <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl">
         <div className="flex flex-col h-full">
           {/* ヘッダー */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
@@ -72,20 +71,25 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
 
           {/* ナビゲーション */}
           <div className="flex-1 overflow-y-auto py-4">
-            <nav className="px-4 space-y-2">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="flex items-center py-3 px-4 text-gray-700 hover:bg-primary-50 hover:text-primary-900 rounded-lg transition-colors group"
-                  onClick={onClose}
-                >
-                  <span className="text-lg mr-3 group-hover:scale-110 transition-transform">
-                    {item.icon}
-                  </span>
-                  <span className="font-medium">{item.name}</span>
-                </Link>
-              ))}
+            <nav className="px-6 py-8">
+              <ul className="space-y-6">
+                {navigation.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      onClick={onClose}
+                      className="block group"
+                    >
+                      <div className="text-lg font-bold text-primary-900 group-hover:text-primary-700 transition-colors">
+                        {item.nameJa}
+                      </div>
+                      <div className="text-sm text-primary-600 uppercase tracking-wide">
+                        {item.nameEn}
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </nav>
 
             {/* 店舗情報 */}

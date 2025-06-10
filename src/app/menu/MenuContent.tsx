@@ -222,14 +222,16 @@ const MenuCategory = ({
 export default function MenuContent() {
   return (
     <main className="min-h-screen pt-20 bg-white">
-      {/* シンプルなヘッダー */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            {/* メインタイトルにもSectionTitleを使用 */}
-            <SectionTitle level="h1" align="center" showDivider={true}>
-              Menu
-            </SectionTitle>
+            <SectionTitle
+              level="h1"
+              align="center"
+              showDivider={true}
+              mainTitle="メニュー・料金"
+              subTitle="Menu & Price"
+            />
 
             {/* メニューカテゴリ */}
             <div className="space-y-0">

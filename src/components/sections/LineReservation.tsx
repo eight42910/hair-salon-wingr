@@ -30,9 +30,13 @@ export const LineReservation = () => {
     <section className="py-16 bg-gradient-to-b from-green-50 to-emerald-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <SectionTitle level="h2" align="center" showDivider={true}>
-            LINE公式アカウントで簡単予約
-          </SectionTitle>
+          <SectionTitle
+            level="h2"
+            align="center"
+            showDivider={true}
+            mainTitle="LINE予約"
+            subTitle="Easy LINE Reservation"
+          />
           <p className="text-lg text-gray-600 max-w-2xl mx-auto bg-white/70 backdrop-blur-sm p-4 rounded-lg shadow-sm">
             LINE公式アカウントを友だち追加して、24時間いつでも簡単にご予約いただけます
           </p>
@@ -78,9 +82,13 @@ export const LineReservation = () => {
 
           {/* 予約方法の説明 */}
           <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-l-4 border-blue-300">
-            <SectionTitle level="h3" align="left" showDivider={true}>
-              LINE予約の流れ
-            </SectionTitle>
+            <SectionTitle
+              level="h3"
+              align="left"
+              showDivider={true}
+              mainTitle="LINE予約の流れ"
+              subTitle="Reservation Process"
+            />
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full mx-auto mb-3 flex items-center justify-center text-white font-bold">

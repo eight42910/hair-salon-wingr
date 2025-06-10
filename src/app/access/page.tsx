@@ -14,14 +14,19 @@ export default function AccessPage() {
   return (
     <PageLayout
       title="アクセス・店舗情報"
+      titleEn="Access & Store Information"
       subtitle="美容室ウイング R は岐阜市内の便利な立地にございます。お車でのご来店はもちろん、公共交通機関でもアクセス良好です。"
     >
       <div className="grid gap-8 lg:grid-cols-2">
         {/* 店舗情報 */}
         <Card>
-          <SectionTitle level="h2" align="left" showDivider={true}>
-            店舗情報
-          </SectionTitle>
+          <SectionTitle 
+            level="h2" 
+            align="left" 
+            showDivider={true}
+            mainTitle="店舗情報"
+            subTitle="Store Information"
+          />
 
           <div className="space-y-6">
             <div className="flex items-start">
@@ -87,9 +92,13 @@ export default function AccessPage() {
 
         {/* アクセス方法 */}
         <Card>
-          <SectionTitle level="h2" align="left" showDivider={true}>
-            アクセス方法
-          </SectionTitle>
+          <SectionTitle 
+            level="h2" 
+            align="left" 
+            showDivider={true}
+            mainTitle="アクセス方法"
+            subTitle="How to Get Here"
+          />
 
           <div className="space-y-6">
             <div>
@@ -125,9 +134,13 @@ export default function AccessPage() {
 
       {/* 地図エリア */}
       <div className="mt-12">
-        <SectionTitle level="h2" align="left" showDivider={true}>
-          アクセスマップ
-        </SectionTitle>
+        <SectionTitle 
+          level="h2" 
+          align="left" 
+          showDivider={true}
+          mainTitle="アクセスマップ"
+          subTitle="Access Map"
+        />
         <Card className="h-96 flex items-center justify-center">
           <div className="text-center text-gray-500">
             <MapPin className="w-12 h-12 mx-auto mb-2" />
@@ -139,9 +152,13 @@ export default function AccessPage() {
 
       {/* ご来店時のお願い */}
       <div className="mt-12">
-        <SectionTitle level="h2" align="left" showDivider={true}>
-          ご来店時のお願い
-        </SectionTitle>
+        <SectionTitle 
+          level="h2" 
+          align="left" 
+          showDivider={true}
+          mainTitle="ご来店時のお願い"
+          subTitle="Visit Guidelines"
+        />
         <div className="grid gap-6 md:grid-cols-2">
           <Card>
             <h3 className="font-medium text-gray-900 mb-3">ご予約について</h3>

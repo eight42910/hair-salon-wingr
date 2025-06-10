@@ -16,7 +16,8 @@ export default function ContactPage() {
     <div className="bg-gradient-to-b from-secondary-50 via-white to-accent-50">
       <PageLayout
         title="お問い合わせ"
-        subtitle="髪のお悩みやご質問など、お気軽にお問い合わせください。24時間以内にご返信いたします。"
+        titleEn="Contact Us"
+        subtitle="ご質問やご相談がございましたら、お気軽にお問い合わせください。お電話またはフォームからご連絡いただけます。"
         maxWidth="6xl"
       >
         <div className="grid lg:grid-cols-3 gap-8 mb-12">
