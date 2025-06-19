@@ -3,62 +3,15 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { Card } from '@/components/ui/Card';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { LineButton } from '@/components/ui/LineButton';
-
-// バリデーションスキーマ
-const bookingSchema = z.object({
-  name: z
-    .string()
-    .min(1, 'お名前は必須です')
-    .min(2, 'お名前は2文字以上で入力してください'),
-  furigana: z
-    .string()
-    .min(1, 'フリガナは必須です')
-    .regex(/^[ァ-ヶー\s]*$/, 'カタカナで入力してください'),
-  phone: z
-    .string()
-    .min(1, '電話番号は必須です')
-    .regex(/^[0-9-+()]*$/, '正しい電話番号を入力してください'),
-  email: z
-    .string()
-    .min(1, 'メールアドレスは必須です')
-    .email('正しいメールアドレスを入力してください'),
-  preferredDate: z.string().min(1, '希望日時は必須です'),
-  alternativeDate: z.string().optional(),
-  menuType: z.string().min(1, 'ご希望のメニューを選択してください'),
-  isFirstVisit: z.boolean(),
-  requests: z.string().optional(),
-  hairConcerns: z.array(z.string()).optional(),
-  agreement: z
-    .boolean()
-    .refine((val) => val === true, '利用規約への同意が必要です'),
-});
-
-type BookingFormData = z.infer<typeof bookingSchema>;
-
-const menuOptions = [
-  { value: 'cut', label: 'カット', price: '4,400円〜' },
-  { value: 'cut-color', label: 'カット + カラー', price: '8,800円〜' },
-  { value: 'cut-perm', label: 'カット + パーマ', price: '9,900円〜' },
-  { value: 'digital-perm', label: 'デジタルパーマ', price: '11,000円〜' },
-  { value: 'head-spa', label: 'ヘッドスパ', price: '3,300円〜' },
-  { value: 'treatment', label: 'トリートメント', price: '2,200円〜' },
-  { value: 'consultation', label: 'カウンセリングのみ', price: '無料' },
-];
-
-const hairConcernOptions = [
-  '髪のダメージが気になる',
-  'くせ毛・うねりが気になる',
-  'ボリュームが足りない',
-  'ボリュームを抑えたい',
-  '白髪が気になる',
-  '頭皮のトラブル',
-  'スタイリングがうまくできない',
-  '髪が伸びるのが早い',
-];
+import {
+  bookingSchema,
+  BookingFormData,
+  menuOptions,
+  hairConcernOptions,
+} from '@/types/form';
 
 export const BookingForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -171,9 +124,12 @@ export const BookingForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         {/* 基本情報 */}
         <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-l-4 border-blue-300">
-          <SectionTitle level="h3" align="left" showDivider={true}>
-            基本情報
-          </SectionTitle>
+          <SectionTitle
+            level="h3"
+            align="left"
+            showDivider={true}
+            mainTitle="基本情報"
+          ></SectionTitle>
 
           <div className="grid md:grid-cols-2 gap-6">
             <div>
@@ -258,9 +214,12 @@ export const BookingForm = () => {
 
         {/* 予約詳細 */}
         <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-l-4 border-purple-300">
-          <SectionTitle level="h3" align="left" showDivider={true}>
-            予約詳細
-          </SectionTitle>
+          <SectionTitle
+            level="h3"
+            align="left"
+            showDivider={true}
+            mainTitle="予約詳細"
+          ></SectionTitle>
 
           <div className="grid md:grid-cols-2 gap-6">
             <div>
@@ -330,9 +289,13 @@ export const BookingForm = () => {
 
         {/* ヘアコンサルティング */}
         <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-green-300">
-          <SectionTitle level="h3" align="left" showDivider={true}>
-            ヘアコンサルティング
-          </SectionTitle>
+          <SectionTitle
+            subTitle="Hair Consultation"
+            level="h3"
+            align="left"
+            showDivider={true}
+            mainTitle="ヘアコンサルティング"
+          ></SectionTitle>
 
           <div className="space-y-6">
             <div>

@@ -6,9 +6,9 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Card } from '@/components/ui/Card';
 
 export const metadata: Metadata = {
-  title: 'オーナー・スタッフ紹介 | 美容室ウイング R',
+  title: 'スタッフ紹介 | 美容室ウイング R',
   description:
-    '美容室ウイング Rのオーナー・スタッフをご紹介。41年の経験と家族経営の温かさで、お客様一人ひとりに寄り添います。',
+    '美容室ウイング R のスタッフをご紹介。経験豊富なスタイリストが、お客様一人ひとりに寄り添います。',
 };
 
 const staff = [
@@ -36,9 +36,9 @@ const staff = [
 export default function OwnerPage() {
   return (
     <PageLayout
-      title="オーナー・スタッフ紹介"
-      titleEn="Owner & Staff"
-      subtitle="41年の経験と家族経営の温かさで、お客様一人ひとりに寄り添います"
+      titleJa="スタッフ紹介"
+      titleEn="Our Staff"
+      description="経験豊富なスタッフが、お客様一人ひとりに寄り添った施術をご提供いたします"
     >
       {/* スタッフ紹介 */}
       <div className="grid gap-12">
@@ -128,8 +128,7 @@ export default function OwnerPage() {
           level="h2"
           align="left"
           showDivider={true}
-          mainTitle="アットホームな店内"
-          subTitle="Cozy Salon Interior"
+          mainTitle="Salon"
         />
         <p className="text-gray-600 text-sm mb-8">
           家族経営ならではの温かい雰囲気の中で、リラックスして美容時間をお過ごしください

@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 
 interface SectionTitleProps {
-  mainTitle: string; // 日本語メインタイトル
-  subTitle?: string; // 英語サブタイトル
+  mainTitle: string; // 日本語メインタイトル（必須）
+  subTitle?: string; // 英語サブタイトル（装飾的、オプション）
+  description?: string; // 日本語説明文（オプション）
   level?: 'h1' | 'h2' | 'h3';
   align?: 'left' | 'center' | 'right';
   className?: string;
@@ -15,6 +16,7 @@ interface SectionTitleProps {
 export const SectionTitle = ({
   mainTitle,
   subTitle,
+  description,
   level = 'h2',
   align = 'center',
   className = '',
@@ -49,17 +51,29 @@ export const SectionTitle = ({
       : 'text-left';
 
   return (
-    <div className={`mb-8 ${containerClass}`}>
+    <div className={`mb-8 ${containerClass} ${className}`}>
+      {/* 英語サブタイトル：装飾的（小さく上部に） */}
+      {subTitle && (
+        <span className="inline-block text-xs md:text-sm text-primary-600 font-medium tracking-widest uppercase mb-2 opacity-80">
+          {subTitle}
+        </span>
+      )}
+
+      {/* 日本語メインタイトル */}
       <Component
-        className={`${baseStyles} ${sizeStyles[level]} ${alignStyles[align]} text-primary-900 ${className}`}
+        className={`${baseStyles} ${sizeStyles[level]} ${alignStyles[align]} text-primary-900`}
       >
         {displayTitle}
       </Component>
-      {subTitle && (
-        <p className="text-sm md:text-base text-primary-600 font-medium tracking-wider uppercase mt-2">
-          {subTitle}
+
+      {/* 日本語説明文 */}
+      {description && (
+        <p className="text-sm md:text-base text-gray-600 mt-3 max-w-2xl mx-auto leading-relaxed">
+          {description}
         </p>
       )}
+
+      {/* 装飾ライン */}
       {showDivider && (
         <div
           className={`h-0.5 bg-primary-400 mt-4 ${

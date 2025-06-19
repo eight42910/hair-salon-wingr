@@ -1,8 +1,7 @@
 'use client';
 
-import Image from 'next/image';
-import { Scissors, Palette, Waves, Sparkles, Clock } from 'lucide-react';
-import { useState } from 'react';
+import { Scissors, Palette, Waves, Sparkles } from 'lucide-react';
+import { SectionTitle } from '@/components/ui/SectionTitle';
 
 // 型定義をインポート
 import type {
@@ -14,20 +13,20 @@ import type {
 } from '../../types/menu';
 
 // SectionTitleをインポート
-import { SectionTitle } from '../../components/ui/SectionTitle';
 
 // シンプルなメニューデータ構造
 const menuData: MenuData = {
   cut: {
-    title: 'Cut',
+    titleJa: 'カット',
+    titleEn: 'Cut',
     icon: Scissors,
     color: 'bg-gradient-to-br from-amber-50 to-amber-100 border-amber-200',
-    description: '',
+    description: '骨格に合わせた似合わせカット',
     items: [
       {
         name: 'レディースカット',
         description: 'シャンプー・ブロー込み',
-        detailedDescription: '',
+        detailedDescription: '骨格と髪質に合わせた似合わせカット',
         price: '¥4,500',
         originalPrice: null,
         duration: '60分',
@@ -60,19 +59,20 @@ const menuData: MenuData = {
     ],
   },
   color: {
-    title: 'Color',
+    titleJa: 'カラーリング',
+    titleEn: 'Hair Color',
     icon: Palette,
     color: 'bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200',
-    description: '',
+    description: 'ダメージレスな美発色',
     items: [
       {
         name: '全体カラー',
         description: 'シャンプー・ブロー込み',
-        detailedDescription: '',
+        detailedDescription: '髪に優しい薬剤で美しい発色を実現',
         price: '¥6,000',
         originalPrice: null,
         duration: '90分',
-        popular: false,
+        popular: true,
         new: false,
         image: '/images/gallery/cut/cut-4.jpg',
       },
@@ -101,15 +101,16 @@ const menuData: MenuData = {
     ],
   },
   treatment: {
-    title: 'Treatment',
+    titleJa: 'ヘッドスパ・トリートメント',
+    titleEn: 'Head Spa & Treatment',
     icon: Sparkles,
     color: 'bg-gradient-to-br from-green-50 to-green-100 border-green-200',
-    description: '',
+    description: '頭皮環境改善とリラクゼーション',
     items: [
       {
         name: 'ヘッドスパ',
         description: '頭皮ケア・リラクゼーション',
-        detailedDescription: '',
+        detailedDescription: 'CAC製品を使用した本格ヘッドスパ',
         price: '¥3,000',
         originalPrice: null,
         duration: '30分',
@@ -131,15 +132,16 @@ const menuData: MenuData = {
     ],
   },
   perm: {
-    title: 'Perm',
+    titleJa: 'パーマ・縮毛矯正',
+    titleEn: 'Perm & Straightening',
     icon: Waves,
     color: 'bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200',
-    description: '',
+    description: '自然な仕上がりのスタイリング',
     items: [
       {
         name: 'コールドパーマ',
         description: 'カット・シャンプー・ブロー込み',
-        detailedDescription: '',
+        detailedDescription: '自然な仕上がりのウェーブスタイル',
         price: '¥8,500',
         originalPrice: null,
         duration: '150分',
@@ -198,19 +200,23 @@ const MenuItemCard = ({ item }: MenuItemProps) => {
 };
 
 // カテゴリセクション
-const MenuCategory = ({
-  category,
-  isLast,
-}: MenuCategoryProps & { isLast?: boolean }) => {
+const MenuCategory = ({ category }: MenuCategoryProps) => {
   return (
-    <div className={`${!isLast ? 'mb-12' : ''}`}>
-      {/* SectionTitleコンポーネントを使用 */}
-      <SectionTitle level="h2" align="left" showDivider={true}>
-        {category.title}
-      </SectionTitle>
+    <div className="mb-16">
+      {/* セクションタイトル：日本語メイン + 英語装飾 */}
+      <div className="mb-8">
+        <span className="inline-block text-xs text-primary-600 uppercase tracking-widest mb-2">
+          {category.titleEn}
+        </span>
+        <h2 className="text-2xl font-bold text-primary-900 mb-3">
+          {category.titleJa}
+        </h2>
+        <p className="text-sm text-gray-600 mb-4">{category.description}</p>
+        <div className="w-24 h-0.5 bg-primary-400"></div>
+      </div>
 
-      {/* メニューアイテム - 2カラムレイアウト */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+      {/* メニューアイテム */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
         {category.items.map((item: MenuItem, index: number) => (
           <MenuItemCard key={index} item={item} />
         ))}
@@ -225,26 +231,28 @@ export default function MenuContent() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <SectionTitle
-              level="h1"
-              align="center"
-              showDivider={true}
-              mainTitle="メニュー・料金"
-              subTitle="Menu & Price"
-            />
+            {/* メインタイトル：日本語メイン */}
+            <div className="text-center mb-16">
+              <span className="inline-block text-sm text-primary-600 uppercase tracking-widest mb-3">
+                Menu & Price
+              </span>
+              <h1 className="text-4xl font-bold text-primary-900 mb-4">
+                メニュー・料金
+              </h1>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                お客様一人ひとりに合わせた丁寧な施術で、理想のヘアスタイルを実現いたします
+              </p>
+              <div className="w-24 h-0.5 bg-primary-400 mx-auto mt-6"></div>
+            </div>
 
             {/* メニューカテゴリ */}
-            <div className="space-y-0">
+            <div className="space-y-8 mt-12">
               {Object.entries(menuData).map(([key, category], index) => (
-                <MenuCategory
-                  key={key}
-                  category={category}
-                  isLast={index === Object.entries(menuData).length - 1}
-                />
+                <MenuCategory key={key} category={category} />
               ))}
             </div>
 
-            {/* フッター情報 */}
+            {/* フッター情報：日本語のみ */}
             <div className="mt-16 pt-8 border-t border-gray-200">
               <div className="grid md:grid-cols-3 gap-8 text-sm text-gray-600">
                 <div>

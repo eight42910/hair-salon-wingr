@@ -92,8 +92,8 @@ export const Access = () => {
               </h4>
               <div className="bg-accent-50 rounded-lg p-4">
                 {businessHours.map((schedule, index) => (
-                  <div key={index} className="flex justify-between py-1">
-                    <span className="text-sm text-gray-700">
+                  <div key={index} className="flex py-1 gap-4">
+                    <span className="text-sm text-gray-700 min-w-[4rem]">
                       {schedule.day}
                     </span>
                     <span className="text-sm text-gray-900 font-medium">
@@ -102,12 +102,6 @@ export const Access = () => {
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div className="mt-6">
-              <Button size="lg" className="w-full md:w-auto">
-                ご予約・お問い合わせ
-              </Button>
             </div>
           </div>
 

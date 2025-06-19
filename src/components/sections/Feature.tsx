@@ -4,96 +4,116 @@ import Image from 'next/image';
 
 const features = [
   {
-    icon: Users,
-    title: '技術',
-    subtitle: '技術',
+    id: 1,
+    titleJa: '3世代ファミリーサロン',
+    titleEn: 'Family Salon',
     description:
-      '伸びてきても気にならないグラデーションカラー、骨格に合わせたカット&パーマなど、時間が経ってもきれいに素敵でいられる再現性の高い技術にこだわっています。',
+      '3世代にわたって愛され続けるファミリーサロン。お子様からご年配の方まで、それぞれのライフスタイルに合わせた施術をご提供。家族みんなで通える温かな空間で、美容を通じて笑顔をお届けします。',
     imagePath: '/images/gallery/cut/cut-1.jpg',
-    imageAlt: '技術の様子',
+    imageAlt: 'ファミリーサロンでの施術風景',
+    icon: Users,
   },
   {
-    icon: Heart,
-    title: '頭皮改善',
-    subtitle: '頭皮改善',
+    id: 2,
+    titleJa: '頭皮環境改善ヘッドスパ',
+    titleEn: 'Head Spa',
     description:
-      'CAC製品を使用したヘッドスパで頭皮環境を改善。健やかな髪の土台作りをサポートし、リラクゼーション効果も提供いたします。',
+      'CAC製品を使用した本格ヘッドスパで頭皮環境を根本から改善。血行促進と毛穴の汚れを除去し、健やかな髪の成長をサポート。心地よいマッサージで日頃の疲れも癒やします。',
     imagePath: '/images/gallery/wash-hair.jpg',
     imageAlt: '頭皮改善ヘッドスパの施術風景',
+    icon: Heart,
   },
   {
-    icon: Sparkles,
-    title: 'カラートリートメント',
-    subtitle: 'カラーメイドトリートメント',
+    id: 3,
+    titleJa: '自然な縮毛矯正',
+    titleEn: 'Hair Straightening',
     description:
-      '髪の内部から補修し、カラーの持ちを良くするトリートメント。髪質改善と美しい発色を同時に実現します。',
+      '髪質に合わせた丁寧な縮毛矯正で、クセやうねりを自然にストレートに。ダメージを最小限に抑えながら、手触りの良いサラサラヘアを実現。毎朝のスタイリングが格段に楽になります。',
     imagePath: '/images/gallery/cut/cut-4.jpg',
-    imageAlt: 'カラーメイドトリートメントの様子',
+    imageAlt: '縮毛矯正の施術風景',
+    icon: Sparkles,
   },
   {
-    icon: Coffee,
-    title: 'プライベート空間',
-    subtitle: 'プライベート空間',
+    id: 4,
+    titleJa: '41年の技術と経験',
+    titleEn: 'Professional Technique',
     description:
-      'ゆったりとした個室感覚の空間で、お客様だけの特別な時間をお過ごしいただけます。リラックスして施術を受けていただけます。',
+      '1983年の創業から41年間で培った確かな技術に、最新のトレンドを融合。お客様一人ひとりの骨格や髪質を見極め、その方だけの美しさを引き出します。伝統と革新の技術で、理想のヘアスタイルを実現します。',
     imagePath: '/images/gallery/cut/cut-stand.jpg',
-    imageAlt: 'プライベート空間の様子',
+    imageAlt: '技術追求の施術風景',
+    icon: Coffee,
   },
 ];
 
 export const Feature = () => {
   return (
-    <section className="py-20 bg-gray-100">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <SectionTitle
-            level="h2"
-            align="center"
-            showDivider={true}
-            mainTitle="私たちの特徴"
-            subTitle="Our Four Features"
-          />
-        </div>
+    <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* セクションタイトル：日本語メイン + 英語装飾 */}
+        <SectionTitle
+          subTitle="Our Features"
+          mainTitle="私たちの特徴"
+          description="41年の歴史で培った技術と、お客様への想いをご紹介いたします"
+          level="h2"
+          align="center"
+          showDivider={true}
+        />
 
-        <div className="space-y-20">
+        <div className="space-y-32 mt-16">
           {features.map((feature, index) => {
             const isEven = index % 2 === 0;
             return (
               <div
-                key={index}
-                className={`flex flex-col lg:flex-row items-center gap-12 ${
+                key={feature.id}
+                className={`flex flex-col lg:flex-row items-stretch gap-16 lg:gap-20 ${
                   isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
                 }`}
               >
                 {/* 画像エリア */}
-                <div className="flex-1 relative">
-                  <div className="relative aspect-[4/3] bg-gray-300 rounded-lg overflow-hidden">
-                    <Image
-                      src={feature.imagePath}
-                      alt={feature.imageAlt}
-                      className="object-cover"
-                      width={800}
-                      height={600}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
+                <div className="flex-1 relative group">
+                  <div className="relative aspect-[5/4] bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500">
+                    <div className="absolute inset-4 bg-white rounded-xl overflow-hidden">
+                      <Image
+                        src={feature.imagePath}
+                        alt={feature.imageAlt}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
+                        width={800}
+                        height={600}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                      />
+                    </div>
+                    {/* 装飾的な要素 */}
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary-200 rounded-full opacity-60"></div>
+                    <div className="absolute -bottom-3 -left-3 w-12 h-12 bg-accent-200 rounded-full opacity-40"></div>
                   </div>
                 </div>
 
                 {/* テキストエリア */}
-                <div className="flex-1 space-y-6">
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-800 mb-1 tracking-wider">
-                      {feature.title}
-                    </h3>
-                    <h4 className="text-base text-primary-600 uppercase tracking-wide mb-4 font-medium">
-                      {feature.titleEn || feature.subtitle}
-                    </h4>
-                    <div className="w-16 h-0.5 bg-gray-400 mb-6"></div>
+                <div className="flex-1 flex flex-col justify-center space-y-8 px-4 lg:px-8">
+                  <div className="space-y-4">
+                    {/* アイコン */}
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl shadow-lg mb-6">
+                      <feature.icon className="w-8 h-8 text-white" />
+                    </div>
+
+                    {/* タイトル：英語装飾 + 日本語メイン */}
+                    <div className="space-y-2">
+                      <p className="text-sm font-medium text-primary-600 uppercase tracking-widest">
+                        {feature.titleEn}
+                      </p>
+                      <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+                        {feature.titleJa}
+                      </h3>
+                    </div>
                   </div>
 
-                  <p className="text-gray-600 leading-relaxed text-base">
-                    {feature.description}
-                  </p>
+                  {/* 説明文：日本語のみ */}
+                  <div className="relative">
+                    <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary-400 to-accent-400 rounded-full"></div>
+                    <p className="text-gray-700 leading-relaxed text-lg pl-8 font-light">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             );

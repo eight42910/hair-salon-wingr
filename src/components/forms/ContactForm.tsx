@@ -3,46 +3,14 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { Card } from '@/components/ui/Card';
-import { SectionTitle } from '@/components/ui/SectionTitle';
 import { CheckCircle, Circle } from 'lucide-react';
-
-// バリデーションスキーマ
-const contactSchema = z.object({
-  name: z
-    .string()
-    .min(1, 'お名前は必須です')
-    .min(2, 'お名前は2文字以上で入力してください'),
-  furigana: z
-    .string()
-    .min(1, 'フリガナは必須です')
-    .regex(/^[ァ-ヶー\s]*$/, 'カタカナで入力してください'),
-  email: z
-    .string()
-    .min(1, 'メールアドレスは必須です')
-    .email('正しいメールアドレスを入力してください'),
-  phone: z.string().optional(),
-  subject: z.string().min(1, 'お問い合わせの種類を選択してください'),
-  message: z
-    .string()
-    .min(1, 'お問い合わせ内容は必須です')
-    .min(10, 'お問い合わせ内容は10文字以上で入力してください'),
-  agreement: z
-    .boolean()
-    .refine((val) => val === true, 'プライバシーポリシーへの同意が必要です'),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
-
-const subjectOptions = [
-  { value: 'booking', label: '予約に関するお問い合わせ' },
-  { value: 'menu', label: 'メニュー・料金について' },
-  { value: 'hair-concern', label: '髪のお悩み相談' },
-  { value: 'cancel', label: '予約の変更・キャンセル' },
-  { value: 'product', label: '商品について' },
-  { value: 'other', label: 'その他' },
-];
+import {
+  contactSchema,
+  ContactFormData,
+  subjectOptions,
+  FormSubmitStatus,
+} from '@/types/form';
 
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -149,88 +117,37 @@ export const ContactForm = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
-      {/* 入力進捗とプライバシーポリシー・送信ボタン */}
-      <div className="sticky top-20 z-40 mb-8">
-        <Card className="bg-gradient-to-r from-secondary-50 to-accent-50 border-2 border-secondary-200 shadow-lg">
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* 入力進捗 */}
-            <div>
-              <h3 className="font-bold text-lg text-primary-900 mb-3">
-                入力進捗
-              </h3>
-              <div className="w-full bg-gray-200 rounded-full h-3 mb-3">
-                <div
-                  className="bg-gradient-to-r from-secondary-500 to-secondary-700 h-3 rounded-full transition-all duration-500"
-                  style={{ width: `${progressPercentage}%` }}
-                ></div>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                {checkItems.map((item) => (
-                  <div key={item.key} className="flex items-center space-x-2">
-                    {item.completed ? (
-                      <CheckCircle className="w-4 h-4 text-green-500" />
-                    ) : (
-                      <Circle className="w-4 h-4 text-gray-300" />
-                    )}
-                    <span
-                      className={
-                        item.completed ? 'text-green-700' : 'text-gray-500'
-                      }
-                    >
-                      {item.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
+    <div className="max-w-3xl mx-auto relative">
+      {/* 入力進捗 - スティッキー表示 */}
+      <div className="sticky top-20 z-10 mb-8 backdrop-blur-sm">
+        <Card className="bg-secondary-100 to-indigo-50 border-l-4 border-blue-300 shadow-lg">
+          <div>
+            <h3 className="font-bold text-lg text-primary-900 mb-3">
+              入力進捗
+            </h3>
+            <div className="w-full bg-gray-200 rounded-full h-3 mb-3">
+              <div
+                className="bg-gradient-to-r from-secondary-500 to-secondary-700 h-3 rounded-full transition-all duration-500"
+                style={{ width: `${progressPercentage}%` }}
+              ></div>
             </div>
-
-            {/* プライバシーポリシーと送信 */}
-            <div className="flex flex-col justify-center">
-              <div className="mb-4">
-                <label className="flex items-start space-x-2">
-                  <input
-                    type="checkbox"
-                    className="mt-1 text-primary-500"
-                    {...register('agreement')}
-                  />
-                  <span className="text-sm text-gray-700">
-                    <span className="text-red-500">*</span>
-                    <a
-                      href="/privacy"
-                      className="text-primary-600 underline hover:text-primary-800"
-                    >
-                      プライバシーポリシー
-                    </a>
-                    に同意します
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              {checkItems.map((item) => (
+                <div key={item.key} className="flex items-center space-x-2">
+                  {item.completed ? (
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                  ) : (
+                    <Circle className="w-4 h-4 text-gray-300" />
+                  )}
+                  <span
+                    className={
+                      item.completed ? 'text-green-700' : 'text-gray-500'
+                    }
+                  >
+                    {item.label}
                   </span>
-                </label>
-                {errors.agreement && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.agreement.message}
-                  </p>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                form="contact-form"
-                disabled={!isValid || isSubmitting}
-                className={`w-full px-6 py-3 rounded-lg font-bold text-white transition-all duration-300 ${
-                  isValid && !isSubmitting
-                    ? 'bg-gradient-to-r from-secondary-500 to-secondary-700 hover:from-secondary-600 hover:to-secondary-800 hover:scale-105 shadow-lg hover:shadow-xl'
-                    : 'bg-gray-300 cursor-not-allowed'
-                }`}
-              >
-                {isSubmitting ? (
-                  <div className="flex items-center justify-center space-x-2">
-                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                    <span>送信中...</span>
-                  </div>
-                ) : (
-                  'お問い合わせを送信'
-                )}
-              </button>
+                </div>
+              ))}
             </div>
           </div>
         </Card>
@@ -242,11 +159,7 @@ export const ContactForm = () => {
         className="space-y-8"
       >
         {/* 基本情報 */}
-        <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-l-4 border-blue-300">
-          <SectionTitle level="h3" align="left" showDivider={true}>
-            基本情報
-          </SectionTitle>
-
+        <Card className="bg-primary-50 to-indigo-50 border-l-4 border-blue-300">
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="form-label">
@@ -320,11 +233,7 @@ export const ContactForm = () => {
         </Card>
 
         {/* お問い合わせ内容 */}
-        <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-l-4 border-purple-300">
-          <SectionTitle level="h3" align="left" showDivider={true}>
-            お問い合わせ内容
-          </SectionTitle>
-
+        <Card className="bg-primary-50 to-indigo-50 border-l-4 border-blue-300">
           <div className="space-y-6">
             <div>
               <label className="form-label">
@@ -373,6 +282,56 @@ export const ContactForm = () => {
                 </p>
               )}
             </div>
+          </div>
+        </Card>
+
+        {/* プライバシーポリシーと送信ボタン */}
+        <Card className="bg-primary-50 to-indigo-50 border-l-4 border-blue-300">
+          <div className="space-y-4">
+            <div>
+              <label className="flex items-start space-x-2">
+                <input
+                  type="checkbox"
+                  className="mt-1 text-primary-500"
+                  {...register('agreement')}
+                />
+                <span className="text-sm text-gray-700">
+                  <span className="text-red-500">*</span>
+                  <a
+                    href="/privacy"
+                    className="text-primary-600 underline hover:text-primary-800"
+                  >
+                    プライバシーポリシー
+                  </a>
+                  に同意します
+                </span>
+              </label>
+              {errors.agreement && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.agreement.message}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              form="contact-form"
+              disabled={!isValid || isSubmitting}
+              className={`w-full px-6 py-3 rounded-lg font-bold text-white transition-all duration-300 ${
+                isValid && !isSubmitting
+                  ? 'bg-gradient-to-r from-secondary-500 to-secondary-700 hover:from-secondary-600 hover:to-secondary-800 hover:scale-105 shadow-lg hover:shadow-xl'
+                  : 'bg-gray-300 cursor-not-allowed'
+              }`}
+            >
+              {isSubmitting ? (
+                <div className="flex items-center justify-center space-x-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                  <span>送信中...</span>
+                </div>
+              ) : (
+                'お問い合わせを送信'
+              )}
+            </button>
           </div>
         </Card>
 

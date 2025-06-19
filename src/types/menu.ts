@@ -13,7 +13,9 @@ export interface MenuItem {
 }
 
 export interface MenuCategory {
-  title: string;
+  titleJa: string;
+  titleEn: string;
+  title?: string;
   icon: LucideIcon;
   color: string;
   description: string;

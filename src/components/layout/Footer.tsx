@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { MapPin, Phone, Clock } from 'lucide-react';
 
 const navigation = [
-  { name: 'CONCEPT', href: '/concept' },
-  { name: 'FEATURE', href: '/feature' },
-  { name: 'MENU', href: '/menu' },
-  { name: 'OWNER', href: '/owner' },
-  { name: 'ACCESS', href: '/access' },
-  { name: 'CONTACT', href: '/contact' },
+  { nameJa: 'ホーム', href: '/' },
+  { nameJa: '特徴', href: '/#feature' },
+  { nameJa: 'メニュー', href: '/#menu' },
+  { nameJa: 'よくある質問', href: '/#faq' },
+  { nameJa: 'スタッフ', href: '/owner' },
+  { nameJa: 'お問い合わせ', href: '/contact' },
 ];
 
 export const Footer = () => {
@@ -51,11 +51,11 @@ export const Footer = () => {
             <nav className="space-y-2">
               {navigation.map((item) => (
                 <Link
-                  key={item.name}
+                  key={item.href}
                   href={item.href}
                   className="block text-primary-100 hover:text-white transition-colors"
                 >
-                  {item.name}
+                  {item.nameJa}
                 </Link>
               ))}
             </nav>
@@ -94,9 +94,6 @@ export const Footer = () => {
                 お問い合わせフォーム
               </Link>
             </div>
-            <p className="text-primary-200 text-sm mt-3">
-              LINE公式アカウントでの予約システムは準備中です
-            </p>
           </div>
         </div>
 

@@ -3,18 +3,18 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 
 interface PageLayoutProps {
   children: ReactNode;
-  title: string;
-  titleEn?: string;
-  subtitle?: string;
+  titleJa: string; // 日本語タイトル（必須）
+  titleEn?: string; // 英語タイトル（装飾的）
+  description?: string; // 日本語説明文
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '4xl' | '6xl';
   className?: string;
 }
 
 export const PageLayout = ({
   children,
-  title,
+  titleJa,
   titleEn,
-  subtitle,
+  description,
   maxWidth = '4xl',
   className = '',
 }: PageLayoutProps) => {
@@ -33,17 +33,19 @@ export const PageLayout = ({
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className={`${maxWidthClasses[maxWidth]} mx-auto`}>
-            <SectionTitle 
-              level="h1" 
+            <SectionTitle
+              level="h1"
               align="center"
-              mainTitle={title}
               subTitle={titleEn}
+              mainTitle={titleJa}
+              description={description}
+              showDivider={true}
             />
-            {subtitle && (
+            {/* {subtitle && (
               <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
                 {subtitle}
               </p>
-            )}
+            )} */}
             {children}
           </div>
         </div>

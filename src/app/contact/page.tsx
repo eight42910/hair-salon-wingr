@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { Card } from '@/components/ui/Card';
-import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Phone, MapPin, MessageCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -15,9 +14,9 @@ export default function ContactPage() {
   return (
     <div className="bg-gradient-to-b from-secondary-50 via-white to-accent-50">
       <PageLayout
-        title="お問い合わせ"
+        titleJa="お問い合わせ"
         titleEn="Contact Us"
-        subtitle="ご質問やご相談がございましたら、お気軽にお問い合わせください。お電話またはフォームからご連絡いただけます。"
+        description="髪のお悩みやご質問など、お気軽にご相談ください"
         maxWidth="6xl"
       >
         <div className="grid lg:grid-cols-3 gap-8 mb-12">
