@@ -1,16 +1,30 @@
 import { Button } from '@/components/ui/Button';
-import { Feature } from '@/components/sections/Feature';
-import { FAQ } from '@/components/sections/FAQ';
-import { Access } from '@/components/sections/Access';
 import Link from 'next/link';
-//画像
 import Image from 'next/image';
-import { LineReservation } from '@/components/sections/LineReservation';
-import MenuContent from './menu/MenuContent';
 import { LineButton } from '@/components/ui/LineButton';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
+import { Metadata } from 'next';
 
-export default function Home() {
+// コンポーネントの一括import（修正版）
+import {
+  Feature,
+  FAQ,
+  Access,
+  LineReservation,
+  MenuContent,
+} from '@/components/sections';
+
+export const metadata: Metadata = {
+  title: '美容室ウイング R | 岐阜市のファミリーサロン',
+  description: '41年間地域に愛され続ける、岐阜市のファミリーサロン',
+  openGraph: {
+    title: '美容室ウイング R | 岐阜市のファミリーサロン',
+    description: '41年間地域に愛され続ける、岐阜市のファミリーサロン',
+    images: ['/images/og-image.jpg'],
+  },
+};
+
+export default async function HomePage() {
   return (
     <main className="min-h-screen">
       {/* ヒーローセクション */}
@@ -70,9 +84,6 @@ export default function Home() {
       <AnimatedSection id="menu" direction="up" delay={0.2}>
         <MenuContent />
       </AnimatedSection>
-
-      {/* お客様の声セクション */}
-      {/* <Testimonials /> */}
 
       {/* よくある質問セクション */}
       <AnimatedSection id="faq" direction="up" delay={0.3}>

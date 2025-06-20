@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import MenuContent from './MenuContent';
+import MenuContent from '../../components/sections/MenuContent';
 
 export const metadata: Metadata = {
   title: 'メニュー・料金 | 美容室ウイング R',

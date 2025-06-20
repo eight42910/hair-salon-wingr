@@ -1,3 +1,4 @@
+'use client';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { Phone, X, MapPin, Clock, Scissors } from 'lucide-react';

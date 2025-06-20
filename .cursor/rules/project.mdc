@@ -1,0 +1,550 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor Rules for 美容室ウイング R Website Development
+
+## プロジェクト概要
+
+### 基本情報
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS + カスタムデザインシステム
+- **Form Management**: React Hook Form + Zod
+- **UI Icons**: Lucide React
+- **Target**: 美容室ウイングR コーポレートサイト（41年の歴史を持つファミリーサロン）
+
+### プロジェクトミッション
+41年の歴史を持つファミリーサロンの信頼感と現代的なウェブ体験を両立させ、3世代（10代〜70代）が使いやすいサイトを構築する。
+
+## ドキュメンテーション規則
+
+### 機能実装完了時の必須対応
+
+1. **機能仕様書の作成**
+   - 新機能実装時は必ず `docs/features/` ディレクトリに機能仕様書を作成
+   - ファイル名規則: `{FEATURE_NAME}_FEATURE.md` (例: `BOOKING_FEATURE.md`)
+   - 必須記載項目: 機能概要、技術実装、UI/UX仕様、テストケース
+
+2. **README.md の自動更新確認**
+   - 機能実装完了後、毎回「READMEに記載しますか？」と確認
+   - 完了機能リストの更新、進捗バッジの更新、技術スタック情報の更新を実施
+
+3. **実装ドキュメントの管理**
+   - 実装完了時は `docs/IMPLEMENTATION.md` を更新
+   - 日付別実装ログを `docs/IMPLEMENTATION-{YYYY-MM-DD}.md` 形式で保存
+
+4. **学習ポイントの記録**
+   - 重要な概念や実装の学習ポイントを `docs/learning-points/` に整理
+   - Next.js 固有の機能や最適化手法を重点的に記録
+
+### ドキュメント品質基準
+- **具体性**: 実装手順やコード例を含む
+- **完全性**: 必要な情報が漏れなく記載されている
+- **一貫性**: 既存ドキュメントと同じ形式・構造を維持
+- **更新性**: 変更時に関連ドキュメントも同時更新
+
+## TypeScript 厳格運用
+
+### 基本原則
+- `strict: true` 設定を維持
+- `any`型の使用は完全禁止（やむを得ない場合は`unknown`を使用）
+- インターフェースとタイプエイリアスを適切に使い分ける
+- ジェネリクスを活用して再利用性を高める
+- Optional chainingとnullish coalescingを積極的に使用
+
+### 型定義パターン
+```typescript
+// ✅ Good - 厳密な型定義
+interface ButtonProps {
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  children: React.ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
+}
+
+// ✅ Good - フォームデータの型定義
+interface ContactFormData {
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+  agreedToPrivacy: boolean;
+}
+
+// ❌ Bad - any型の使用
+interface BadProps {
+  variant: any;
+  children: any;
+  onClick: any;
+}
+```
+
+### 型定義の統一管理
+- 共通型は `src/types/` ディレクトリで管理
+- API レスポンス、フォームデータ、コンポーネント Props の型定義を徹底
+- Zod スキーマから TypeScript 型を自動生成
+
+## Next.js 14 App Router 最適化
+
+### Server Components 優先設計
+- Server Componentsをデフォルトとして使用
+- Client Componentsは`'use client'`を明示して最小限の範囲で使用
+- Server Actions を積極活用してクライアントサイド JavaScript を最小化
+
+```typescript
+// ✅ Good - Server Component (default)
+export default async function ConceptPage() {
+  return (
+    <main className="min-h-screen">
+      <ConceptHero />
+      <ConceptStory />
+    </main>
+  );
+}
+
+// ✅ Good - Client Component (必要時のみ)
+'use client';
+export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
+  useEffect(() => {
+    // ブラウザAPI使用時のみClient Component
+  }, [isOpen]);
+};
+```
+
+### Metadata設定とSEO最適化
+```typescript
+// 各ページで必須のMetadata設定
+export const metadata: Metadata = {
+  title: '具体的なページタイトル | 美容室ウイング R',
+  description: '検索エンジンに優しい説明文（120-160文字）',
+  keywords: '美容室,岐阜,ウイングR,ヘッドスパ,縮毛矯正,ファミリーサロン',
+  openGraph: {
+    title: 'SNS用タイトル',
+    description: 'SNS用説明文',
+    images: ['/images/og-image.jpg'],
+    locale: 'ja_JP',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+};
+```
+
+### App Router機能の最大活用
+- レイアウトネスティング、Loading UI、Error UI を適切に実装
+- ページ間でのネストされたレイアウト活用
+- 動的インポートを活用したコード分割
+
+## React Hook Form + Zod バリデーション
+
+### フォーム実装の統一パターン
+```typescript
+// Zodスキーマ定義
+const contactSchema = z.object({
+  name: z.string().min(1, 'お名前は必須です'),
+  email: z.string().email('正しいメールアドレスを入力してください'),
+  phone: z.string().optional(),
+  message: z.string().min(10, 'メッセージは10文字以上入力してください'),
+  agreedToPrivacy: z.boolean().refine(val => val === true, {
+    message: 'プライバシーポリシーへの同意が必要です'
+  }),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
+
+// React Hook Form使用例
+const ContactForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema)
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    // Server Action呼び出し
+    await submitContactForm(data);
+  };
+};
+```
+
+### バリデーションスキーマの管理
+- Zod スキーマは独立したファイルで管理（`src/lib/schemas/`）
+- 再利用可能なバリデーション関数の作成
+- エラーメッセージの日本語化徹底
+
+## React Component設計原則
+
+### 単一責任の原則
+```typescript
+// ✅ Good - 単一責任
+export const Button = ({ variant = 'primary', size = 'md', children, ...props }: ButtonProps) => {
+  const className = cn(
+    'rounded-md font-medium transition-colors duration-200',
+    variantStyles[variant],
+    sizeStyles[size]
+  );
+  
+  return (
+    <button className={className} {...props}>
+      {children}
+    </button>
+  );
+};
+
+// ❌ Bad - 複数の責任
+const BadButton = (props: any) => {
+  // フォーム送信、APIコール、状態管理など複数の責任
+};
+```
+
+### コンポーネント分割ガイドライン
+- 1つのコンポーネントは1つの責任を持つ
+- Props の数は10個以下に制限
+- 複雑な状態管理は Custom Hooks に分離
+- 150行を超える場合は分割を検討
+
+### 再利用性の確保
+- UI コンポーネントは `src/components/ui/` で管理
+- バリアント（variant）とサイズ（size）を Props で制御
+- Tailwind CSS クラスの動的制御に `tailwind-merge` を使用
+
+## CSS/Tailwind設計とデザインシステム
+
+### Tailwind CSS ファーストアプローチ
+```css
+/* ✅ Good - カスタムCSSクラス */
+@layer components {
+  .heading-1 {
+    @apply text-4xl font-bold text-primary-900;
+  }
+  
+  .body-lg {
+    @apply text-lg text-gray-700 leading-relaxed;
+  }
+  
+  .section-padding {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+}
+
+/* ❌ Bad - インラインで長いクラス列 */
+<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 text-center">
+```
+
+### デザインシステム遵守
+```typescript
+// カラーパレット（CSS変数で管理）
+:root {
+  --primary-50: #faf7f2;
+  --primary-500: #8b5e3c;
+  --primary-900: #4a2c16;
+  --secondary-50: #fdfcfa;
+  --secondary-500: #d4c4a8;
+  --accent-50: #fffef9;
+  --accent-500: #f5e6d3;
+}
+
+// レスポンシブファースト設計
+const ResponsiveComponent = () => (
+  <div className="
+    px-4 py-8           // mobile
+    md:px-6 md:py-12    // tablet
+    lg:px-8 lg:py-16    // desktop
+  ">
+    Content
+  </div>
+);
+```
+
+### 美容室ブランディング一貫性
+- ブラウン系（primary）、ベージュ系（secondary）、クリーム系（accent）の厳格使用
+- 41年の歴史を重視した温かみのある表現
+- ファミリーサロンとしての親しみやすさを維持
+
+## パフォーマンス最適化
+
+### Core Web Vitals 基準
+- **LCP**: 2.5秒以下
+- **FID**: 100ms以下
+- **CLS**: 0.1以下
+
+### 最適化手法
+```typescript
+// ✅ Good - Next.js Image最適化
+import Image from 'next/image';
+
+const OptimizedImage = () => (
+  <Image
+    src="/images/salon-exterior.jpg"
+    alt="美容室ウイング R 外観"
+    width={800}
+    height={600}
+    priority={true} // LCP画像の場合
+  />
+);
+
+// ✅ Good - 動的インポート
+const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
+  loading: () => <LoadingSpinner />,
+  ssr: false // 必要に応じて
+});
+
+// ✅ Good - メモ化
+const ExpensiveComponent = ({ data }: Props) => {
+  const processedData = useMemo(() => 
+    expensiveCalculation(data), [data]
+  );
+  
+  const handleClick = useCallback(() => {
+    // イベントハンドラー
+  }, []);
+};
+```
+
+## エラーハンドリングとフォーム処理
+
+### 統一されたエラーハンドリング
+```typescript
+// Server Action例
+async function submitContactForm(data: ContactFormData) {
+  try {
+    // バリデーション
+    const validatedData = contactSchema.parse(data);
+    
+    // メール送信処理
+    await sendEmail(validatedData);
+    
+    return { success: true, message: 'お問い合わせを受け付けました' };
+  } catch (error) {
+    console.error('Contact form submission failed:', error);
+    
+    if (error instanceof ZodError) {
+      return { 
+        success: false, 
+        errors: error.flatten().fieldErrors 
+      };
+    }
+    
+    return { 
+      success: false, 
+      message: 'エラーが発生しました。再度お試しください' 
+    };
+  }
+}
+```
+
+### ローディング状態とUXの向上
+```typescript
+const ContactForm = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
+  
+  const handleSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+    try {
+      const result = await submitContactForm(data);
+      setSubmitResult(result);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {/* フォームフィールド */}
+      <Button 
+        type="submit" 
+        disabled={isSubmitting}
+        className="w-full"
+      >
+        {isSubmitting ? '送信中...' : '送信する'}
+      </Button>
+    </form>
+  );
+};
+```
+
+## ファイル・ディレクトリ命名規則
+
+### 統一された命名規則
+```
+src/
+├── app/
+│   ├── concept/page.tsx          # kebab-case (ページ)
+│   ├── feature/page.tsx
+│   └── contact/
+│       ├── page.tsx
+│       └── thanks/page.tsx
+├── components/
+│   ├── ui/
+│   │   ├── Button.tsx            # PascalCase (コンポーネント)
+│   │   └── ContactForm.tsx
+│   ├── layout/
+│   │   ├── Header.tsx
+│   │   └── Footer.tsx
+│   └── sections/
+│       ├── HeroSection.tsx
+│       └── TestimonialsSection.tsx
+├── lib/
+│   ├── schemas/                  # kebab-case (ディレクトリ)
+│   │   ├── contact-schema.ts
+│   │   └── booking-schema.ts
+│   └── utils.ts
+├── types/
+│   └── index.ts
+└── styles/
+    └── globals.css
+```
+
+### 変数・関数命名
+- **変数・関数名**: camelCase
+- **定数**: SCREAMING_SNAKE_CASE  
+- **型・インターフェース**: PascalCase
+- **コンポーネント**: PascalCase
+
+## アクセシビリティ対応
+
+### 必須対応項目
+```typescript
+// ✅ Good - セマンティックHTML
+const AccessibleForm = () => (
+  <form role="form" aria-labelledby="form-title">
+    <h2 id="form-title">お問い合わせフォーム</h2>
+    
+    <label htmlFor="name" className="sr-only">
+      お名前
+    </label>
+    <input
+      id="name"
+      type="text"
+      aria-required="true"
+      aria-describedby="name-error"
+    />
+    
+    {errors.name && (
+      <p id="name-error" role="alert" className="text-red-500">
+        {errors.name.message}
+      </p>
+    )}
+  </form>
+);
+
+// ✅ Good - キーボード操作対応
+const AccessibleButton = ({ onClick, children }: Props) => (
+  <button
+    onClick={onClick}
+    onKeyDown={(e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        onClick();
+      }
+    }}
+    aria-label="詳細な説明"
+  >
+    {children}
+  </button>
+);
+```
+
+### 3世代対応のユーザビリティ
+- 大きなタップエリア（最小44px）
+- 十分なコントラスト比（WCAG AA準拠）
+- 分かりやすいエラーメッセージ
+- 直感的なナビゲーション
+
+## ワークフロー規則
+
+### 開発フロー
+```
+1. 要件定義・仕様書作成 (docs/features/)
+2. コンポーネント設計・型定義
+3. 実装（Server Components → Client Components）
+4. Zod スキーマ + React Hook Form 統合
+5. アクセシビリティチェック
+6. パフォーマンステスト
+7. ドキュメント更新
+8. README更新確認
+```
+
+### コードレビュー必須チェック項目
+- [ ] TypeScript エラーの完全解消
+- [ ] ESLint ルール違反なし
+- [ ] Zod スキーマによるバリデーション実装
+- [ ] Server/Client Components の適切な使い分け
+- [ ] アクセシビリティ対応完了
+- [ ] レスポンシブデザイン確認
+- [ ] Core Web Vitals 基準クリア
+- [ ] ドキュメント更新完了
+
+### ブランチ管理
+- `main`: 本番環境
+- `develop`: 開発環境  
+- `feature/{機能名}`: 機能開発
+- `hotfix/{修正内容}`: 緊急修正
+
+### コミットメッセージ規則
+```
+feat: 新機能追加
+fix: バグ修正
+docs: ドキュメント更新
+style: コードフォーマット
+refactor: リファクタリング
+perf: パフォーマンス改善
+test: テスト追加・修正
+chore: ビルドプロセス・補助ツール変更
+```
+
+## 禁止事項
+
+### 技術的禁止事項
+- ❌ `any`型の使用
+- ❌ jQuery など古いライブラリの使用
+- ❌ インライン CSS の多用
+- ❌ 直接的なDOM操作（useRef以外）
+- ❌ console.logの本番環境への残存
+- ❌ 非同期処理での不適切なエラーハンドリング
+- ❌ Server ComponentでのブラウザAPI使用
+
+### デザイン・UX禁止事項
+- ❌ ブランドカラー以外の色の無断使用
+- ❌ 過度なアニメーション効果
+- ❌ アクセシビリティを損なう実装
+- ❌ モバイル対応を後回しにする開発
+- ❌ ファミリーサロンのイメージに合わない表現
+
+### ドキュメンテーション禁止事項
+- ❌ 機能実装後のドキュメント更新漏れ
+- ❌ 古い情報の放置
+- ❌ コードコメントの不足
+- ❌ 曖昧な仕様記述
+
+## プロジェクト固有ルール
+
+### 美容室サイト特有の考慮事項
+- **予約システム**: Server Actions による安全なフォーム処理
+- **電話番号**: `tel:` リンクでワンタップ発信
+- **営業時間**: 動的表示と定休日の明確な表示
+- **地図情報**: Google Maps API統合とアクセス案内
+- **スマートフォン最優先**: 5分以内での予約判断を可能にする設計
+
+### 地域密着型コンテンツ
+- 岐阜市加野地域の情報を適切に配置
+- 交通アクセスの分かりやすい説明  
+- 駐車場情報の明確な表示
+- 地域コミュニティとの関係性を表現
+
+### AI協力開発ルール
+1. **作業分担の明確化**
+   - AI: コード生成、リファクタリング、ドキュメント作成、型定義
+   - 人間: 要件定義、デザイン判断、最終レビュー、ユーザビリティ検証
+
+2. **継続的な学習促進**
+   - 新しい実装パターンの発見時は学習ポイントとして記録
+   - Next.js 14最新機能の積極的な採用と検証
+   - パフォーマンス最適化手法の共有
+
+このルールファイルを遵守することで、高品質で保守性の高い美容室ウイングRサイトを構築し、継続的な改善を実現します。
