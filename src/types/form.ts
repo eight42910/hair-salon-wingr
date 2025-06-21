@@ -64,12 +64,3 @@ export const hairConcernOptions = [
   'スタイリングがうまくできない',
   '髪が伸びるのが早い',
 ] as const;
-
-// Form State Types
-export type FormSubmitStatus = 'idle' | 'success' | 'error';
-
-export interface FormProgressItem {
-  key: string;
-  label: string;
-  completed: boolean;
-}

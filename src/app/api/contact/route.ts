@@ -1,46 +1,55 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
-import { z } from 'zod';
-
-// フォームデータのスキーマ定義
-const contactSchema = z.object({
-  lastName: z.string().min(1, '姓を入力してください'),
-  firstName: z.string().min(1, '名を入力してください'),
-  phone: z.string().min(10, '正しい電話番号を入力してください'),
-  email: z.string().email('正しいメールアドレスを入力してください').optional(),
-  inquiryType: z.string().min(1, 'お問い合わせ種別を選択してください'),
-  message: z.string().min(10, 'お問い合わせ内容を10文字以上入力してください'),
-});
+import { contactSchema } from '@/types/form';
+import { sendNotificationEmail, sendConfirmationEmail } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
+    // 1. リクエストボディの取得
     const body = await request.json();
-    
-    // TODO: バリデーション、データベース保存、メール送信などの実装
-    
-    // 一時的な成功レスポンス
-    console.log('Contact data:', body);
-    
+
+    // 2. データバリデーション（入力チェック）
+    const validatedData = contactSchema.parse(body);
+
+    // 3. メール送信処理
+    await Promise.all([
+      sendNotificationEmail(validatedData), // 管理者へ
+      sendConfirmationEmail(validatedData), // お客様へ
+    ]);
+
+    // 4. 成功レスポンス
     return NextResponse.json(
-      { message: 'お問い合わせを受け付けました' },
+      {
+        message: 'お問い合わせを受け付けました',
+        timestamp: new Date().toISOString(),
+      },
       { status: 200 }
     );
   } catch (error) {
-    console.error('Contact error:', error);
+    console.error('Contact API error:', error);
+
+    // Zodバリデーションエラー（入力不備）
+    if (error.name === 'ZodError') {
+      return NextResponse.json(
+        {
+          error: '入力内容に不備があります',
+          details: error.errors,
+        },
+        { status: 400 }
+      );
+    }
+
+    // メール送信エラー
+    if (error.code === 'EAUTH' || error.code === 'ECONNECTION') {
+      return NextResponse.json(
+        { error: 'メール送信に失敗しました。お電話でお問い合わせください。' },
+        { status: 500 }
+      );
+    }
+
+    // その他のエラー
     return NextResponse.json(
-      { error: 'お問い合わせの処理中にエラーが発生しました' },
+      { error: 'サーバーエラーが発生しました' },
       { status: 500 }
     );
   }
-}
-
-// お問い合わせ種別のラベル変換
-function getInquiryTypeLabel(type: string): string {
-  const labels: Record<string, string> = {
-    reservation: 'ご予約',
-    menu: 'メニュー・料金について',
-    consultation: '髪の悩み相談',
-    other: 'その他のお問い合わせ',
-  };
-  return labels[type] || type;
 }
