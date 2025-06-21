@@ -62,11 +62,11 @@ export default async function HomePage() {
               text="LINEで予約"
               className="w-auto max-w-fit"
             />
-            <Link href="/menu">
+            <Link href="#menu">
               <Button
                 variant="outline"
                 size="lg"
-                className="text-white border-white hover:bg-white hover:text-primary-900 w-auto max-w-fit"
+                className="text-white border-white hover:bg-primary-900 hover:text-white w-auto max-w-fit"
               >
                 メニューを見る
               </Button>

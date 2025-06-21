@@ -1,17 +1,16 @@
-import { Users, Heart, Sparkles, Coffee } from 'lucide-react';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import Image from 'next/image';
 
+// 特徴のデータ配列
 const features = [
   {
     id: 1,
-    titleJa: '3世代ファミリーサロン',
+    titleJa: 'ファミリーサロン',
     titleEn: 'Family Salon',
     description:
-      '3世代にわたって愛され続けるファミリーサロン。お子様からご年配の方まで、それぞれのライフスタイルに合わせた施術をご提供。家族みんなで通える温かな空間で、美容を通じて笑顔をお届けします。',
+      'ファミリー対応のサロン。お子様からご年配の方まで、それぞれのライフスタイルに合わせた施術をご提供。家族みんなで通える温かな空間で、美容を通じて笑顔をお届けします。',
     imagePath: '/images/gallery/cut/cut-1.jpg',
     imageAlt: 'ファミリーサロンでの施術風景',
-    icon: Users,
   },
   {
     id: 2,
@@ -21,7 +20,6 @@ const features = [
       'CAC製品を使用した本格ヘッドスパで頭皮環境を根本から改善。血行促進と毛穴の汚れを除去し、健やかな髪の成長をサポート。心地よいマッサージで日頃の疲れも癒やします。',
     imagePath: '/images/gallery/wash-hair.jpg',
     imageAlt: '頭皮改善ヘッドスパの施術風景',
-    icon: Heart,
   },
   {
     id: 3,
@@ -31,7 +29,6 @@ const features = [
       '髪質に合わせた丁寧な縮毛矯正で、クセやうねりを自然にストレートに。ダメージを最小限に抑えながら、手触りの良いサラサラヘアを実現。毎朝のスタイリングが格段に楽になります。',
     imagePath: '/images/gallery/cut/cut-4.jpg',
     imageAlt: '縮毛矯正の施術風景',
-    icon: Sparkles,
   },
   {
     id: 4,
@@ -41,10 +38,10 @@ const features = [
       '1983年の創業から41年間で培った確かな技術に、最新のトレンドを融合。お客様一人ひとりの骨格や髪質を見極め、その方だけの美しさを引き出します。伝統と革新の技術で、理想のヘアスタイルを実現します。',
     imagePath: '/images/gallery/cut/cut-stand.jpg',
     imageAlt: '技術追求の施術風景',
-    icon: Coffee,
   },
 ];
 
+// Featureコンポーネントの定義
 export const Feature = () => {
   return (
     <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
@@ -61,7 +58,7 @@ export const Feature = () => {
 
         <div className="space-y-32 mt-16">
           {features.map((feature, index) => {
-            const isEven = index % 2 === 0;
+            const isEven = index % 2 === 0; // 偶数インデックスの判定
             return (
               <div
                 key={feature.id}
@@ -74,6 +71,7 @@ export const Feature = () => {
                   <div className="relative aspect-[5/4] bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500">
                     <div className="absolute inset-4 bg-white rounded-xl overflow-hidden">
                       <Image
+                        priority={true}
                         src={feature.imagePath}
                         alt={feature.imageAlt}
                         className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
@@ -91,11 +89,6 @@ export const Feature = () => {
                 {/* テキストエリア */}
                 <div className="flex-1 flex flex-col justify-center space-y-8 px-4 lg:px-8">
                   <div className="space-y-4">
-                    {/* アイコン */}
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl shadow-lg mb-6">
-                      <feature.icon className="w-8 h-8 text-white" />
-                    </div>
-
                     {/* タイトル：英語装飾 + 日本語メイン */}
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-primary-600 uppercase tracking-widest">
