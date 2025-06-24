@@ -6,15 +6,19 @@ export async function POST(request: NextRequest) {
   try {
     // 1. リクエストボディの取得
     const body = await request.json();
+    console.log('body', body);
 
     // 2. データバリデーション（入力チェック）
     const validatedData = contactSchema.parse(body);
+    console.log('validatedData', validatedData);
 
     // 3. メール送信処理
+    console.log('Email sending...');
     await Promise.all([
       sendNotificationEmail(validatedData), // 管理者へ
       sendConfirmationEmail(validatedData), // お客様へ
     ]);
+    console.log('Email sent successfully');
 
     // 4. 成功レスポンス
     return NextResponse.json(
@@ -24,7 +28,7 @@ export async function POST(request: NextRequest) {
       },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error('Contact API error:', error);
 
     // Zodバリデーションエラー（入力不備）
@@ -48,7 +52,13 @@ export async function POST(request: NextRequest) {
 
     // その他のエラー
     return NextResponse.json(
-      { error: 'サーバーエラーが発生しました' },
+      {
+        error: 'サーバーエラーが発生しました',
+        details:
+          process.env.NODE_ENV === 'development'
+            ? error.message
+            : '詳細なエラー情報はログを参照してください',
+      },
       { status: 500 }
     );
   }
