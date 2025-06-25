@@ -85,19 +85,19 @@ export default async function HomePage() {
         <MenuContent />
       </AnimatedSection>
 
+      {/* LINE予約セクション - メニューの直後に移動 */}
+      <AnimatedSection id="reservation" direction="up" delay={0.3}>
+        <LineReservation />
+      </AnimatedSection>
+
       {/* よくある質問セクション */}
-      <AnimatedSection id="faq" direction="up" delay={0.3}>
+      <AnimatedSection id="faq" direction="up" delay={0.4}>
         <FAQ />
       </AnimatedSection>
 
       {/* アクセスセクション */}
-      <AnimatedSection id="access" direction="up" delay={0.4}>
+      <AnimatedSection id="access" direction="up" delay={0.5}>
         <Access />
-      </AnimatedSection>
-
-      {/* LINE予約セクション */}
-      <AnimatedSection id="reservation" direction="up" delay={0.5}>
-        <LineReservation />
       </AnimatedSection>
     </main>
   );

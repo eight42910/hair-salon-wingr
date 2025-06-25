@@ -72,32 +72,54 @@ interface FAQItemProps {
 
 const FAQItemComponent = ({ faq, isOpen, onToggle }: FAQItemProps) => {
   return (
-    <Card className="transition-all duration-200">
-      <button
-        onClick={onToggle}
-        className="w-full text-left flex items-center justify-between p-0"
+    <div className="relative overflow-hidden transition-all duration-300">
+      <div
+        className={`bg-white rounded-lg shadow-sm transition-all duration-300 ${
+          isOpen ? 'shadow-md' : 'hover:shadow-md'
+        } group`}
       >
-        <div className="flex items-start gap-3 flex-1">
-          <HelpCircle className="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0" />
-          <span className="font-medium text-gray-900 text-sm">
-            {faq.question}
-          </span>
-        </div>
-        <div className="ml-4">
-          {isOpen ? (
-            <ChevronUp className="w-5 h-5 text-gray-500" />
-          ) : (
-            <ChevronDown className="w-5 h-5 text-gray-500" />
+        {/* グラデーション背景 */}
+        <div
+          className={`absolute inset-0 bg-gradient-to-r from-primary-50 to-accent-50 opacity-0 transition-opacity duration-300 ${
+            isOpen ? 'opacity-100' : 'group-hover:opacity-50'
+          }`}
+        ></div>
+
+        {/* 装飾的な背景要素 */}
+        <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-secondary-100/20 to-accent-100/20 rounded-full -translate-y-4 translate-x-4 group-hover:from-secondary-200/30 group-hover:to-accent-200/30 transition-all duration-300"></div>
+
+        <div className="relative p-6">
+          <button
+            onClick={onToggle}
+            className="w-full text-left flex items-center justify-between"
+          >
+            <div className="flex items-start gap-3 flex-1">
+              <div className="w-8 h-8 bg-gradient-to-br from-primary-400 to-primary-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                <HelpCircle className="w-4 h-4 text-white" />
+              </div>
+              <span className="font-medium text-gray-900 text-sm group-hover:text-primary-900 transition-colors">
+                {faq.question}
+              </span>
+            </div>
+            <div className="ml-4">
+              {isOpen ? (
+                <ChevronUp className="w-5 h-5 text-primary-500" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-gray-500 group-hover:text-primary-500 transition-colors" />
+              )}
+            </div>
+          </button>
+
+          {isOpen && (
+            <div className="mt-3 pl-11">
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {faq.answer}
+              </p>
+            </div>
           )}
         </div>
-      </button>
-
-      {isOpen && (
-        <div className="mt-3 pl-8">
-          <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
-        </div>
-      )}
-    </Card>
+      </div>
+    </div>
   );
 };
 

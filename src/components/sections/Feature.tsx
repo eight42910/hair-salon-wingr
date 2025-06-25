@@ -44,7 +44,7 @@ const features = [
 // Featureコンポーネントの定義
 export const Feature = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-24 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* セクションタイトル：日本語メイン + 英語装飾 */}
         <SectionTitle
@@ -69,6 +69,9 @@ export const Feature = () => {
                 {/* 画像エリア */}
                 <div className="flex-1 relative group">
                   <div className="relative aspect-[5/4] bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500">
+                    {/* ホバー時のグラデーション背景 */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-200/20 to-accent-200/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
                     <div className="absolute inset-4 bg-white rounded-xl overflow-hidden">
                       <Image
                         priority={true}
@@ -80,9 +83,12 @@ export const Feature = () => {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                       />
                     </div>
-                    {/* 装飾的な要素 */}
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary-200 rounded-full opacity-60"></div>
-                    <div className="absolute -bottom-3 -left-3 w-12 h-12 bg-accent-200 rounded-full opacity-40"></div>
+                    {/* 装飾的な要素 - グラデーション強化 */}
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-primary-300 to-primary-400 rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+                    <div className="absolute -bottom-3 -left-3 w-12 h-12 bg-gradient-to-br from-accent-300 to-accent-400 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
+
+                    {/* 新しい装飾要素 */}
+                    <div className="absolute top-4 left-4 w-6 h-6 bg-gradient-to-br from-secondary-300 to-secondary-400 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
                   </div>
                 </div>
 

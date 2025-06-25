@@ -199,26 +199,62 @@ const MenuItemCard = ({ item }: MenuItemProps) => {
   );
 };
 
-// カテゴリセクション
+// MenuCategory更新版（グラデーション強化）
 const MenuCategory = ({ category }: MenuCategoryProps) => {
   return (
     <div className="mb-16">
       {/* セクションタイトル：日本語メイン + 英語装飾 */}
-      <div className="mb-8">
-        <span className="inline-block text-xs text-primary-600 uppercase tracking-widest mb-2">
-          {category.titleEn}
-        </span>
-        <h2 className="text-2xl font-bold text-primary-900 mb-3">
-          {category.titleJa}
-        </h2>
-        <p className="text-sm text-gray-600 mb-4">{category.description}</p>
-        <div className="w-24 h-0.5 bg-primary-400"></div>
+      <div className="mb-8 relative">
+        {/* 背景装飾 */}
+        <div className="absolute -top-4 -left-4 w-32 h-32 bg-gradient-to-br from-primary-100/20 to-accent-100/20 rounded-full blur-xl"></div>
+
+        <div className="relative">
+          <span className="inline-block text-xs text-primary-600 uppercase tracking-widest mb-2">
+            {category.titleEn}
+          </span>
+          <h2 className="text-2xl font-bold text-primary-900 mb-3">
+            {category.titleJa}
+          </h2>
+          <p className="text-sm text-gray-600 mb-4">{category.description}</p>
+          <div className="w-24 h-0.5 bg-gradient-to-r from-primary-400 to-accent-400"></div>
+        </div>
       </div>
 
       {/* メニューアイテム */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
         {category.items.map((item: MenuItem, index: number) => (
-          <MenuItemCard key={index} item={item} />
+          <div
+            key={index}
+            className="relative overflow-hidden bg-white border border-gray-200 hover:border-primary-200 transition-all duration-300 hover:shadow-md hover:-translate-y-1 group"
+          >
+            {/* ホバー時のグラデーション背景 */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-accent-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+            {/* 装飾的な背景要素 */}
+            <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-secondary-100/20 to-accent-100/20 rounded-full -translate-y-4 translate-x-4 group-hover:from-secondary-200/30 group-hover:to-accent-200/30 transition-all duration-300"></div>
+
+            <div className="relative p-4">
+              <div className="flex justify-between items-start mb-2">
+                <div className="flex-1">
+                  <h3 className="font-medium text-gray-900 text-sm mb-1 group-hover:text-primary-900 transition-colors">
+                    {item.name}
+                  </h3>
+                  <p className="text-xs text-gray-600 group-hover:text-gray-700 transition-colors">
+                    {item.description}
+                  </p>
+                </div>
+                <div className="text-right ml-4">
+                  <div className="font-medium text-gray-900 text-sm group-hover:text-primary-900 transition-colors">
+                    {item.price}
+                  </div>
+                  <div className="text-xs text-gray-500">{item.duration}</div>
+                </div>
+              </div>
+
+              {/* 装飾的な要素 */}
+              <div className="absolute bottom-2 right-2 w-4 h-4 bg-gradient-to-br from-accent-300 to-accent-400 rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-300"></div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
@@ -227,65 +263,52 @@ const MenuCategory = ({ category }: MenuCategoryProps) => {
 
 export default function MenuContent() {
   return (
-    <main className="min-h-screen pt-20 bg-white">
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            {/* メインタイトル：日本語メイン */}
-            <div className="text-center mb-16">
-              <span className="inline-block text-sm text-primary-600 uppercase tracking-widest mb-3">
-                Menu & Price
-              </span>
-              <h1 className="text-4xl font-bold text-primary-900 mb-4">
-                メニュー・料金
-              </h1>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                お客様一人ひとりに合わせた丁寧な施術で、理想のヘアスタイルを実現いたします
-              </p>
-              <div className="w-24 h-0.5 bg-primary-400 mx-auto mt-6"></div>
-            </div>
+    <section className="py-24 bg-gray-50">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <SectionTitle
+          subTitle="Our Menu"
+          mainTitle="メニュー・料金"
+          description="お客様のご要望にお応えする豊富なメニューをご用意しております"
+          level="h2"
+          align="center"
+          showDivider={true}
+        />
 
-            {/* メニューカテゴリ */}
-            <div className="space-y-8 mt-12">
-              {Object.entries(menuData).map(([key, category], index) => (
-                <MenuCategory key={key} category={category} />
-              ))}
-            </div>
+        {/* メニューカテゴリ */}
+        <div className="space-y-8 mt-12">
+          {Object.entries(menuData).map(([key, category], index) => (
+            <MenuCategory key={key} category={category} />
+          ))}
+        </div>
 
-            {/* フッター情報：日本語のみ */}
-            <div className="mt-16 pt-8 border-t border-gray-200">
-              <div className="grid md:grid-cols-3 gap-8 text-sm text-gray-600">
-                <div>
-                  <h4 className="font-medium text-gray-900 mb-2">
-                    料金について
-                  </h4>
-                  <ul className="space-y-1">
-                    <li>• 料金は税込価格です</li>
-                    <li>• 髪の長さや量により変動する場合があります</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900 mb-2">
-                    お支払い方法
-                  </h4>
-                  <ul className="space-y-1">
-                    <li>• 各種クレジットカード対応</li>
-                    <li>• 電子マネー・QR決済対応</li>
-                    <li>• 現金でのお支払いも可能</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900 mb-2">その他</h4>
-                  <ul className="space-y-1">
-                    <li>• 施術時間は目安です</li>
-                    <li>• ご不明な点はお気軽にお問い合わせください</li>
-                  </ul>
-                </div>
-              </div>
+        {/* フッター情報：日本語のみ */}
+        <div className="mt-16 pt-8 border-t border-gray-200">
+          <div className="grid md:grid-cols-3 gap-8 text-sm text-gray-600">
+            <div>
+              <h4 className="font-medium text-gray-900 mb-2">料金について</h4>
+              <ul className="space-y-1">
+                <li>• 料金は税込価格です</li>
+                <li>• 髪の長さや量により変動する場合があります</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-medium text-gray-900 mb-2">お支払い方法</h4>
+              <ul className="space-y-1">
+                <li>• 各種クレジットカード対応</li>
+                <li>• 電子マネー・QR決済対応</li>
+                <li>• 現金でのお支払いも可能</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-medium text-gray-900 mb-2">その他</h4>
+              <ul className="space-y-1">
+                <li>• 施術時間は目安です</li>
+                <li>• ご不明な点はお気軽にお問い合わせください</li>
+              </ul>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }
