@@ -1,13 +1,22 @@
 import type { Metadata } from 'next';
-import { Noto_Sans_JP } from 'next/font/google';
+import { Noto_Sans_JP, Roboto } from 'next/font/google';
 import '@/styles/globals.css';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+import { Header, Footer } from '@/components/layout';
 
+// 日本語フォント（Noto Sans JP）
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '700'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-japanese',
+});
+
+// 英語フォント（Roboto）
+const roboto = Roboto({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-english',
 });
 
 export const metadata: Metadata = {
@@ -23,7 +32,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={notoSansJP.className}>
+      <body
+        className={`${notoSansJP.variable} ${roboto.variable} font-combined`}
+      >
         <Header />
         {children}
         <Footer />

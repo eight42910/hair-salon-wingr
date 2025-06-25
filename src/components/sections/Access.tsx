@@ -1,5 +1,7 @@
 import { MapPin, Clock, Phone, Car } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { AccessMap } from '@/components/map/GoogleMap';
+import { SectionTitle } from '@/components/ui/SectionTitle';
 
 const accessInfo = [
   {
@@ -40,7 +42,12 @@ export const Access = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="heading-2 mb-4">アクセス</h2>
+          <SectionTitle
+            level="h2"
+            align="center"
+            mainTitle="アクセス・店舗情報"
+            subTitle="Access & Store Information"
+          />
           <p className="body-lg text-gray-600 max-w-2xl mx-auto">
             岐阜市加野、アクセス良好な立地にございます
           </p>
@@ -85,8 +92,8 @@ export const Access = () => {
               </h4>
               <div className="bg-accent-50 rounded-lg p-4">
                 {businessHours.map((schedule, index) => (
-                  <div key={index} className="flex justify-between py-1">
-                    <span className="text-sm text-gray-700">
+                  <div key={index} className="flex py-1 gap-4">
+                    <span className="text-sm text-gray-700 min-w-[4rem]">
                       {schedule.day}
                     </span>
                     <span className="text-sm text-gray-900 font-medium">
@@ -96,27 +103,15 @@ export const Access = () => {
                 ))}
               </div>
             </div>
-
-            <div className="mt-6">
-              <Button size="lg" className="w-full md:w-auto">
-                ご予約・お問い合わせ
-              </Button>
-            </div>
           </div>
 
           {/* 地図エリア */}
           <div>
             <h3 className="heading-3 mb-6">地図</h3>
-            <div className="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
-              <p className="text-gray-500">
-                Googleマップ埋め込み予定
-                <br />
-                <span className="text-sm">※実装時にGoogle Maps APIを使用</span>
-              </p>
-            </div>
+            <AccessMap />
             <div className="mt-4 text-center">
               <a
-                href="https://maps.google.com/?q=岐阜県岐阜市加野2-25-8"
+                href="https://maps.app.goo.gl/GaDvUi3ZvoXj3cxq9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-primary-700 hover:text-primary-900 transition-colors"

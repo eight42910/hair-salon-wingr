@@ -1,136 +1,111 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import { Loader } from '@googlemaps/js-api-loader';
+import { useState } from 'react';
+import { MapPin, ExternalLink } from 'lucide-react';
 
 interface GoogleMapProps {
-  className?: string;
-  center?: { lat: number; lng: number };
+  center?: {
+    lat: number;
+    lng: number;
+  };
   zoom?: number;
-  markerTitle?: string;
-  markerInfo?: string;
+  className?: string;
 }
 
+// 美容室ウイングRの座標（岐阜市加野2-25-8の概算）
+const DEFAULT_CENTER = {
+  lat: 35.3982,
+  lng: 136.7686,
+};
+
+const DEFAULT_ZOOM = 16;
+
 export const GoogleMap = ({
-  className = 'w-full h-64',
-  center = { lat: 35.465046540857564, lng: 136.8236593872221 }, // 岐阜市芋島二丁目の正確な座標
-  zoom = 15,
-  markerTitle = '美容室ウイング R',
-  markerInfo = '美容室ウイング R<br/>〒501-3107 岐阜県岐阜市加野2-25-8<br/>TEL: 058-241-3375',
+  center = DEFAULT_CENTER,
+  zoom = DEFAULT_ZOOM,
+  className = 'w-full h-80 rounded-lg',
 }: GoogleMapProps) => {
-  const mapRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  useEffect(() => {
-    const initMap = async () => {
-      try {
-        // Google Maps API Key（実際の使用時は環境変数から取得）
-        const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
+  // Google Maps Embed APIのURL生成
+  const generateEmbedUrl = () => {
+    const baseUrl = 'https://www.google.com/maps/embed/v1/place';
+    const params = new URLSearchParams({
+      key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
+      q: '美容室ウイングR,岐阜県岐阜市加野2-25-8',
+      zoom: zoom.toString(),
+      maptype: 'roadmap',
+      language: 'ja',
+      region: 'JP',
+    });
 
-        if (!apiKey) {
-          console.warn('Google Maps API key not found. Using placeholder map.');
-          setHasError(true);
-          return;
-        }
+    return `${baseUrl}?${params.toString()}`;
+  };
 
-        const loader = new Loader({
-          apiKey: apiKey,
-          version: 'weekly',
-          libraries: ['places'],
-        });
+  const handleIframeLoad = () => {
+    setIsLoaded(true);
+  };
 
-        const { Map } = await loader.importLibrary('maps');
-        const { AdvancedMarkerElement } = await loader.importLibrary('marker');
+  const handleIframeError = () => {
+    setHasError(true);
+  };
 
-        if (!mapRef.current) return;
-
-        // マップを初期化
-        const map = new Map(mapRef.current, {
-          center: center,
-          zoom: zoom,
-          mapId: 'WING_R_MAP', // Map ID（実際の使用時は適切なMap IDを設定）
-          disableDefaultUI: false,
-          gestureHandling: 'cooperative',
-        });
-
-        // マーカーを追加
-        const marker = new AdvancedMarkerElement({
-          map: map,
-          position: center,
-          title: markerTitle,
-        });
-
-        // 情報ウィンドウを追加
-        const { InfoWindow } = await loader.importLibrary('maps');
-        const infoWindow = new InfoWindow({
-          content: `<div style="padding: 8px; max-width: 250px;">${markerInfo}</div>`,
-        });
-
-        // マーカークリックで情報ウィンドウを表示
-        marker.addListener('click', () => {
-          infoWindow.open(map, marker);
-        });
-
-        setIsLoaded(true);
-      } catch (error) {
-        console.error('Error loading Google Maps:', error);
-        setHasError(true);
-      }
-    };
-
-    initMap();
-  }, [center.lat, center.lng, zoom, markerTitle, markerInfo]);
-
-  if (hasError) {
+  // フォールバック表示（APIキーなし or エラー時）
+  if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || hasError) {
     return (
       <div
-        className={`${className} bg-gray-100 rounded-lg flex flex-col items-center justify-center text-gray-500`}
+        className={`${className} bg-gray-100 flex flex-col items-center justify-center text-gray-600 border border-gray-200`}
       >
-        <div className="text-center p-6">
-          <div className="text-4xl mb-4">🗺️</div>
-          <h3 className="font-semibold mb-2">地図を表示できません</h3>
-          <p className="text-sm mb-4">
-            Google Maps APIキーが設定されていないか、
-            <br />
-            ネットワークエラーが発生しました。
-          </p>
-          <div className="bg-white rounded-lg p-4 border">
-            <p className="font-semibold text-gray-800 mb-2">店舗住所</p>
-            <p className="text-sm text-gray-600">
-              〒501-3107
-              <br />
-              岐阜県岐阜市加野2-25-8
-            </p>
-            <a
-              href="https://maps.app.goo.gl/He3QCmchfVynJpq26"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-3 px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors"
-            >
-              Google Mapsで開く
-            </a>
-          </div>
+        <MapPin className="w-12 h-12 mb-4 text-gray-400" />
+        <div className="text-center">
+          <h3 className="font-semibold mb-2">店舗所在地</h3>
+          <p className="text-sm mb-4">岐阜県岐阜市加野2-25-8</p>
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${center.lat},${center.lng}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm rounded-lg hover:bg-primary-700 transition-colors"
+          >
+            <ExternalLink className="w-4 h-4 mr-2" />
+            Googleマップで開く
+          </a>
         </div>
       </div>
     );
   }
 
   return (
-    <div className={`${className} relative`}>
+    <div className="relative">
+      <iframe
+        src={generateEmbedUrl()}
+        className={className}
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="美容室ウイング R 地図"
+        onLoad={handleIframeLoad}
+        onError={handleIframeError}
+      />
       {!isLoaded && (
-        <div className="absolute inset-0 bg-gray-100 rounded-lg flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-            <p className="text-gray-600">地図を読み込み中...</p>
+        <div
+          className={`${className} absolute inset-0 bg-gray-100 flex items-center justify-center`}
+        >
+          <div className="text-center text-gray-600">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mx-auto mb-2"></div>
+            <p className="text-sm">マップを読み込み中...</p>
           </div>
         </div>
       )}
-      <div
-        ref={mapRef}
-        className={`w-full h-full rounded-lg ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-      />
+    </div>
+  );
+};
+
+// 使用例コンポーネント
+export const AccessMap = () => {
+  return (
+    <div className="space-y-4">
+      <GoogleMap className="w-full h-64 md:h-80 lg:h-96 rounded-lg shadow-lg" />
     </div>
   );
 };

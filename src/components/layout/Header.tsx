@@ -1,18 +1,21 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
-import { Phone } from 'lucide-react';
+import { Phone, Scissors } from 'lucide-react';
 import { MobileMenu } from './MobileMenu';
 
 const navigation = [
-  { name: 'HOME', href: '/' },
-  { name: 'CONCEPT', href: '/concept' },
-  { name: 'FEATURE', href: '/feature' },
-  { name: 'MENU', href: '/menu' },
-  { name: 'OWNER', href: '/owner' },
-  { name: 'ACCESS', href: '/access' },
-  { name: 'CONTACT', href: '/contact' },
+  { nameJa: 'ホーム', nameEn: 'Home', href: '/', sectionId: 'home' },
+  {
+    nameJa: '特徴',
+    nameEn: 'Feature',
+    href: '/#feature',
+    sectionId: 'feature',
+  },
+  { nameJa: 'メニュー', nameEn: 'Menu', href: '/#menu', sectionId: 'menu' },
+  { nameJa: 'よくある質問', nameEn: 'FAQ', href: '/#faq', sectionId: 'faq' },
+  { nameJa: 'スタッフ', nameEn: 'Staff', href: '/owner' },
+  { nameJa: 'お問い合わせ', nameEn: 'Contact', href: '/contact' },
 ];
 
 export const Header = () => {
@@ -20,49 +23,65 @@ export const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
         <nav className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-primary-900">
-              ウイング R
+            {/* ロゴ：日本語メイン */}
+            <Link
+              href="/"
+              className="text-xl lg:text-2xl font-bold text-primary-900 flex-shrink-0"
+            >
+              美容室ウイング R
             </Link>
 
-            {/* デスクトップナビゲーション */}
-            <div className="hidden md:flex items-center space-x-8">
+            {/* デスクトップナビゲーション：日英併記 */}
+            <div className="hidden xl:flex items-center space-x-8">
               {navigation.map((item) => (
                 <Link
-                  key={item.name}
+                  key={item.href}
                   href={item.href}
-                  className="text-sm font-medium text-primary-700 hover:text-primary-900 transition-colors"
+                  className="text-center group hover:text-primary-700 transition-colors"
                 >
-                  {item.name}
+                  {/* 日本語：メイン表示 */}
+                  <div className="text-sm font-bold text-primary-900 group-hover:text-primary-700">
+                    {item.nameJa}
+                  </div>
+                  {/* 英語：装飾的サブ */}
+                  <div className="text-xs text-primary-600 uppercase tracking-wider opacity-75">
+                    {item.nameEn}
+                  </div>
                 </Link>
               ))}
             </div>
 
-            {/* 電話番号とCTAボタン */}
-            <div className="hidden md:flex items-center space-x-4">
+            {/* 電話番号とLINE：日本語 */}
+            <div className="hidden xl:flex items-center space-x-4 flex-shrink-0">
               <a
-                href="tel:058-123-4567"
-                className="flex items-center text-primary-700 hover:text-primary-900"
+                href="tel:058-243-6478"
+                className="flex items-center text-primary-700 hover:text-primary-900 transition-colors"
               >
                 <Phone className="w-4 h-4 mr-2" />
-                <span className="font-medium">058-123-4567</span>
+                <span className="font-medium text-sm">058-243-6478</span>
               </a>
-              <Link href="/booking">
-                <Button size="sm">ご予約はこちら</Button>
-              </Link>
             </div>
 
-            {/* モバイルメニューボタン */}
+            {/* 美容室らしいハンバーガーメニューボタン */}
             <button
-              className="md:hidden p-2"
+              className="xl:hidden relative group p-3 rounded-full bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg"
               onClick={() => setIsMobileMenuOpen(true)}
+              aria-label="メニュー"
             >
-              <span className="sr-only">メニューを開く</span>
-              <div className="w-6 h-0.5 bg-primary-900 mb-1.5" />
-              <div className="w-6 h-0.5 bg-primary-900 mb-1.5" />
-              <div className="w-6 h-0.5 bg-primary-900" />
+              {/* 背景のキラキラエフェクト */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-100/50 to-accent-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              {/* メインアイコン：ハサミ */}
+              <div className="relative z-10 flex items-center justify-center">
+                <Scissors className="w-5 h-5 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
+              </div>
+
+              {/* ホバー時の装飾ライン */}
+              <div className="absolute top-1 right-1 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
+              <div className="absolute bottom-1 left-1 w-1 h-1 bg-primary-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-150" />
             </button>
           </div>
         </nav>

@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { MapPin, Phone, Clock } from 'lucide-react';
 
 const navigation = [
-  { name: 'CONCEPT', href: '/concept' },
-  { name: 'FEATURE', href: '/feature' },
-  { name: 'MENU', href: '/menu' },
-  { name: 'OWNER', href: '/owner' },
-  { name: 'ACCESS', href: '/access' },
-  { name: 'CONTACT', href: '/contact' },
+  { nameJa: 'ホーム', href: '/' },
+  { nameJa: '特徴', href: '/#feature' },
+  { nameJa: 'メニュー', href: '/#menu' },
+  { nameJa: 'よくある質問', href: '/#faq' },
+  { nameJa: 'スタッフ', href: '/owner' },
+  { nameJa: 'お問い合わせ', href: '/contact' },
 ];
 
 export const Footer = () => {
@@ -51,11 +51,11 @@ export const Footer = () => {
             <nav className="space-y-2">
               {navigation.map((item) => (
                 <Link
-                  key={item.name}
+                  key={item.href}
                   href={item.href}
                   className="block text-primary-100 hover:text-white transition-colors"
                 >
-                  {item.name}
+                  {item.nameJa}
                 </Link>
               ))}
             </nav>
@@ -73,7 +73,31 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-700 mt-8 pt-8 text-center">
+        {/* 予約・お問い合わせ */}
+        <div className="border-t border-primary-700 mt-8 pt-8">
+          <div className="text-center mb-6">
+            <h3 className="text-lg font-bold text-white mb-4">
+              ご予約・お問い合わせ
+            </h3>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a
+                href="tel:058-241-3375"
+                className="bg-primary-600 hover:bg-primary-500 text-white px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2"
+              >
+                <Phone className="w-5 h-5" />
+                <span>058-241-3375</span>
+              </a>
+              <Link
+                href="/contact"
+                className="bg-secondary-600 hover:bg-secondary-500 text-white px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105"
+              >
+                お問い合わせフォーム
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-primary-700 pt-6 text-center">
           <p className="text-primary-100 text-sm">
             © 2024 美容室ウイング R. All rights reserved.
           </p>
