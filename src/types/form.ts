@@ -7,10 +7,10 @@ export const contactSchema = z.object({
   email: z.string().email('正しいメールアドレスを入力してください'),
   phone: z.string().optional(),
   subject: z.string().min(1, 'お問い合わせ種類を選択してください'),
-  message: z.string().min(10, 'お問い合わせ内容は10文字以上で入力してください'),
+  message: z.string().optional(),
   agreement: z
     .boolean()
-    .refine((val) => val === true, 'プライバシーポリシーへの同意が必要です'),
+    .refine((val) => val === true, '利用規約への同意が必要です'),
 });
 
 export type ContactFormData = z.infer<typeof contactSchema>;

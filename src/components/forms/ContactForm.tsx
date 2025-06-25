@@ -81,7 +81,7 @@ export const ContactForm = () => {
         name: data.name.trim(),
         furigana: data.furigana.trim(),
         email: data.email.trim(),
-        message: data.message.trim(),
+        message: data.message?.trim(),
       };
 
       // APIエンドポイントにデータを送信

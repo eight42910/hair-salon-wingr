@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans_JP, Roboto } from 'next/font/google';
 import '@/styles/globals.css';
 import { Header, Footer } from '@/components/layout';
+import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
 
 // 日本語フォント（Noto Sans JP）
 const notoSansJP = Noto_Sans_JP({
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <ScrollToTopButton />
       </body>
     </html>
   );

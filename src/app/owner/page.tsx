@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { Scissors, Award, Heart, Star } from 'lucide-react';
 import Image from 'next/image';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { SectionTitle } from '@/components/ui/SectionTitle';
@@ -14,20 +13,18 @@ export const metadata: Metadata = {
 const staff = [
   {
     name: '村瀬 律子',
-    filename: 'ritsuko.jpg',
     role: 'オーナー・トップスタイリスト',
     experience: '41年',
-    specialties: ['カット', 'パーマ', '頭皮ケア', '経営'],
+    specialties: ['カット', '頭皮ケア', 'パーマ'],
     message:
       '創業から41年、お客様との信頼関係を一番大切にしています。技術の向上はもちろん、お客様が安心してくつろげる空間づくりを心がけています。',
     imagePath: '/images/owner/ritsuko.jpg',
   },
   {
     name: '村瀬 孝介',
-    filename: 'kousuke.jpg',
     role: 'フロアスタッフ',
     experience: '41年',
-    specialties: ['接客', 'フロア管理', 'フロアマネジメント'],
+    specialties: ['接客', 'フロアマネジメント'],
     message: 'お客様のご要望に寄り添い、お客様のご満足を第一に考えています。',
     imagePath: '/images/owner/kousuke.jpg',
   },
@@ -54,16 +51,10 @@ export default function OwnerPage() {
             >
               {/* スタッフ情報 */}
               <div className={isEven ? '' : 'md:col-start-2'}>
-                <Card>
-                  <div className="flex items-center space-x-3 mb-4">
-                    <div className="p-3 bg-gray-100 rounded-full">
-                      <Image
-                        src={member.imagePath}
-                        alt={member.name}
-                        width={24}
-                        height={24}
-                      />
-                    </div>
+                <Card className="border-0">
+                  {' '}
+                  {/* borderを取り除く */}
+                  <div className="flex items-center mb-4">
                     <div>
                       <h2 className="text-xl font-bold text-gray-900">
                         {member.name}
@@ -71,13 +62,11 @@ export default function OwnerPage() {
                       <p className="text-sm text-gray-600">{member.role}</p>
                     </div>
                   </div>
-
                   <div className="mb-4">
                     <span className="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">
                       経験年数: {member.experience}
                     </span>
                   </div>
-
                   <div className="mb-4">
                     <h3 className="font-medium text-gray-900 mb-2 text-sm">
                       得意分野
@@ -93,7 +82,6 @@ export default function OwnerPage() {
                       ))}
                     </div>
                   </div>
-
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2 text-sm">
                       メッセージ
@@ -107,7 +95,7 @@ export default function OwnerPage() {
 
               {/* 写真エリア */}
               <div className={isEven ? '' : 'md:col-start-1'}>
-                <Card className="h-96 relative overflow-hidden">
+                <Card className="h-96 relative overflow-hidden border-0">
                   <Image
                     src={member.imagePath}
                     alt={member.name}

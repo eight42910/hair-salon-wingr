@@ -1,8 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Phone, Scissors } from 'lucide-react';
 import { MobileMenu } from './MobileMenu';
+import { LineButton } from '../ui/LineButton';
 
 const navigation = [
   { nameJa: 'ホーム', nameEn: 'Home', href: '/', sectionId: 'home' },
@@ -20,6 +21,21 @@ const navigation = [
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLineButton, setShowLineButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // 400px以上スクロールしたらLINEボタンを表示
+      if (window.pageYOffset > 400) {
+        setShowLineButton(true);
+      } else {
+        setShowLineButton(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -54,35 +70,49 @@ export const Header = () => {
               ))}
             </div>
 
-            {/* 電話番号とLINE：日本語 */}
-            <div className="hidden xl:flex items-center space-x-4 flex-shrink-0">
-              <a
-                href="tel:058-243-6478"
-                className="flex items-center text-primary-700 hover:text-primary-900 transition-colors"
+            {/* 右側のアクション群 */}
+            <div className="flex items-center space-x-4">
+              {/* スクロール時に表示されるLINEボタン（全画面サイズ） */}
+              <div
+                className={`transition-all duration-300 ${
+                  showLineButton
+                    ? 'opacity-100 translate-x-0 scale-100'
+                    : 'opacity-0 translate-x-4 scale-75 pointer-events-none'
+                }`}
               >
-                <Phone className="w-4 h-4 mr-2" />
-                <span className="font-medium text-sm">058-243-6478</span>
-              </a>
-            </div>
-
-            {/* 美容室らしいハンバーガーメニューボタン */}
-            <button
-              className="xl:hidden relative group p-3 rounded-full bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-              onClick={() => setIsMobileMenuOpen(true)}
-              aria-label="メニュー"
-            >
-              {/* 背景のキラキラエフェクト */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-100/50 to-accent-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              {/* メインアイコン：ハサミ */}
-              <div className="relative z-10 flex items-center justify-center">
-                <Scissors className="w-5 h-5 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
+                <LineButton
+                  variant="line-official"
+                  text="LINE予約"
+                  size="sm"
+                  className="shadow-md hover:shadow-lg"
+                />
               </div>
 
-              {/* ホバー時の装飾ライン */}
-              <div className="absolute top-1 right-1 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
-              <div className="absolute bottom-1 left-1 w-1 h-1 bg-primary-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-150" />
-            </button>
+              {/* PC時の電話番号（常時表示） */}
+              <div className="hidden xl:flex items-center space-x-2 text-primary-700">
+                <Phone className="w-4 h-4" />
+                <span className="text-sm font-medium">058-243-6478</span>
+              </div>
+
+              {/* ハンバーガーメニューボタン */}
+              <button
+                className="xl:hidden relative group p-3 rounded-full bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                onClick={() => setIsMobileMenuOpen(true)}
+                aria-label="メニュー"
+              >
+                {/* 背景のキラキラエフェクト */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-100/50 to-accent-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                {/* メインアイコン：ハサミ */}
+                <div className="relative z-10 flex items-center justify-center">
+                  <Scissors className="w-5 h-5 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
+                </div>
+
+                {/* ホバー時の装飾ライン */}
+                <div className="absolute top-1 right-1 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
+                <div className="absolute bottom-1 left-1 w-1 h-1 bg-primary-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-150" />
+              </button>
+            </div>
           </div>
         </nav>
       </header>
