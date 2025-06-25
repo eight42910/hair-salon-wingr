@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import Image from 'next/image';
 
 interface LineButtonProps {
   variant?: 'line-official' | 'brand-primary' | 'brand-secondary' | 'large';
@@ -87,13 +87,17 @@ export const LineButton = ({
               LINE公式アカウント
             </h3>
             <div className="bg-gray-100 p-4 rounded-lg mb-4">
-              {/* TODO: 実際のQRコード画像に置き換えてください */}
-              <div className="w-40 h-40 sm:w-48 sm:h-48 bg-gray-200 mx-auto flex items-center justify-center rounded-lg">
-                <span className="text-gray-500 text-xs sm:text-sm text-center">
-                  QRコード
-                  <br />
-                  （実際の画像に置き換え）
-                </span>
+              <div className="flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48 mx-auto rounded-lg">
+                <Image
+                  src="/images/common/line_qr.jpg"
+                  alt="美容室ウイング R LINE公式アカウントのQRコード"
+                  width={192}
+                  height={192}
+                  sizes="(max-width: 640px) 160px, 192px"
+                  className="object-cover w-full h-full "
+                  priority={false}
+                  quality={95}
+                />
               </div>
             </div>
             <p className="text-gray-600 text-xs sm:text-sm mb-4">

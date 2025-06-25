@@ -63,9 +63,9 @@ export async function sendConfirmationEmail(data: ContactFormData) {
       
       <hr>
       <h3>美容室ウイング R</h3>
-      <p>住所：岐阜市加野○○○○<br>
+      <p>住所：岐阜市加野町1-1-1<br>
       電話：058-243-6478<br>
-      営業時間：9:00-19:00（定休日：月曜日）</p>
+      営業時間：9:00-19:00（定休日：月曜日,第三日曜日）</p>
       
       <p><small>※このメールは自動送信です。</small></p>
     `,
