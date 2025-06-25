@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import Link from 'next/link';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Card } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
 
 interface FAQItem {
   question: string;
@@ -137,15 +139,18 @@ export const FAQ = () => {
         </div>
 
         <div className="text-center mt-8">
-          <p className="text-gray-600 text-sm mb-4">
+          <p className="text-gray-600 text-sm mb-6">
             他にもご質問がございましたら、お気軽にお問い合わせください。
           </p>
-          <a
-            href="/contact"
-            className="inline-block bg-gray-900 text-white px-6 py-3 rounded hover:bg-gray-800 transition-colors text-sm"
-          >
-            お問い合わせはこちら
-          </a>
+          <Link href="/contact">
+            <Button
+              variant="primary"
+              size="lg"
+              className="shadow-md hover:shadow-lg transition-shadow duration-300"
+            >
+              お問い合わせはこちら
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
