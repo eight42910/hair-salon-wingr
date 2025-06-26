@@ -19,6 +19,7 @@ const navigation = [
     sectionId: 'feature',
   },
   { nameJa: 'メニュー', nameEn: 'Menu', href: '/#menu', sectionId: 'menu' },
+  { nameJa: 'スタッフ', nameEn: 'Staff', href: '/#staff', sectionId: 'staff' },
   { nameJa: 'よくある質問', nameEn: 'FAQ', href: '/#faq', sectionId: 'faq' },
   {
     nameJa: 'アクセス',
@@ -26,16 +27,15 @@ const navigation = [
     href: '/#access',
     sectionId: 'access',
   },
-  { nameJa: 'スタッフ', nameEn: 'Staff', href: '/owner' },
   { nameJa: 'お問い合わせ', nameEn: 'Contact', href: '/contact' },
 ];
 
 export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   // スクロール制御とESCキー対応
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
 
+    if (isOpen) {
       const handleEscape = (e: KeyboardEvent) => {
         if (e.key === 'Escape') onClose();
       };
@@ -43,12 +43,13 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
       document.addEventListener('keydown', handleEscape);
 
       return () => {
-        document.body.style.overflow = 'unset';
         document.removeEventListener('keydown', handleEscape);
       };
-    } else {
-      document.body.style.overflow = 'unset';
     }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, [isOpen, onClose]);
 
   const handleNavClick = (item: (typeof navigation)[0]) => {

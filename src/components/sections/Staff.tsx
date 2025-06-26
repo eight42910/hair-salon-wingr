@@ -1,53 +1,38 @@
 'use client';
 
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { featureAnimations, featureDelays } from '@/lib/animations';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
 
-// 特徴のデータ配列
-const features = [
+const staff = [
   {
     id: 1,
-    titleJa: 'ファミリーサロン',
-    titleEn: 'Family Salon',
-    description:
-      'ファミリー対応のサロン。お子様からご年配の方まで、それぞれのライフスタイルに合わせた施術をご提供。家族みんなで通える温かな空間で、美容を通じて笑顔をお届けします。',
-    imagePath: '/images/gallery/cut/cut-1.jpg',
-    imageAlt: 'ファミリーサロンでの施術風景',
+    name: '村瀬 律子',
+    nameEn: 'Ritsuko Murase',
+    role: 'オーナー・トップスタイリスト',
+    roleEn: 'Owner & Top Stylist',
+    experience: '41年',
+    specialties: ['カット', '頭皮ケア', 'パーマ'],
+    message:
+      '創業から41年、お客様との信頼関係を一番大切にしています。技術の向上はもちろん、お客様が安心してくつろげる空間づくりを心がけています。',
+    imagePath: '/images/owner/ritsuko.jpg',
   },
   {
     id: 2,
-    titleJa: '頭皮環境改善ヘッドスパ',
-    titleEn: 'Head Spa',
-    description:
-      'CAC製品を使用した本格ヘッドスパで頭皮環境を根本から改善。血行促進と毛穴の汚れを除去し、健やかな髪の成長をサポート。心地よいマッサージで日頃の疲れも癒やします。',
-    imagePath: '/images/gallery/wash-hair.jpg',
-    imageAlt: '頭皮改善ヘッドスパの施術風景',
-  },
-  {
-    id: 3,
-    titleJa: '自然な縮毛矯正',
-    titleEn: 'Hair Straightening',
-    description:
-      '髪質に合わせた丁寧な縮毛矯正で、クセやうねりを自然にストレートに。ダメージを最小限に抑えながら、手触りの良いサラサラヘアを実現。毎朝のスタイリングが格段に楽になります。',
-    imagePath: '/images/gallery/cut/cut-4.jpg',
-    imageAlt: '縮毛矯正の施術風景',
-  },
-  {
-    id: 4,
-    titleJa: '41年の技術と経験',
-    titleEn: 'Professional Technique',
-    description:
-      '1983年の創業から41年間で培った確かな技術に、最新のトレンドを融合。お客様一人ひとりの骨格や髪質を見極め、その方だけの美しさを引き出します。伝統と革新の技術で、理想のヘアスタイルを実現します。',
-    imagePath: '/images/gallery/cut/cut-stand.jpg',
-    imageAlt: '技術追求の施術風景',
+    name: '村瀬 孝介',
+    nameEn: 'Kousuke Murase',
+    role: 'フロアスタッフ',
+    roleEn: 'Floor Staff',
+    experience: '41年',
+    specialties: ['接客', 'フロアマネジメント'],
+    message: 'お客様のご要望に寄り添い、お客様のご満足を第一に考えています。',
+    imagePath: '/images/owner/kousuke.jpg',
   },
 ];
 
-// Featureコンポーネントの定義
-export const Feature = () => {
+export const Staff = () => {
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       {/* セクション全体の背景装飾 */}
@@ -59,12 +44,28 @@ export const Feature = () => {
         viewport={{ once: true }}
       >
         <motion.div
-          className="absolute top-20 left-10 w-40 h-40 bg-gradient-to-br from-primary-100/20 to-accent-100/20 rounded-full blur-3xl"
-          animate={featureAnimations.backgroundDecor.clockwise}
+          className="absolute top-20 right-10 w-40 h-40 bg-gradient-to-br from-secondary-100/20 to-accent-100/20 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, 90, 180, 270, 360],
+            transition: {
+              duration: 18,
+              repeat: Infinity,
+              ease: 'linear',
+            },
+          }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-56 h-56 bg-gradient-to-br from-secondary-100/20 to-primary-100/20 rounded-full blur-3xl"
-          animate={featureAnimations.backgroundDecor.counterClockwise}
+          className="absolute bottom-20 left-10 w-56 h-56 bg-gradient-to-br from-primary-100/20 to-secondary-100/20 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [360, 270, 180, 90, 0],
+            transition: {
+              duration: 22,
+              repeat: Infinity,
+              ease: 'linear',
+            },
+          }}
         />
       </motion.div>
 
@@ -72,9 +73,9 @@ export const Feature = () => {
         {/* セクションタイトル */}
         <AnimatedSection delay={0.2}>
           <SectionTitle
-            subTitle="Our Features"
-            mainTitle="私たちの特徴"
-            description="41年の歴史で培った技術と、お客様への想いをご紹介いたします"
+            subTitle="Our Professional Staff"
+            mainTitle="スタッフ紹介"
+            description="経験豊富なスタッフが、お客様一人ひとりに寄り添った施術をご提供いたします"
             level="h2"
             align="center"
             showDivider={true}
@@ -88,22 +89,23 @@ export const Feature = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {features.map((feature, index) => {
+          {staff.map((member, index) => {
             const isEven = index % 2 === 0;
             return (
               <motion.div
-                key={feature.id}
+                key={member.id}
                 variants={featureAnimations.item}
                 className={`flex flex-col lg:flex-row items-stretch gap-16 lg:gap-20 ${
                   isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
                 }`}
               >
-                {/* 画像エリア */}
+                {/* 写真エリア */}
                 <motion.div
                   className="flex-1 relative group"
                   variants={featureAnimations.image}
                 >
-                  <div className="relative aspect-[5/4] bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500">
+                  <div className="relative aspect-[4/5] bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500">
+                    {/* ホバー背景 */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-accent-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                     <motion.div
@@ -112,12 +114,12 @@ export const Feature = () => {
                       transition={{ duration: 0.3 }}
                     >
                       <Image
-                        priority={index < 2}
-                        src={feature.imagePath}
-                        alt={feature.imageAlt}
+                        priority={index === 0}
+                        src={member.imagePath}
+                        alt={member.name}
                         className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
-                        width={800}
-                        height={600}
+                        width={600}
+                        height={750}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                       />
                     </motion.div>
@@ -126,7 +128,15 @@ export const Feature = () => {
                     <motion.div
                       className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-300 shadow-lg"
                       variants={featureAnimations.decoration}
-                      animate={featureAnimations.floating}
+                      animate={{
+                        y: [0, -5, 0],
+                        rotate: [0, 10, -10, 0],
+                        transition: {
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                        },
+                      }}
                     />
                     <motion.div
                       className="absolute -bottom-3 -left-3 w-12 h-12 bg-gradient-to-br from-accent-400 to-accent-500 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-300 shadow-lg"
@@ -146,7 +156,7 @@ export const Feature = () => {
                       className="absolute top-4 left-4 w-6 h-6 bg-gradient-to-br from-secondary-400 to-secondary-500 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"
                       variants={featureAnimations.decoration}
                       animate={{
-                        ...featureAnimations.spinning,
+                        rotate: [0, 360],
                         scale: [1, 0.8, 1],
                         transition: {
                           duration: 8,
@@ -156,24 +166,10 @@ export const Feature = () => {
                         },
                       }}
                     />
-                    <motion.div
-                      className="absolute top-1/2 right-4 w-4 h-4 bg-gradient-to-br from-primary-300 to-accent-300 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"
-                      variants={featureAnimations.decoration}
-                      animate={{
-                        y: [0, -8, 8, 0],
-                        opacity: [0.2, 0.5, 0.2],
-                        transition: {
-                          duration: 6,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                          delay: 3,
-                        },
-                      }}
-                    />
                   </div>
                 </motion.div>
 
-                {/* テキストエリア */}
+                {/* 情報エリア */}
                 <motion.div
                   className="flex-1 flex flex-col justify-center space-y-8 px-4 lg:px-8 relative"
                   variants={featureAnimations.text}
@@ -199,6 +195,7 @@ export const Feature = () => {
                     transition={{ duration: 0.6, delay: featureDelays.title }}
                     viewport={{ once: true }}
                   >
+                    {/* 名前とポジション */}
                     <div className="space-y-2">
                       <motion.div
                         className="inline-flex items-center"
@@ -212,10 +209,17 @@ export const Feature = () => {
                       >
                         <motion.div
                           className="w-2 h-2 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full mr-2"
-                          animate={featureAnimations.pulsing}
+                          animate={{
+                            scale: [1, 1.3, 1],
+                            transition: {
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: 'easeInOut',
+                            },
+                          }}
                         />
                         <p className="text-sm font-medium text-primary-600 uppercase tracking-widest">
-                          {feature.titleEn}
+                          {member.roleEn}
                         </p>
                       </motion.div>
                       <motion.h3
@@ -228,25 +232,78 @@ export const Feature = () => {
                         }}
                         viewport={{ once: true }}
                       >
-                        {feature.titleJa}
+                        {member.name}
                       </motion.h3>
+                      <motion.p
+                        className="text-lg text-gray-600 font-medium"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.5,
+                          delay: featureDelays.mainTitle + 0.1,
+                        }}
+                        viewport={{ once: true }}
+                      >
+                        {member.role}
+                      </motion.p>
                     </div>
                   </motion.div>
 
-                  {/* 説明文：日本語のみ */}
+                  {/* 経験年数と得意分野 */}
+                  <motion.div
+                    className="space-y-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: featureDelays.description,
+                    }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="inline-flex items-center bg-gradient-to-r from-primary-50 to-accent-50 px-4 py-2 rounded-full">
+                      <span className="text-sm font-medium text-primary-800">
+                        経験年数: {member.experience}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-900 mb-3">
+                        得意分野
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {member.specialties.map((specialty, idx) => (
+                          <motion.span
+                            key={specialty}
+                            className="bg-white border border-primary-200 text-primary-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{
+                              duration: 0.3,
+                              delay: featureDelays.description + 0.1 * idx,
+                            }}
+                            viewport={{ once: true }}
+                            whileHover={{ scale: 1.05 }}
+                          >
+                            {specialty}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* メッセージ */}
                   <motion.div
                     className="relative"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{
                       duration: 0.7,
-                      delay: featureDelays.description,
+                      delay: featureDelays.description + 0.2,
                     }}
                     viewport={{ once: true }}
                   >
-                    {/* LineReservationスタイルのライン装飾 */}
                     <motion.div
-                      className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary-400 to-accent-400 rounded-full shadow-sm"
+                      className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary-400 to-accent-400 rounded-full shadow-sm "
                       initial={{ height: 0 }}
                       whileInView={{ height: '100%' }}
                       transition={{ duration: 1, delay: featureDelays.content }}
@@ -279,17 +336,20 @@ export const Feature = () => {
                         }}
                       />
 
+                      <h4 className="text-sm font-medium text-gray-900 mb-3">
+                        メッセージ
+                      </h4>
                       <motion.p
-                        className="text-gray-700 leading-relaxed text-lg font-light relative"
+                        className="text-gray-700 leading-relaxed text-base font-light relative"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{
                           duration: 0.8,
-                          delay: featureDelays.content,
+                          delay: featureDelays.content + 0.1,
                         }}
                         viewport={{ once: true }}
                       >
-                        {feature.description}
+                        {member.message}
                       </motion.p>
                     </div>
                   </motion.div>

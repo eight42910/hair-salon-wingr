@@ -229,6 +229,45 @@
   .animation-delay-600 {
     animation-delay: 0.6s;
   }
+
+  /* 美容室ブランド専用グラデーション */
+  .salon-gradient-primary {
+    @apply bg-gradient-to-br from-primary-100 to-accent-100;
+  }
+
+  .salon-gradient-secondary {
+    @apply bg-gradient-to-br from-secondary-100 to-primary-100;
+  }
+
+  .salon-gradient-accent {
+    @apply bg-gradient-to-br from-accent-100 to-secondary-100;
+  }
+
+  .salon-gradient-hover-primary {
+    @apply bg-gradient-to-br from-primary-200/30 to-accent-200/30;
+  }
+
+  .salon-gradient-hover-secondary {
+    @apply bg-gradient-to-br from-secondary-200/30 to-primary-200/30;
+  }
+
+  /* アイコン用グラデーション */
+  .salon-icon-gradient {
+    @apply bg-gradient-to-br from-primary-400 to-primary-500;
+  }
+
+  .salon-icon-gradient-accent {
+    @apply bg-gradient-to-br from-accent-400 to-accent-500;
+  }
+
+  /* 装飾的な背景要素 */
+  .salon-decoration-circle {
+    @apply bg-gradient-to-br from-primary-100/20 to-accent-100/20 rounded-full;
+  }
+
+  .salon-decoration-circle-hover {
+    @apply group-hover:from-primary-200/30 group-hover:to-accent-200/30 transition-all duration-300;
+  }
 }
 
 @keyframes conceptFadeIn {
@@ -254,7 +293,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -263,7 +303,8 @@
 }
 
 @keyframes float-delayed {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {

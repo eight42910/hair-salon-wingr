@@ -59,3 +59,4 @@ export { LineReservation } from './LineReservation';
 // 使用例:
 // import { Feature, type FeatureProps } from '@/components/sections';
 // import type { FeatureItem } from '@/types/sections';
+export { Staff } from './Staff';

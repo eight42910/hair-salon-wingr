@@ -15,7 +15,13 @@ const navigation = [
   },
   { nameJa: 'メニュー', nameEn: 'Menu', href: '/#menu', sectionId: 'menu' },
   { nameJa: 'よくある質問', nameEn: 'FAQ', href: '/#faq', sectionId: 'faq' },
-  { nameJa: 'スタッフ', nameEn: 'Staff', href: '/owner' },
+  { nameJa: 'スタッフ', nameEn: 'Staff', href: '/#staff', sectionId: 'staff' },
+  {
+    nameJa: 'アクセス',
+    nameEn: 'Access',
+    href: '/#access',
+    sectionId: 'access',
+  },
   { nameJa: 'お問い合わせ', nameEn: 'Contact', href: '/contact' },
 ];
 
@@ -26,7 +32,7 @@ export const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       // 400px以上スクロールしたらLINEボタンを表示
-      if (window.pageYOffset > 400) {
+      if (window.scrollY > 400) {
         setShowLineButton(true);
       } else {
         setShowLineButton(false);
