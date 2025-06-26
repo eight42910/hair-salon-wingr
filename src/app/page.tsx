@@ -12,6 +12,7 @@ import {
   Access,
   LineReservation,
   MenuContent,
+  Staff,
 } from '@/components/sections';
 
 export const metadata: Metadata = {
@@ -88,6 +89,11 @@ export default async function HomePage() {
       {/* LINE予約セクション - メニューの直後に移動 */}
       <AnimatedSection id="reservation" direction="up" delay={0.3}>
         <LineReservation />
+      </AnimatedSection>
+
+      {/* スタッフセクション */}
+      <AnimatedSection id="staff" direction="up" delay={0.3}>
+        <Staff />
       </AnimatedSection>
 
       {/* よくある質問セクション */}
