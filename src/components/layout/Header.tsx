@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Phone, Scissors } from 'lucide-react';
 import { MobileMenu } from './MobileMenu';
+import { FloatingLineButton } from '@/components/ui/FloatingLineButton';
 
 const navigation = [
   { nameJa: 'ホーム', nameEn: 'Home', href: '/', sectionId: 'home' },
@@ -29,39 +30,67 @@ export const Header = () => {
             {/* ロゴ：日本語メイン */}
             <Link
               href="/"
-              className="text-xl lg:text-2xl font-bold text-primary-900 flex-shrink-0"
+              className="text-xl lg:text-2xl font-bold text-primary-900 flex-shrink-0 hover:text-primary-700 transition-colors duration-300"
             >
               美容室ウイング R
             </Link>
 
             {/* デスクトップナビゲーション：日英併記 */}
-            <div className="hidden xl:flex items-center space-x-8">
+            <div className="hidden xl:flex items-center space-x-2">
               {navigation.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-center group hover:text-primary-700 transition-colors"
+                  className="relative text-center group px-4 py-3 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg overflow-hidden"
                 >
-                  {/* 日本語：メイン表示 */}
-                  <div className="text-sm font-bold text-primary-900 group-hover:text-primary-700">
-                    {item.nameJa}
+                  {/* 背景グラデーション（ホバー時に表示） */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-accent-50 to-secondary-50 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-xl" />
+
+                  {/* 装飾的なボーダー */}
+                  <div className="absolute inset-0 border border-transparent group-hover:border-primary-200/50 rounded-xl transition-all duration-300" />
+
+                  {/* キラキラエフェクト */}
+                  <div className="absolute top-1 right-2 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 animate-pulse" />
+                  <div className="absolute bottom-1 left-2 w-1 h-1 bg-primary-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse delay-200" />
+
+                  {/* コンテンツ */}
+                  <div className="relative z-10">
+                    {/* 日本語：メイン表示 */}
+                    <div className="text-sm font-bold text-primary-900 group-hover:text-primary-800 transition-all duration-300 group-hover:scale-110 transform-gpu">
+                      {item.nameJa}
+                    </div>
+                    {/* 英語：装飾的サブ */}
+                    <div className="text-xs text-primary-600 group-hover:text-primary-700 uppercase tracking-wider opacity-75 group-hover:opacity-100 transition-all duration-300 group-hover:translate-y-0.5 transform-gpu">
+                      {item.nameEn}
+                    </div>
                   </div>
-                  {/* 英語：装飾的サブ */}
-                  <div className="text-xs text-primary-600 uppercase tracking-wider opacity-75">
-                    {item.nameEn}
-                  </div>
+
+                  {/* 下部のアンダーライン */}
+                  <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-400 group-hover:w-3/4 group-hover:left-1/8 transition-all duration-300 rounded-full" />
                 </Link>
               ))}
             </div>
 
-            {/* 電話番号とLINE：日本語 */}
+            {/* 電話番号：美容室らしいアニメーション */}
             <div className="hidden xl:flex items-center space-x-4 flex-shrink-0">
               <a
                 href="tel:058-243-6478"
-                className="flex items-center text-primary-700 hover:text-primary-900 transition-colors"
+                className="relative group flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg overflow-hidden"
               >
-                <Phone className="w-4 h-4 mr-2" />
-                <span className="font-medium text-sm">058-243-6478</span>
+                {/* 背景アニメーション */}
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-100/50 to-accent-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                {/* アイコンとテキスト */}
+                <div className="relative z-10 flex items-center">
+                  <Phone className="w-4 h-4 mr-2 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
+                  <span className="font-medium text-sm text-primary-700 group-hover:text-primary-800 transition-colors duration-300">
+                    058-243-6478
+                  </span>
+                </div>
+
+                {/* 装飾エフェクト */}
+                <div className="absolute top-1 right-1 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
+                <div className="absolute bottom-1 left-1 w-1 h-1 bg-primary-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-150" />
               </a>
             </div>
 
