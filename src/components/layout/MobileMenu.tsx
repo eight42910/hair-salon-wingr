@@ -62,6 +62,10 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
     // セクションIDがない場合は通常のページ遷移（Linkコンポーネントが処理）
   };
 
+  const handleLineButtonClick = () => {
+    onClose(); // メニューを閉じる
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -177,7 +181,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
               <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-4 space-y-3 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-default">
                 <div className="flex items-center text-primary-700 hover:text-primary-600 transition-colors duration-200">
                   <Phone className="w-4 h-4 mr-2 hover:scale-110 transition-transform duration-200" />
-                  <span className="text-sm font-medium">058-241-3375</span>
+                  <span className="text-sm font-medium">058-271-3664</span>
                 </div>
                 <div className="flex items-center text-primary-700 hover:text-primary-600 transition-colors duration-200">
                   <Clock className="w-4 h-4 mr-2 hover:scale-110 transition-transform duration-200" />
@@ -185,7 +189,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                 </div>
                 <div className="flex items-start text-primary-700 hover:text-primary-600 transition-colors duration-200">
                   <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 hover:scale-110 transition-transform duration-200" />
-                  <span className="text-sm">岐阜市加野2-25-8</span>
+                  <span className="text-sm">岐阜市加野2-10-15</span>
                 </div>
               </div>
             </div>
@@ -193,14 +197,15 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
 
           {/* フッター */}
           <div className="p-4 border-t border-gray-200 space-y-3">
-            <LineButton
-              variant="line-official"
-              text="LINEで予約"
-              className="w-full"
-              onClick={onClose}
-            />
+            <div onClick={handleLineButtonClick}>
+              <LineButton
+                variant="line-official"
+                text="LINEで予約"
+                className="w-full"
+              />
+            </div>
             <a
-              href="tel:058-241-3375"
+              href="tel:058-271-3664"
               className="flex items-center justify-center w-full py-3 border-2 border-primary-600 text-primary-600 font-medium rounded-xl hover:bg-primary-600 hover:text-white hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer relative overflow-hidden group"
               onClick={onClose}
             >

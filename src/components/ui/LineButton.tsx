@@ -15,7 +15,6 @@ export const LineButton = ({
   variant = 'line-official',
   size = 'lg',
   text = 'LINEで予約',
-  showQR = true,
   className = '',
 }: LineButtonProps) => {
   const [showModal, setShowModal] = useState(false);

@@ -31,9 +31,9 @@ export const PageLayout = ({
             <SectionTitle
               level="h1"
               align="center"
-              subTitle={titleEn}
+              subTitle={titleEn ?? ''}
               mainTitle={titleJa}
-              description={description}
+              description={description ?? ''}
               showDivider={true}
             />
             {/* {subtitle && (

@@ -110,27 +110,11 @@ export const Header = () => {
                 />
               </div>
 
-              {/* PC時の電話番号（美容室らしいアニメーション） */}
-              <div className="hidden xl:flex items-center">
-                <a
-                  href="tel:058-243-6478"
-                  className="relative group flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg overflow-hidden"
-                >
-                  {/* 背景アニメーション */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary-100/50 to-accent-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                  {/* アイコンとテキスト */}
-                  <div className="relative z-10 flex items-center">
-                    <Phone className="w-4 h-4 mr-2 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
-                    <span className="font-medium text-sm text-primary-700 group-hover:text-primary-800 transition-colors duration-300">
-                      058-243-6478
-                    </span>
-                  </div>
-
-                  {/* 装飾エフェクト */}
-                  <div className="absolute top-1 right-1 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
-                  <div className="absolute bottom-1 left-1 w-1 h-1 bg-primary-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-150" />
-                </a>
+              {/* PC時の電話番号（常時表示） */}
+              <div className="hidden xl:flex items-center space-x-2 text-primary-700">
+                <Phone className="w-4 h-4" />
+                <span className="text-sm font-medium">058-241-3375</span>
               </div>
 
               {/* ハンバーガーメニューボタン */}

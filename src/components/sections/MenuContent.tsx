@@ -5,15 +5,7 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 
 // 型定義をインポート
-import type {
-  MenuItem,
-  MenuCategory as MenuCategoryType,
-  MenuData,
-  MenuItemProps,
-  MenuCategoryProps,
-} from '../../types/menu';
-
-// SectionTitleをインポート
+import type { MenuData, MenuCategoryProps } from '../../types/menu';
 
 // シンプルなメニューデータ構造
 const menuData: MenuData = {
@@ -172,30 +164,6 @@ const menuData: MenuData = {
   },
 } as const;
 
-// シンプルなメニューアイテムカード
-const MenuItemCard = ({ item }: MenuItemProps) => {
-  return (
-    <div className="bg-white border border-gray-200 hover:border-gray-300 transition-all duration-200">
-      <div className="p-4">
-        <div className="flex justify-between items-start mb-2">
-          <div className="flex-1">
-            <h3 className="font-medium text-gray-900 text-sm mb-1">
-              {item.name}
-            </h3>
-            <p className="text-xs text-gray-600">{item.description}</p>
-          </div>
-          <div className="text-right ml-4">
-            <div className="font-medium text-gray-900 text-sm">
-              {item.price}
-            </div>
-            <div className="text-xs text-gray-500">{item.duration}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // MenuCategory更新版（アイコンなし）
 const MenuCategory = ({ category }: MenuCategoryProps) => {
   return (
@@ -284,13 +252,13 @@ const MenuCategory = ({ category }: MenuCategoryProps) => {
         transition={{ duration: 0.6, delay: 0.6 }}
         viewport={{ once: true }}
       >
-        {category.items.map((item: MenuItem, index: number) => (
+        {category.items.map((item, itemIndex) => (
           <motion.div
-            key={index}
+            key={`${category.titleEn}-${itemIndex}`}
             className="relative overflow-hidden bg-white border border-gray-200 rounded-lg hover:border-primary-200 transition-all duration-300 hover:shadow-md hover:-translate-y-1 group"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
+            transition={{ duration: 0.4, delay: 0.7 + itemIndex * 0.1 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.02 }}
           >
@@ -424,7 +392,7 @@ export default function MenuContent() {
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          {Object.entries(menuData).map(([key, category], index) => (
+          {Object.entries(menuData).map(([key, category]) => (
             <MenuCategory key={key} category={category} />
           ))}
         </motion.div>

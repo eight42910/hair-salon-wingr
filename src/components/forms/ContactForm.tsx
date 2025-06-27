@@ -52,8 +52,7 @@ export const ContactForm = () => {
     {
       key: 'message',
       label: 'お問い合わせ内容',
-      completed:
-        !!watchedFields.message?.trim() && watchedFields.message.length >= 10,
+      completed: !!watchedFields.message?.trim(),
     },
     {
       key: 'agreement',
@@ -162,7 +161,7 @@ export const ContactForm = () => {
               />
               {errors.name && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.name.message} // エラーメッセージの表示
+                  {errors.name.message} {/* エラーメッセージの表示 */}
                 </p>
               )}
             </div>
@@ -361,8 +360,8 @@ export const ContactForm = () => {
             <p className="text-red-700">
               送信中にエラーが発生しました。お手数ですが、お電話にてお問い合わせください。
               <br />
-              <a href="tel:058-243-6478" className="font-bold underline">
-                058-243-6478
+              <a href="tel:058-241-3375" className="font-bold underline">
+                058-241-3375
               </a>
             </p>
           </Card>

@@ -38,15 +38,6 @@ export const ScrollToTopButton = () => {
     });
   };
 
-  // より存在感のあるバージョン
-  const enhancedClassName = `
-    w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 
-    text-white rounded-full shadow-xl hover:shadow-2xl
-    hover:from-primary-600 hover:to-primary-700
-    transform hover:-translate-y-2 hover:scale-110
-    active:scale-95 transition-all duration-300
-  `;
-
   return (
     <button
       onClick={scrollToTop}

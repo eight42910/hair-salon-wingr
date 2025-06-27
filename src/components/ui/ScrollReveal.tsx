@@ -10,8 +10,6 @@ interface ScrollRevealProps {
     | 'fadeInRight'
     | 'fadeInScale'
     | 'fadeInRotate';
-  delay?: number;
-  duration?: number;
   threshold?: number;
   className?: string;
 }
@@ -19,8 +17,6 @@ interface ScrollRevealProps {
 export const ScrollReveal = ({
   children,
   animation = 'fadeInUp',
-  delay = 0,
-  duration = 600,
   threshold = 0.1,
   className = '',
 }: ScrollRevealProps) => {
@@ -42,8 +38,8 @@ export const ScrollReveal = ({
 
   return (
     <div
-      ref={elementRef}
-      className={`${animationClasses[animation]} ${className}`}
+      ref={elementRef as unknown as React.RefObject<HTMLDivElement>}
+      className={`transition-all duration-600 ${animationClasses[animation]} ${className}`}
     >
       {children}
     </div>

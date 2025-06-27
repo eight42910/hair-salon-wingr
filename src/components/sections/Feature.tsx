@@ -4,7 +4,7 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { featureAnimations, featureDelays } from '@/lib/animations';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, Variants, TargetAndTransition } from 'framer-motion';
 
 // 特徴のデータ配列
 const features = [
@@ -60,11 +60,16 @@ export const Feature = () => {
       >
         <motion.div
           className="absolute top-20 left-10 w-40 h-40 bg-gradient-to-br from-primary-100/20 to-accent-100/20 rounded-full blur-3xl"
-          animate={featureAnimations.backgroundDecor.clockwise}
+          animate={
+            featureAnimations.backgroundDecor.clockwise as TargetAndTransition
+          }
         />
         <motion.div
           className="absolute bottom-20 right-10 w-56 h-56 bg-gradient-to-br from-secondary-100/20 to-primary-100/20 rounded-full blur-3xl"
-          animate={featureAnimations.backgroundDecor.counterClockwise}
+          animate={
+            featureAnimations.backgroundDecor
+              .counterClockwise as TargetAndTransition
+          }
         />
       </motion.div>
 
@@ -83,7 +88,7 @@ export const Feature = () => {
 
         <motion.div
           className="space-y-32 mt-16"
-          variants={featureAnimations.container}
+          variants={featureAnimations.container as Variants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
@@ -93,7 +98,7 @@ export const Feature = () => {
             return (
               <motion.div
                 key={feature.id}
-                variants={featureAnimations.item}
+                variants={featureAnimations.item as unknown as Variants}
                 className={`flex flex-col lg:flex-row items-stretch gap-16 lg:gap-20 ${
                   isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
                 }`}
@@ -101,7 +106,7 @@ export const Feature = () => {
                 {/* 画像エリア */}
                 <motion.div
                   className="flex-1 relative group"
-                  variants={featureAnimations.image}
+                  variants={featureAnimations.image as unknown as Variants}
                 >
                   <div className="relative aspect-[5/4] bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-accent-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -125,50 +130,66 @@ export const Feature = () => {
                     {/* 装飾要素 */}
                     <motion.div
                       className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-300 shadow-lg"
-                      variants={featureAnimations.decoration}
-                      animate={featureAnimations.floating}
+                      variants={
+                        featureAnimations.decoration as unknown as Variants
+                      }
+                      animate={
+                        featureAnimations.floating as TargetAndTransition
+                      }
                     />
                     <motion.div
                       className="absolute -bottom-3 -left-3 w-12 h-12 bg-gradient-to-br from-accent-400 to-accent-500 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-300 shadow-lg"
-                      variants={featureAnimations.decoration}
-                      animate={{
-                        x: [0, 5, -5, 0],
-                        scale: [1, 1.05, 1],
-                        transition: {
-                          duration: 5,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                          delay: 1,
-                        },
-                      }}
+                      variants={
+                        featureAnimations.decoration as unknown as Variants
+                      }
+                      animate={
+                        {
+                          x: [0, 5, -5, 0],
+                          scale: [1, 1.05, 1],
+                          transition: {
+                            duration: 5,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                            delay: 1,
+                          },
+                        } as TargetAndTransition
+                      }
                     />
                     <motion.div
                       className="absolute top-4 left-4 w-6 h-6 bg-gradient-to-br from-secondary-400 to-secondary-500 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"
-                      variants={featureAnimations.decoration}
-                      animate={{
-                        ...featureAnimations.spinning,
-                        scale: [1, 0.8, 1],
-                        transition: {
-                          duration: 8,
-                          repeat: Infinity,
-                          ease: 'linear',
-                          delay: 2,
-                        },
-                      }}
+                      variants={
+                        featureAnimations.decoration as unknown as Variants
+                      }
+                      animate={
+                        {
+                          rotate: [0, 360],
+                          scale: [1, 0.8, 1],
+                          transition: {
+                            duration: 8,
+                            repeat: Infinity,
+                            ease: 'linear',
+                            delay: 2,
+                          },
+                        } as TargetAndTransition
+                      }
                     />
                     <motion.div
                       className="absolute top-1/2 right-4 w-4 h-4 bg-gradient-to-br from-primary-300 to-accent-300 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"
-                      variants={featureAnimations.decoration}
-                      animate={{
-                        y: [0, -8, 8, 0],
-                        opacity: [0.2, 0.5, 0.2],
-                        transition: {
-                          duration: 6,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                          delay: 3,
-                        },
-                      }}
+                      variants={
+                        featureAnimations.decoration as unknown as Variants
+                      }
+                      animate={
+                        {
+                          y: [0, -8, 8, 0],
+                          opacity: [0.2, 0.5, 0.2],
+                          transition: {
+                            duration: 6,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                            delay: 3,
+                          },
+                        } as TargetAndTransition
+                      }
                     />
                   </div>
                 </motion.div>
@@ -176,20 +197,22 @@ export const Feature = () => {
                 {/* テキストエリア */}
                 <motion.div
                   className="flex-1 flex flex-col justify-center space-y-8 px-4 lg:px-8 relative"
-                  variants={featureAnimations.text}
+                  variants={featureAnimations.text as unknown as Variants}
                 >
                   {/* 背景装飾 */}
                   <motion.div
                     className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-secondary-100/10 to-accent-100/10 rounded-full blur-2xl pointer-events-none"
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      rotate: [0, 180, 360],
-                      transition: {
-                        duration: 15,
-                        repeat: Infinity,
-                        ease: 'linear',
-                      },
-                    }}
+                    animate={
+                      {
+                        scale: [1, 1.1, 1],
+                        rotate: [0, 180, 360],
+                        transition: {
+                          duration: 15,
+                          repeat: Infinity,
+                          ease: 'linear',
+                        },
+                      } as TargetAndTransition
+                    }
                   />
 
                   <motion.div
@@ -212,7 +235,9 @@ export const Feature = () => {
                       >
                         <motion.div
                           className="w-2 h-2 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full mr-2"
-                          animate={featureAnimations.pulsing}
+                          animate={
+                            featureAnimations.pulsing as TargetAndTransition
+                          }
                         />
                         <p className="text-sm font-medium text-primary-600 uppercase tracking-widest">
                           {feature.titleEn}
@@ -246,37 +271,45 @@ export const Feature = () => {
                   >
                     <motion.div
                       className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary-400 to-accent-400 rounded-full shadow-sm"
-                      {...featureAnimations.lineGrow}
+                      initial={featureAnimations.lineGrow.initial}
+                      whileInView={featureAnimations.lineGrow.animate}
+                      transition={featureAnimations.lineGrow.transition}
                       viewport={{ once: true }}
                     />
                     <motion.div
                       className="relative bg-gradient-to-br from-white via-primary-50/20 to-accent-50/10 p-6 rounded-lg shadow-sm overflow-hidden"
-                      whileHover={featureAnimations.hover}
+                      whileHover={
+                        featureAnimations.hover as TargetAndTransition
+                      }
                     >
                       {/* 控えめな丸模様 */}
                       <motion.div
                         className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-accent-200/20 to-accent-300/20 rounded-full -translate-y-4 translate-x-4"
-                        animate={{
-                          rotate: [0, 360],
-                          scale: [1, 0.9, 1],
-                          transition: {
-                            duration: 12,
-                            repeat: Infinity,
-                            ease: 'linear',
-                          },
-                        }}
+                        animate={
+                          {
+                            rotate: [0, 360],
+                            scale: [1, 0.9, 1],
+                            transition: {
+                              duration: 12,
+                              repeat: Infinity,
+                              ease: 'linear',
+                            },
+                          } as TargetAndTransition
+                        }
                       />
                       <motion.div
                         className="absolute bottom-0 left-0 w-12 h-12 bg-gradient-to-br from-primary-200/15 to-primary-300/15 rounded-full translate-y-2 -translate-x-2"
-                        animate={{
-                          rotate: [360, 0],
-                          scale: [1, 1.1, 1],
-                          transition: {
-                            duration: 10,
-                            repeat: Infinity,
-                            ease: 'linear',
-                          },
-                        }}
+                        animate={
+                          {
+                            rotate: [360, 0],
+                            scale: [1, 1.1, 1],
+                            transition: {
+                              duration: 10,
+                              repeat: Infinity,
+                              ease: 'linear',
+                            },
+                          } as TargetAndTransition
+                        }
                       />
 
                       <motion.p
