@@ -233,7 +233,7 @@ export const Feature = () => {
                     </div>
                   </motion.div>
 
-                  {/* 説明文：日本語のみ */}
+                  {/* 説明文 */}
                   <motion.div
                     className="relative"
                     initial={{ opacity: 0, y: 30 }}
@@ -244,15 +244,15 @@ export const Feature = () => {
                     }}
                     viewport={{ once: true }}
                   >
-                    {/* LineReservationスタイルのライン装飾 */}
                     <motion.div
                       className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary-400 to-accent-400 rounded-full shadow-sm"
-                      initial={{ height: 0 }}
-                      whileInView={{ height: '100%' }}
-                      transition={{ duration: 1, delay: featureDelays.content }}
+                      {...featureAnimations.lineGrow}
                       viewport={{ once: true }}
                     />
-                    <div className="relative bg-gradient-to-br from-white via-primary-50/20 to-accent-50/10 p-6 rounded-lg shadow-sm overflow-hidden">
+                    <motion.div
+                      className="relative bg-gradient-to-br from-white via-primary-50/20 to-accent-50/10 p-6 rounded-lg shadow-sm overflow-hidden"
+                      whileHover={featureAnimations.hover}
+                    >
                       {/* 控えめな丸模様 */}
                       <motion.div
                         className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-accent-200/20 to-accent-300/20 rounded-full -translate-y-4 translate-x-4"
@@ -280,7 +280,7 @@ export const Feature = () => {
                       />
 
                       <motion.p
-                        className="text-gray-700 leading-relaxed text-lg font-light relative"
+                        className="text-gray-700 leading-relaxed text-base font-light relative"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{
@@ -291,7 +291,7 @@ export const Feature = () => {
                       >
                         {feature.description}
                       </motion.p>
-                    </div>
+                    </motion.div>
                   </motion.div>
                 </motion.div>
               </motion.div>
