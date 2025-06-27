@@ -1,5 +1,3 @@
-import { LucideIcon } from 'lucide-react';
-
 export interface MenuItem {
   name: string;
   description: string;
@@ -16,7 +14,6 @@ export interface MenuCategory {
   titleJa: string;
   titleEn: string;
   title?: string;
-  icon: LucideIcon;
   color: string;
   description: string;
   items: MenuItem[];

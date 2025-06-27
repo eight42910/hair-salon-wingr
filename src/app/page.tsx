@@ -5,13 +5,12 @@ import { LineButton } from '@/components/ui/LineButton';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Metadata } from 'next';
 
-// コンポーネントの一括import（修正版）
 import {
   Feature,
   FAQ,
   Access,
-  LineReservation,
   MenuContent,
+  Staff,
 } from '@/components/sections';
 
 export const metadata: Metadata = {
@@ -85,9 +84,9 @@ export default async function HomePage() {
         <MenuContent />
       </AnimatedSection>
 
-      {/* LINE予約セクション - メニューの直後に移動 */}
-      <AnimatedSection id="reservation" direction="up" delay={0.3}>
-        <LineReservation />
+      {/* スタッフセクション */}
+      <AnimatedSection id="staff" direction="up" delay={0.3}>
+        <Staff />
       </AnimatedSection>
 
       {/* よくある質問セクション */}
@@ -95,7 +94,7 @@ export default async function HomePage() {
         <FAQ />
       </AnimatedSection>
 
-      {/* アクセスセクション */}
+      {/* アクセス・ご予約セクション（統合版） */}
       <AnimatedSection id="access" direction="up" delay={0.5}>
         <Access />
       </AnimatedSection>
