@@ -5,4 +5,3 @@ export { LineButton } from './LineButton';
 export { ScrollToTopButton } from './ScrollToTopButton';
 export { AnimatedSection } from './AnimatedSection';
 export { ScrollReveal } from './ScrollReveal';
-export { LoadingScreen } from './LoadingScreen';

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { contactSchema } from '@/types/form';
 import { sendNotificationEmail, sendConfirmationEmail } from '@/lib/email';
+import { ZodError } from 'zod';
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,22 +29,26 @@ export async function POST(request: NextRequest) {
       },
       { status: 200 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Contact API error:', error);
 
     // Zodバリデーションエラー（入力不備）
-    if (error.name === 'ZodError') {
+    if (error instanceof Error && error.name === 'ZodError') {
       return NextResponse.json(
         {
           error: '入力内容に不備があります',
-          details: error.errors,
+          details: (error as ZodError).errors,
         },
         { status: 400 }
       );
     }
 
     // メール送信エラー
-    if (error.code === 'EAUTH' || error.code === 'ECONNECTION') {
+    if (
+      error instanceof Error &&
+      'code' in error &&
+      (error.code === 'EAUTH' || error.code === 'ECONNECTION')
+    ) {
       return NextResponse.json(
         { error: 'メール送信に失敗しました。お電話でお問い合わせください。' },
         { status: 500 }
@@ -56,7 +61,7 @@ export async function POST(request: NextRequest) {
         error: 'サーバーエラーが発生しました',
         details:
           process.env.NODE_ENV === 'development'
-            ? error.message
+            ? (error as Error).message
             : '詳細なエラー情報はログを参照してください',
       },
       { status: 500 }

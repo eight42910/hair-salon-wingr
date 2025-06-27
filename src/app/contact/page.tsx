@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { Card } from '@/components/ui/Card';
-import { Phone, MapPin, MessageCircle } from 'lucide-react';
+import { Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'お問い合わせ | 美容室ウイング R',
@@ -27,15 +27,15 @@ export default function ContactPage() {
             </div>
             <h3 className="font-bold text-lg text-primary-900 mb-2">お電話</h3>
             <p className="text-2xl font-bold text-primary-800 mb-2">
-              058-243-6478
+              058-241-3375
             </p>
             <p className="text-sm text-gray-600 mb-4">
-              営業時間：9:00〜19:00
+              営業時間：9:00〜18:00
               <br />
-              定休日：火曜日
+              定休日：第2火曜日・第3日曜日
             </p>
             <a
-              href="tel:058-243-6478"
+              href="tel:058-241-3375"
               className="bg-gradient-to-r from-primary-500 to-primary-700 text-white px-4 py-2 rounded-lg text-sm transition-all duration-300 hover:shadow-lg inline-block"
             >
               今すぐ電話する

@@ -97,7 +97,7 @@ export const Header = () => {
               {/* PC時の電話番号（常時表示） */}
               <div className="hidden xl:flex items-center space-x-2 text-primary-700">
                 <Phone className="w-4 h-4" />
-                <span className="text-sm font-medium">058-243-6478</span>
+                <span className="text-sm font-medium">058-241-3375</span>
               </div>
 
               {/* ハンバーガーメニューボタン */}

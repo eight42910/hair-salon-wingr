@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { featureAnimations, featureDelays } from '@/lib/animations';
+import { Variants } from 'framer-motion';
 
 const staff = [
   {
@@ -84,7 +85,7 @@ export const Staff = () => {
 
         <motion.div
           className="space-y-32 mt-16"
-          variants={featureAnimations.container}
+          variants={featureAnimations.container as unknown as Variants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
@@ -94,7 +95,7 @@ export const Staff = () => {
             return (
               <motion.div
                 key={member.id}
-                variants={featureAnimations.item}
+                variants={featureAnimations.item as unknown as Variants}
                 className={`flex flex-col lg:flex-row items-stretch gap-16 lg:gap-20 ${
                   isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
                 }`}
@@ -102,7 +103,7 @@ export const Staff = () => {
                 {/* 写真エリア */}
                 <motion.div
                   className="flex-1 relative group"
-                  variants={featureAnimations.image}
+                  variants={featureAnimations.image as unknown as Variants}
                 >
                   <div className="relative aspect-[4/5] bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500">
                     {/* ホバー背景 */}
@@ -127,7 +128,9 @@ export const Staff = () => {
                     {/* 装飾要素 */}
                     <motion.div
                       className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-300 shadow-lg"
-                      variants={featureAnimations.decoration}
+                      variants={
+                        featureAnimations.decoration as unknown as Variants
+                      }
                       animate={{
                         y: [0, -5, 0],
                         rotate: [0, 10, -10, 0],
@@ -139,8 +142,10 @@ export const Staff = () => {
                       }}
                     />
                     <motion.div
-                      className="absolute -bottom-3 -left-3 w-12 h-12 bg-gradient-to-br from-accent-400 to-accent-500 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-300 shadow-lg"
-                      variants={featureAnimations.decoration}
+                      className="absolute bottom-3 right-3 w-12 h-12 bg-gradient-to-br from-accent-400 to-accent-500 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-300 shadow-lg"
+                      variants={
+                        featureAnimations.decoration as unknown as Variants
+                      }
                       animate={{
                         x: [0, 5, -5, 0],
                         scale: [1, 1.05, 1],
@@ -154,7 +159,9 @@ export const Staff = () => {
                     />
                     <motion.div
                       className="absolute top-4 left-4 w-6 h-6 bg-gradient-to-br from-secondary-400 to-secondary-500 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"
-                      variants={featureAnimations.decoration}
+                      variants={
+                        featureAnimations.decoration as unknown as Variants
+                      }
                       animate={{
                         rotate: [0, 360],
                         scale: [1, 0.8, 1],
@@ -172,7 +179,7 @@ export const Staff = () => {
                 {/* 情報エリア */}
                 <motion.div
                   className="flex-1 flex flex-col justify-center space-y-8 px-4 lg:px-8 relative"
-                  variants={featureAnimations.text}
+                  variants={featureAnimations.text as unknown as Variants}
                 >
                   {/* 背景装飾 */}
                   <motion.div

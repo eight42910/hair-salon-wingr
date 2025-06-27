@@ -31,7 +31,7 @@ export async function sendNotificationEmail(data: ContactFormData) {
       <h3>お問い合わせ内容</h3>
       <p><strong>種類：</strong>${getSubjectLabel(data.subject)}</p>
       <p><strong>詳細：</strong></p>
-      <p>${data.message.replace(/\n/g, '<br>')}</p>
+      <p>${data.message?.replace(/\n/g, '<br>')}</p>
       
       <hr>
       <p><small>送信日時: ${new Date().toLocaleString('ja-JP')}</small></p>
@@ -59,7 +59,7 @@ export async function sendConfirmationEmail(data: ContactFormData) {
       <h3>お問い合わせ内容</h3>
       <p><strong>種類：</strong>${getSubjectLabel(data.subject)}</p>
       <p><strong>詳細：</strong></p>
-      <p>${data.message.replace(/\n/g, '<br>')}</p>
+      <p>${data.message?.replace(/\n/g, '<br>')}</p>
       
       <hr>
       <h3>美容室ウイング R</h3>

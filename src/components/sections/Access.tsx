@@ -1,15 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import {
-  MapPin,
-  Clock,
-  Phone,
-  Car,
-  MessageCircle,
-  Gift,
-  Bell,
-} from 'lucide-react';
+import { MapPin, Clock, Phone, Car } from 'lucide-react';
 import { AccessMap } from '@/components/map/GoogleMap';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Card } from '@/components/ui/Card';
