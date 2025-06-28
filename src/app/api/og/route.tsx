@@ -8,28 +8,33 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
 
     // URLパラメータから情報を取得
-    const title = searchParams.get('title') || '美容室ウイング R';
-    const description =
-      searchParams.get('description') || '岐阜市のファミリーサロン';
+    const customTitle = searchParams.get('title');
+    const customDescription = searchParams.get('description');
     const page = searchParams.get('page') || 'home';
 
     // ページごとの設定
     const pageConfig = {
       home: {
-        title: '美容室ウイング R',
-        subtitle: '41年間地域に愛され続ける岐阜市のファミリーサロン',
+        title: customTitle || '美容室ウイング R',
+        subtitle:
+          customDescription ||
+          '41年間地域に愛され続ける岐阜市のファミリーサロン',
         bgGradient:
           'linear-gradient(135deg, #8b5e3c 0%, #d4c4a8 50%, #f5e6d3 100%)',
       },
       contact: {
-        title: 'お問い合わせ',
-        subtitle: '美容室ウイング R | ご予約・お問い合わせはこちら',
+        title: customTitle || 'お問い合わせ',
+        subtitle:
+          customDescription ||
+          '美容室ウイング R | ご予約・お問い合わせはこちら',
         bgGradient:
           'linear-gradient(135deg, #4a2c16 0%, #8b5e3c 50%, #d4c4a8 100%)',
       },
       menu: {
-        title: 'メニュー・料金',
-        subtitle: '美容室ウイング R | 充実のメニューでお客様をおもてなし',
+        title: customTitle || 'メニュー・料金',
+        subtitle:
+          customDescription ||
+          '美容室ウイング R | 充実のメニューでお客様をおもてなし',
         bgGradient:
           'linear-gradient(135deg, #d4c4a8 0%, #f5e6d3 50%, #fffef9 100%)',
       },
@@ -142,9 +147,11 @@ export async function GET(request: NextRequest) {
         height: 630,
       }
     );
-  } catch (e: any) {
-    console.log(`OG画像生成エラー: ${e.message}`);
-    return new Response(`Failed to generate the image`, {
+  } catch (error: unknown) {
+    console.error('OG画像生成エラー:', error);
+    const errorMessage =
+      error instanceof Error ? error.message : 'Unknown error';
+    return new Response(`Failed to generate the image: ${errorMessage}`, {
       status: 500,
     });
   }
