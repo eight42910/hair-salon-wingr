@@ -45,11 +45,15 @@ export const LineButton = ({
 
       document.addEventListener('keydown', handleEscape);
 
+      // ✅ クリーンアップ関数を返す
       return () => {
         document.body.style.overflow = originalStyle;
         document.removeEventListener('keydown', handleEscape);
       };
     }
+
+    // ✅ showModalがfalseの場合も明示的にundefinedを返す
+    return undefined;
   }, [showModal]);
 
   const sizeStyles = {
