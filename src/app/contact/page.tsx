@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   title: 'お問い合わせ | 美容室ウイング R',
   description:
     '美容室ウイング Rへのお問い合わせフォーム。髪のお悩みやご質問など、お気軽にご相談ください。',
+  openGraph: {
+    title: 'お問い合わせ | 美容室ウイング R',
+    description:
+      '美容室ウイング Rへのお問い合わせフォーム。髪のお悩みやご質問など、お気軽にご相談ください。',
+    images: [
+      '/api/og?title=お問い合わせ&description=美容室ウイング%20Rへのお問い合わせフォーム&page=contact',
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'お問い合わせ | 美容室ウイング R',
+    description:
+      '美容室ウイング Rへのお問い合わせフォーム。髪のお悩みやご質問など、お気軽にご相談ください。',
+    images: [
+      '/api/og?title=お問い合わせ&description=美容室ウイング%20Rへのお問い合わせフォーム&page=contact',
+    ],
+  },
 };
 
 export default function ContactPage() {

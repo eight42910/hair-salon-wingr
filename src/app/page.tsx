@@ -19,7 +19,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: '美容室ウイング R | 岐阜市のファミリーサロン',
     description: '41年間地域に愛され続ける、岐阜市のファミリーサロン',
-    images: ['/images/og-image.jpg'],
+    images: [
+      '/api/og?title=美容室ウイング%20R&description=岐阜市のファミリーサロン&page=home',
+    ],
   },
 };
 

@@ -20,17 +20,6 @@ const staff = [
       '創業から41年、お客様との信頼関係を一番大切にしています。技術の向上はもちろん、お客様が安心してくつろげる空間づくりを心がけています。',
     imagePath: '/images/owner/ritsuko.jpg',
   },
-  {
-    id: 2,
-    name: '村瀬 孝介',
-    nameEn: 'Kousuke Murase',
-    role: 'フロアスタッフ',
-    roleEn: 'Floor Staff',
-    experience: '41年',
-    specialties: ['接客', 'フロアマネジメント'],
-    message: 'お客様のご要望に寄り添い、お客様のご満足を第一に考えています。',
-    imagePath: '/images/owner/kousuke.jpg',
-  },
 ];
 
 export const Staff = () => {

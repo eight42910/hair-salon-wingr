@@ -39,13 +39,20 @@ export const metadata: Metadata = {
       '41年間地域に愛され続ける、岐阜市のファミリーサロン。老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。',
     images: [
       {
-        url: '/images/salon/salon-bg.jpg',
+        url: '/api/og?title=美容室ウイング%20R&description=岐阜市のファミリーサロン&page=home',
         width: 1200,
         height: 630,
-        alt: '美容室ウイング R 店内',
+        alt: '美容室ウイング R - 岐阜市のファミリーサロン',
       },
     ],
     siteName: '美容室ウイング R',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '美容室ウイング R | 岐阜市のファミリーサロン',
+    description:
+      '41年間地域に愛され続ける、岐阜市のファミリーサロン。老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。',
+    images: ['/api/og?title=美容室ウイング%20R&description=岐阜市のファミリーサロン&page=home'],
   },
   viewport: 'width=device-width, initial-scale=1',
   icons: {
