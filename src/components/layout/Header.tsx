@@ -112,10 +112,13 @@ export const Header = () => {
 
 
               {/* PC時の電話番号（常時表示） */}
-              <div className="hidden xl:flex items-center space-x-2 text-primary-700">
+              <a
+                href="tel:058-241-3375"
+                className="hidden xl:flex items-center space-x-2 text-primary-700 hover:text-primary-800 transition-colors"
+              >
                 <Phone className="w-4 h-4" />
                 <span className="text-sm font-medium">058-241-3375</span>
-              </div>
+              </a>
 
               {/* ハンバーガーメニューボタン */}
               <button
