@@ -24,6 +24,34 @@ export const metadata: Metadata = {
   title: '美容室ウイング R | 岐阜市のファミリーサロン',
   description:
     '41年間地域に愛され続ける、岐阜市のファミリーサロン。老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。',
+  keywords:
+    '美容室,岐阜,ウイングR,ヘッドスパ,縮毛矯正,ファミリーサロン,カット,カラー',
+  robots: 'index, follow',
+  authors: [{ name: '美容室ウイング R' }],
+  creator: '美容室ウイング R',
+  publisher: '美容室ウイング R',
+  openGraph: {
+    type: 'website',
+    locale: 'ja_JP',
+    url: 'https://hair-salon-wingr.vercel.app/',
+    title: '美容室ウイング R | 岐阜市のファミリーサロン',
+    description:
+      '41年間地域に愛され続ける、岐阜市のファミリーサロン。老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。',
+    images: [
+      {
+        url: '/images/salon/salon-bg.jpg',
+        width: 1200,
+        height: 630,
+        alt: '美容室ウイング R 店内',
+      },
+    ],
+    siteName: '美容室ウイング R',
+  },
+  viewport: 'width=device-width, initial-scale=1',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({

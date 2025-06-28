@@ -39,7 +39,7 @@ export const ScrollReveal = ({
   return (
     <div
       ref={elementRef as unknown as React.RefObject<HTMLDivElement>}
-      className={`transition-all duration-600 ${animationClasses[animation]} ${className}`}
+      className={`transition-all duration-400 ${animationClasses[animation]} ${className}`}
     >
       {children}
     </div>
