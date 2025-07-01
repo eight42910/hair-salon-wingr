@@ -308,7 +308,7 @@ export const Staff = () => {
                     <div className="relative bg-gradient-to-br from-white via-primary-50/20 to-accent-50/10 p-6 rounded-lg shadow-sm overflow-hidden">
                       {/* 控えめな丸模様 */}
                       <motion.div
-                        className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-accent-200/20 to-accent-300/20 rounded-full -translate-y-4 translate-x-4"
+                        className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-accent-200/20 to-accent-300/20 rounded-full -translate-y-2 translate-x-1 max-sm:translate-x-0"
                         animate={{
                           rotate: [0, 360],
                           scale: [1, 0.9, 1],

@@ -48,10 +48,10 @@ export const Header = () => {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
         <nav className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            {/* ロゴ：日本語メイン */}
+            {/* ロゴ：日本語メイン - スマホでサイズダウン */}
             <Link
               href="/"
-              className="text-xl lg:text-2xl font-bold text-primary-900 flex-shrink-0 hover:text-primary-700 transition-colors duration-300"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-primary-900 flex-shrink-0 hover:text-primary-700 transition-colors duration-300"
             >
               美容室ウイング R
             </Link>
@@ -92,8 +92,8 @@ export const Header = () => {
               ))}
             </div>
 
-            {/* 右側のアクション群 */}
-            <div className="flex items-center space-x-4">
+            {/* 右側のアクション群 - スマホで間隔調整 */}
+            <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
               {/* スクロール時に表示されるLINEボタン（全画面サイズ） */}
               <div
                 className={`transition-all duration-300 ${
@@ -119,18 +119,18 @@ export const Header = () => {
                 <span className="text-sm font-medium">058-241-3375</span>
               </a>
 
-              {/* ハンバーガーメニューボタン */}
+              {/* ハンバーガーメニューボタン - スマホでパディング調整 */}
               <button
-                className="xl:hidden relative group p-3 rounded-full bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                className="xl:hidden relative group p-2 sm:p-3 rounded-full bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg"
                 onClick={() => setIsMobileMenuOpen(true)}
                 aria-label="メニュー"
               >
                 {/* 背景のキラキラエフェクト */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-100/50 to-accent-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* メインアイコン：ハサミ */}
+                {/* メインアイコン：ハサミ - スマホでサイズ調整 */}
                 <div className="relative z-10 flex items-center justify-center">
-                  <Scissors className="w-5 h-5 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
+                  <Scissors className="w-4 h-4 sm:w-5 sm:h-5 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
                 </div>
 
                 {/* ホバー時の装飾ライン */}

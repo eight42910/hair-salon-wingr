@@ -77,7 +77,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
       />
 
       {/* メニューパネル */}
-      <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform transition-transform duration-300 ease-out">
+      <div className="fixed top-0 right-0 h-full w-full max-w-xs sm:max-w-80 bg-white shadow-2xl transform transition-transform duration-300 ease-out">
         <div className="flex flex-col h-full">
           {/* ヘッダー */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-primary-50/50 to-accent-50/50">

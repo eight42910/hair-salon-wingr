@@ -122,7 +122,7 @@ export const LineButton = ({
         }}
       >
         <div
-          className="bg-white rounded-xl p-6 sm:p-8 max-w-md w-full mx-4 text-center shadow-2xl transform transition-all duration-300 scale-100 hover:scale-[1.02] relative"
+          className="bg-white rounded-xl p-4 sm:p-6 lg:p-8 max-w-xs sm:max-w-md w-full mx-2 sm:mx-4 text-center shadow-2xl transform transition-all duration-300 scale-100 hover:scale-[1.02] relative"
           onClick={handleModalContentClick}
         >
           {/* 閉じるボタン（X） */}

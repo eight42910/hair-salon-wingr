@@ -4,11 +4,9 @@ import { MapPin, Phone, Clock } from 'lucide-react';
 export const Footer = () => {
   return (
     <footer className="relative bg-gradient-to-b from-primary-900 via-primary-800 to-primary-900 text-white overflow-hidden">
-      {/* 背景装飾 */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary-400 to-accent-400 rounded-full -translate-x-48 -translate-y-48"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-accent-400 to-secondary-400 rounded-full translate-x-40 translate-y-40"></div>
-      </div>
+      {/* 装飾的な背景要素 - オーバーフロー対策 */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-primary-400 to-accent-400 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-70"></div>
+      <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-accent-400 to-secondary-400 rounded-full translate-x-1/2 translate-y-1/2 opacity-70"></div>
 
       <div className="relative z-10">
         <div className="container mx-auto px-4 py-8">
