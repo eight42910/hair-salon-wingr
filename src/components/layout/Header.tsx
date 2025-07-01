@@ -110,7 +110,6 @@ export const Header = () => {
                 />
               </div>
 
-
               {/* PC時の電話番号（常時表示） */}
               <a
                 href="tel:058-241-3375"
