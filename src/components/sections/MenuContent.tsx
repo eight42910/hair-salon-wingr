@@ -311,7 +311,7 @@ const MenuCategory = ({ category }: MenuCategoryProps) => {
 
             {/* 装飾的な背景要素 */}
             <motion.div
-              className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-secondary-100/20 to-accent-100/20 rounded-full -translate-y-4 translate-x-4 group-hover:from-secondary-200/30 group-hover:to-accent-200/30 transition-all duration-300"
+              className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-secondary-100/20 to-accent-100/20 rounded-full -translate-y-2 translate-x-1 max-sm:translate-x-0 group-hover:from-secondary-200/30 group-hover:to-accent-200/30 transition-all duration-300"
               animate={{
                 rotate: [0, 360],
                 scale: [1, 0.9, 1],
