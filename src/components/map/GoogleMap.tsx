@@ -11,13 +11,13 @@ interface GoogleMapProps {
   className?: string;
 }
 
-// 美容室ウイングRの座標（岐阜市加野2-25-8の概算）
+// 美容室ウイングRの座標（より正確な位置）
 const DEFAULT_CENTER = {
-  lat: 35.3982,
-  lng: 136.7686,
+  lat: 35.395,
+  lng: 136.772,
 };
 
-const DEFAULT_ZOOM = 16;
+const DEFAULT_ZOOM = 17; // より詳細な表示
 
 export const GoogleMap = ({
   center = DEFAULT_CENTER,
@@ -32,7 +32,7 @@ export const GoogleMap = ({
     const baseUrl = 'https://www.google.com/maps/embed/v1/place';
     const params = new URLSearchParams({
       key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
-      q: '美容室ウイングR,岐阜県岐阜市加野2-25-8',
+      q: '美容室ウイングR 岐阜県岐阜市加野2-25-8',
       zoom: zoom.toString(),
       maptype: 'roadmap',
       language: 'ja',
@@ -61,7 +61,7 @@ export const GoogleMap = ({
           <h3 className="font-semibold mb-2">店舗所在地</h3>
           <p className="text-sm mb-4">岐阜県岐阜市加野2-25-8</p>
           <a
-            href={`https://www.google.com/maps/search/?api=1&query=${center.lat},${center.lng}`}
+            href="https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm rounded-lg hover:bg-primary-700 transition-colors"
