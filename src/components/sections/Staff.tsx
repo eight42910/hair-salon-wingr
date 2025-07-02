@@ -18,7 +18,7 @@ const staff = [
     specialties: ['カット', '頭皮ケア', 'パーマ'],
     message:
       '創業から41年、お客様との信頼関係を一番大切にしています。技術の向上はもちろん、お客様が安心してくつろげる空間づくりを心がけています。',
-    imagePath: '/images/owner/ritsuko.jpg',
+    imagePath: '/images/owner/owner.jpg',
   },
 ];
 
@@ -107,9 +107,11 @@ export const Staff = () => {
                         priority={index === 0}
                         src={member.imagePath}
                         alt={member.name}
-                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
-                        width={600}
-                        height={750}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 
+                          filter brightness-105 contrast-110 saturate-105"
+                        width={800}
+                        height={1000}
+                        quality={95}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                       />
                     </motion.div>
