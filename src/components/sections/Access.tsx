@@ -199,7 +199,7 @@ export const Access = () => {
                 <AccessMap />
                 <div className="mt-4 text-center">
                   <motion.a
-                    href="https://maps.app.goo.gl/GaDvUi3ZvoXj3cxq9"
+                    href="https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-primary-700 hover:text-primary-900 transition-colors font-medium"

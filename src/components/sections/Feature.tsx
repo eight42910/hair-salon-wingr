@@ -14,7 +14,7 @@ const features = [
     titleEn: 'Family Salon',
     description:
       'ファミリー対応のサロン。お子様からご年配の方まで、それぞれのライフスタイルに合わせた施術をご提供。家族みんなで通える温かな空間で、美容を通じて笑顔をお届けします。',
-    imagePath: '/images/gallery/cut/cut-1.jpg',
+    imagePath: '/images/gallery/fm-salon.jpg',
     imageAlt: 'ファミリーサロンでの施術風景',
   },
   {
@@ -41,7 +41,7 @@ const features = [
     titleEn: 'Professional Technique',
     description:
       '1983年の創業から41年間で培った確かな技術に、最新のトレンドを融合。お客様一人ひとりの骨格や髪質を見極め、その方だけの美しさを引き出します。伝統と革新の技術で、理想のヘアスタイルを実現します。',
-    imagePath: '/images/gallery/cut/cut-stand.jpg',
+    imagePath: '/images/gallery/skill.jpg',
     imageAlt: '技術追求の施術風景',
   },
 ];
