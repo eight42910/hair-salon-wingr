@@ -33,6 +33,7 @@ export const GoogleMap = ({
     const params = new URLSearchParams({
       key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
       q: '美容室ウイングR 岐阜県岐阜市加野2-25-8',
+      center: `${center.lat},${center.lng}`,
       zoom: zoom.toString(),
       maptype: 'roadmap',
       language: 'ja',
