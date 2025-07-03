@@ -18,7 +18,7 @@ const staff = [
     specialties: ['カット', '頭皮ケア', 'パーマ'],
     message:
       '創業から41年、お客様との信頼関係を一番大切にしています。技術の向上はもちろん、お客様が安心してくつろげる空間づくりを心がけています。',
-    imagePath: '/images/owner/owner.jpg',
+    imagePath: '/images/owner/stylist.jpg',
   },
 ];
 
