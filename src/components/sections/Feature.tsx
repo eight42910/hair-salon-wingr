@@ -14,7 +14,7 @@ const features = [
     titleEn: 'Family Salon',
     description:
       'ファミリー対応のサロン。お子様からご年配の方まで、それぞれのライフスタイルに合わせた施術をご提供。家族みんなで通える温かな空間で、美容を通じて笑顔をお届けします。',
-    imagePath: '/images/gallery/fm-salon.jpg',
+    imagePath: '/images/gallery/fam-salon.jpg',
     imageAlt: 'ファミリーサロンでの施術風景',
   },
   {
@@ -23,7 +23,7 @@ const features = [
     titleEn: 'Head Spa',
     description:
       'CAC製品を使用した本格ヘッドスパで頭皮環境を根本から改善。血行促進と毛穴の汚れを除去し、健やかな髪の成長をサポート。心地よいマッサージで日頃の疲れも癒やします。',
-    imagePath: '/images/gallery/wash-hair.jpg',
+    imagePath: '/images/gallery/adult-wash.jpg',
     imageAlt: '頭皮改善ヘッドスパの施術風景',
   },
   {
@@ -32,7 +32,7 @@ const features = [
     titleEn: 'Hair Straightening',
     description:
       '髪質に合わせた丁寧な縮毛矯正で、クセやうねりを自然にストレートに。ダメージを最小限に抑えながら、手触りの良いサラサラヘアを実現。毎朝のスタイリングが格段に楽になります。',
-    imagePath: '/images/gallery/cut/cut-4.jpg',
+    imagePath: '/images/gallery/cut/hair-straight.jpg',
     imageAlt: '縮毛矯正の施術風景',
   },
   {
@@ -41,7 +41,7 @@ const features = [
     titleEn: 'Professional Technique',
     description:
       '1983年の創業から41年間で培った確かな技術に、最新のトレンドを融合。お客様一人ひとりの骨格や髪質を見極め、その方だけの美しさを引き出します。伝統と革新の技術で、理想のヘアスタイルを実現します。',
-    imagePath: '/images/gallery/skill.jpg',
+    imagePath: '/images/gallery/skils-1.jpg',
     imageAlt: '技術追求の施術風景',
   },
 ];
