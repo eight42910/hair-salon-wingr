@@ -19,7 +19,7 @@ const features = [
   },
   {
     id: 2,
-    titleJa: '頭皮環境改善ヘッドスパ',
+    titleJa: '頭皮改善ヘッドケア',
     titleEn: 'Head Spa',
     description:
       'CAC製品を使用した本格ヘッドスパで頭皮環境を根本から改善。血行促進と毛穴の汚れを除去し、健やかな髪の成長をサポート。心地よいマッサージで日頃の疲れも癒やします。',
@@ -28,7 +28,7 @@ const features = [
   },
   {
     id: 3,
-    titleJa: '自然な縮毛矯正',
+    titleJa: 'リペア・縮毛矯正',
     titleEn: 'Hair Straightening',
     description:
       '髪質に合わせた丁寧な縮毛矯正で、クセやうねりを自然にストレートに。ダメージを最小限に抑えながら、手触りの良いサラサラヘアを実現。毎朝のスタイリングが格段に楽になります。',
@@ -117,13 +117,17 @@ export const Feature = () => {
                       transition={{ duration: 0.3 }}
                     >
                       <Image
-                        priority={index < 2}
+                        priority={index === 0}
+                        loading={index === 0 ? 'eager' : 'lazy'}
                         src={feature.imagePath}
                         alt={feature.imageAlt}
                         className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
                         width={800}
                         height={600}
+                        quality={index === 0 ? 95 : 85}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R7/2Q=="
                       />
                     </motion.div>
 

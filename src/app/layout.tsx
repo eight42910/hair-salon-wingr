@@ -4,23 +4,30 @@ import '@/styles/globals.css';
 import { Header, Footer } from '@/components/layout';
 import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
 
-// 日本語フォント（Noto Sans JP）
+// 日本語フォント（Noto Sans JP）- 最適化
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '700'], // 必要な重みのみ
   variable: '--font-japanese',
+  preload: true,
+  fallback: ['system-ui', 'arial'],
+  adjustFontFallback: true,
 });
 
-// 英語フォント（Roboto）
+// 英語フォント（Roboto）- 最適化
 const roboto = Roboto({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['300', '400', '500', '700'],
+  weight: ['400', '500', '700'], // 必要な重みのみ
   variable: '--font-english',
+  preload: true,
+  fallback: ['system-ui', 'arial'],
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://hair-salon-wingr.vercel.app'),
   title: '美容室ウイング R | 岐阜市のファミリーサロン',
   description:
     '41年間地域に愛され続ける、岐阜市のファミリーサロン。老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。',
@@ -52,13 +59,20 @@ export const metadata: Metadata = {
     title: '美容室ウイング R | 岐阜市のファミリーサロン',
     description:
       '41年間地域に愛され続ける、岐阜市のファミリーサロン。老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。',
-    images: ['/api/og?title=美容室ウイング%20R&description=岐阜市のファミリーサロン&page=home'],
+    images: [
+      '/api/og?title=美容室ウイング%20R&description=岐阜市のファミリーサロン&page=home',
+    ],
   },
   viewport: 'width=device-width, initial-scale=1',
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -68,6 +82,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
+      <head>
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+          crossOrigin=""
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+      </head>
       <body
         className={`${notoSansJP.variable} ${roboto.variable} font-combined`}
       >
