@@ -11,36 +11,19 @@ interface GoogleMapProps {
   className?: string;
 }
 
-// 美容室ウイングRの座標（より正確な位置）
-const DEFAULT_CENTER = {
-  lat: 35.395,
-  lng: 136.772,
-};
-
-const DEFAULT_ZOOM = 17; // より詳細な表示
-
 export const GoogleMap = ({
-  center = DEFAULT_CENTER,
-  zoom = DEFAULT_ZOOM,
   className = 'w-full h-80 rounded-lg',
 }: GoogleMapProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  // Google Maps Embed APIのURL生成
-  const generateEmbedUrl = () => {
-    const baseUrl = 'https://www.google.com/maps/embed/v1/place';
-    const params = new URLSearchParams({
-      key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
-      q: '美容室ウイングR 岐阜県岐阜市加野2-25-8',
-      center: `${center.lat},${center.lng}`,
-      zoom: zoom.toString(),
-      maptype: 'roadmap',
-      language: 'ja',
-      region: 'JP',
-    });
+  // APIキーなしの簡易埋め込みURL（住所ベース）
+  const generateSimpleEmbedUrl = () => {
+    const address = '岐阜県岐阜市加野2-25-8+美容室ウイングR';
+    const encodedAddress = encodeURIComponent(address);
 
-    return `${baseUrl}?${params.toString()}`;
+    // Google Maps 簡易埋め込み（APIキー不要）
+    return `https://maps.google.com/maps?q=${encodedAddress}&t=m&z=16&output=embed&iwloc=near`;
   };
 
   const handleIframeLoad = () => {
@@ -51,16 +34,20 @@ export const GoogleMap = ({
     setHasError(true);
   };
 
-  // フォールバック表示（APIキーなし or エラー時）
-  if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || hasError) {
+  // エラー時のフォールバック表示
+  if (hasError) {
     return (
       <div
-        className={`${className} bg-gray-100 flex flex-col items-center justify-center text-gray-600 border border-gray-200`}
+        className={`${className} bg-gray-100 flex flex-col items-center justify-center text-gray-600 border border-gray-200 rounded-lg`}
       >
         <MapPin className="w-12 h-12 mb-4 text-gray-400" />
         <div className="text-center">
           <h3 className="font-semibold mb-2">店舗所在地</h3>
-          <p className="text-sm mb-4">岐阜県岐阜市加野2-25-8</p>
+          <p className="text-sm mb-4">
+            〒501-3107
+            <br />
+            岐阜県岐阜市加野2-25-8
+          </p>
           <a
             href="https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR"
             target="_blank"
@@ -78,7 +65,7 @@ export const GoogleMap = ({
   return (
     <div className="relative">
       <iframe
-        src={generateEmbedUrl()}
+        src={generateSimpleEmbedUrl()}
         className={className}
         style={{ border: 0 }}
         allowFullScreen
@@ -88,9 +75,11 @@ export const GoogleMap = ({
         onLoad={handleIframeLoad}
         onError={handleIframeError}
       />
-      {!isLoaded && (
+
+      {/* ローディング表示 */}
+      {!isLoaded && !hasError && (
         <div
-          className={`${className} absolute inset-0 bg-gray-100 flex items-center justify-center`}
+          className={`${className} absolute inset-0 bg-gray-100 flex items-center justify-center rounded-lg`}
         >
           <div className="text-center text-gray-600">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mx-auto mb-2"></div>
@@ -107,6 +96,19 @@ export const AccessMap = () => {
   return (
     <div className="space-y-4">
       <GoogleMap className="w-full h-64 md:h-80 lg:h-96 rounded-lg shadow-lg" />
+
+      {/* 外部リンクボタン */}
+      <div className="text-center">
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center text-primary-700 hover:text-primary-900 transition-colors font-medium text-sm"
+        >
+          <MapPin className="w-4 h-4 mr-2" />
+          大きな地図で確認
+        </a>
+      </div>
     </div>
   );
 };
