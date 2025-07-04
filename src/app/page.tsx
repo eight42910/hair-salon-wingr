@@ -4,14 +4,59 @@ import Image from 'next/image';
 import { LineButton } from '@/components/ui/LineButton';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
-import {
-  Feature,
-  FAQ,
-  Access,
-  MenuContent,
-  Staff,
-} from '@/components/sections';
+// 重いコンポーネントを動的インポート
+const Feature = dynamic(
+  () =>
+    import('@/components/sections/Feature').then((mod) => ({
+      default: mod.Feature,
+    })),
+  {
+    loading: () => (
+      <div className="animate-pulse bg-gray-200 h-96 rounded-lg" />
+    ),
+    ssr: true,
+  }
+);
+
+const FAQ = dynamic(
+  () =>
+    import('@/components/sections/FAQ').then((mod) => ({ default: mod.FAQ })),
+  {
+    loading: () => (
+      <div className="animate-pulse bg-gray-200 h-64 rounded-lg" />
+    ),
+  }
+);
+
+const Access = dynamic(
+  () =>
+    import('@/components/sections/Access').then((mod) => ({
+      default: mod.Access,
+    })),
+  {
+    loading: () => (
+      <div className="animate-pulse bg-gray-200 h-80 rounded-lg" />
+    ),
+  }
+);
+
+const MenuContent = dynamic(() => import('@/components/sections/MenuContent'), {
+  loading: () => <div className="animate-pulse bg-gray-200 h-96 rounded-lg" />,
+});
+
+const Staff = dynamic(
+  () =>
+    import('@/components/sections/Staff').then((mod) => ({
+      default: mod.Staff,
+    })),
+  {
+    loading: () => (
+      <div className="animate-pulse bg-gray-200 h-80 rounded-lg" />
+    ),
+  }
+);
 
 export const metadata: Metadata = {
   title: '美容室ウイング R | 岐阜市のファミリーサロン',
@@ -28,7 +73,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   return (
     <main className="min-h-screen">
-      {/* ヒーローセクション */}
+      {/* ヒーローセクション - critical */}
       <section
         id="home"
         className="relative min-h-screen pt-20 flex items-center justify-center"
@@ -40,6 +85,10 @@ export default async function HomePage() {
             fill
             className="object-cover"
             priority
+            quality={95}
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R7/2Q=="
           />
           <div className="absolute inset-0 bg-black/30" />
         </div>
@@ -76,28 +125,24 @@ export default async function HomePage() {
         </AnimatedSection>
       </section>
 
-      {/* 特徴セクション */}
+      {/* 動的読み込みセクション */}
       <AnimatedSection id="feature" direction="up">
         <Feature />
       </AnimatedSection>
 
-      {/* メニューセクション */}
-      <AnimatedSection id="menu" direction="up" delay={0.2}>
+      <AnimatedSection id="menu" direction="up">
         <MenuContent />
       </AnimatedSection>
 
-      {/* スタッフセクション */}
-      <AnimatedSection id="staff" direction="up" delay={0.3}>
+      <AnimatedSection id="staff" direction="up">
         <Staff />
       </AnimatedSection>
 
-      {/* よくある質問セクション */}
-      <AnimatedSection id="faq" direction="up" delay={0.4}>
+      <AnimatedSection id="faq" direction="up">
         <FAQ />
       </AnimatedSection>
 
-      {/* アクセス・ご予約セクション（統合版） */}
-      <AnimatedSection id="access" direction="up" delay={0.5}>
+      <AnimatedSection id="access" direction="up">
         <Access />
       </AnimatedSection>
     </main>
