@@ -68,8 +68,9 @@ const config: Config = {
         },
         // 外部サービス
         line: {
-          primary: '#06C755',
-          dark: '#05B04A',
+          primary: '#05B04A',
+          dark: '#049A3E',
+          light: '#06C755',
         },
         background: 'var(--background)',
         foreground: 'var(--foreground)',
