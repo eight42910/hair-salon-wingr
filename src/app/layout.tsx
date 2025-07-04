@@ -8,22 +8,20 @@ import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '700'], // 必要な重みのみ
+  weight: ['400', '700'], // 必要な重みのみ
   variable: '--font-japanese',
   preload: true,
   fallback: ['system-ui', 'arial'],
-  adjustFontFallback: true,
 });
 
 // 英語フォント（Roboto）- 最適化
 const roboto = Roboto({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '700'], // 必要な重みのみ
+  weight: ['400', '700'], // 必要な重みのみ
   variable: '--font-english',
   preload: true,
   fallback: ['system-ui', 'arial'],
-  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -63,16 +61,11 @@ export const metadata: Metadata = {
       '/api/og?title=美容室ウイング%20R&description=岐阜市のファミリーサロン&page=home',
     ],
   },
-  viewport: 'width=device-width, initial-scale=1',
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-  },
 };
-
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -83,13 +76,6 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        {/* DNS prefetch for external resources */}
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-          crossOrigin=""
-        />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"

@@ -4,61 +4,16 @@ import Image from 'next/image';
 import { LineButton } from '@/components/ui/LineButton';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 
-// 重いコンポーネントを動的インポート
-const Feature = dynamic(
-  () =>
-    import('@/components/sections/Feature').then((mod) => ({
-      default: mod.Feature,
-    })),
-  {
-    loading: () => (
-      <div className="animate-pulse bg-gray-200 h-96 rounded-lg" />
-    ),
-    ssr: true,
-  }
-);
-
-const FAQ = dynamic(
-  () =>
-    import('@/components/sections/FAQ').then((mod) => ({ default: mod.FAQ })),
-  {
-    loading: () => (
-      <div className="animate-pulse bg-gray-200 h-64 rounded-lg" />
-    ),
-  }
-);
-
-const Access = dynamic(
-  () =>
-    import('@/components/sections/Access').then((mod) => ({
-      default: mod.Access,
-    })),
-  {
-    loading: () => (
-      <div className="animate-pulse bg-gray-200 h-80 rounded-lg" />
-    ),
-  }
-);
-
-const MenuContent = dynamic(() => import('@/components/sections/MenuContent'), {
-  loading: () => <div className="animate-pulse bg-gray-200 h-96 rounded-lg" />,
-});
-
-const Staff = dynamic(
-  () =>
-    import('@/components/sections/Staff').then((mod) => ({
-      default: mod.Staff,
-    })),
-  {
-    loading: () => (
-      <div className="animate-pulse bg-gray-200 h-80 rounded-lg" />
-    ),
-  }
-);
+// 動的インポートを削除して直接インポートに戻す
+import { Feature } from '@/components/sections/Feature';
+import { FAQ } from '@/components/sections/FAQ';
+import { Access } from '@/components/sections/Access';
+import MenuContent from '@/components/sections/MenuContent';
+import { Staff } from '@/components/sections/Staff';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://hair-salon-wingr.vercel.app'),
   title: '美容室ウイング R | 岐阜市のファミリーサロン',
   description: '41年間地域に愛され続ける、岐阜市のファミリーサロン',
   openGraph: {
@@ -73,7 +28,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   return (
     <main className="min-h-screen">
-      {/* ヒーローセクション - critical */}
+      {/* ヒーローセクション */}
       <section
         id="home"
         className="relative min-h-screen pt-20 flex items-center justify-center"
@@ -85,10 +40,8 @@ export default async function HomePage() {
             fill
             className="object-cover"
             priority
-            quality={95}
+            quality={85}
             sizes="100vw"
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R7/2Q=="
           />
           <div className="absolute inset-0 bg-black/30" />
         </div>
@@ -125,7 +78,7 @@ export default async function HomePage() {
         </AnimatedSection>
       </section>
 
-      {/* 動的読み込みセクション */}
+      {/* 直接インポートに戻す */}
       <AnimatedSection id="feature" direction="up">
         <Feature />
       </AnimatedSection>

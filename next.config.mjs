@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // パフォーマンス最適化
+  // 最小限の最適化のみ
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
@@ -16,7 +16,7 @@ const nextConfig = {
     // 画像品質とサイズの最適化
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
-    minimumCacheTTL: 60 * 60 * 24 * 30, // 30日間キャッシュ
+    minimumCacheTTL: 60,
 
     // 未使用画像を除外
     unoptimized: false,
