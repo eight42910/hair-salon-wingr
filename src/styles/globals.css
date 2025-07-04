@@ -109,9 +109,7 @@
 
   /* フォーム要素 */
   .form-input {
-    @apply w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md 
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500
-           text-sm md:text-base transition-colors;
+    @apply w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md text-sm md:text-base transition-colors;
   }
 
   .form-label {
@@ -162,25 +160,6 @@
     background-color: var(--section-divider-color);
     height: var(--section-divider-height);
     width: var(--section-divider-width);
-  }
-
-  /* コンセプトページ専用アニメーション */
-  .concept-section {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: conceptFadeIn 0.8s ease-out forwards;
-  }
-
-  .concept-section:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-
-  .concept-section:nth-child(3) {
-    animation-delay: 0.4s;
-  }
-
-  .concept-section:nth-child(4) {
-    animation-delay: 0.6s;
   }
 
   /* リッチなホバー効果 */
@@ -303,16 +282,6 @@
   }
 }
 
-@keyframes float-delayed {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(5deg);
-  }
-}
-
 /* スクロール連動アニメーション（将来実装） */
 @media (prefers-reduced-motion: no-preference) {
   .scroll-reveal {
@@ -393,18 +362,6 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* ダークモード用の色定義（将来実装時） */
-  }
-}
-
-/* プリント用スタイル */
-@media print {
-  .print-hide {
-    display: none !important;
-  }
-
-  body {
-    background: white !important;
-    color: black !important;
   }
 }
 
