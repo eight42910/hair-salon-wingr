@@ -181,7 +181,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
               <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-4 space-y-3 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-default">
                 <div className="flex items-center text-primary-700 hover:text-primary-600 transition-colors duration-200">
                   <Phone className="w-4 h-4 mr-2 hover:scale-110 transition-transform duration-200" />
-                  <span className="text-sm font-medium">058-271-3664</span>
+                  <span className="text-sm font-medium">058-241-3375</span>
                 </div>
                 <div className="flex items-center text-primary-700 hover:text-primary-600 transition-colors duration-200">
                   <Clock className="w-4 h-4 mr-2 hover:scale-110 transition-transform duration-200" />
@@ -205,7 +205,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
               />
             </div>
             <a
-              href="tel:058-271-3664"
+              href="tel:058-241-3375"
               className="flex items-center justify-center w-full py-3 border-2 border-primary-600 text-primary-600 font-medium rounded-xl hover:bg-primary-600 hover:text-white hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer relative overflow-hidden group"
               onClick={onClose}
             >
