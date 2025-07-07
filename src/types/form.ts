@@ -7,7 +7,10 @@ export const contactSchema = z.object({
   email: z.string().email('正しいメールアドレスを入力してください'),
   phone: z.string().optional(),
   subject: z.string().min(1, 'お問い合わせ種類を選択してください'),
-  message: z.string().optional(),
+  message: z
+    .string()
+    .min(10, 'お問い合わせ内容は10文字以上で入力してください')
+    .max(1000, 'お問い合わせ内容は1000文字以内で入力してください'),
   agreement: z
     .boolean()
     .refine((val) => val === true, '利用規約への同意が必要です'),
