@@ -61,6 +61,9 @@ export const metadata: Metadata = {
       '/api/og?title=美容室ウイング%20R&description=岐阜市のファミリーサロン&page=home',
     ],
   },
+  verification: {
+    google: 'c8DNBiFfM1tr0fxgA6IWBDmjpzHMRXYI73-Z0Mu5NJ0', // Google Search Consoleから取得
+  },
 };
 export const viewport = {
   width: 'device-width',
