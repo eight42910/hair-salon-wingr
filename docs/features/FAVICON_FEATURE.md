@@ -205,7 +205,7 @@ npm run dev
 
 ## 実装完了日
 
-2024-01-XX（2024年1月10日実装完了）
+2025-07-22（2025 年 7 月 22 日実装完了）
 
 ## 実装状況
 
@@ -213,18 +213,18 @@ npm run dev
 - [x] `src/app/layout.tsx` メタデータ設定完了
 - [x] ファビコン画像ファイル配置完了
 - [x] 全サイズのファビコン動作確認済み
-- [x] Next.js 14 App Router対応完了
+- [x] Next.js 14 App Router 対応完了
 
 ## 配置済みファイル一覧
 
-| ファイル | パス | サイズ | 用途 |
-|---------|-----|-------|------|
-| favicon.ico | /favicon.ico | 15.4KB | 標準ファビコン |
-| apple-touch-icon.png | /apple-touch-icon.png | 18.7KB | iOS Safari |
-| android-chrome-192x192.png | /android-chrome-192x192.png | 20.5KB | Android Chrome |
-| favicon-16x16.png | /icons/favicon-16x16.png | 655B | 小サイズ表示 |
-| favicon-32x32.png | /icons/favicon-32x32.png | 1.5KB | 標準サイズ |
-| android-chrome-512x512.png | /icons/android-chrome-512x512.png | 97.5KB | 最大サイズ |
+| ファイル                   | パス                              | サイズ | 用途           |
+| -------------------------- | --------------------------------- | ------ | -------------- |
+| favicon.ico                | /favicon.ico                      | 15.4KB | 標準ファビコン |
+| apple-touch-icon.png       | /apple-touch-icon.png             | 18.7KB | iOS Safari     |
+| android-chrome-192x192.png | /android-chrome-192x192.png       | 20.5KB | Android Chrome |
+| favicon-16x16.png          | /icons/favicon-16x16.png          | 655B   | 小サイズ表示   |
+| favicon-32x32.png          | /icons/favicon-32x32.png          | 1.5KB  | 標準サイズ     |
+| android-chrome-512x512.png | /icons/android-chrome-512x512.png | 97.5KB | 最大サイズ     |
 
 ## 備考
 

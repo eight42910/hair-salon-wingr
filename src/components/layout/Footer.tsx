@@ -23,7 +23,7 @@ export const Footer = () => {
               <div className="space-y-3 text-primary-100 text-sm">
                 <div className="flex items-center justify-center">
                   <MapPin className="w-4 h-4 mr-3 text-accent-300 flex-shrink-0" />
-                  <span>岐阜市加野2-10-15</span>
+                  <span>岐阜県岐阜市加野2-25-8</span>
                 </div>
                 <div className="flex items-center justify-center">
                   <Phone className="w-4 h-4 mr-3 text-accent-300 flex-shrink-0" />
@@ -51,7 +51,7 @@ export const Footer = () => {
                   プライバシーポリシー
                 </Link>
                 <span className="hidden md:inline">|</span>
-                <p>&copy; 2024 美容室ウイング R. All rights reserved.</p>
+                <p>&copy; 2025 美容室ウイング R. All rights reserved.</p>
               </div>
             </div>
           </div>
