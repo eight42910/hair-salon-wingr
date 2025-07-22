@@ -189,7 +189,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                 </div>
                 <div className="flex items-start text-primary-700 hover:text-primary-600 transition-colors duration-200">
                   <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 hover:scale-110 transition-transform duration-200" />
-                  <span className="text-sm">岐阜市加野2-10-15</span>
+                  <span className="text-sm">岐阜県岐阜市加野2-25-8</span>
                 </div>
               </div>
             </div>
