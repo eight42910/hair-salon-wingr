@@ -103,9 +103,9 @@ export const ContactForm = () => {
       setSubmitStatus('success'); // 送信成功時のステータスを設定
       reset(); // フォームをリセット
 
-      console.log('送信成功:', result);
+      // 送信成功 - ログは本番では無効化
     } catch (error) {
-      console.log('フォーム送信エラー:', error);
+      // エラーハンドリング - 本番では適切なログレベルで記録
       setSubmitStatus('error'); // 送信失敗時のステータスを設定
     } finally {
       setIsSubmitting(false); // 送信中フラグを解除
