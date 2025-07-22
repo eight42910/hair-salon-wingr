@@ -1,3 +1,66 @@
+# 美容室ウイング R - 公式サイト
+
+## プロジェクト概要
+
+41 年の歴史を持つファミリーサロン「美容室ウイング R」の公式 Web サイト
+
+## 技術スタック
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Form**: React Hook Form + Zod
+- **Deployment**: Vercel
+
+## セットアップ
+
+### 環境変数の設定
+
+プロジェクトルートに `.env.local` ファイルを作成し、以下の環境変数を設定してください：
+
+```bash
+# Email Configuration
+EMAIL_HOST=smtp.example.com
+EMAIL_PORT=587
+EMAIL_USER=your-email@example.com
+EMAIL_PASS=your-email-password
+EMAIL_FROM=noreply@example.com
+
+# Salon Configuration
+SALON_EMAIL=contact@example.com
+
+# Environment
+NODE_ENV=development
+```
+
+**注意**: `.env.local` ファイルは `.gitignore` に含まれており、リポジトリにはコミットされません。
+
+## クライアント情報
+
+**美容室ウイング R**
+
+- 所在地: 岐阜市加野
+- 営業: 41 年の実績を持つファミリーサロン
+- 特徴: 3 世代（10 代〜70 代）に対応
+
+## ポートフォリオ使用について
+
+このプロジェクトは美容室ウイング R 様の許可を得て、ポートフォリオとして公開しています。
+
+## ライセンス・権利
+
+- コード: MIT License
+- 画像・コンテンツ: 美容室ウイング R 様に帰属
+- 使用許可: ポートフォリオ目的のみ
+
+## 開発者
+
+Developed by [あなたの名前] - Web Developer Portfolio
+
+## 注意事項
+
+本サイトに含まれる店舗情報、画像、コンテンツの無断使用・転載を禁じます。
+
 # 美容室ウイング R 公式ウェブサイト
 
 > 41 年間地域に愛され続ける、岐阜市のファミリーサロンの公式ウェブサイト
@@ -418,4 +481,5 @@ touch src/components/layout/NewLayoutComponent.tsx
 **最終更新**: 2024 年 12 月  
 **プロジェクト進捗**: 90% 完了  
 **次回マイルストーン**: Google Maps API 統合・フォーム送信機能実装
+
 # Sitemap fix #午後

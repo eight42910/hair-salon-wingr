@@ -1,0 +1,24 @@
+# CODEOWNERS for 美容室ウイング R Website
+# 全体的なコードレビュー責任者
+
+# Default owners for everything in the repo
+* @eight42910
+
+# Frontend components and styling
+/src/components/ @eight42910
+/src/styles/ @eight42910
+
+# Core application files
+/src/app/ @eight42910
+
+# Configuration files
+/next.config.mjs @eight42910
+/tailwind.config.ts @eight42910
+/package.json @eight42910
+
+# Documentation
+/docs/ @eight42910
+/README.md @eight42910
+
+# GitHub workflows and settings
+/.github/ @eight42910 

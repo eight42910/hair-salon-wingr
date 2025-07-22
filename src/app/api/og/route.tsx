@@ -148,6 +148,7 @@ export async function GET(request: NextRequest) {
       }
     );
   } catch (error: unknown) {
+    // サーバーサイドエラーは適切にログ記録（本番環境では外部ログサービスに送信推奨）
     console.error('OG画像生成エラー:', error);
     const errorMessage =
       error instanceof Error ? error.message : 'Unknown error';

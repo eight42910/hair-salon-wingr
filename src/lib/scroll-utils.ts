@@ -19,7 +19,10 @@ export const scrollToSection = (
 
   const element = document.getElementById(sectionId);
   if (!element) {
-    console.warn(`Element with id "${sectionId}" not found`);
+    // 開発環境でのみ警告を表示
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(`Element with id "${sectionId}" not found`);
+    }
     return;
   }
 
