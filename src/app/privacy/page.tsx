@@ -15,15 +15,16 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <PageLayout>
+    <PageLayout
+      titleJa="プライバシーポリシー"
+      titleEn="Privacy Policy"
+      description="お客様の個人情報の取り扱いについて詳しく説明しています"
+    >
       <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-4xl mx-auto">
-            {/* ヘッダー */}
+            {/* 更新日 */}
             <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-primary-900 mb-4">
-                プライバシーポリシー
-              </h1>
               <p className="text-lg text-gray-600">最終更新日：2025年1月</p>
             </div>
 
@@ -155,7 +156,7 @@ export default function PrivacyPage() {
                     美容室ウイング R 個人情報保護担当
                   </h3>
                   <div className="space-y-2 text-gray-700">
-                    <p>住所：岐阜市下の2丁目25-8</p>
+                    <p>住所：岐阜県岐阜市加野2-25-8</p>
                     <p>
                       電話：
                       <a
