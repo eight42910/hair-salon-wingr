@@ -22,7 +22,8 @@ export const LineButton = ({
   const [mounted, setMounted] = useState(false);
 
   // TODO: 実際のLINE公式アカウントのURLに置き換えてください
-  const lineUrl = 'https://line.me/R/ti/p/%40639aclxw';
+  const lineUrl =
+    'https://s.lmes.jp/landing-qr/2007361521-5oAWRZAM?uLand=r5XwsR';
 
   // クライアントサイドでのマウント確認
   useEffect(() => {
