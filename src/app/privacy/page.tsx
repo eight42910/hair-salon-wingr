@@ -25,7 +25,7 @@ export default function PrivacyPage() {
           <div className="max-w-4xl mx-auto">
             {/* 更新日 */}
             <div className="text-center mb-12">
-              <p className="text-lg text-gray-600">最終更新日：2025年1月</p>
+              <p className="text-lg text-gray-600">最終更新日：2025年7月22日</p>
             </div>
 
             {/* プライバシーポリシー内容 */}
