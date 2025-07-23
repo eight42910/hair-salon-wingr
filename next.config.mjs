@@ -7,8 +7,21 @@ const nextConfig = {
 
   // 画像最適化
   images: {
-    // 外部画像を使用する場合のドメイン設定
-    domains: ['hair-salon-wingr.vercel.app'], // 必要に応じて追加
+    // microCMSの画像ドメインを追加
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.microcms-assets.io',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'hair-salon-wingr.vercel.app',
+        port: '',
+        pathname: '/**',
+      },
+    ],
 
     // 画像最適化の設定
     formats: ['image/webp', 'image/avif'],
