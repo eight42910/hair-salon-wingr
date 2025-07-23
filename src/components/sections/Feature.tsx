@@ -99,13 +99,122 @@ export const Feature = () => {
               <motion.div
                 key={feature.id}
                 variants={featureAnimations.item as unknown as Variants}
-                className={`flex flex-col lg:flex-row items-stretch gap-16 lg:gap-20 ${
-                  isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                }`}
+                className="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-16 lg:gap-20"
               >
-                {/* 画像エリア */}
+                {/* テキストエリア - モバイルで最初に表示 */}
                 <motion.div
-                  className="flex-1 relative group"
+                  className={`flex flex-col justify-center space-y-8 px-4 lg:px-8 relative order-1 ${
+                    isEven ? 'lg:order-2' : 'lg:order-1'
+                  }`}
+                  variants={featureAnimations.text as unknown as Variants}
+                >
+                  {/* 背景装飾 */}
+                  <motion.div
+                    className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-secondary-100/10 to-accent-100/10 rounded-full blur-2xl pointer-events-none"
+                    animate={
+                      {
+                        scale: [1, 1.1, 1],
+                        rotate: [0, 180, 360],
+                        transition: {
+                          duration: 15,
+                          repeat: Infinity,
+                          ease: 'linear',
+                        },
+                      } as TargetAndTransition
+                    }
+                  />
+
+                  <motion.div
+                    className="space-y-4 relative"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: featureDelays.title }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="space-y-2">
+                      <motion.div
+                        className="inline-flex items-center"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{
+                          duration: 0.5,
+                          delay: featureDelays.subtitle,
+                        }}
+                        viewport={{ once: true }}
+                      >
+                        <motion.div
+                          className="w-2 h-2 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full mr-2"
+                          animate={
+                            featureAnimations.pulsing as TargetAndTransition
+                          }
+                        />
+                        <p className="text-sm font-medium text-primary-600 uppercase tracking-widest">
+                          {feature.titleEn}
+                        </p>
+                      </motion.div>
+                      <motion.h3
+                        className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.6,
+                          delay: featureDelays.title,
+                        }}
+                        viewport={{ once: true }}
+                      >
+                        {feature.titleJa}
+                      </motion.h3>
+                    </div>
+
+                    <motion.p
+                      className="text-gray-600 leading-relaxed text-base lg:text-lg"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: featureDelays.description,
+                      }}
+                      viewport={{ once: true }}
+                    >
+                      {feature.description}
+                    </motion.p>
+
+                    {/* 装飾的なライン */}
+                    <motion.div
+                      className="flex items-center space-x-4 pt-4"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: featureDelays.line,
+                      }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.div
+                        className="w-16 h-0.5 bg-gradient-to-r from-primary-400 to-accent-400 rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: '4rem' }}
+                        transition={{
+                          duration: 0.8,
+                          delay: featureDelays.line + 0.2,
+                        }}
+                        viewport={{ once: true }}
+                      />
+                      <motion.div
+                        className="w-2 h-2 bg-gradient-to-br from-primary-400 to-accent-400 rounded-full"
+                        animate={
+                          featureAnimations.pulsing as TargetAndTransition
+                        }
+                      />
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+
+                {/* 画像エリア - モバイルで2番目に表示 */}
+                <motion.div
+                  className={`relative group order-2 ${
+                    isEven ? 'lg:order-1' : 'lg:order-2'
+                  }`}
                   variants={featureAnimations.image as unknown as Variants}
                 >
                   <div className="relative aspect-[5/4] bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500">
@@ -194,140 +303,6 @@ export const Feature = () => {
                       }
                     />
                   </div>
-                </motion.div>
-
-                {/* テキストエリア */}
-                <motion.div
-                  className="flex-1 flex flex-col justify-center space-y-8 px-4 lg:px-8 relative"
-                  variants={featureAnimations.text as unknown as Variants}
-                >
-                  {/* 背景装飾 */}
-                  <motion.div
-                    className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-secondary-100/10 to-accent-100/10 rounded-full blur-2xl pointer-events-none"
-                    animate={
-                      {
-                        scale: [1, 1.1, 1],
-                        rotate: [0, 180, 360],
-                        transition: {
-                          duration: 15,
-                          repeat: Infinity,
-                          ease: 'linear',
-                        },
-                      } as TargetAndTransition
-                    }
-                  />
-
-                  <motion.div
-                    className="space-y-4 relative"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: featureDelays.title }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="space-y-2">
-                      <motion.div
-                        className="inline-flex items-center"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{
-                          duration: 0.5,
-                          delay: featureDelays.subtitle,
-                        }}
-                        viewport={{ once: true }}
-                      >
-                        <motion.div
-                          className="w-2 h-2 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full mr-2"
-                          animate={
-                            featureAnimations.pulsing as TargetAndTransition
-                          }
-                        />
-                        <p className="text-sm font-medium text-primary-600 uppercase tracking-widest">
-                          {feature.titleEn}
-                        </p>
-                      </motion.div>
-                      <motion.h3
-                        className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.6,
-                          delay: featureDelays.mainTitle,
-                        }}
-                        viewport={{ once: true }}
-                      >
-                        {feature.titleJa}
-                      </motion.h3>
-                    </div>
-                  </motion.div>
-
-                  {/* 説明文 */}
-                  <motion.div
-                    className="relative"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.7,
-                      delay: featureDelays.description,
-                    }}
-                    viewport={{ once: true }}
-                  >
-                    <motion.div
-                      className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary-400 to-accent-400 rounded-full shadow-sm"
-                      initial={featureAnimations.lineGrow.initial}
-                      whileInView={featureAnimations.lineGrow.animate}
-                      transition={featureAnimations.lineGrow.transition}
-                      viewport={{ once: true }}
-                    />
-                    <motion.div
-                      className="relative bg-gradient-to-br from-white via-primary-50/20 to-accent-50/10 p-6 rounded-lg shadow-sm overflow-hidden"
-                      whileHover={
-                        featureAnimations.hover as TargetAndTransition
-                      }
-                    >
-                      {/* 控えめな丸模様 */}
-                      <motion.div
-                        className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-accent-200/20 to-accent-300/20 rounded-full -translate-y-4 translate-x-4"
-                        animate={
-                          {
-                            rotate: [0, 360],
-                            scale: [1, 0.9, 1],
-                            transition: {
-                              duration: 12,
-                              repeat: Infinity,
-                              ease: 'linear',
-                            },
-                          } as TargetAndTransition
-                        }
-                      />
-                      <motion.div
-                        className="absolute bottom-0 left-0 w-12 h-12 bg-gradient-to-br from-primary-200/15 to-primary-300/15 rounded-full translate-y-2 -translate-x-2"
-                        animate={
-                          {
-                            rotate: [360, 0],
-                            scale: [1, 1.1, 1],
-                            transition: {
-                              duration: 10,
-                              repeat: Infinity,
-                              ease: 'linear',
-                            },
-                          } as TargetAndTransition
-                        }
-                      />
-
-                      <motion.p
-                        className="text-gray-700 leading-relaxed text-base font-light relative"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{
-                          duration: 0.8,
-                          delay: featureDelays.content,
-                        }}
-                        viewport={{ once: true }}
-                      >
-                        {feature.description}
-                      </motion.p>
-                    </motion.div>
-                  </motion.div>
                 </motion.div>
               </motion.div>
             );
