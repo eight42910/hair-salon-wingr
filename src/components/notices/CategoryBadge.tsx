@@ -23,7 +23,7 @@ export const CategoryBadge: React.FC<CategoryBadgeProps> = ({
   className = '',
 }) => {
   const categoryInfo = getCategoryInfo(category);
-  const Icon = iconMap[category];
+  const Icon = iconMap[category] || Info; // フォールバックアイコン
 
   const sizeClasses = {
     sm: 'text-xs px-2 py-1',
@@ -36,6 +36,24 @@ export const CategoryBadge: React.FC<CategoryBadgeProps> = ({
     md: 14,
     lg: 16,
   };
+
+  // カテゴリ情報が取得できない場合のフォールバック
+  if (!categoryInfo) {
+    console.warn(`Unknown category: ${category}`);
+    return (
+      <span
+        className={`
+          inline-flex items-center gap-1 rounded-full font-medium
+          bg-gray-100 text-gray-800
+          ${sizeClasses[size]}
+          ${className}
+        `}
+      >
+        <Info size={iconSizes[size]} />
+        お知らせ
+      </span>
+    );
+  }
 
   return (
     <span
