@@ -36,7 +36,7 @@ export const getNotice = async (
   queries?: MicroCMSQueries
 ): Promise<Notice> => {
   return await client.get({
-    endpoint: 'notices',
+    endpoint: '',
     contentId,
     ...(queries && { queries }),
   });
