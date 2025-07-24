@@ -3,8 +3,8 @@ import { NoticeList } from '@/components/notices/NoticeList';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { getNotices } from '@/lib/microcms';
 
-// ISR設定: 1時間でページを再生成
-export const revalidate = 3600;
+// ISR設定: 本番環境では1分でページを再生成
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'お知らせ一覧 | 美容室ウイング R',

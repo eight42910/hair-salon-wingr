@@ -8,16 +8,16 @@ export const stripHtml = (html: string): string => {
 // 日付フォーマット
 export const formatDate = (dateString: string): string => {
   try {
+    // dateStringがundefinedやnullの場合は空文字を返す
+    if (!dateString) {
+      return '';
+    }
+
     const date = new Date(dateString);
 
-    // 無効な日付の場合は現在日時を返す
+    // 無効な日付の場合は空文字を返す
     if (isNaN(date.getTime())) {
-      console.warn(`Invalid date string: ${dateString}`);
-      return new Intl.DateTimeFormat('ja-JP', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }).format(new Date());
+      return '';
     }
 
     return new Intl.DateTimeFormat('ja-JP', {
@@ -25,21 +25,24 @@ export const formatDate = (dateString: string): string => {
       month: 'long',
       day: 'numeric',
     }).format(date);
-  } catch (error) {
-    console.error('Date formatting error:', error);
-    return '日付不明';
+  } catch {
+    return '';
   }
 };
 
 // 相対日付表示（3日以内は「○日前」、それ以外は通常の日付）
 export const formatRelativeDate = (dateString: string): string => {
   try {
+    // dateStringがundefinedやnullの場合は空文字を返す
+    if (!dateString) {
+      return '';
+    }
+
     const date = new Date(dateString);
 
-    // 無効な日付の場合は通常の日付フォーマットを返す
+    // 無効な日付の場合は空文字を返す
     if (isNaN(date.getTime())) {
-      console.warn(`Invalid date string: ${dateString}`);
-      return formatDate(dateString);
+      return '';
     }
 
     const now = new Date();
@@ -56,9 +59,8 @@ export const formatRelativeDate = (dateString: string): string => {
     } else {
       return formatDate(dateString);
     }
-  } catch (error) {
-    console.error('Relative date formatting error:', error);
-    return formatDate(dateString);
+  } catch {
+    return '';
   }
 };
 
@@ -70,11 +72,15 @@ export const getCategoryInfo = (category: NoticeCategory) => {
 // 新着判定（3日以内）
 export const isNewNotice = (publishedAt: string): boolean => {
   try {
+    // publishedAtがundefinedやnullの場合はfalseを返す
+    if (!publishedAt) {
+      return false;
+    }
+
     const publishedDate = new Date(publishedAt);
 
     // 無効な日付の場合はfalseを返す
     if (isNaN(publishedDate.getTime())) {
-      console.warn(`Invalid publishedAt date: ${publishedAt}`);
       return false;
     }
 
@@ -82,8 +88,7 @@ export const isNewNotice = (publishedAt: string): boolean => {
     threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
     return publishedDate > threeDaysAgo;
-  } catch (error) {
-    console.error('New notice check error:', error);
+  } catch {
     return false;
   }
 };
@@ -128,8 +133,7 @@ export const sortNotices = <
       if (isNaN(dateB.getTime())) return -1;
 
       return dateB.getTime() - dateA.getTime();
-    } catch (error) {
-      console.error('Sort error:', error);
+    } catch {
       return 0;
     }
   });

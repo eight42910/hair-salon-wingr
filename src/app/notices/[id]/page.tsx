@@ -11,8 +11,8 @@ import {
   getCategoryInfo,
 } from '@/lib/utils/notice-utils';
 
-// ISR設定: 24時間でページを再生成
-export const revalidate = 86400;
+// ISR設定: 本番環境では1分でページを再生成
+export const revalidate = 60;
 
 interface NoticeDetailPageProps {
   params: { id: string };
@@ -185,7 +185,8 @@ export default async function NoticeDetailPage({
         </article>
       </main>
     );
-  } catch {
+  } catch (error) {
+    console.error('お知らせ詳細ページの読み込みエラー:', error);
     // お知らせが見つからない場合は404ページを表示
     notFound();
   }

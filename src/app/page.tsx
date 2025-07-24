@@ -13,6 +13,9 @@ import MenuContent from '@/components/sections/MenuContent';
 import { Staff } from '@/components/sections/Staff';
 import { LatestNotices } from '@/components/notices/LatestNotices';
 
+// ISR設定: 本番環境では10分でページを再生成
+export const revalidate = 600;
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://hair-salon-wingr.vercel.app'),
   title: '美容室ウイング R | 岐阜市のファミリーサロン',
