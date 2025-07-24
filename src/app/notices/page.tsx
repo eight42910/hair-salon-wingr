@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { NoticeList } from '@/components/notices/NoticeList';
-import { SectionTitle } from '@/components/ui/SectionTitle';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { getNotices } from '@/lib/microcms';
 
@@ -32,60 +31,38 @@ export default async function NoticesPage() {
     const { contents: notices } = await getNotices({ limit: 20 });
 
     return (
-      <PageLayout titleJa="お知らせ一覧">
-        {/* ヒーローセクション */}
-        <section className="py-16 bg-gradient-to-br from-primary-50 to-secondary-50">
-          <div className="container mx-auto px-4">
-            <SectionTitle
-              mainTitle="お知らせ"
-              subTitle="News & Information"
-              description="美容室ウイング Rからの最新情報をお届けします"
-            />
-          </div>
-        </section>
-
-        {/* お知らせ一覧 */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <NoticeList notices={notices} />
-          </div>
-        </section>
+      <PageLayout
+        titleJa="お知らせ"
+        titleEn="News & Information"
+        description="美容室ウイング Rからの最新情報をお届けします"
+      >
+        <NoticeList notices={notices} />
       </PageLayout>
     );
   } catch (error) {
     console.error('お知らせページの読み込みエラー:', error);
 
     return (
-      <PageLayout titleJa="お知らせ一覧">
-        {/* ヒーローセクション */}
-        <section className="py-16 bg-gradient-to-br from-primary-50 to-secondary-50">
-          <div className="container mx-auto px-4">
-            <SectionTitle
-              mainTitle="お知らせ"
-              subTitle="News & Information"
-              description="美容室ウイング Rからの最新情報をお届けします"
-            />
+      <PageLayout
+        titleJa="お知らせ"
+        titleEn="News & Information"
+        description="美容室ウイング Rからの最新情報をお届けします"
+      >
+        <div className="text-center">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
+            <p className="text-red-600 text-lg font-semibold mb-2">
+              お知らせの読み込みに失敗しました
+            </p>
+            <p className="text-red-500 text-sm mb-4">
+              しばらく経ってから再度お試しください。
+            </p>
+            <p className="text-gray-600 text-sm">
+              問題が続く場合は、お電話でお問い合わせください。
+              <br />
+              <strong>TEL: 058-123-4567</strong>
+            </p>
           </div>
-        </section>
-
-        {/* エラー表示 */}
-        <section className="py-12">
-          <div className="container mx-auto px-4 text-center">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
-              <p className="text-red-600 text-lg font-semibold mb-2">
-                お知らせの読み込みに失敗しました
-              </p>
-              <p className="text-red-500 text-sm mb-4">
-                しばらく経ってから再度お試しください。
-              </p>
-              <p className="text-gray-600 text-sm">
-                問題が続く場合は、お電話でお問い合わせください。
-                <br />
-                <strong>TEL: 058-123-4567</strong>
-              </p>
-            </div>
-          </div>
-        </section>
+        </div>
       </PageLayout>
     );
   }

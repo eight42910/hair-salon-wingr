@@ -21,7 +21,8 @@ export const PageLayout = ({
 }: PageLayoutProps) => {
   return (
     <main className={`min-h-screen pt-20 bg-white ${className}`}>
-      <section className="py-16">
+      {/* ヒーローセクション */}
+      <section className="py-16 bg-gradient-to-br from-primary-50 to-secondary-50">
         <div className="container mx-auto px-4">
           <div
             className={`${
@@ -36,11 +37,18 @@ export const PageLayout = ({
               description={description ?? ''}
               showDivider={true}
             />
-            {/* {subtitle && (
-              <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                {subtitle}
-              </p>
-            )} */}
+          </div>
+        </div>
+      </section>
+
+      {/* コンテンツセクション */}
+      <section className="py-12">
+        <div className="container mx-auto px-4">
+          <div
+            className={`${
+              maxWidthClasses[maxWidth as keyof typeof maxWidthClasses]
+            } mx-auto`}
+          >
             {children}
           </div>
         </div>
