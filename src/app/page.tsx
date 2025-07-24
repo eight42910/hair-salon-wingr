@@ -11,6 +11,7 @@ import { FAQ } from '@/components/sections/FAQ';
 import { Access } from '@/components/sections/Access';
 import MenuContent from '@/components/sections/MenuContent';
 import { Staff } from '@/components/sections/Staff';
+import { LatestNotices } from '@/components/notices/LatestNotices';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://hair-salon-wingr.vercel.app'),
@@ -77,6 +78,11 @@ export default async function HomePage() {
           </div>
         </AnimatedSection>
       </section>
+
+      {/* お知らせセクション - ヒーローの直後 */}
+      <AnimatedSection id="notices" direction="up">
+        <LatestNotices />
+      </AnimatedSection>
 
       {/* 直接インポートに戻す */}
       <AnimatedSection id="feature" direction="up">

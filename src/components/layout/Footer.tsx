@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { MapPin, Phone, Clock } from 'lucide-react';
+import { Logo } from '@/components/ui';
 
 export const Footer = () => {
   return (
@@ -13,9 +14,13 @@ export const Footer = () => {
           <div className="text-center">
             {/* 店舗情報 */}
             <div className="max-w-md mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-white/20">
-              <h3 className="text-xl font-bold mb-4 text-white">
-                美容室ウイング R
-              </h3>
+              <div className="mb-4 flex justify-center">
+                <Logo
+                  size="md"
+                  className="text-white hover:text-accent-200"
+                  href="/"
+                />
+              </div>
               <p className="text-primary-100 text-sm mb-4">
                 41年の歴史と信頼で、3世代にわたってお客様に愛され続けているファミリーサロンです
               </p>

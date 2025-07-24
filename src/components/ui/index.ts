@@ -5,3 +5,5 @@ export { LineButton } from './LineButton';
 export { ScrollToTopButton } from './ScrollToTopButton';
 export { AnimatedSection } from './AnimatedSection';
 export { ScrollReveal } from './ScrollReveal';
+export { HamburgerIcon } from './HamburgerIcon';
+export { Logo } from './Logo';
