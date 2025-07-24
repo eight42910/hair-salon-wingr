@@ -1,9 +1,9 @@
 'use client';
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { Phone, X, MapPin, Clock, Scissors } from 'lucide-react';
+import { Phone, X, MapPin, Clock } from 'lucide-react';
 import { scrollToSection } from '@/lib/scroll-utils';
-import { LineButton } from '@/components/ui/LineButton';
+import { LineButton, Logo } from '@/components/ui';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -81,29 +81,26 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
         <div className="flex flex-col h-full">
           {/* ヘッダー */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-primary-50/50 to-accent-50/50">
-            <Link
-              href="/"
-              className="text-xl font-bold text-primary-900 hover:text-primary-700 transition-colors duration-200 flex items-center space-x-2"
-              onClick={onClose}
-            >
-              <Scissors className="w-5 h-5 text-primary-600" />
-              <span>ウイング R</span>
-            </Link>
+            <Logo size="sm" href="/" onClick={onClose} className="text-lg" />
 
-            {/* 美容室らしい閉じるボタン */}
+            {/* 洗練されたクローズボタン */}
             <button
               onClick={onClose}
-              className="relative group p-2 rounded-full bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-110 hover:shadow-md"
+              className="relative group p-3 rounded-2xl bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-400 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary-200/30"
               aria-label="メニューを閉じる"
             >
               {/* 背景エフェクト */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-100/50 to-accent-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary-100/40 to-accent-100/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              {/* Xアイコン */}
-              <X className="w-4 h-4 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-90 relative z-10" />
+              {/* Xアイコン - より洗練されたアニメーション */}
+              <X className="w-5 h-5 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-180 group-hover:scale-110 relative z-10" />
 
-              {/* 装飾ドット */}
-              <div className="absolute top-0.5 right-0.5 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
+              {/* 装飾エフェクト */}
+              <div className="absolute top-1 right-1 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 animate-pulse" />
+              <div
+                className="absolute bottom-1 left-1 w-1 h-1 bg-primary-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse"
+                style={{ animationDelay: '0.2s' }}
+              />
             </button>
           </div>
 

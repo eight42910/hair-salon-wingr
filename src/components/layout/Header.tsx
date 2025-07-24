@@ -1,9 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Phone, Scissors } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { MobileMenu } from './MobileMenu';
-import { LineButton } from '../ui/LineButton';
+import { LineButton, HamburgerIcon, Logo } from '../ui';
 
 const navigation = [
   { nameJa: 'ホーム', nameEn: 'Home', href: '/', sectionId: 'home' },
@@ -48,13 +48,8 @@ export const Header = () => {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
         <nav className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            {/* ロゴ：日本語メイン - スマホでサイズダウン */}
-            <Link
-              href="/"
-              className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-primary-900 flex-shrink-0 hover:text-primary-700 transition-colors duration-300"
-            >
-              美容室ウイング R
-            </Link>
+            {/* ロゴ：洗練されたデザイン */}
+            <Logo size="md" className="flex-shrink-0" />
 
             {/* デスクトップナビゲーション：日英併記 */}
             <div className="hidden xl:flex items-center space-x-2">
@@ -119,23 +114,30 @@ export const Header = () => {
                 <span className="text-sm font-medium">058-241-3375</span>
               </a>
 
-              {/* ハンバーガーメニューボタン - スマホでパディング調整 */}
+              {/* ハンバーガーメニューボタン - 洗練されたデザイン */}
               <button
-                className="xl:hidden relative group p-2 sm:p-3 rounded-full bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                className="xl:hidden relative group p-3 rounded-2xl bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-200/50"
                 onClick={() => setIsMobileMenuOpen(true)}
                 aria-label="メニュー"
               >
                 {/* 背景のキラキラエフェクト */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-100/50 to-accent-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary-100/50 to-accent-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* メインアイコン：ハサミ - スマホでサイズ調整 */}
+                {/* ハンバーガーアイコン */}
                 <div className="relative z-10 flex items-center justify-center">
-                  <Scissors className="w-4 h-4 sm:w-5 sm:h-5 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
+                  <HamburgerIcon
+                    isOpen={isMobileMenuOpen}
+                    size="md"
+                    className="text-primary-700 group-hover:text-primary-800 transition-colors duration-300"
+                  />
                 </div>
 
-                {/* ホバー時の装飾ライン */}
-                <div className="absolute top-1 right-1 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
-                <div className="absolute bottom-1 left-1 w-1 h-1 bg-primary-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-150" />
+                {/* ホバー時の装飾エフェクト */}
+                <div className="absolute top-1 right-1 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 animate-pulse" />
+                <div
+                  className="absolute bottom-1 left-1 w-1 h-1 bg-primary-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse"
+                  style={{ animationDelay: '0.2s' }}
+                />
               </button>
             </div>
           </div>
