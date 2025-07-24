@@ -11,13 +11,8 @@ import {
   getCategoryInfo,
 } from '@/lib/utils/notice-utils';
 
-<<<<<<< HEAD
-// ISR設定: 24時間でページを再生成
-export const revalidate = 86400;
-=======
 // ISR設定: 本番環境では10分でページを再生成
 export const revalidate = 600;
->>>>>>> fix/notice-production-cache
 
 interface NoticeDetailPageProps {
   params: { id: string };

@@ -8,18 +8,6 @@ export const stripHtml = (html: string): string => {
 // 日付フォーマット
 export const formatDate = (dateString: string): string => {
   try {
-<<<<<<< HEAD
-    const date = new Date(dateString);
-
-    // 無効な日付の場合は現在日時を返す
-    if (isNaN(date.getTime())) {
-      console.warn(`Invalid date string: ${dateString}`);
-      return new Intl.DateTimeFormat('ja-JP', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }).format(new Date());
-=======
     // dateStringがundefinedやnullの場合は空文字を返す
     if (!dateString) {
       return '';
@@ -30,7 +18,6 @@ export const formatDate = (dateString: string): string => {
     // 無効な日付の場合は空文字を返す
     if (isNaN(date.getTime())) {
       return '';
->>>>>>> fix/notice-production-cache
     }
 
     return new Intl.DateTimeFormat('ja-JP', {
@@ -38,28 +25,14 @@ export const formatDate = (dateString: string): string => {
       month: 'long',
       day: 'numeric',
     }).format(date);
-<<<<<<< HEAD
-  } catch (error) {
-    console.error('Date formatting error:', error);
-    return '日付不明';
-=======
   } catch {
     return '';
->>>>>>> fix/notice-production-cache
   }
 };
 
 // 相対日付表示（3日以内は「○日前」、それ以外は通常の日付）
 export const formatRelativeDate = (dateString: string): string => {
   try {
-<<<<<<< HEAD
-    const date = new Date(dateString);
-
-    // 無効な日付の場合は通常の日付フォーマットを返す
-    if (isNaN(date.getTime())) {
-      console.warn(`Invalid date string: ${dateString}`);
-      return formatDate(dateString);
-=======
     // dateStringがundefinedやnullの場合は空文字を返す
     if (!dateString) {
       return '';
@@ -70,7 +43,6 @@ export const formatRelativeDate = (dateString: string): string => {
     // 無効な日付の場合は空文字を返す
     if (isNaN(date.getTime())) {
       return '';
->>>>>>> fix/notice-production-cache
     }
 
     const now = new Date();
@@ -87,14 +59,8 @@ export const formatRelativeDate = (dateString: string): string => {
     } else {
       return formatDate(dateString);
     }
-<<<<<<< HEAD
-  } catch (error) {
-    console.error('Relative date formatting error:', error);
-    return formatDate(dateString);
-=======
   } catch {
     return '';
->>>>>>> fix/notice-production-cache
   }
 };
 
@@ -106,22 +72,15 @@ export const getCategoryInfo = (category: NoticeCategory) => {
 // 新着判定（3日以内）
 export const isNewNotice = (publishedAt: string): boolean => {
   try {
-<<<<<<< HEAD
-=======
     // publishedAtがundefinedやnullの場合はfalseを返す
     if (!publishedAt) {
       return false;
     }
 
->>>>>>> fix/notice-production-cache
     const publishedDate = new Date(publishedAt);
 
     // 無効な日付の場合はfalseを返す
     if (isNaN(publishedDate.getTime())) {
-<<<<<<< HEAD
-      console.warn(`Invalid publishedAt date: ${publishedAt}`);
-=======
->>>>>>> fix/notice-production-cache
       return false;
     }
 
@@ -129,12 +88,7 @@ export const isNewNotice = (publishedAt: string): boolean => {
     threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
     return publishedDate > threeDaysAgo;
-<<<<<<< HEAD
-  } catch (error) {
-    console.error('New notice check error:', error);
-=======
   } catch {
->>>>>>> fix/notice-production-cache
     return false;
   }
 };
@@ -179,12 +133,7 @@ export const sortNotices = <
       if (isNaN(dateB.getTime())) return -1;
 
       return dateB.getTime() - dateA.getTime();
-<<<<<<< HEAD
-    } catch (error) {
-      console.error('Sort error:', error);
-=======
     } catch {
->>>>>>> fix/notice-production-cache
       return 0;
     }
   });

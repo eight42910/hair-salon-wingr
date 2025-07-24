@@ -39,10 +39,6 @@ export const CategoryBadge: React.FC<CategoryBadgeProps> = ({
 
   // カテゴリ情報が取得できない場合のフォールバック
   if (!categoryInfo) {
-<<<<<<< HEAD
-    console.warn(`Unknown category: ${category}`);
-=======
->>>>>>> fix/notice-production-cache
     return (
       <span
         className={`
