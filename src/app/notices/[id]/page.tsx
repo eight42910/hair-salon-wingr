@@ -185,7 +185,8 @@ export default async function NoticeDetailPage({
         </article>
       </main>
     );
-  } catch {
+  } catch (error) {
+    console.error('お知らせ詳細ページの読み込みエラー:', error);
     // お知らせが見つからない場合は404ページを表示
     notFound();
   }
