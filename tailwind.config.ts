@@ -8,6 +8,56 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: 'none',
+            color: 'inherit',
+            a: {
+              color: 'var(--primary-600)',
+              '&:hover': {
+                color: 'var(--primary-800)',
+              },
+            },
+            h1: {
+              color: 'inherit',
+            },
+            h2: {
+              color: 'inherit',
+            },
+            h3: {
+              color: 'inherit',
+            },
+            h4: {
+              color: 'inherit',
+            },
+            strong: {
+              color: 'inherit',
+            },
+            code: {
+              color: 'inherit',
+            },
+            blockquote: {
+              color: 'inherit',
+            },
+            hr: {
+              borderColor: 'var(--primary-200)',
+            },
+            ol: {
+              color: 'inherit',
+            },
+            ul: {
+              color: 'inherit',
+            },
+            li: {
+              color: 'inherit',
+            },
+            p: {
+              color: 'inherit',
+            },
+          },
+        },
+      },
       colors: {
         primary: {
           50: 'var(--primary-50)',
@@ -77,6 +127,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };
 export default config;
