@@ -226,14 +226,13 @@ export const Feature = () => {
                       transition={{ duration: 0.3 }}
                     >
                       <Image
-                        priority={index === 0}
-                        loading={index === 0 ? 'eager' : 'lazy'}
+                        loading="lazy"
                         src={feature.imagePath}
                         alt={feature.imageAlt}
                         className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
                         width={800}
                         height={600}
-                        quality={index === 0 ? 90 : 80}
+                        quality={70}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                       />
                     </motion.div>

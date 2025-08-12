@@ -104,14 +104,14 @@ export const Staff = () => {
                       transition={{ duration: 0.3 }}
                     >
                       <Image
-                        priority={index === 0}
+                        loading="lazy"
                         src={member.imagePath}
                         alt={member.name}
                         className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 
                           filter brightness-105 contrast-110 saturate-105"
                         width={800}
                         height={1000}
-                        quality={95}
+                        quality={70}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                       />
                     </motion.div>
