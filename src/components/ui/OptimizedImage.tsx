@@ -23,7 +23,7 @@ export const OptimizedImage = ({
   height,
   priority = false,
   className,
-  quality = 85,
+  quality = 70,
   sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
   onLoad,
 }: OptimizedImageProps) => {

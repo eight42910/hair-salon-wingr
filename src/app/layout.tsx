@@ -8,9 +8,9 @@ import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '700'], // 必要な重みのみ
+  weight: ['400'], // ウェイトを最小化
   variable: '--font-japanese',
-  preload: true,
+  preload: false, // 初期レンダーブロック回避
   fallback: ['system-ui', 'arial'],
 });
 
@@ -18,9 +18,9 @@ const notoSansJP = Noto_Sans_JP({
 const roboto = Roboto({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '700'], // 必要な重みのみ
+  weight: ['400'], // ウェイトを最小化
   variable: '--font-english',
-  preload: true,
+  preload: false, // 初期レンダーブロック回避
   fallback: ['system-ui', 'arial'],
 });
 
@@ -91,13 +91,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <head>
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-      </head>
+      <head></head>
       <body
         className={`${notoSansJP.variable} ${roboto.variable} font-combined`}
       >
