@@ -46,7 +46,7 @@ export const GoogleMap = ({
           <p className="text-sm mb-4">
             〒501-3107
             <br />
-            岐阜県岐阜市下の2丁目25-8
+            岐阜県岐阜市加野2-25-8
           </p>
           <a
             href="https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR"

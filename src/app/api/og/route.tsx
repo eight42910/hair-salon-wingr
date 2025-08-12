@@ -137,7 +137,7 @@ export async function GET(request: NextRequest) {
                 textShadow: '1px 1px 2px rgba(0,0,0,0.2)',
               }}
             >
-              📞 058-274-5588 | 岐阜市加野2-4-15
+              📞 058-241-3375 | 岐阜県岐阜市加野2-25-8
             </div>
           </div>
         </div>

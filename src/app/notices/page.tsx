@@ -59,7 +59,7 @@ export default async function NoticesPage() {
             <p className="text-gray-600 text-sm">
               問題が続く場合は、お電話でお問い合わせください。
               <br />
-              <strong>TEL: 058-123-4567</strong>
+              <strong>TEL: 058-241-3375</strong>
             </p>
           </div>
         </div>
