@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
@@ -23,41 +23,27 @@ const staff = [
 ];
 
 export const Staff = () => {
+  const prefersReduced = useReducedMotion();
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       {/* セクション全体の背景装飾 */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        viewport={{ once: true }}
-      >
+      {!prefersReduced && (
         <motion.div
-          className="absolute top-20 right-10 w-40 h-40 bg-gradient-to-br from-secondary-100/20 to-accent-100/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 90, 180, 270, 360],
-            transition: {
-              duration: 18,
-              repeat: Infinity,
-              ease: 'linear',
-            },
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 left-10 w-56 h-56 bg-gradient-to-br from-primary-100/20 to-secondary-100/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [360, 270, 180, 90, 0],
-            transition: {
-              duration: 22,
-              repeat: Infinity,
-              ease: 'linear',
-            },
-          }}
-        />
-      </motion.div>
+          className="absolute top-0 left-0 w-full h-full pointer-events-none"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          viewport={{ once: true }}
+        >
+          <motion.div
+            className="absolute top-20 right-10 w-28 h-28 bg-gradient-to-br from-secondary-100/20 to-accent-100/20 rounded-full blur-3xl"
+            animate={{
+              rotate: 360,
+              transition: { duration: 36, repeat: Infinity, ease: 'linear' },
+            }}
+          />
+        </motion.div>
+      )}
 
       <div className="container mx-auto px-4 max-w-7xl relative">
         {/* セクションタイトル */}
@@ -117,53 +103,37 @@ export const Staff = () => {
                     </motion.div>
 
                     {/* 装飾要素 */}
-                    <motion.div
-                      className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-300 shadow-lg"
-                      variants={
-                        featureAnimations.decoration as unknown as Variants
-                      }
-                      animate={{
-                        y: [0, -5, 0],
-                        rotate: [0, 10, -10, 0],
-                        transition: {
-                          duration: 4,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                        },
-                      }}
-                    />
-                    <motion.div
-                      className="absolute bottom-3 right-3 w-12 h-12 bg-gradient-to-br from-accent-400 to-accent-500 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-300 shadow-lg"
-                      variants={
-                        featureAnimations.decoration as unknown as Variants
-                      }
-                      animate={{
-                        x: [0, 5, -5, 0],
-                        scale: [1, 1.05, 1],
-                        transition: {
-                          duration: 5,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                          delay: 1,
-                        },
-                      }}
-                    />
-                    <motion.div
-                      className="absolute top-4 left-4 w-6 h-6 bg-gradient-to-br from-secondary-400 to-secondary-500 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"
-                      variants={
-                        featureAnimations.decoration as unknown as Variants
-                      }
-                      animate={{
-                        rotate: [0, 360],
-                        scale: [1, 0.8, 1],
-                        transition: {
-                          duration: 8,
-                          repeat: Infinity,
-                          ease: 'linear',
-                          delay: 2,
-                        },
-                      }}
-                    />
+                    {!prefersReduced && (
+                      <motion.div
+                        className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full opacity-40 shadow-lg"
+                        animate={{
+                          y: [0, -4, 0],
+                          transition: { duration: 10, repeat: Infinity },
+                        }}
+                      />
+                    )}
+                    {!prefersReduced && (
+                      <motion.div
+                        className="absolute bottom-3 right-3 w-10 h-10 bg-gradient-to-br from-accent-400 to-accent-500 rounded-full opacity-30 shadow-lg"
+                        animate={{
+                          x: [0, 4, 0],
+                          transition: { duration: 12, repeat: Infinity },
+                        }}
+                      />
+                    )}
+                    {!prefersReduced && (
+                      <motion.div
+                        className="absolute top-4 left-4 w-5 h-5 bg-gradient-to-br from-secondary-400 to-secondary-500 rounded-full opacity-30"
+                        animate={{
+                          rotate: 360,
+                          transition: {
+                            duration: 60,
+                            repeat: Infinity,
+                            ease: 'linear',
+                          },
+                        }}
+                      />
+                    )}
                   </div>
                 </motion.div>
 

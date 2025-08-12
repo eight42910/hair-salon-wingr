@@ -42,4 +42,12 @@
 - `globals.css` の未使用ユーティリティの棚卸し
 - `public/images` のソース画像の再圧縮（AVIF/WEBP化・実寸最適化）
 
+## 付録: 画像最適化スクリプト
+- 実行: `npm run optimize:images`
+- 対象: `public/images/**/*.jpg|jpeg|png`
+- 仕様:
+  - 元画像: 品質70で再圧縮（PNGは圧縮）
+  - 生成: `.webp`（品質65）、幅400px以上の画像には `.avif`（品質50）
+
+
 
