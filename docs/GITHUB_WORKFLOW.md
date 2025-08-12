@@ -1,126 +1,57 @@
-# GitHub ワークフロー - 美容室ウイング R
+# Git/GitHub ワークフロー（個人開発・トランクベース）
 
-## 📋 概要
+本ドキュメントは、個人開発向けに簡潔・実用的な Git 運用を定義します。基本方針は「main を唯一のトランク（常にデプロイ可能）」です。
 
-美容室ウイング R プロジェクトのシンプルなブランチ運用ルールです。
+## 1. ブランチ戦略
 
-## 🌿 ブランチ構成
+- main: 常にビルド/テストが通る安定ブランチ（Production デプロイ基準）
+- feature/*: 大きい/破壊的/実験的な変更時のみ短命で作成（目安: 1〜2 時間超の作業）
+- develop: 使用しない（簡潔化のため廃止）
 
-```
-main (本番環境)
-├── develop (開発環境)
-│   ├── feature/機能名 (機能開発)
-│   └── fix/修正内容 (バグ修正)
-```
+## 2. 推奨ワークフロー
 
-## ブランチの役割
+1. 変更が小さい場合は main で直接作業し、こまめにコミット/プッシュ
+2. 大きい/リスクの高い変更のみブランチ作成:
+   ```bash
+   git switch -c feature/<topic>
+   ```
+3. 小さく意味のある単位でコミット（Conventional Commits 準拠）
+4. 静的解析/型/ビルドをローカルで確認: `npm run lint` `npm run typecheck` `npm run build`
+5. PR を作成（宛先: main）。自己レビュー・スクショ/要約を添付
+6. マージは Squash and merge（履歴を線形に保持）、feature ブランチは削除
+7. 必要に応じてタグ付け（SemVer）し、リリースノートを作成
 
-### `main` ブランチ
+## 3. マージ/履歴ポリシー
 
-- **目的**: 本番環境・最終版
-- **マージ条件**: 最終的なゴーサインが出たときのみ
-- **自動デプロイ**: Vercel 本番環境
+- マージ方式: Squash and merge（1PR=1コミット化で履歴をクリーンに）
+- 履歴: 線形維持（リベース前提、マージコミットは避ける）
+- リベース更新:
+  ```bash
+  git fetch -p
+  git rebase origin/main
+  ```
 
-### `develop` ブランチ
+## 4. コミット規約（Conventional Commits）
 
-- **目的**: 開発環境・統合テスト
-- **普段の作業**: ここに機能をマージしていく
-- **プレビューデプロイ**: Vercel ステージング環境
+- 例: `feat: 作品カードにシェア導線を追加`, `fix: OGP 生成のエッジケースを修正`, `docs: アーキテクチャ図を更新`
+- 主な種別: `feat`, `fix`, `docs`, `refactor`, `perf`, `chore`, `test`, `build`
+- 原則: 1コミット1トピック。短く頻繁に
 
-### `feature/*` ブランチ
+## 5. デプロイ/環境（Vercel 前提）
 
-- **目的**: 新機能開発
-- **命名**: `feature/機能名`
-- **例**: `feature/menu-update`, `feature/contact-fix`
+- Production: `main` への push で自動デプロイ
+- Preview: 任意のブランチ/PR に対して自動発行（レビュー/確認用）
+- 環境変数: Vercel 側で管理。ローカルは `.env.local`
 
-## 🔄 基本的な作業フロー
+## 6. リリース（任意）
 
-### 新機能開発
+- バージョニング: SemVer（`major.minor.patch`）
+- 例: `npm version patch` → `git push --follow-tags`
+- GitHub Releases に変更点を要約（Conventional Commits から自動生成可）
 
-```bash
-# 1. developから新しい機能ブランチを作成
-git checkout develop
-git pull origin develop
-git checkout -b feature/機能名
+## 7. FAQ（方針転換の理由）
 
-# 2. 機能を開発・コミット
-git add .
-git commit -m "feat: 機能の説明"
-
-# 3. リモートにプッシュ
-git push -u origin feature/機能名
-
-# 4. GitHub でPull Request作成 (feature/機能名 → develop)
-# 5. レビュー・マージ
-# 6. ローカルブランチ削除
-git checkout develop
-git pull origin develop
-git branch -D feature/機能名
-```
-
-### バグ修正
-
-```bash
-# 1. developから修正ブランチを作成
-git checkout develop
-git pull origin develop
-git checkout -b fix/修正内容
-
-# 2. 修正・コミット
-git add .
-git commit -m "fix: 修正の説明"
-
-# 3. プッシュ・PR作成
-git push -u origin fix/修正内容
-
-# 4. レビュー・マージ・ブランチ削除
-```
-
-### 本番リリース
-
-```bash
-# 最終的なゴーサインが出たとき
-# GitHub でPull Request作成 (develop → main)
-# レビュー・マージで本番デプロイ
-```
-
-## 📝 コミットメッセージ
-
-簡単なルールのみ：
-
-- `feat: 新機能の説明`
-- `fix: バグ修正の説明`
-- `docs: ドキュメント変更`
-- `style: 見た目の調整`
-
-## 🔍 Pull Request
-
-### 基本チェック項目
-
-- [ ] ビルドエラーなし
-- [ ] レスポンシブ対応確認
-- [ ] 基本的な動作確認
-
-### PR の流れ
-
-1. feature → develop (日常的な開発)
-2. develop → main (最終リリース時のみ)
-
-## 🗂️ ブランチ整理
-
-### 不要ブランチの削除
-
-```bash
-# マージ済みブランチの確認
-git branch --merged develop
-
-# 不要ブランチの削除
-git branch -d ブランチ名
-
-# リモートの古い参照削除
-git remote prune origin
-```
-
----
-
-**運用方針**: シンプルに、develop で開発 → 最終確認後 main へ
+- Q. なぜ develop を使わないのか？
+  - A. 個人開発では main 一本化により運用コストが減り、リリース速度と履歴の明快さが上がるため
+- Q. 直接 main にコミットしても良い？
+  - A. 小さな変更は可。リスクの高い変更のみ `feature/*` + PR で自己レビュー
