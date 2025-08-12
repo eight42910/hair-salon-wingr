@@ -70,43 +70,6 @@
     @apply text-xs md:text-sm text-gray-500 leading-normal;
   }
 
-  /* レスポンシブコンテナ */
-  .responsive-container {
-    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-    box-sizing: border-box;
-  }
-
-  /* レスポンシブグリッド */
-  .responsive-grid-1-2 {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8;
-  }
-
-  .responsive-grid-1-2-3 {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
-  }
-
-  .responsive-grid-1-2-4 {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8;
-  }
-
-  /* レスポンシブセクション */
-  .section-padding {
-    @apply py-12 md:py-16 lg:py-20;
-  }
-
-  .section-padding-sm {
-    @apply py-8 md:py-12 lg:py-16;
-  }
-
-  /* レスポンシブテキスト */
-  .responsive-text-center {
-    @apply text-center;
-  }
-
-  .responsive-text-left {
-    @apply text-left md:text-center lg:text-left;
-  }
-
   /* フォーム要素 */
   .form-input {
     @apply w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md text-sm md:text-base transition-colors;
@@ -114,100 +77,6 @@
 
   .form-label {
     @apply block text-sm md:text-base font-medium text-gray-700 mb-2;
-  }
-
-  /* ボタンのレスポンシブ対応 */
-  .btn-responsive {
-    @apply px-4 py-2 md:px-6 md:py-3 text-sm md:text-base;
-  }
-
-  /* カードコンポーネント */
-  .card {
-    @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-4 md:p-6;
-  }
-
-  /* 画像のレスポンシブ対応 */
-  .responsive-image {
-    @apply w-full h-auto object-cover rounded-lg;
-  }
-
-  /* スペーシングユーティリティ */
-  .space-y-responsive {
-    @apply space-y-4 md:space-y-6 lg:space-y-8;
-  }
-
-  .space-x-responsive {
-    @apply space-x-2 md:space-x-4 lg:space-x-6;
-  }
-
-  /* フレックスボックスのレスポンシブ対応 */
-  .flex-responsive {
-    @apply flex flex-col md:flex-row items-stretch md:items-center;
-  }
-
-  .flex-responsive-reverse {
-    @apply flex flex-col-reverse md:flex-row items-stretch md:items-center;
-  }
-
-  .section-title {
-    color: var(--section-title-color);
-    font-weight: var(--section-title-font-weight);
-    line-height: var(--section-title-line-height);
-    margin-bottom: var(--section-title-margin-bottom);
-  }
-
-  .section-divider {
-    background-color: var(--section-divider-color);
-    height: var(--section-divider-height);
-    width: var(--section-divider-width);
-  }
-
-  /* リッチなホバー効果 */
-  .rich-hover {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .rich-hover:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-      0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  }
-
-  /* グラデーションボーダー効果 */
-  .gradient-border {
-    position: relative;
-    background: linear-gradient(white, white) padding-box,
-      linear-gradient(45deg, var(--primary-500), var(--accent-500)) border-box;
-    border: 2px solid transparent;
-    border-radius: 0.5rem;
-  }
-
-  /* 背景のリッチ効果 */
-  .rich-background {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(250, 247, 242, 0.9) 50%,
-      rgba(255, 254, 249, 0.9) 100%
-    );
-    backdrop-filter: blur(10px);
-  }
-
-  /* コンセプトページ用アニメーション */
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out;
-  }
-
-  .animation-delay-200 {
-    animation-delay: 0.2s;
-  }
-
-  .animation-delay-400 {
-    animation-delay: 0.4s;
-  }
-
-  .animation-delay-600 {
-    animation-delay: 0.6s;
   }
 
   /* 美容室ブランド専用グラデーション */
@@ -222,43 +91,6 @@
   .salon-gradient-accent {
     @apply bg-gradient-to-br from-accent-100 to-secondary-100;
   }
-
-  .salon-gradient-hover-primary {
-    @apply bg-gradient-to-br from-primary-200/30 to-accent-200/30;
-  }
-
-  .salon-gradient-hover-secondary {
-    @apply bg-gradient-to-br from-secondary-200/30 to-primary-200/30;
-  }
-
-  /* アイコン用グラデーション */
-  .salon-icon-gradient {
-    @apply bg-gradient-to-br from-primary-400 to-primary-500;
-  }
-
-  .salon-icon-gradient-accent {
-    @apply bg-gradient-to-br from-accent-400 to-accent-500;
-  }
-
-  /* 装飾的な背景要素 */
-  .salon-decoration-circle {
-    @apply bg-gradient-to-br from-primary-100/20 to-accent-100/20 rounded-full;
-  }
-
-  .salon-decoration-circle-hover {
-    @apply group-hover:from-primary-200/30 group-hover:to-accent-200/30 transition-all duration-300;
-  }
-}
-
-@keyframes conceptFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 @keyframes fadeInUp {
@@ -267,30 +99,6 @@
     transform: translateY(30px);
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* スクロール連動アニメーション（将来実装） */
-@media (prefers-reduced-motion: no-preference) {
-  .scroll-reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-
-  .scroll-reveal.revealed {
     opacity: 1;
     transform: translateY(0);
   }
@@ -308,37 +116,6 @@
 
   .section-padding {
     @apply py-8;
-  }
-}
-
-/* タブレット専用調整 */
-@media (min-width: 768px) and (max-width: 999px) {
-  .tablet-hide {
-    display: none;
-  }
-
-  .tablet-show {
-    display: block;
-  }
-
-  /* タブレットでのグリッド調整 */
-  .tablet-grid-1 {
-    grid-template-columns: 1fr;
-  }
-
-  .tablet-grid-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* デスクトップ専用 */
-@media (min-width: 1000px) {
-  .desktop-show {
-    display: block;
-  }
-
-  .desktop-hide {
-    display: none;
   }
 }
 
@@ -411,57 +188,3 @@ section {
     padding-right: 2rem;
   }
 }
-
-/* 極小画面対応 */
-@media (max-width: 359px) {
-  .container {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
-  .heading-1 {
-    @apply text-xl;
-  }
-
-  .gap-4 {
-    gap: 0.5rem;
-  }
-}
-
-/* Galaxy Fold (280px) 対応 */
-@media (max-width: 320px) {
-  .container {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  .flex.gap-4 {
-    gap: 0.5rem;
-  }
-
-  .space-x-4 > * + * {
-    margin-left: 0.5rem;
-  }
-
-  /* ボタンサイズ調整 */
-  .btn-responsive {
-    @apply px-3 py-1.5 text-sm;
-  }
-}
-
-/* 開発時のみ - ビューポート境界可視化 */
-/* 
-@media (max-width: 768px) {
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 2px;
-    background: red;
-    z-index: 9999;
-    pointer-events: none;
-  }
-}
-*/

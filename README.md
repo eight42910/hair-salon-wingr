@@ -395,6 +395,14 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 - クライアントJS削減: `AnimatedSection` を framer-motion 依存から IntersectionObserver ベースへ刷新
 - 期待効果: LCP短縮、オフスクリーン画像の遅延読み込み改善、TBT削減
 
+### 画像再圧縮（ローカルバッチ）
+開発環境で `public/images` 配下のJPEG/PNGを再圧縮し、WebP/AVIFを併産します。実行前にリポジトリをコミットしてください。
+
+```bash
+npm run optimize:images
+```
+出力: 元ファイルを高品質70相当で再圧縮し、同名の `.webp` と（幅>=400pxのみ）`.avif` を生成します。
+
 ### UX/UI 品質
 
 - **デザインシステム統一**: 100%
