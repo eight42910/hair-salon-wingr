@@ -388,6 +388,13 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 - **コンポーネント再利用率**: 95%
 - **レスポンシブ対応**: 全ページ完了
 
+## ⚡ パフォーマンス最適化（2025-08）
+
+- 画像最適化: ヒーロー背景の品質を70へ調整、折り返し以下の画像は`loading="lazy"`に統一
+- フォント最適化: `next/font` のpreloadを無効化、ウェイトを400のみへ削減
+- クライアントJS削減: `AnimatedSection` を framer-motion 依存から IntersectionObserver ベースへ刷新
+- 期待効果: LCP短縮、オフスクリーン画像の遅延読み込み改善、TBT削減
+
 ### UX/UI 品質
 
 - **デザインシステム統一**: 100%
