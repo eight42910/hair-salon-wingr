@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -20,44 +20,36 @@ export const AnimatedSection = ({
   distance = 50,
   id,
 }: AnimatedSectionProps) => {
-  const getInitialPosition = () => {
-    switch (direction) {
-      case 'up':
-        return { opacity: 0, y: distance };
-      case 'down':
-        return { opacity: 0, y: -distance };
-      case 'left':
-        return { opacity: 0, x: distance };
-      case 'right':
-        return { opacity: 0, x: -distance };
-      default:
-        return { opacity: 0, y: distance };
-    }
-  };
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
-  const getAnimatePosition = () => {
+  const initialTransform = useMemo(() => {
     switch (direction) {
       case 'up':
+        return `translateY(${distance}px)`;
       case 'down':
-        return { opacity: 1, y: 0 };
+        return `translateY(-${distance}px)`;
       case 'left':
+        return `translateX(${distance}px)`;
       case 'right':
-        return { opacity: 1, x: 0 };
+        return `translateX(-${distance}px)`;
       default:
-        return { opacity: 1, y: 0 };
+        return `translateY(${distance}px)`;
     }
-  };
+  }, [direction, distance]);
+
+  const style = useMemo<React.CSSProperties>(() => {
+    const base: React.CSSProperties = {
+      opacity: isVisible ? 1 : 0,
+      transform: isVisible ? 'none' : initialTransform,
+      transition: `opacity 0.8s ease-out ${delay}s, transform 0.8s ease-out ${delay}s`,
+      willChange: 'opacity, transform',
+    };
+    return base;
+  }, [isVisible, initialTransform, delay]);
 
   return (
-    <motion.div
-      id={id}
-      className={className}
-      initial={getInitialPosition()}
-      whileInView={getAnimatePosition()}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay }}
-    >
+    <div id={id} ref={elementRef as unknown as React.RefObject<HTMLDivElement>} className={className} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 };
