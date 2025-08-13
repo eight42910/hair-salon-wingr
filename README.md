@@ -65,7 +65,7 @@ Developed by [あなたの名前] - Web Developer Portfolio
 
 > 41 年間地域に愛され続ける、岐阜市のファミリーサロンの公式ウェブサイト
 
-![プロジェクト進捗](https://img.shields.io/badge/進捗-90%25完了-green)
+![プロジェクト進捗](https://img.shields.io/badge/進捗-92%25完了-green)
 ![技術スタック](https://img.shields.io/badge/Next.js-14.2.29-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.1-blue)
@@ -365,18 +365,14 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 />;
 ```
 
-### レスポンシブユーティリティ
+### レスポンシブユーティリティ（Tailwind例）
 
 ```tsx
-// レスポンシブグリッド
-<div className="responsive-grid-1-2-4">
-  {/* 1列→2列→4列のグリッド */}
-</div>
+// 1列→2列→4列のグリッド
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"></div>
 
-// レスポンシブセクション
-<section className="section-padding">
-  {/* 適切な上下余白 */}
-</section>
+// セクション余白
+<section className="py-12 md:py-16 lg:py-20"></section>
 ```
 
 ## 📊 品質指標
@@ -394,6 +390,8 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 - フォント最適化: `next/font` のpreloadを無効化、ウェイトを400のみへ削減
 - クライアントJS削減: `AnimatedSection` を framer-motion 依存から IntersectionObserver ベースへ刷新
 - 期待効果: LCP短縮、オフスクリーン画像の遅延読み込み改善、TBT削減
+
+参考ドキュメント: `docs/PERFORMANCE_IMPROVEMENTS_2025-08.md`
 
 ### 画像再圧縮（ローカルバッチ）
 開発環境で `public/images` 配下のJPEG/PNGを再圧縮し、WebP/AVIFを併産します。実行前にリポジトリをコミットしてください。
@@ -449,7 +447,7 @@ touch src/components/layout/NewLayoutComponent.tsx
 
 - [ ] Google Maps API 統合完了
 - [ ] お問い合わせフォーム送信機能
-- [ ] パフォーマンス最適化
+- [ ] パフォーマンス最適化（第1弾完了：計測・微調整フェーズ）
 
 ### 優先度 中
 
@@ -493,8 +491,6 @@ touch src/components/layout/NewLayoutComponent.tsx
 
 ---
 
-**最終更新**: 2025 年 7 月 22 日  
-**プロジェクト進捗**: 90% 完了  
-**次回マイルストーン**: Google Maps API 統合・フォーム送信機能実装
-
-# Sitemap fix #午後
+**最終更新**: 2025 年 8 月 12 日  
+**プロジェクト進捗**: 92% 完了  
+**次回マイルストーン**: Lighthouse 計測での最終調整・Google Maps API 統合・フォーム送信機能実装
