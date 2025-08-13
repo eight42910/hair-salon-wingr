@@ -365,7 +365,7 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 />;
 ```
 
-### レスポンシブユーティリティ（Tailwind例）
+### レスポンシブユーティリティ（Tailwind 例）
 
 ```tsx
 // 1列→2列→4列のグリッド
@@ -386,20 +386,22 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 
 ## ⚡ パフォーマンス最適化（2025-08）
 
-- 画像最適化: ヒーロー背景の品質を70へ調整、折り返し以下の画像は`loading="lazy"`に統一
-- フォント最適化: `next/font` のpreloadを無効化、ウェイトを400のみへ削減
-- クライアントJS削減: `AnimatedSection` を framer-motion 依存から IntersectionObserver ベースへ刷新
-- 期待効果: LCP短縮、オフスクリーン画像の遅延読み込み改善、TBT削減
+- 画像最適化: ヒーロー背景の品質を 70 へ調整、折り返し以下の画像は`loading="lazy"`に統一
+- フォント最適化: `next/font` の preload を無効化、ウェイトを 400 のみへ削減
+- クライアント JS 削減: `AnimatedSection` を framer-motion 依存から IntersectionObserver ベースへ刷新
+- 期待効果: LCP 短縮、オフスクリーン画像の遅延読み込み改善、TBT 削減
 
 参考ドキュメント: `docs/PERFORMANCE_IMPROVEMENTS_2025-08.md`
 
 ### 画像再圧縮（ローカルバッチ）
-開発環境で `public/images` 配下のJPEG/PNGを再圧縮し、WebP/AVIFを併産します。実行前にリポジトリをコミットしてください。
+
+開発環境で `public/images` 配下の JPEG/PNG を再圧縮し、WebP/AVIF を併産します。実行前にリポジトリをコミットしてください。
 
 ```bash
 npm run optimize:images
 ```
-出力: 元ファイルを高品質70相当で再圧縮し、同名の `.webp` と（幅>=400pxのみ）`.avif` を生成します。
+
+出力: 元ファイルを高品質 70 相当で再圧縮し、同名の `.webp` と（幅>=400px のみ）`.avif` を生成します。
 
 ### UX/UI 品質
 
@@ -447,7 +449,7 @@ touch src/components/layout/NewLayoutComponent.tsx
 
 - [ ] Google Maps API 統合完了
 - [ ] お問い合わせフォーム送信機能
-- [ ] パフォーマンス最適化（第1弾完了：計測・微調整フェーズ）
+- [ ] パフォーマンス最適化（第 1 弾完了：計測・微調整フェーズ）
 
 ### 優先度 中
 

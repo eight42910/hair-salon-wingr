@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { MapPin, Clock, Phone, Car } from 'lucide-react';
 import { AccessMap } from '@/components/map/GoogleMap';
 import { SectionTitle } from '@/components/ui/SectionTitle';
@@ -50,6 +50,7 @@ const lineReservationFeatures = [
 ];
 
 export const Access = () => {
+  const prefersReduced = useReducedMotion();
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -76,18 +77,12 @@ export const Access = () => {
           >
             <div className="relative">
               {/* 装飾的な背景 */}
-              <motion.div
-                className="absolute -top-4 -left-4 w-32 h-32 bg-gradient-to-br from-primary-100/10 to-accent-100/10 rounded-full blur-2xl"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  rotate: [0, 180, 360],
-                  transition: {
-                    duration: 15,
-                    repeat: Infinity,
-                    ease: 'linear',
-                  },
-                }}
-              />
+              {!prefersReduced && (
+                <motion.div
+                  className="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-primary-100/10 to-accent-100/10 rounded-full blur-2xl"
+                  animate={{ rotate: 360, transition: { duration: 50, repeat: Infinity, ease: 'linear' } }}
+                />
+              )}
 
               <h3 className="text-xl font-bold text-primary-900 mb-6 relative">
                 店舗情報
@@ -141,18 +136,12 @@ export const Access = () => {
                 </h4>
                 <div className="bg-gradient-to-br from-accent-50 to-secondary-50 rounded-xl p-4 border border-accent-100 relative overflow-hidden">
                   {/* 装飾的な背景要素 */}
-                  <motion.div
-                    className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-accent-200/20 to-secondary-200/20 rounded-full -translate-y-4 translate-x-4"
-                    animate={{
-                      rotate: [0, 360],
-                      scale: [1, 0.9, 1],
-                      transition: {
-                        duration: 12,
-                        repeat: Infinity,
-                        ease: 'linear',
-                      },
-                    }}
-                  />
+                  {!prefersReduced && (
+                    <motion.div
+                      className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-accent-200/20 to-secondary-200/20 rounded-full -translate-y-4 translate-x-4"
+                      animate={{ rotate: 360, transition: { duration: 60, repeat: Infinity, ease: 'linear' } }}
+                    />
+                  )}
 
                   {businessHours.map((schedule, index) => (
                     <div key={index} className="flex py-1 gap-4 relative">
@@ -179,18 +168,12 @@ export const Access = () => {
           >
             <div className="relative">
               {/* 装飾的な背景 */}
-              <motion.div
-                className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-secondary-100/10 to-primary-100/10 rounded-full blur-xl"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  rotate: [0, -180, -360],
-                  transition: {
-                    duration: 18,
-                    repeat: Infinity,
-                    ease: 'linear',
-                  },
-                }}
-              />
+              {!prefersReduced && (
+                <motion.div
+                  className="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-br from-secondary-100/10 to-primary-100/10 rounded-full blur-xl"
+                  animate={{ rotate: -360, transition: { duration: 70, repeat: Infinity, ease: 'linear' } }}
+                />
+              )}
 
               <h3 className="text-xl font-bold text-primary-900 mb-6 relative">
                 地図
@@ -198,17 +181,15 @@ export const Access = () => {
               <div className="relative">
                 <AccessMap />
                 <div className="mt-4 text-center">
-                  <motion.a
+                  <a
                     href="https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-primary-700 hover:text-primary-900 transition-colors font-medium"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
                   >
                     <MapPin className="w-4 h-4 mr-2" />
                     Googleマップで確認
-                  </motion.a>
+                  </a>
                 </div>
               </div>
             </div>
