@@ -18,7 +18,7 @@ const staff = [
     specialties: ['カット', '頭皮ケア', 'パーマ'],
     message:
       '創業から41年、お客様との信頼関係を一番大切にしています。技術の向上はもちろん、お客様が安心してくつろげる空間づくりを心がけています。',
-    imagePath: '/images/owner/stylist.jpg',
+    imagePath: '/images/owner/owner-01.jpg',
   },
 ];
 
@@ -77,10 +77,10 @@ export const Staff = () => {
               >
                 {/* 写真エリア */}
                 <motion.div
-                  className="flex-1 relative group"
+                  className="w-full lg:w-1/2 lg:max-w-lg relative group"
                   variants={featureAnimations.image as unknown as Variants}
                 >
-                  <div className="relative aspect-[4/5] bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500">
+                  <div className="relative aspect-[5/4] bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500">
                     {/* ホバー背景 */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-accent-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -95,8 +95,8 @@ export const Staff = () => {
                         alt={member.name}
                         className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 
                           filter brightness-105 contrast-110 saturate-105"
-                        width={800}
-                        height={1000}
+                        width={600}
+                        height={600}
                         quality={70}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                       />
