@@ -8,14 +8,25 @@ import { Button } from '@/components/ui/Button';
 
 interface FAQItem {
   question: string;
-  answer: string;
+  answer: React.ReactNode;
   category?: string;
 }
 
 const faqData: FAQItem[] = [
   {
     question: '予約は必要ですか？',
-    answer: 'はい、お電話またはLINEでのご予約をお願いしております。',
+    answer: (
+      <>
+        はい、事前のご予約をお願いしております。
+        <Link
+          href="/#access"
+          className="text-primary-600 hover:underline font-medium"
+        >
+          お電話またはLINEでのご予約
+        </Link>
+        が可能です。
+      </>
+    ),
     category: '予約',
   },
   {
@@ -26,7 +37,18 @@ const faqData: FAQItem[] = [
   },
   {
     question: '駐車場はありますか？',
-    answer: '店舗前に6台分の駐車スペースがございます。',
+    answer: (
+      <>
+        店舗前に6台分の駐車スペースがございます。詳細は
+        <Link
+          href="/#access"
+          className="text-primary-600 hover:underline font-medium"
+        >
+          アクセスマップ
+        </Link>
+        をご確認ください。
+      </>
+    ),
     category: 'その他',
   },
   {
@@ -97,9 +119,9 @@ const FAQItemComponent = ({ faq, isOpen, onToggle }: FAQItemProps) => {
 
           {isOpen && (
             <div className="mt-3 pl-11">
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <div className="text-gray-600 text-sm leading-relaxed">
                 {faq.answer}
-              </p>
+              </div>
             </div>
           )}
         </div>
