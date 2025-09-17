@@ -69,8 +69,16 @@ export const metadata: Metadata = {
       { url: '/favicon.ico', sizes: '16x16 32x32 48x48', type: 'image/x-icon' },
       { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/icons/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+      {
+        url: '/android-chrome-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        url: '/icons/android-chrome-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+      },
     ],
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
@@ -91,7 +99,62 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <head></head>
+            <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'HairSalon',
+              name: '美容室ウイング R',
+              description:
+                '41年間地域に愛され続ける、岐阜市のファミリーサロン。老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: '加野2-25-8',
+                addressLocality: '岐阜市',
+                addressRegion: '岐阜県',
+                postalCode: '501-3107',
+                addressCountry: 'JP',
+              },
+              telephone: '+81-58-241-3375',
+              url: 'https://hair-salon-wingr.vercel.app/',
+              image:
+                'https://hair-salon-wingr.vercel.app/images/salon/salon-bg.jpg',
+              openingHoursSpecification: [
+                {
+                  '@type': 'OpeningHoursSpecification',
+                  dayOfWeek: [
+                    'Monday',
+                    'Wednesday',
+                    'Thursday',
+                    'Friday',
+                    'Saturday',
+                  ],
+                  opens: '09:00',
+                  closes: '18:00',
+                },
+                {
+                  '@type': 'OpeningHoursSpecification',
+                  dayOfWeek: 'Tuesday',
+                  opens: '09:00',
+                  closes: '18:00',
+                  description: '第2火曜日は定休日です。',
+                },
+                {
+                  '@type': 'OpeningHoursSpecification',
+                  dayOfWeek: 'Sunday',
+                  opens: '09:00',
+                  closes: '18:00',
+                  description: '第3日曜日は定休日です。',
+                },
+              ],
+              priceRange: '$$',
+              sameAs: [],
+            }),
+          }}
+        />
+      </head>
       <body
         className={`${notoSansJP.variable} ${roboto.variable} font-combined`}
       >
