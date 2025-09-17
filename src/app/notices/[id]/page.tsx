@@ -82,9 +82,9 @@ export default async function NoticeDetailPage({
 
     return (
       <main className="min-h-screen bg-white pt-20">
-        <article className="max-w-4xl mx-auto px-4 py-12">
+        <article className="max-w-3xl mx-auto px-4 py-12">
           {/* パンくずナビ */}
-          <nav className="mb-6" aria-label="パンくずナビ">
+          <nav className="mb-8" aria-label="パンくずナビ">
             <ol className="flex flex-wrap items-center text-sm text-gray-500">
               {breadcrumbItems.map((item, index) => (
                 <li key={index} className="flex items-center">
@@ -107,38 +107,35 @@ export default async function NoticeDetailPage({
           </nav>
 
           {/* ヘッダー */}
-          <header className="mb-10">
-            <div className="flex items-center gap-2 mb-3">
-              <CategoryBadge category={notice.category} />
+          <header className="mb-8 border-b pb-8">
+            {/* 日付とカテゴリ */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-sm text-gray-500">
+              <time dateTime={notice.publishedAt}>
+                {formatDate(notice.publishedAt)}
+              </time>
+              <CategoryBadge category={notice.category} size="sm" />
               {notice.isPinned && (
-                <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-medium">
-                  固定
+                <span className="inline-flex items-center gap-1 bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full font-medium">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="w-3 h-3"
+                  >
+                    <path d="M8 1.75a.75.75 0 0 1 .75.75V7h-1.5V2.5A.75.75 0 0 1 8 1.75Z" />
+                    <path d="m9.25 7.25.335-2.07a.75.75 0 0 0-.325-.815l-2.25-1.5a.75.75 0 0 0-.82 1.22l.885.59-1.09 6.75a.75.75 0 0 0 1.48.24L8 8.851l.707 4.385a.75.75 0 0 0 1.48-.24l-1.09-6.75.885-.59a.75.75 0 0 0 .505-1.055l-2.25-3.75a.75.75 0 0 0-1.28-.53l-2.25 3.75a.75.75 0 0 0 .505 1.055l.885.59-1.09 6.75a.75.75 0 0 0 1.48.24L8 8.851l.707 4.385a.75.75 0 0 0 1.48-.24l-1.09-6.75.885-.59a.75.75 0 0 0-.325.815L9.25 7.25Z" />
+                    <path d="M3.5 9.75a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75Z" />
+                  </svg>
+                  注目
                 </span>
               )}
             </div>
 
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-2">
+            {/* タイトル */}
+            <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
               {notice.title}
             </h1>
-
-            <time className="text-gray-500 text-sm">
-              {formatDate(notice.publishedAt)}
-            </time>
           </header>
-
-          {/* アイキャッチ画像 */}
-          {notice.thumbnailImage && (
-            <div className="mb-10">
-              <OptimizedImage
-                src={notice.thumbnailImage.url}
-                alt={notice.title}
-                width={800}
-                height={400}
-                className="w-full rounded-2xl"
-                priority
-              />
-            </div>
-          )}
 
           {/* コンテンツ本文 */}
           <div className="prose prose-lg prose-slate max-w-none leading-relaxed mb-12">
@@ -146,32 +143,34 @@ export default async function NoticeDetailPage({
           </div>
 
           {/* CTA セクション */}
-          <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-8 text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              ご質問・ご予約はお気軽に
-            </h3>
-            <p className="text-gray-600 mb-6">
-              お知らせについてご不明な点がございましたら、お気軽にお問い合わせください。
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="w-full sm:w-auto"
-                >
-                  お問い合わせ・ご予約
-                </Button>
-              </Link>
-              <Link href="/notices">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full sm:w-auto"
-                >
-                  お知らせ一覧に戻る
-                </Button>
-              </Link>
+          <div className="bg-gray-50 border-t border-b border-gray-200 py-12">
+            <div className="max-w-2xl mx-auto text-center px-4">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                ご予約・お問い合わせ
+              </h3>
+              <p className="text-gray-600 mb-6 text-sm">
+                ご不明な点がございましたら、お気軽にご連絡ください。
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/contact">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="w-full sm:w-auto"
+                  >
+                    お問い合わせフォーム
+                  </Button>
+                </Link>
+                <Link href="/notices">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full sm:w-auto"
+                  >
+                    お知らせ一覧へ
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </article>
