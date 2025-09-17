@@ -68,7 +68,7 @@ export const SectionTitle = ({
 
       {/* 日本語説明文 */}
       {description && (
-        <p className="text-sm md:text-base text-gray-600 mt-3 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-sm md:text-base text-gray-600 mt-3 max-w-2xl mx-auto leading-relaxed text-left md:text-center">
           {description}
         </p>
       )}
