@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { Phone, X, MapPin, Clock } from 'lucide-react';
+import { Phone, MapPin, Clock } from 'lucide-react';
 import { scrollToSection } from '@/lib/scroll-utils';
 import { LineButton, Logo } from '@/components/ui';
 
@@ -83,27 +83,15 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-primary-50/50 to-accent-50/50">
             <Logo size="sm" href="/" onClick={onClose} className="text-lg" />
 
-            {/* 洗練されたクローズボタン */}
+            {/* Closeボタン (Menuボタンとデザイン統一) */}
             <button
               onClick={onClose}
-              className="relative group p-3 rounded-2xl bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-400 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary-200/30 flex items-center gap-2"
-              aria-label="メニューを閉じる"
+              className="relative flex items-center justify-center w-14 h-14 rounded-full border border-primary-800/60 bg-transparent transition-all duration-300 hover:scale-105 hover:bg-white/50"
+              aria-label="Close menu"
             >
-              {/* 背景エフェクト */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary-100/40 to-accent-100/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              {/* Xアイコンとテキスト */}
-              <div className="relative z-10 flex items-center justify-center gap-2">
-                <X className="w-5 h-5 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-180 group-hover:scale-110" />
-                <span className="text-sm font-bold text-primary-800">閉じる</span>
-              </div>
-
-              {/* 装飾エフェクト */}
-              <div className="absolute top-1 right-1 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 animate-pulse" />
-              <div
-                className="absolute bottom-1 left-1 w-1 h-1 bg-primary-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse"
-                style={{ animationDelay: '0.2s' }}
-              />
+              <span className="font-medium text-sm text-primary-900 tracking-wider">
+                Close
+              </span>
             </button>
           </div>
 
