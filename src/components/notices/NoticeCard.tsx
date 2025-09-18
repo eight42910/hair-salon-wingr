@@ -40,7 +40,7 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
             {/* 日付とカテゴリ */}
             <div className="flex items-center flex-wrap gap-x-3 gap-y-1 text-sm text-gray-500">
               <time dateTime={notice.publishedAt}>
-                {formatDate(notice.publishedAt, 'yyyy.MM.dd')}
+                {formatDate(notice.publishedAt, 'short')}
               </time>
               {showCategory && (
                 <CategoryBadge category={notice.category} size="sm" />
@@ -108,7 +108,7 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
           {showCategory && (
             <CategoryBadge
               category={notice.category}
-              size={variant === 'compact' ? 'sm' : 'md'}
+              size={'md'}
             />
           )}
           {isNew && (
@@ -125,8 +125,6 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
             ${
               variant === 'featured'
                 ? 'text-xl'
-                : variant === 'compact'
-                ? 'text-base'
                 : 'text-lg'
             }
           `}
@@ -134,13 +132,11 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
           <Link href={`/notices/${notice.id}`}>{notice.title}</Link>
         </h3>
 
-        {/* 内容（compactでは非表示） */}
-        {variant !== 'compact' && (
-          <p className="text-gray-600 text-sm line-clamp-3">
-            {excerpt}
-            {excerpt.length >= 120 && '...'}
-          </p>
-        )}
+        {/* 内容（default/featuredでは表示） */}
+        <p className="text-gray-600 text-sm line-clamp-3">
+          {excerpt}
+          {excerpt.length >= 120 && '...'}
+        </p>
 
         {/* フッター */}
         <div className="flex justify-between items-center pt-2">

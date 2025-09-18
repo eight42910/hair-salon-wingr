@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CategoryBadge } from '@/components/notices/CategoryBadge';
-import { OptimizedImage } from '@/components/ui/OptimizedImage';
+
 import { Button } from '@/components/ui/Button';
 import { getNotice } from '@/lib/microcms';
 import {
