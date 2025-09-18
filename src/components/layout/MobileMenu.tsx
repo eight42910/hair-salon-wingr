@@ -86,14 +86,17 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             {/* 洗練されたクローズボタン */}
             <button
               onClick={onClose}
-              className="relative group p-3 rounded-2xl bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-400 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary-200/30"
+              className="relative group p-3 rounded-2xl bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-400 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary-200/30 flex items-center gap-2"
               aria-label="メニューを閉じる"
             >
               {/* 背景エフェクト */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary-100/40 to-accent-100/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              {/* Xアイコン - より洗練されたアニメーション */}
-              <X className="w-5 h-5 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-180 group-hover:scale-110 relative z-10" />
+              {/* Xアイコンとテキスト */}
+              <div className="relative z-10 flex items-center justify-center gap-2">
+                <X className="w-5 h-5 text-primary-700 group-hover:text-primary-800 transition-all duration-300 group-hover:rotate-180 group-hover:scale-110" />
+                <span className="text-sm font-bold text-primary-800">閉じる</span>
+              </div>
 
               {/* 装飾エフェクト */}
               <div className="absolute top-1 right-1 w-1 h-1 bg-accent-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 animate-pulse" />

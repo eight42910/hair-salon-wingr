@@ -116,20 +116,21 @@ export const Header = () => {
 
               {/* ハンバーガーメニューボタン - 洗練されたデザイン */}
               <button
-                className="xl:hidden relative group p-3 rounded-2xl bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-200/50"
+                className="xl:hidden relative group p-3 rounded-2xl bg-gradient-to-br from-primary-50 to-accent-50 hover:from-primary-100 hover:to-accent-100 border border-primary-200 hover:border-primary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-200/50 flex items-center gap-2"
                 onClick={() => setIsMobileMenuOpen(true)}
-                aria-label="メニュー"
+                aria-label="メニューを開く"
               >
                 {/* 背景のキラキラエフェクト */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary-100/50 to-accent-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* ハンバーガーアイコン */}
-                <div className="relative z-10 flex items-center justify-center">
+                {/* ハンバーガーアイコンとテキスト */}
+                <div className="relative z-10 flex items-center justify-center gap-2">
                   <HamburgerIcon
-                    isOpen={isMobileMenuOpen}
+                    isOpen={false} // このボタンは常に閉じた状態のアイコン
                     size="md"
                     className="text-primary-700 group-hover:text-primary-800 transition-colors duration-300"
                   />
+                  <span className="text-sm font-bold text-primary-800">メニュー</span>
                 </div>
 
                 {/* ホバー時の装飾エフェクト */}
