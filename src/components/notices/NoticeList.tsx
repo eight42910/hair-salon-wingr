@@ -93,7 +93,7 @@ export const NoticeList: React.FC<NoticeListProps> = ({
 
   const gridClasses = {
     default: 'grid gap-8 md:grid-cols-2 lg:grid-cols-3',
-    compact: 'grid gap-6 sm:grid-cols-2 lg:grid-cols-3',
+    compact: 'block border-t border-gray-200',
   };
 
   return (

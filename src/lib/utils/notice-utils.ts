@@ -6,7 +6,10 @@ export const stripHtml = (html: string): string => {
 };
 
 // 日付フォーマット
-export const formatDate = (dateString: string): string => {
+export const formatDate = (
+  dateString: string,
+  format: 'long' | 'short' = 'long'
+): string => {
   try {
     // dateStringがundefinedやnullの場合は空文字を返す
     if (!dateString) {
@@ -18,6 +21,13 @@ export const formatDate = (dateString: string): string => {
     // 無効な日付の場合は空文字を返す
     if (isNaN(date.getTime())) {
       return '';
+    }
+
+    if (format === 'short') {
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      return `${year}.${month}.${day}`;
     }
 
     return new Intl.DateTimeFormat('ja-JP', {
