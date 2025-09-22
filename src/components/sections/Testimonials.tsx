@@ -93,7 +93,7 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
 
                   {/* コメント */}
                   <blockquote className="text-gray-700 leading-relaxed flex-grow mb-6 text-base mt-4">
-                    "{testimonial.comment}"
+                    &ldquo;{testimonial.comment}&rdquo;
                   </blockquote>
 
                   {/* プロフィール */}
