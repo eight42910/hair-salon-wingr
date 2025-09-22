@@ -70,6 +70,9 @@ export const getBlogPosts = async (
   });
 };
 
+import { Testimonial } from '@/types/sections';
+import { MicroCMSListResponse } from '@/types/microcms';
+
 // ブログ記事詳細取得
 export const getBlogPost = async (
   contentId: string,
@@ -79,5 +82,19 @@ export const getBlogPost = async (
     endpoint: 'blog',
     contentId,
     ...(queries && { queries }),
+  });
+};
+
+// お客様の声を取得
+export const getTestimonials = async (
+  queries?: MicroCMSQueries
+): Promise<MicroCMSListResponse<Testimonial>> => {
+  return await client.get({
+    endpoint: 'testimonials',
+    queries: {
+      orders: '-createdAt',
+      limit: 9,
+      ...queries,
+    },
   });
 };

@@ -12,6 +12,8 @@ import { Access } from '@/components/sections/Access';
 import MenuContent from '@/components/sections/MenuContent';
 import { Staff } from '@/components/sections/Staff';
 import { LatestNotices } from '@/components/notices/LatestNotices';
+import { Testimonials } from '@/components/sections/Testimonials';
+import { getTestimonials } from '@/lib/microcms';
 
 // ISR設定: 本番環境では10分でページを再生成
 export const revalidate = 600;
@@ -30,6 +32,9 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
+  const testimonialsData = await getTestimonials();
+  const testimonials = testimonialsData.contents;
+
   return (
     <main className="min-h-screen">
       {/* ヒーローセクション */}
@@ -95,6 +100,12 @@ export default async function HomePage() {
       <AnimatedSection id="menu" direction="up">
         <MenuContent />
       </AnimatedSection>
+
+      {testimonials && testimonials.length > 0 && (
+        <AnimatedSection id="testimonials" direction="up">
+          <Testimonials testimonials={testimonials} />
+        </AnimatedSection>
+      )}
 
       <AnimatedSection id="staff" direction="up">
         <Staff />

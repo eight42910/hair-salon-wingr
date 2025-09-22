@@ -1,72 +1,241 @@
-import { Quote } from 'lucide-react';
+'use client';
 
-const testimonials = [
-  {
-    name: '田中様',
-    age: '40代女性',
-    comment:
-      '3世代でお世話になっています。いつも丁寧にカウンセリングしていただき、理想のスタイルに仕上げてくださいます。ヘッドスパも気持ちよくて、リラックスできる時間です。',
-  },
-  {
-    name: '佐藤様',
-    age: '30代男性',
-    comment:
-      '仕事で忙しい中でも、いつも気軽に相談に乗ってくださいます。セルフスタイリングのアドバイスも的確で、朝のセットが楽になりました。',
-  },
-  {
-    name: '山田様',
-    age: '50代女性',
-    comment:
-      '縮毛矯正でお世話になっています。技術力が高く、仕上がりにいつも満足しています。アフターケアのアドバイスも丁寧で、髪の状態が良くなりました。',
-  },
-];
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { useRef } from 'react';
+import type { Swiper as SwiperType } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import Image from 'next/image';
 
-export const Testimonials = () => {
+import { SectionTitle } from '@/components/ui';
+import { Quote, User } from 'lucide-react';
+import { TestimonialsProps } from '@/types/sections';
+
+export const Testimonials = ({ testimonials }: TestimonialsProps) => {
+  const swiperRef = useRef<SwiperType | null>(null);
+
+  const handlePrevSlide = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slidePrev();
+    }
+  };
+
+  const handleNextSlide = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slideNext();
+    }
+  };
+
+  if (!testimonials || testimonials.length === 0) {
+    return null;
+  }
+
   return (
-    <section className="py-16 bg-secondary-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="heading-2 mb-4">お客様の声</h2>
-          <p className="body-lg text-gray-600 max-w-2xl mx-auto">
-            長年ご愛顧いただいているお客様からの温かいお言葉
+    <section id="testimonials" className="relative py-20 sm:py-32 bg-slate-50">
+      {/* 背景グラデーション */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-secondary-50 to-primary-50" />
+
+      {/* 装飾的な背景パターン */}
+      <div className="absolute inset-0 opacity-3">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary-200 rounded-full blur-xl" />
+        <div className="absolute bottom-32 right-20 w-40 h-40 bg-secondary-200 rounded-full blur-xl" />
+        <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-accent-200 rounded-full blur-xl" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <SectionTitle
+          mainTitle="お客様の声"
+          subTitle="Testimonials"
+          align="center"
+        />
+
+        {/* メインコンテンツ */}
+        <div className="mt-16">
+          <Swiper
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            modules={[Autoplay, Navigation, Pagination]}
+            spaceBetween={24}
+            slidesPerView={1}
+            loop={true}
+            autoplay={{
+              delay: 6000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+              bulletClass: 'testimonials-bullet',
+              bulletActiveClass: 'testimonials-bullet-active',
+            }}
+            navigation={false}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 32,
+              },
+            }}
+            className="testimonials-swiper"
+          >
+            {testimonials.map((testimonial) => (
+              <SwiperSlide key={testimonial.id} className="h-auto">
+                <article className="group relative bg-white/95 backdrop-blur-sm p-8 pt-12 rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col transition-all duration-500 hover:shadow-xl hover:bg-white hover:-translate-y-2">
+                  {/* 上部装飾 */}
+                  <div className="absolute top-4 left-4 w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Quote className="w-5 h-5 text-white transform -scale-x-100" />
+                  </div>
+
+                  {/* コメント */}
+                  <blockquote className="text-gray-700 leading-relaxed flex-grow mb-6 text-base mt-4">
+                    "{testimonial.comment}"
+                  </blockquote>
+
+                  {/* プロフィール */}
+                  <footer className="flex items-center">
+                    <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-primary-100 to-secondary-100 flex items-center justify-center mr-4 flex-shrink-0 overflow-hidden shadow-md">
+                      {testimonial.image ? (
+                        <Image
+                          src={testimonial.image.url}
+                          alt={testimonial.name}
+                          width={56}
+                          height={56}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : (
+                        <User className="w-7 h-7 text-primary-600" />
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <cite className="font-bold text-primary-900 not-italic text-lg">
+                        {testimonial.name}
+                      </cite>
+                      <p className="text-sm text-primary-600 font-medium mt-1">
+                        {testimonial.attribute}
+                      </p>
+                    </div>
+                  </footer>
+
+                  {/* 右下装飾 */}
+                  <div className="absolute bottom-2 right-2 w-4 h-4 bg-gradient-to-br from-secondary-300 to-accent-400 rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                </article>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* カスタムナビゲーションボタン */}
+          <button
+            onClick={handlePrevSlide}
+            className="testimonials-prev absolute bottom-16 left-5 w-12 h-12 sm:w-14 sm:h-14 bg-white/95 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white hover:shadow-xl transition-all duration-300 z-10 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+            aria-label="前のお客様の声を見る"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 18L9 12L15 6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+          <button
+            onClick={handleNextSlide}
+            className="testimonials-next absolute bottom-16 right-5 w-12 h-12 sm:w-14 sm:h-14 bg-white/95 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white hover:shadow-xl transition-all duration-300 z-10 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+            aria-label="次のお客様の声を見る"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 18L15 12L9 6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* スワイプヒント（モバイルのみ） */}
+        <div className="mt-4 mb-20 text-center md:hidden">
+          <p className="text-sm text-primary-600 opacity-75 flex items-center justify-center gap-2">
+            <span>←</span>
+            <span>スワイプして他の声も見る</span>
+            <span>→</span>
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="relative overflow-hidden bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group"
-            >
-              {/* ホバー時のグラデーション背景 */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-accent-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              {/* 装飾的な背景要素 */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary-100/20 to-accent-100/20 rounded-full -translate-y-6 translate-x-6 group-hover:from-primary-200/30 group-hover:to-accent-200/30 transition-all duration-300"></div>
-              
-              <div className="relative">
-                <div className="flex items-center mb-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-500 rounded-lg flex items-center justify-center mr-3 shadow-sm group-hover:shadow-md transition-shadow duration-300">
-                    <Quote className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-primary-900 group-hover:text-primary-800 transition-colors">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-sm text-gray-500">{testimonial.age}</p>
-                  </div>
-                </div>
-                <p className="body-md text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors">
-                  {testimonial.comment}
-                </p>
-                
-                {/* 装飾的な要素 */}
-                <div className="absolute bottom-4 right-4 w-6 h-6 bg-gradient-to-br from-accent-300 to-accent-400 rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-300"></div>
-              </div>
-            </div>
-          ))}
+        {/* 下部メッセージ */}
+        <div className="mt-20 text-center">
+          <p className="text-primary-700 font-medium">
+            皆様からの温かいお言葉が、私たちの励みとなっています
+          </p>
         </div>
       </div>
+
+      <style jsx global>{`
+        .testimonials-swiper {
+          padding-bottom: 100px;
+        }
+
+        .testimonials-swiper .swiper-button-next,
+        .testimonials-swiper .swiper-button-prev {
+          display: none;
+        }
+
+        .testimonials-swiper .swiper-pagination {
+          bottom: 48px;
+          position: absolute;
+          left: 50%;
+          top: auto;
+          width: auto;
+          transform: translateX(-50%);
+          margin-top: 0;
+          padding-bottom: 0;
+          z-index: 5;
+        }
+
+        .testimonials-bullet {
+          width: 12px;
+          height: 12px;
+          margin: 0 8px;
+          opacity: 0.6;
+          background: #8b5e3c;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .testimonials-bullet:hover {
+          opacity: 0.8;
+          transform: scale(1.1);
+        }
+
+        .testimonials-bullet-active {
+          opacity: 1;
+          background: #8b5e3c;
+          transform: scale(1.3);
+          box-shadow: 0 2px 8px rgba(139, 94, 60, 0.4);
+        }
+      `}</style>
     </section>
   );
 };

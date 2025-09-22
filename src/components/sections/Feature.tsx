@@ -56,6 +56,16 @@ export const Feature = () => {
   const prefersReduced = useReducedMotion();
   return (
     <section className="py-24 bg-white relative overflow-hidden">
+      {/* 背景グラデーション */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-primary-50 to-secondary-50" />
+
+      {/* 装飾的な背景パターン */}
+      <div className="absolute inset-0 opacity-3">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary-200 rounded-full blur-xl" />
+        <div className="absolute bottom-32 right-20 w-40 h-40 bg-secondary-200 rounded-full blur-xl" />
+        <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-accent-200 rounded-full blur-xl" />
+      </div>
+
       {/* セクション全体の背景装飾 */}
       {!prefersReduced && (
         <motion.div

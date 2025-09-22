@@ -38,19 +38,20 @@ export interface FAQProps extends BaseProps {
 }
 
 // === Testimonials Section Types ===
-export interface TestimonialItem {
-  id: number;
+export interface Testimonial {
+  id: string;
   name: string;
-  age?: number;
-  rating: number;
+  attribute: string;
   comment: string;
-  service?: string;
-  date?: string;
-  image?: string;
+  image?: {
+    url: string;
+    height: number;
+    width: number;
+  };
 }
 
 export interface TestimonialsProps extends BaseProps {
-  testimonials?: TestimonialItem[];
+  testimonials?: Testimonial[];
   title?: string;
   subtitle?: string;
 }
