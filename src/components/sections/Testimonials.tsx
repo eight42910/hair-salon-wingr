@@ -51,8 +51,15 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
           align="center"
         />
 
+        {/* タイトル下メッセージ */}
+        <div className="mt-8 mb-8 flex justify-center">
+          <p className="text-primary-700 font-medium max-w-md text-center break-words leading-relaxed">
+            サービス向上のため、お客様の声を大切にしています
+          </p>
+        </div>
+
         {/* メインコンテンツ */}
-        <div className="mt-16">
+        <div className="mt-8">
           <Swiper
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
@@ -131,15 +138,16 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
           {/* カスタムナビゲーションボタン */}
           <button
             onClick={handlePrevSlide}
-            className="testimonials-prev absolute bottom-16 left-5 w-12 h-12 sm:w-14 sm:h-14 bg-white/95 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white hover:shadow-xl transition-all duration-300 z-10 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+            className="testimonials-prev absolute top-1/2 -translate-y-1/2 left-2 sm:left-5 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white hover:shadow-xl transition-all duration-300 z-20 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 border border-primary-200/50"
             aria-label="前のお客様の声を見る"
           >
             <svg
-              width="24"
-              height="24"
+              width="18"
+              height="18"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="sm:w-5 sm:h-5"
             >
               <path
                 d="M15 18L9 12L15 6"
@@ -153,15 +161,16 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
 
           <button
             onClick={handleNextSlide}
-            className="testimonials-next absolute bottom-16 right-5 w-12 h-12 sm:w-14 sm:h-14 bg-white/95 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white hover:shadow-xl transition-all duration-300 z-10 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+            className="testimonials-next absolute top-1/2 -translate-y-1/2 right-2 sm:right-5 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white hover:shadow-xl transition-all duration-300 z-20 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 border border-primary-200/50"
             aria-label="次のお客様の声を見る"
           >
             <svg
-              width="24"
-              height="24"
+              width="18"
+              height="18"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="sm:w-5 sm:h-5"
             >
               <path
                 d="M9 18L15 12L9 6"
@@ -172,22 +181,6 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
               />
             </svg>
           </button>
-        </div>
-
-        {/* スワイプヒント（モバイルのみ） */}
-        <div className="mt-4 mb-20 text-center md:hidden">
-          <p className="text-sm text-primary-600 opacity-75 flex items-center justify-center gap-2">
-            <span>←</span>
-            <span>スワイプして他の声も見る</span>
-            <span>→</span>
-          </p>
-        </div>
-
-        {/* 下部メッセージ */}
-        <div className="mt-20 text-center">
-          <p className="text-primary-700 font-medium">
-            皆様からの温かいお言葉が、私たちの励みとなっています
-          </p>
         </div>
       </div>
 
