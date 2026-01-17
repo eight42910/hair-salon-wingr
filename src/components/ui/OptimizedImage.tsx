@@ -44,13 +44,13 @@ export const OptimizedImage = ({
     <div className="relative overflow-hidden">
       {/* Loading skeleton */}
       {isLoading && (
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse rounded-lg" />
+        <div className="absolute inset-0 bg-gradient-to-r from-surface2 via-surface to-surface2 animate-pulse rounded-lg" />
       )}
 
       {/* エラー時のフォールバック */}
       {error && (
-        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center rounded-lg">
-          <span className="text-gray-400 text-sm">
+        <div className="absolute inset-0 bg-surface2 flex items-center justify-center rounded-lg">
+          <span className="text-muted text-sm">
             画像を読み込めませんでした
           </span>
         </div>

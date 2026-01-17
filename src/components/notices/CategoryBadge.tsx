@@ -43,7 +43,7 @@ export const CategoryBadge: React.FC<CategoryBadgeProps> = ({
       <span
         className={`
           inline-flex items-center gap-1 rounded-full font-medium
-          bg-gray-100 text-gray-800
+          bg-surface2 text-accent
           ${sizeClasses[size]}
           ${className}
         `}

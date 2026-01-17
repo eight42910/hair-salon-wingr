@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-japanese)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'serif'],
+      },
       typography: {
         DEFAULT: {
           css: {
@@ -59,6 +63,15 @@ const config: Config = {
         },
       },
       colors: {
+        bg: 'var(--bg)',
+        surface: 'var(--surface)',
+        surface2: 'var(--surface2)',
+        text: 'var(--text)',
+        muted: 'var(--muted)',
+        border: 'var(--border)',
+        accent: 'var(--accent)',
+        accent2: 'var(--accent2)',
+        ring: 'var(--ring)',
         primary: {
           50: 'var(--primary-50)',
           100: 'var(--primary-100)',

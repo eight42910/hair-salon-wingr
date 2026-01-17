@@ -33,12 +33,12 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
     return (
       <Link href={`/notices/${notice.id}`} passHref>
         <motion.div
-          whileHover={{ backgroundColor: '#F9FAFB' }} // hover:bg-gray-50
-          className={`block w-full px-4 py-5 border-b border-gray-200 transition-colors duration-200 ${className}`}
+          whileHover={{ backgroundColor: 'var(--surface2)' }}
+          className={`block w-full px-4 py-5 border-b border-border transition-colors duration-200 ${className}`}
         >
           <div className="grid gap-y-2 sm:grid-cols-[12rem,1fr] sm:gap-x-6 sm:items-start">
             {/* 日付とカテゴリ */}
-            <div className="flex items-center flex-wrap gap-x-3 gap-y-1 text-sm text-gray-500">
+            <div className="flex items-center flex-wrap gap-x-3 gap-y-1 text-sm text-muted">
               <time dateTime={notice.publishedAt}>
                 {formatDate(notice.publishedAt, 'short')}
               </time>
@@ -49,11 +49,11 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
 
             {/* タイトルと新着バッジ */}
             <div className="flex items-start gap-3 min-w-0">
-              <h3 className="font-semibold text-gray-800 group-hover:text-primary-600 transition-colors leading-snug break-words">
+              <h3 className="font-semibold text-text group-hover:text-accent transition-colors leading-snug break-words">
                 {notice.title}
               </h3>
               {isNew && (
-                <span className="mt-0.5 bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0">
+                <span className="mt-0.5 bg-accent2/15 text-accent text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0">
                   NEW
                 </span>
               )}
@@ -74,17 +74,17 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
 
   return (
     <motion.article
-      whileHover={{ y: -4, scale: 1.02 }}
+      whileHover={{ y: -2 }}
       className={`
-        bg-white rounded-2xl shadow-sm border hover:shadow-lg hover:border-primary-200
-        transition-all duration-300 relative overflow-hidden
+        bg-surface rounded-2xl shadow-sm border border-border hover:shadow-md hover:border-accent2
+        transition-all duration-200 relative overflow-hidden
         ${cardVariants[variant]}
         ${className}
       `}
     >
       {/* 固定表示インジケーター */}
       {notice.isPinned && (
-        <div className="absolute top-0 right-0 bg-red-500 text-white text-xs px-2 py-1 rounded-bl-lg font-medium">
+        <div className="absolute top-0 right-0 bg-accent text-white text-xs px-2 py-1 rounded-bl-lg font-medium">
           固定
         </div>
       )}
@@ -112,7 +112,7 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
             />
           )}
           {isNew && (
-            <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+            <span className="bg-accent2 text-white text-xs px-2 py-1 rounded-full font-medium">
               NEW
             </span>
           )}
@@ -121,7 +121,7 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
         {/* タイトル */}
         <h3
           className={`
-            font-bold text-gray-900 line-clamp-2 hover:text-primary-600 transition-colors
+            font-semibold text-text line-clamp-2 hover:text-accent transition-colors
             ${
               variant === 'featured'
                 ? 'text-xl'
@@ -133,14 +133,14 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
         </h3>
 
         {/* 内容（default/featuredでは表示） */}
-        <p className="text-gray-600 text-sm line-clamp-3">
+        <p className="text-muted text-sm line-clamp-3">
           {excerpt}
           {excerpt.length >= 120 && '...'}
         </p>
 
         {/* フッター */}
         <div className="flex justify-between items-center pt-2">
-          <time className="text-sm text-gray-500">
+          <time className="text-sm text-muted">
             {formatRelativeDate(notice.publishedAt)}
           </time>
 

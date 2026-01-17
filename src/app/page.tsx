@@ -40,7 +40,7 @@ export default async function HomePage() {
       {/* ヒーローセクション */}
       <section
         id="home"
-        className="relative min-h-screen pt-20 flex items-center justify-center"
+        className="relative min-h-screen pt-24 flex items-center justify-center"
       >
         <div className="absolute inset-0 z-0">
           <Image
@@ -52,38 +52,59 @@ export default async function HomePage() {
             quality={70}
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(250,247,242,0.18),transparent_60%)]" />
         </div>
         <AnimatedSection
           className="container mx-auto px-4 text-center relative z-10"
           direction="up"
           distance={20}
         >
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
+            <span className="px-3 py-1 rounded-full border border-white/50 text-xs tracking-widest text-white/90 bg-white/10">
+              創業41年
+            </span>
+            <span className="px-3 py-1 rounded-full border border-white/50 text-xs tracking-widest text-white/90 bg-white/10">
+              ファミリーサロン
+            </span>
+            <span className="px-3 py-1 rounded-full border border-white/50 text-xs tracking-widest text-white/90 bg-white/10">
+              頭皮改善・縮毛矯正
+            </span>
+          </div>
           <h1 className="heading-1 mb-6 text-white">
             41年間地域に愛され続ける
             <br />
             岐阜市のファミリーサロン
           </h1>
-          <p className="body-lg mb-8 max-w-2xl mx-auto text-white">
+          <p className="body-lg mb-8 max-w-2xl mx-auto text-white/90">
             老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。
             お客様一人ひとりに寄り添った丁寧な施術と、くつろぎの空間をご提供いたします。
           </p>
-          <div className="flex gap-4 justify-center flex-col sm:flex-row items-center">
+          <div className="flex gap-3 justify-center flex-col sm:flex-row items-center">
             <LineButton
               variant="line-official"
               text="LINEで予約"
               className="w-auto max-w-fit"
             />
+            <a
+              href="tel:058-241-3375"
+              className="inline-flex items-center justify-center h-12 px-6 rounded-xl border border-white/50 text-white/90 bg-white/10 hover:bg-white/20 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+            >
+              お電話で予約
+            </a>
             <Link href="#menu">
               <Button
                 variant="outline"
                 size="lg"
-                className="text-white border-white hover:bg-primary-900 hover:text-white w-auto max-w-fit"
+                className="text-white border-white/70 hover:bg-white/15 hover:text-white w-auto max-w-fit"
               >
                 メニューを見る
               </Button>
             </Link>
           </div>
+          <p className="mt-5 text-xs text-white/70">
+            お電話: 058-241-3375（営業時間 9:00 - 18:00）
+          </p>
         </AnimatedSection>
       </section>
 

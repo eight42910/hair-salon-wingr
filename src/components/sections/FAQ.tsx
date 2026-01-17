@@ -20,7 +20,7 @@ const faqData: FAQItem[] = [
         はい、事前のご予約をお願いしております。
         <Link
           href="/#access"
-          className="text-primary-600 hover:underline font-medium"
+          className="text-accent hover:underline font-medium"
         >
           お電話またはLINEでのご予約
         </Link>
@@ -42,7 +42,7 @@ const faqData: FAQItem[] = [
         店舗前に6台分の駐車スペースがございます。詳細は
         <Link
           href="/#access"
-          className="text-primary-600 hover:underline font-medium"
+          className="text-accent hover:underline font-medium"
         >
           アクセスマップ
         </Link>
@@ -79,47 +79,37 @@ interface FAQItemProps {
 
 const FAQItemComponent = ({ faq, isOpen, onToggle }: FAQItemProps) => {
   return (
-    <div className="relative overflow-hidden transition-all duration-300">
+    <div className="relative overflow-hidden transition-colors duration-200">
       <div
-        className={`bg-white rounded-lg shadow-sm transition-all duration-300 ${
-          isOpen ? 'shadow-md' : 'hover:shadow-md'
-        } group`}
+        className={`bg-surface rounded-xl border border-border transition-colors duration-200 ${
+          isOpen ? 'border-accent2' : 'hover:border-accent2'
+        }`}
       >
-        {/* グラデーション背景 */}
-        <div
-          className={`absolute inset-0 bg-gradient-to-r from-primary-50 to-accent-50 opacity-0 transition-opacity duration-300 ${
-            isOpen ? 'opacity-100' : 'group-hover:opacity-50'
-          }`}
-        ></div>
-
-        {/* 装飾的な背景要素 */}
-        <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-secondary-100/20 to-accent-100/20 rounded-full -translate-y-4 translate-x-4 group-hover:from-secondary-200/30 group-hover:to-accent-200/30 transition-all duration-300"></div>
-
         <div className="relative p-6">
           <button
             onClick={onToggle}
             className="w-full text-left flex items-center justify-between"
           >
             <div className="flex items-start gap-3 flex-1">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary-400 to-primary-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+              <div className="w-8 h-8 bg-accent2 rounded-lg flex items-center justify-center flex-shrink-0">
                 <HelpCircle className="w-4 h-4 text-white" />
               </div>
-              <span className="font-medium text-gray-900 text-sm group-hover:text-primary-900 transition-colors">
+              <span className="font-medium text-text text-sm">
                 {faq.question}
               </span>
             </div>
             <div className="ml-4">
               {isOpen ? (
-                <ChevronUp className="w-5 h-5 text-primary-500" />
+                <ChevronUp className="w-5 h-5 text-accent2" />
               ) : (
-                <ChevronDown className="w-5 h-5 text-gray-500 group-hover:text-primary-500 transition-colors" />
+                <ChevronDown className="w-5 h-5 text-muted transition-colors" />
               )}
             </div>
           </button>
 
           {isOpen && (
             <div className="mt-3 pl-11">
-              <div className="text-gray-600 text-sm leading-relaxed">
+              <div className="text-muted text-sm leading-relaxed">
                 {faq.answer}
               </div>
             </div>
@@ -140,16 +130,8 @@ export const FAQ = () => {
   };
 
   return (
-    <section className="relative py-16 bg-slate-50">
-      {/* 背景グラデーション */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-secondary-50 to-primary-50" />
-
-      {/* 装飾的な背景パターン */}
-      <div className="absolute inset-0 opacity-3">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-primary-200 rounded-full blur-xl" />
-        <div className="absolute bottom-32 right-20 w-40 h-40 bg-secondary-200 rounded-full blur-xl" />
-        <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-accent-200 rounded-full blur-xl" />
-      </div>
+    <section className="relative py-16 sm:py-20 bg-bg">
+      <div className="absolute inset-0 bg-surface2/60" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
@@ -160,7 +142,7 @@ export const FAQ = () => {
             mainTitle="よくある質問"
             subTitle="Frequently Asked Questions"
           />
-          <p className="text-gray-600 text-sm mt-4">
+          <p className="text-muted text-sm mt-4">
             お客様からよくいただくご質問をまとめました。
             その他ご不明な点がございましたら、お気軽にお問い合わせください。
           </p>
@@ -178,14 +160,14 @@ export const FAQ = () => {
         </div>
 
         <div className="text-center mt-8">
-          <p className="text-gray-600 text-sm mb-6">
+          <p className="text-muted text-sm mb-6">
             他にもご質問がございましたら、お気軽にお問い合わせください。
           </p>
           <Link href="/contact">
             <Button
               variant="primary"
               size="lg"
-              className="shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="shadow-sm"
             >
               お問い合わせはこちら
             </Button>

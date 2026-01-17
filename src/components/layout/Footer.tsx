@@ -4,60 +4,50 @@ import { Logo } from '@/components/ui';
 
 export const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-b from-primary-900 via-primary-800 to-primary-900 text-white overflow-hidden">
-      {/* 装飾的な背景要素 - オーバーフロー対策 */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-primary-400 to-accent-400 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-70"></div>
-      <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-accent-400 to-secondary-400 rounded-full translate-x-1/2 translate-y-1/2 opacity-70"></div>
+    <footer className="relative bg-surface2 text-text border-t border-border">
+      <div className="container mx-auto px-4 py-10">
+        <div className="text-center">
+          {/* 店舗情報 */}
+          <div className="max-w-md mx-auto bg-surface rounded-2xl p-6 mb-6 border border-border shadow-sm">
+            <div className="mb-4 flex justify-center">
+              <Logo size="md" className="text-text hover:text-accent" href="/" />
+            </div>
+            <p className="text-muted text-sm mb-4 leading-relaxed">
+              41年の歴史と信頼で、3世代にわたってお客様に愛され続けているファミリーサロンです
+            </p>
 
-      <div className="relative z-10">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">
-            {/* 店舗情報 */}
-            <div className="max-w-md mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-white/20">
-              <div className="mb-4 flex justify-center">
-                <Logo
-                  size="md"
-                  className="text-white hover:text-accent-200"
-                  href="/"
-                />
+            <div className="space-y-3 text-muted text-sm">
+              <div className="flex items-center justify-center">
+                <MapPin className="w-4 h-4 mr-3 text-accent2 flex-shrink-0" />
+                <span>岐阜県岐阜市加野2-25-8</span>
               </div>
-              <p className="text-primary-100 text-sm mb-4">
-                41年の歴史と信頼で、3世代にわたってお客様に愛され続けているファミリーサロンです
-              </p>
-
-              <div className="space-y-3 text-primary-100 text-sm">
-                <div className="flex items-center justify-center">
-                  <MapPin className="w-4 h-4 mr-3 text-accent-300 flex-shrink-0" />
-                  <span>岐阜県岐阜市加野2-25-8</span>
-                </div>
-                <div className="flex items-center justify-center">
-                  <Phone className="w-4 h-4 mr-3 text-accent-300 flex-shrink-0" />
-                  <a
-                    href="tel:058-241-3375"
-                    className="hover:text-white transition-colors"
-                  >
-                    058-241-3375
-                  </a>
-                </div>
-                <div className="flex items-center justify-center">
-                  <Clock className="w-4 h-4 mr-3 text-accent-300 flex-shrink-0" />
-                  <span>9:00-18:00（定休日：第2火曜・第3日曜）</span>
-                </div>
+              <div className="flex items-center justify-center">
+                <Phone className="w-4 h-4 mr-3 text-accent2 flex-shrink-0" />
+                <a
+                  href="tel:058-241-3375"
+                  className="hover:text-accent transition-colors"
+                >
+                  058-241-3375
+                </a>
+              </div>
+              <div className="flex items-center justify-center">
+                <Clock className="w-4 h-4 mr-3 text-accent2 flex-shrink-0" />
+                <span>9:00-18:00（定休日：第2火曜・第3日曜）</span>
               </div>
             </div>
+          </div>
 
-            {/* フッター情報 */}
-            <div className="border-t border-white/20 pt-6">
-              <div className="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-primary-200">
-                <Link
-                  href="/privacy"
-                  className="hover:text-white transition-colors"
-                >
-                  プライバシーポリシー
-                </Link>
-                <span className="hidden md:inline">|</span>
-                <p>&copy; 2025 美容室ウイング R. All rights reserved.</p>
-              </div>
+          {/* フッター情報 */}
+          <div className="border-t border-border pt-6">
+            <div className="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-muted">
+              <Link
+                href="/privacy"
+                className="hover:text-accent transition-colors"
+              >
+                プライバシーポリシー
+              </Link>
+              <span className="hidden md:inline text-border">|</span>
+              <p>&copy; 2025 美容室ウイング R. All rights reserved.</p>
             </div>
           </div>
         </div>

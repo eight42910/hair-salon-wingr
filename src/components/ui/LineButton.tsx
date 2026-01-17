@@ -58,20 +58,20 @@ export const LineButton = ({
   }, [showModal]);
 
   const sizeStyles = {
-    sm: 'px-3 py-1.5 text-sm rounded',
-    md: 'px-4 py-2 text-sm rounded-md',
-    lg: 'px-6 py-3 text-base rounded-lg',
+    sm: 'h-10 px-4 text-sm rounded-lg',
+    md: 'h-11 px-5 text-sm rounded-xl',
+    lg: 'h-12 px-6 text-base rounded-xl',
   };
 
   const variantStyles = {
     'line-official':
-      'bg-line-primary hover:bg-line-dark text-white px-6 py-3 text-base',
+      'bg-line-primary hover:bg-line-dark text-white',
     'brand-primary':
-      'bg-primary-600 hover:bg-line-primary text-white transition-colors duration-300',
+      'bg-accent hover:bg-primary-700 text-white',
     'brand-secondary':
-      'bg-white hover:bg-line-primary text-primary-600 hover:text-white border-2 border-primary-600 hover:border-line-primary transition-all duration-300',
+      'bg-surface hover:bg-surface2 text-accent border border-border',
     large:
-      'bg-line-primary hover:bg-line-dark text-white px-8 py-4 text-lg rounded-lg',
+      'bg-line-primary hover:bg-line-dark text-white h-12 px-7 text-base rounded-xl',
   };
 
   const handleLineClick = () => {
@@ -123,13 +123,13 @@ export const LineButton = ({
         }}
       >
         <div
-          className="bg-white rounded-xl p-4 sm:p-6 lg:p-8 max-w-xs sm:max-w-md w-full mx-2 sm:mx-4 text-center shadow-2xl transform transition-all duration-300 scale-100 hover:scale-[1.02] relative"
+          className="bg-surface rounded-xl p-4 sm:p-6 lg:p-8 max-w-xs sm:max-w-md w-full mx-2 sm:mx-4 text-center shadow-lg border border-border transition-all duration-200 relative"
           onClick={handleModalContentClick}
         >
           {/* 閉じるボタン（X） */}
           <button
             onClick={closeModal}
-            className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors duration-200 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 z-10"
+            className="absolute top-4 right-4 p-2 text-muted hover:text-text transition-colors duration-200 rounded-full hover:bg-surface2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring z-10"
             aria-label="モーダルを閉じる"
           >
             <svg
@@ -150,12 +150,12 @@ export const LineButton = ({
 
           <h3
             id="line-modal-title"
-            className="text-lg sm:text-xl font-bold text-gray-800 mb-4"
+            className="text-lg sm:text-xl font-semibold text-text mb-4 font-serif"
           >
             LINE公式アカウント
           </h3>
 
-          <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-xl mb-6 border border-gray-200">
+          <div className="bg-surface2 p-6 rounded-xl mb-6 border border-border">
             <div className="flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48 mx-auto rounded-xl overflow-hidden shadow-md">
               <Image
                 src="/images/common/line_qr.jpg"
@@ -172,7 +172,7 @@ export const LineButton = ({
 
           <p
             id="line-modal-description"
-            className="text-gray-600 text-xs sm:text-sm mb-6 leading-relaxed"
+            className="text-muted text-xs sm:text-sm mb-6 leading-relaxed"
           >
             スマートフォンでQRコードを読み取って
             <br />
@@ -182,14 +182,14 @@ export const LineButton = ({
           <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => window.open(lineUrl, '_blank')}
-              className="flex-1 bg-[#06C755] text-white px-4 py-3 rounded-lg hover:bg-[#05B04A] transition-all duration-300 text-sm sm:text-base font-medium hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#06C755] focus:ring-offset-2"
+              className="flex-1 bg-[#06C755] text-white px-4 py-3 rounded-xl hover:bg-[#05B04A] transition-colors duration-200 text-sm sm:text-base font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               aria-label="LINEをブラウザで開く"
             >
               ブラウザで開く
             </button>
             <button
               onClick={closeModal}
-              className="flex-1 bg-gray-100 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-200 transition-all duration-300 text-sm sm:text-base font-medium hover:shadow-md hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+              className="flex-1 bg-surface2 text-text px-4 py-3 rounded-xl hover:bg-surface2/80 transition-colors duration-200 text-sm sm:text-base font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               aria-label="モーダルを閉じる"
             >
               閉じる
@@ -206,9 +206,10 @@ export const LineButton = ({
         className={`
           ${variantStyles[variant]}
           ${variant !== 'large' ? sizeStyles[size] : ''}
-          font-medium transition-all duration-300 
-          hover:scale-105 hover:shadow-lg inline-flex items-center justify-center space-x-2
-          flex-shrink-0 self-center
+          font-medium transition-colors duration-200 
+          inline-flex items-center justify-center space-x-2
+          flex-shrink-0 self-center shadow-sm
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg
           ${className}
         `}
         aria-label={`${text} - LINEで予約する`}

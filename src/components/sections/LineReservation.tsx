@@ -8,35 +8,27 @@ const lineFeatures = [
     title: '24時間いつでも予約',
     description: 'お忙しい時でも、いつでも予約・変更が可能です',
     icon: Clock,
-    color: 'from-blue-500 to-blue-600',
-    bgColor: 'from-blue-50 to-blue-100',
   },
   {
     title: 'ヘアケア相談',
     description: '髪のお悩みやスタイルのご相談ができます',
     icon: MessageCircle,
-    color: 'from-green-500 to-green-600',
-    bgColor: 'from-green-50 to-green-100',
   },
   {
     title: 'お得な情報配信',
     description: '限定クーポンやキャンペーン情報をお届けします',
     icon: Gift,
-    color: 'from-purple-500 to-purple-600',
-    bgColor: 'from-purple-50 to-purple-100',
   },
   {
     title: '予約の確認・変更',
     description: 'ご予約の確認やリマインドで安心です',
     icon: Bell,
-    color: 'from-orange-500 to-orange-600',
-    bgColor: 'from-orange-50 to-orange-100',
   },
 ];
 
 export const LineReservation = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-bg">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <SectionTitle
@@ -46,7 +38,7 @@ export const LineReservation = () => {
             mainTitle="LINE公式アカウント"
             subTitle="Official LINE Account"
           />
-          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted max-w-2xl mx-auto leading-relaxed">
             より便利にご利用いただけるよう、LINE公式アカウントもご用意しております。
           </p>
         </div>
@@ -55,7 +47,7 @@ export const LineReservation = () => {
           <div className="grid lg:grid-cols-3 gap-8 items-start">
             {/* 左側: サービス内容 */}
             <div className="lg:col-span-2">
-              <h3 className="text-lg font-medium text-gray-800 mb-6 text-center lg:text-left">
+              <h3 className="text-lg font-medium text-text mb-6 text-center lg:text-left">
                 LINE公式アカウントでご利用いただけるサービス
               </h3>
 
@@ -65,33 +57,21 @@ export const LineReservation = () => {
                   return (
                     <Card
                       key={index}
-                      className="relative overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
+                      className="relative overflow-hidden transition-colors duration-200 hover:border-accent2"
                     >
-                      {/* 背景グラデーション */}
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br ${feature.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                      ></div>
-
                       <div className="relative p-6">
                         {/* アイコン */}
-                        <div
-                          className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center mb-4 shadow-lg`}
-                        >
-                          <IconComponent className="w-6 h-6 text-white" />
+                        <div className="w-12 h-12 bg-surface2 rounded-xl flex items-center justify-center mb-4 border border-border">
+                          <IconComponent className="w-6 h-6 text-accent" />
                         </div>
 
                         {/* コンテンツ */}
-                        <h4 className="font-bold text-gray-800 mb-3 text-lg group-hover:text-gray-900 transition-colors">
+                        <h4 className="font-semibold text-text mb-3 text-lg">
                           {feature.title}
                         </h4>
-                        <p className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-700 transition-colors">
+                        <p className="text-muted text-sm leading-relaxed">
                           {feature.description}
                         </p>
-
-                        {/* 装飾要素 */}
-                        <div
-                          className={`absolute top-4 right-4 w-8 h-8 bg-gradient-to-br ${feature.color} rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-300`}
-                        ></div>
                       </div>
                     </Card>
                   );
@@ -100,11 +80,8 @@ export const LineReservation = () => {
             </div>
 
             {/* 右側: LINE登録案内 */}
-            <div className="lg:border-l lg:border-gray-200 lg:pl-8">
+            <div className="lg:border-l lg:border-border lg:pl-8">
               <Card className="relative overflow-hidden">
-                {/* 背景装飾 */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#06C755]/10 to-[#05B04A]/10 rounded-full -translate-y-8 translate-x-8"></div>
-
                 <div className="relative text-center p-8">
                   <div className="w-16 h-16 bg-gradient-to-br from-[#06C755] to-[#05B04A] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                     <svg
@@ -117,10 +94,10 @@ export const LineReservation = () => {
                     </svg>
                   </div>
 
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">
+                  <h3 className="text-lg font-semibold text-text mb-2 font-serif">
                     美容室ウイング R
                   </h3>
-                  <p className="text-gray-600 text-sm mb-6">
+                  <p className="text-muted text-sm mb-6">
                     LINE公式アカウント
                   </p>
 
@@ -128,10 +105,10 @@ export const LineReservation = () => {
                     variant="line-official"
                     text="友だち追加"
                     size="lg"
-                    className="w-full shadow-lg hover:shadow-xl transition-shadow"
+                    className="w-full"
                   />
 
-                  <p className="text-gray-500 text-xs mt-4">
+                  <p className="text-muted text-xs mt-4">
                     友だち追加後、トークからご予約いただけます
                   </p>
                 </div>

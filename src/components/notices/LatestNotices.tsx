@@ -17,7 +17,7 @@ export const LatestNotices: React.FC<LatestNoticesProps> = async ({
     const { contents: notices } = await getNotices({ limit });
 
     return (
-      <section className={`py-16 bg-white ${className}`}>
+      <section className={`py-16 bg-bg ${className}`}>
         <div className="container mx-auto px-4">
           <SectionTitle
             mainTitle="最新のお知らせ"
@@ -38,7 +38,7 @@ export const LatestNotices: React.FC<LatestNoticesProps> = async ({
                   <Button
                     variant="outline"
                     size="lg"
-                    className="border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white"
+                    className="border-border text-text hover:bg-surface2"
                   >
                     お知らせ一覧を見る
                   </Button>
@@ -47,12 +47,12 @@ export const LatestNotices: React.FC<LatestNoticesProps> = async ({
             </>
           ) : (
             <div className="text-center py-12">
-              <div className="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 max-w-md mx-auto">
+              <div className="bg-surface rounded-2xl p-8 max-w-md mx-auto border border-border shadow-sm">
                 <div className="text-4xl mb-4">📢</div>
-                <p className="text-gray-700 text-lg font-medium mb-2">
+                <p className="text-text text-lg font-medium mb-2">
                   お知らせ準備中
                 </p>
-                <p className="text-gray-600 text-sm">
+                <p className="text-muted text-sm">
                   新しいお知らせが投稿されると、こちらに表示されます。
                 </p>
               </div>
@@ -65,7 +65,7 @@ export const LatestNotices: React.FC<LatestNoticesProps> = async ({
     console.error('お知らせの取得に失敗しました:', error);
 
     return (
-      <section className={`py-16 bg-white ${className}`}>
+      <section className={`py-16 bg-bg ${className}`}>
         <div className="container mx-auto px-4">
           <SectionTitle
             mainTitle="最新のお知らせ"
@@ -74,12 +74,12 @@ export const LatestNotices: React.FC<LatestNoticesProps> = async ({
           />
 
           <div className="text-center py-12">
-            <div className="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 max-w-md mx-auto">
+            <div className="bg-surface rounded-2xl p-8 max-w-md mx-auto border border-border shadow-sm">
               <div className="text-4xl mb-4">⚙️</div>
-              <p className="text-gray-700 text-lg font-medium mb-2">
+              <p className="text-text text-lg font-medium mb-2">
                 システム準備中
               </p>
-              <p className="text-gray-600 text-sm mb-6">
+              <p className="text-muted text-sm mb-6">
                 お知らせ機能の準備を進めております。
                 <br />
                 しばらくお待ちください。

@@ -72,24 +72,24 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
     <div className={`fixed inset-0 z-50 ${isOpen ? 'block' : 'hidden'}`}>
       {/* オーバーレイ */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300"
+        className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-200"
         onClick={onClose}
       />
 
       {/* メニューパネル */}
-      <div className="fixed top-0 right-0 h-full w-full max-w-xs sm:max-w-80 bg-white shadow-2xl transform transition-transform duration-300 ease-out">
+      <div className="fixed top-0 right-0 h-full w-full max-w-xs sm:max-w-80 bg-surface shadow-lg border-l border-border transform transition-transform duration-300 ease-out">
         <div className="flex flex-col h-full">
           {/* ヘッダー */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-primary-50/50 to-accent-50/50">
+          <div className="flex items-center justify-between p-4 border-b border-border bg-surface2">
             <Logo size="sm" href="/" onClick={onClose} className="text-lg" />
 
             {/* Closeボタン (Menuボタンとデザイン統一) */}
             <button
               onClick={onClose}
-              className="relative flex items-center justify-center w-14 h-14 rounded-full border border-primary-800/60 bg-transparent transition-all duration-300 hover:scale-105 hover:bg-white/50"
+              className="relative flex items-center justify-center w-12 h-12 rounded-full border border-border bg-surface transition-colors duration-200 hover:bg-surface2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               aria-label="Close menu"
             >
-              <span className="font-medium text-sm text-primary-900 tracking-wider">
+              <span className="font-medium text-xs text-text tracking-wider">
                 Close
               </span>
             </button>
@@ -99,64 +99,38 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           <div className="flex-1 overflow-y-auto py-4">
             <nav className="px-8 pb-10">
               <ul className="space-y-2">
-                {navigation.map((item, index) => (
+                {navigation.map((item) => (
                   <li key={item.href} className="relative">
                     {item.sectionId ? (
                       <button
                         onClick={() => handleNavClick(item)}
-                        className="block group w-full text-left relative overflow-hidden rounded-xl p-4 transition-all duration-300 hover:bg-gradient-to-r hover:from-primary-50 hover:to-accent-50 hover:shadow-md hover:scale-[1.02] cursor-pointer"
-                        style={{
-                          animationDelay: `${index * 100}ms`,
-                        }}
+                        className="block group w-full text-left relative overflow-hidden rounded-lg p-3 transition-colors duration-200 hover:bg-surface2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
                       >
-                        {/* ホバー時の背景エフェクト */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary-100 to-accent-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-
-                        {/* ホバー時の左側アクセントライン */}
-                        <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-primary-500 to-accent-500 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top rounded-r-full" />
-
                         <div className="relative z-10">
-                          <div className="text-lg font-bold text-primary-900 group-hover:text-primary-700 transition-all duration-300 group-hover:translate-x-2">
+                          <div className="text-base font-medium text-text group-hover:text-accent transition-colors duration-200">
                             {item.nameJa}
                           </div>
-                          <div className="text-xs text-primary-600 uppercase tracking-wider opacity-75 mt-1 group-hover:opacity-100 group-hover:text-primary-500 transition-all duration-300 group-hover:translate-x-2">
+                          <div className="text-[11px] text-muted uppercase tracking-wider opacity-75 mt-1">
                             {item.nameEn}
                           </div>
                         </div>
-
-                        {/* ホバー時の右側矢印アイコン */}
-                        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-2 transition-all duration-300">
-                          <div className="w-2 h-2 border-r-2 border-b-2 border-primary-500 transform rotate-[-45deg]" />
-                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 h-px bg-border" />
                       </button>
                     ) : (
                       <Link
                         href={item.href}
                         onClick={() => handleNavClick(item)}
-                        className="block group relative overflow-hidden rounded-xl p-4 transition-all duration-300 hover:bg-gradient-to-r hover:from-primary-50 hover:to-accent-50 hover:shadow-md hover:scale-[1.02] cursor-pointer"
-                        style={{
-                          animationDelay: `${index * 100}ms`,
-                        }}
+                        className="block group relative overflow-hidden rounded-lg p-3 transition-colors duration-200 hover:bg-surface2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
                       >
-                        {/* ホバー時の背景エフェクト */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary-100 to-accent-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-
-                        {/* ホバー時の左側アクセントライン */}
-                        <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-primary-500 to-accent-500 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top rounded-r-full" />
-
                         <div className="relative z-10">
-                          <div className="text-lg font-bold text-primary-900 group-hover:text-primary-700 transition-all duration-300 group-hover:translate-x-2">
+                          <div className="text-base font-medium text-text group-hover:text-accent transition-colors duration-200">
                             {item.nameJa}
                           </div>
-                          <div className="text-xs text-primary-600 uppercase tracking-wider opacity-75 mt-1 group-hover:opacity-100 group-hover:text-primary-500 transition-all duration-300 group-hover:translate-x-2">
+                          <div className="text-[11px] text-muted uppercase tracking-wider opacity-75 mt-1">
                             {item.nameEn}
                           </div>
                         </div>
-
-                        {/* ホバー時の右側矢印アイコン */}
-                        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-2 transition-all duration-300">
-                          <div className="w-2 h-2 border-r-2 border-b-2 border-primary-500 transform rotate-[-45deg]" />
-                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 h-px bg-border" />
                       </Link>
                     )}
                   </li>
@@ -166,17 +140,17 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
 
             {/* 店舗情報 */}
             <div className="mt-6 px-4">
-              <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-4 space-y-3 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-default">
-                <div className="flex items-center text-primary-700 hover:text-primary-600 transition-colors duration-200">
-                  <Phone className="w-4 h-4 mr-2 hover:scale-110 transition-transform duration-200" />
+              <div className="bg-surface2 rounded-xl p-4 space-y-3 border border-border">
+                <div className="flex items-center text-accent transition-colors duration-200">
+                  <Phone className="w-4 h-4 mr-2" />
                   <span className="text-sm font-medium">058-241-3375</span>
                 </div>
-                <div className="flex items-center text-primary-700 hover:text-primary-600 transition-colors duration-200">
-                  <Clock className="w-4 h-4 mr-2 hover:scale-110 transition-transform duration-200" />
+                <div className="flex items-center text-accent transition-colors duration-200">
+                  <Clock className="w-4 h-4 mr-2" />
                   <span className="text-sm">9:00 - 18:00</span>
                 </div>
-                <div className="flex items-start text-primary-700 hover:text-primary-600 transition-colors duration-200">
-                  <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 hover:scale-110 transition-transform duration-200" />
+                <div className="flex items-start text-accent transition-colors duration-200">
+                  <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
                   <span className="text-sm">岐阜県岐阜市加野2-25-8</span>
                 </div>
               </div>
@@ -184,7 +158,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           </div>
 
           {/* フッター */}
-          <div className="p-4 border-t border-gray-200 space-y-3">
+          <div className="p-4 border-t border-border space-y-3">
             <div onClick={handleLineButtonClick}>
               <LineButton
                 variant="line-official"
@@ -194,14 +168,11 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             </div>
             <a
               href="tel:058-241-3375"
-              className="flex items-center justify-center w-full py-3 border-2 border-primary-600 text-primary-600 font-medium rounded-xl hover:bg-primary-600 hover:text-white hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer relative overflow-hidden group"
+              className="flex items-center justify-center w-full py-3 border border-border text-accent font-medium rounded-xl hover:bg-surface2 transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               onClick={onClose}
             >
-              {/* ホバー時の背景アニメーション */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-primary-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-
               <div className="relative z-10 flex items-center">
-                <Phone className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-200" />
+                <Phone className="w-4 h-4 mr-2" />
                 <span>お電話でご予約</span>
               </div>
             </a>

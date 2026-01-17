@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="bg-gradient-to-b from-secondary-50 via-white to-accent-50">
+    <div className="bg-bg">
       <PageLayout
         titleJa="お問い合わせ"
         titleEn="Contact Us"
@@ -38,22 +38,24 @@ export default function ContactPage() {
       >
         <div className="mb-12 mx-auto">
           {/* お電話でのお問い合わせ */}
-          <Card className="text-center bg-gradient-to-br from-primary-50 to-primary-100 border-l-4 border-primary-300 hover:-translate-y-1 transition-all duration-300">
-            <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+          <Card className="text-center border-l-4 border-accent2/40">
+            <div className="w-16 h-16 bg-accent rounded-full mx-auto mb-4 flex items-center justify-center">
               <Phone className="w-8 h-8 text-white" />
             </div>
-            <h3 className="font-bold text-lg text-primary-900 mb-2">お電話</h3>
-            <p className="text-2xl font-bold text-primary-800 mb-2">
+            <h3 className="font-semibold text-lg text-text mb-2 font-serif">
+              お電話
+            </h3>
+            <p className="text-2xl font-semibold text-text mb-2">
               058-241-3375
             </p>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-muted mb-4">
               営業時間：9:00〜18:00
               <br />
               定休日：第2火曜日・第3日曜日
             </p>
             <a
               href="tel:058-241-3375"
-              className="bg-gradient-to-r from-primary-500 to-primary-700 text-white px-4 py-2 rounded-lg text-sm transition-all duration-300 hover:shadow-lg inline-block"
+              className="bg-accent text-white px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-primary-700 inline-block"
             >
               今すぐ電話する
             </a>
