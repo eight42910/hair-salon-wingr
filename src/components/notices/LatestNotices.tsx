@@ -17,8 +17,9 @@ export const LatestNotices: React.FC<LatestNoticesProps> = async ({
     const { contents: notices } = await getNotices({ limit });
 
     return (
-      <section className={`py-16 bg-bg ${className}`}>
-        <div className="container mx-auto px-4">
+      <section className={`py-16 sm:py-20 bg-bg relative ${className}`}>
+        <div className="absolute inset-0 bg-surface2/60" />
+        <div className="container mx-auto px-4 relative">
           <SectionTitle
             mainTitle="最新のお知らせ"
             subTitle="Latest News"
@@ -65,8 +66,9 @@ export const LatestNotices: React.FC<LatestNoticesProps> = async ({
     console.error('お知らせの取得に失敗しました:', error);
 
     return (
-      <section className={`py-16 bg-bg ${className}`}>
-        <div className="container mx-auto px-4">
+      <section className={`py-16 sm:py-20 bg-bg relative ${className}`}>
+        <div className="absolute inset-0 bg-surface2/60" />
+        <div className="container mx-auto px-4 relative">
           <SectionTitle
             mainTitle="最新のお知らせ"
             subTitle="Latest News"

@@ -81,7 +81,7 @@ const FAQItemComponent = ({ faq, isOpen, onToggle }: FAQItemProps) => {
   return (
     <div className="relative overflow-hidden transition-colors duration-200">
       <div
-        className={`bg-surface rounded-xl border border-border transition-colors duration-200 ${
+        className={`bg-surface/90 rounded-xl border border-border/60 transition-colors duration-200 ${
           isOpen ? 'border-accent2' : 'hover:border-accent2'
         }`}
       >

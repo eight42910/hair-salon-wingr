@@ -266,7 +266,7 @@ const MenuCategory = ({ category }: MenuCategoryProps) => {
 
       {/* メニューアイテム */}
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8"
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.6 }}
@@ -275,7 +275,7 @@ const MenuCategory = ({ category }: MenuCategoryProps) => {
         {category.items.map((item, itemIndex) => (
           <motion.div
             key={`${category.titleEn}-${itemIndex}`}
-            className="relative overflow-hidden bg-surface border border-border rounded-xl hover:border-accent2 transition-colors duration-200 shadow-sm"
+            className="relative overflow-hidden bg-surface/90 border border-border/50 rounded-xl hover:border-accent2 transition-colors duration-200"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.7 + itemIndex * 0.1 }}

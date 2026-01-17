@@ -208,7 +208,7 @@ export const LineButton = ({
           ${variant !== 'large' ? sizeStyles[size] : ''}
           font-medium transition-colors duration-200 
           inline-flex items-center justify-center space-x-2
-          flex-shrink-0 self-center shadow-sm
+          flex-shrink-0 self-center
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg
           ${className}
         `}

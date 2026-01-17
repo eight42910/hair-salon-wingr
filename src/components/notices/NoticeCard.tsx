@@ -74,10 +74,10 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({
 
   return (
     <motion.article
-      whileHover={{ y: -2 }}
+      whileHover={{ y: -1 }}
       className={`
-        bg-surface rounded-2xl shadow-sm border border-border hover:shadow-md hover:border-accent2
-        transition-all duration-200 relative overflow-hidden
+        bg-surface rounded-2xl border border-border/60 hover:border-accent2
+        transition-colors duration-200 relative overflow-hidden
         ${cardVariants[variant]}
         ${className}
       `}

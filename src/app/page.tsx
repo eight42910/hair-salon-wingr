@@ -1,7 +1,4 @@
-import { Button } from '@/components/ui/Button';
-import Link from 'next/link';
 import Image from 'next/image';
-import { LineButton } from '@/components/ui/LineButton';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Metadata } from 'next';
 
@@ -60,17 +57,6 @@ export default async function HomePage() {
           direction="up"
           distance={20}
         >
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
-            <span className="px-3 py-1 rounded-full border border-white/50 text-xs tracking-widest text-white/90 bg-white/10">
-              創業41年
-            </span>
-            <span className="px-3 py-1 rounded-full border border-white/50 text-xs tracking-widest text-white/90 bg-white/10">
-              ファミリーサロン
-            </span>
-            <span className="px-3 py-1 rounded-full border border-white/50 text-xs tracking-widest text-white/90 bg-white/10">
-              頭皮改善・縮毛矯正
-            </span>
-          </div>
           <h1 className="heading-1 mb-6 text-white">
             41年間地域に愛され続ける
             <br />
@@ -80,31 +66,7 @@ export default async function HomePage() {
             老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。
             お客様一人ひとりに寄り添った丁寧な施術と、くつろぎの空間をご提供いたします。
           </p>
-          <div className="flex gap-3 justify-center flex-col sm:flex-row items-center">
-            <LineButton
-              variant="line-official"
-              text="LINEで予約"
-              className="w-auto max-w-fit"
-            />
-            <a
-              href="tel:058-241-3375"
-              className="inline-flex items-center justify-center h-12 px-6 rounded-xl border border-white/50 text-white/90 bg-white/10 hover:bg-white/20 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-            >
-              お電話で予約
-            </a>
-            <Link href="#menu">
-              <Button
-                variant="outline"
-                size="lg"
-                className="text-white border-white/70 hover:bg-white/15 hover:text-white w-auto max-w-fit"
-              >
-                メニューを見る
-              </Button>
-            </Link>
-          </div>
-          <p className="mt-5 text-xs text-white/70">
-            お電話: 058-241-3375（営業時間 9:00 - 18:00）
-          </p>
+          <div className="mt-6 h-6" aria-hidden="true" />
         </AnimatedSection>
       </section>
 

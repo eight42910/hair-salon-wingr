@@ -12,18 +12,18 @@ export const Button = ({
 
   const variantStyles = {
     primary:
-      'bg-accent hover:bg-primary-700 text-white shadow-sm',
+      'bg-accent text-white hover:bg-primary-700',
     secondary:
-      'bg-accent2 hover:bg-accent-600 text-white shadow-sm',
+      'bg-accent2 text-white hover:bg-accent-600',
     outline:
-      'border border-border hover:bg-surface2 text-text',
-    ghost: 'bg-transparent hover:bg-surface2 text-text',
+      'border border-border text-text hover:bg-surface2/70',
+    ghost: 'bg-transparent text-text hover:bg-surface2/70',
   };
 
   const sizeStyles = {
     sm: 'h-10 px-4 text-sm rounded-lg',
-    md: 'h-11 px-5 text-sm rounded-xl',
-    lg: 'h-12 px-6 text-base rounded-xl',
+    md: 'h-11 px-6 text-sm rounded-xl',
+    lg: 'h-12 px-7 text-base rounded-xl',
   };
 
   return (
