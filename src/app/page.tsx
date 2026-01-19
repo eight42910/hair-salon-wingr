@@ -1,7 +1,4 @@
-import { Button } from '@/components/ui/Button';
-import Link from 'next/link';
 import Image from 'next/image';
-import { LineButton } from '@/components/ui/LineButton';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Metadata } from 'next';
 
@@ -40,7 +37,7 @@ export default async function HomePage() {
       {/* ヒーローセクション */}
       <section
         id="home"
-        className="relative min-h-screen pt-20 flex items-center justify-center"
+        className="relative min-h-screen pt-24 flex items-center justify-center"
       >
         <div className="absolute inset-0 z-0">
           <Image
@@ -52,7 +49,8 @@ export default async function HomePage() {
             quality={70}
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(250,247,242,0.18),transparent_60%)]" />
         </div>
         <AnimatedSection
           className="container mx-auto px-4 text-center relative z-10"
@@ -64,26 +62,11 @@ export default async function HomePage() {
             <br />
             岐阜市のファミリーサロン
           </h1>
-          <p className="body-lg mb-8 max-w-2xl mx-auto text-white">
+          <p className="body-lg mb-8 max-w-2xl mx-auto text-white/90">
             老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。
             お客様一人ひとりに寄り添った丁寧な施術と、くつろぎの空間をご提供いたします。
           </p>
-          <div className="flex gap-4 justify-center flex-col sm:flex-row items-center">
-            <LineButton
-              variant="line-official"
-              text="LINEで予約"
-              className="w-auto max-w-fit"
-            />
-            <Link href="#menu">
-              <Button
-                variant="outline"
-                size="lg"
-                className="text-white border-white hover:bg-primary-900 hover:text-white w-auto max-w-fit"
-              >
-                メニューを見る
-              </Button>
-            </Link>
-          </div>
+          <div className="mt-6 h-6" aria-hidden="true" />
         </AnimatedSection>
       </section>
 

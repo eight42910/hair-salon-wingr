@@ -38,11 +38,11 @@ export const GoogleMap = ({
   if (hasError) {
     return (
       <div
-        className={`${className} bg-gray-100 flex flex-col items-center justify-center text-gray-600 border border-gray-200 rounded-lg`}
+        className={`${className} bg-surface2 flex flex-col items-center justify-center text-muted border border-border rounded-lg`}
       >
-        <MapPin className="w-12 h-12 mb-4 text-gray-400" />
+        <MapPin className="w-12 h-12 mb-4 text-muted" />
         <div className="text-center">
-          <h3 className="font-semibold mb-2">店舗所在地</h3>
+          <h3 className="font-semibold mb-2 text-text">店舗所在地</h3>
           <p className="text-sm mb-4">
             〒501-3107
             <br />
@@ -52,7 +52,7 @@ export const GoogleMap = ({
             href="https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm rounded-lg hover:bg-primary-700 transition-colors"
+            className="inline-flex items-center px-4 py-2 bg-accent text-white text-sm rounded-lg hover:bg-primary-700 transition-colors"
           >
             <ExternalLink className="w-4 h-4 mr-2" />
             Googleマップで開く
@@ -79,10 +79,10 @@ export const GoogleMap = ({
       {/* ローディング表示 */}
       {!isLoaded && !hasError && (
         <div
-          className={`${className} absolute inset-0 bg-gray-100 flex items-center justify-center rounded-lg`}
+          className={`${className} absolute inset-0 bg-surface2 flex items-center justify-center rounded-lg`}
         >
-          <div className="text-center text-gray-600">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mx-auto mb-2"></div>
+          <div className="text-center text-muted">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent mx-auto mb-2"></div>
             <p className="text-sm">マップを読み込み中...</p>
           </div>
         </div>
@@ -95,7 +95,7 @@ export const GoogleMap = ({
 export const AccessMap = () => {
   return (
     <div className="space-y-4">
-      <GoogleMap className="w-full h-64 md:h-80 lg:h-96 rounded-lg shadow-lg" />
+      <GoogleMap className="w-full h-64 md:h-80 lg:h-96 rounded-lg shadow-sm border border-border" />
 
       {/* 外部リンクボタン */}
       <div className="text-center">
@@ -103,7 +103,7 @@ export const AccessMap = () => {
           href="https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center text-primary-700 hover:text-primary-900 transition-colors font-medium text-sm"
+          className="inline-flex items-center text-accent hover:text-primary-700 transition-colors font-medium text-sm"
         >
           <MapPin className="w-4 h-4 mr-2" />
           大きな地図で確認

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { MapPin, Clock, Phone, Car } from 'lucide-react';
 import { AccessMap } from '@/components/map/GoogleMap';
 import { SectionTitle } from '@/components/ui/SectionTitle';
@@ -50,10 +50,10 @@ const lineReservationFeatures = [
 ];
 
 export const Access = () => {
-  const prefersReduced = useReducedMotion();
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <section className="py-16 sm:py-20 bg-bg relative">
+      <div className="absolute inset-0 bg-surface2/60" />
+      <div className="container mx-auto px-4 max-w-6xl relative">
         <div className="text-center mb-12">
           <SectionTitle
             level="h2"
@@ -61,7 +61,7 @@ export const Access = () => {
             mainTitle="アクセス・ご予約"
             subTitle="Access & Reservation"
           />
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+          <p className="text-muted mt-4 max-w-2xl mx-auto">
             岐阜市加野、アクセス良好な立地。お電話またはLINEでご予約いただけます
           </p>
         </div>
@@ -76,15 +76,7 @@ export const Access = () => {
             viewport={{ once: true }}
           >
             <div className="relative">
-              {/* 装飾的な背景 */}
-              {!prefersReduced && (
-                <motion.div
-                  className="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-primary-100/10 to-accent-100/10 rounded-full blur-2xl"
-                  animate={{ rotate: 360, transition: { duration: 50, repeat: Infinity, ease: 'linear' } }}
-                />
-              )}
-
-              <h3 className="text-xl font-bold text-primary-900 mb-6 relative">
+              <h3 className="text-xl font-semibold text-text mb-6 relative font-serif">
                 店舗情報
               </h3>
 
@@ -100,22 +92,22 @@ export const Access = () => {
                       transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:from-primary-200 group-hover:to-primary-300 transition-all duration-300 shadow-sm">
-                        <IconComponent className="w-6 h-6 text-primary-600" />
+                      <div className="w-12 h-12 bg-surface rounded-xl flex items-center justify-center mr-4 flex-shrink-0 border border-border">
+                        <IconComponent className="w-6 h-6 text-accent" />
                       </div>
                       <div>
-                        <p className="font-medium text-primary-900 mb-1">
+                        <p className="font-medium text-text mb-1">
                           {info.title}
                         </p>
                         {info.link ? (
                           <a
                             href={info.link}
-                            className="text-primary-700 hover:text-primary-900 transition-colors font-medium"
+                            className="text-accent hover:text-primary-700 transition-colors font-medium"
                           >
                             {info.content}
                           </a>
                         ) : (
-                          <p className="text-gray-600">{info.content}</p>
+                          <p className="text-muted">{info.content}</p>
                         )}
                       </div>
                     </motion.div>
@@ -131,24 +123,16 @@ export const Access = () => {
                 transition={{ duration: 0.6, delay: 0.8 }}
                 viewport={{ once: true }}
               >
-                <h4 className="font-medium text-primary-900 mb-4">
+                <h4 className="font-medium text-text mb-4">
                   営業時間詳細
                 </h4>
-                <div className="bg-gradient-to-br from-accent-50 to-secondary-50 rounded-xl p-4 border border-accent-100 relative overflow-hidden">
-                  {/* 装飾的な背景要素 */}
-                  {!prefersReduced && (
-                    <motion.div
-                      className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-accent-200/20 to-secondary-200/20 rounded-full -translate-y-4 translate-x-4"
-                      animate={{ rotate: 360, transition: { duration: 60, repeat: Infinity, ease: 'linear' } }}
-                    />
-                  )}
-
+                <div className="bg-surface rounded-xl p-4 border border-border relative overflow-hidden">
                   {businessHours.map((schedule, index) => (
                     <div key={index} className="flex py-1 gap-4 relative">
-                      <span className="text-sm text-gray-700 min-w-[4rem]">
+                      <span className="text-sm text-muted min-w-[4rem]">
                         {schedule.day}
                       </span>
-                      <span className="text-sm text-gray-900 font-medium">
+                      <span className="text-sm text-text font-medium">
                         {schedule.hours}
                       </span>
                     </div>
@@ -167,15 +151,7 @@ export const Access = () => {
             viewport={{ once: true }}
           >
             <div className="relative">
-              {/* 装飾的な背景 */}
-              {!prefersReduced && (
-                <motion.div
-                  className="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-br from-secondary-100/10 to-primary-100/10 rounded-full blur-xl"
-                  animate={{ rotate: -360, transition: { duration: 70, repeat: Infinity, ease: 'linear' } }}
-                />
-              )}
-
-              <h3 className="text-xl font-bold text-primary-900 mb-6 relative">
+              <h3 className="text-xl font-semibold text-text mb-6 relative font-serif">
                 地図
               </h3>
               <div className="relative">
@@ -185,7 +161,7 @@ export const Access = () => {
                     href="https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-primary-700 hover:text-primary-900 transition-colors font-medium"
+                    className="inline-flex items-center text-accent hover:text-primary-700 transition-colors font-medium"
                   >
                     <MapPin className="w-4 h-4 mr-2" />
                     Googleマップで確認
@@ -199,24 +175,23 @@ export const Access = () => {
           <div className="lg:col-span-1">
             <div className="space-y-4">
               {/* LINE予約 */}
-              <Card className="hover:shadow-md transition-shadow">
-                <div className="p-6">
+              <Card className="hover:shadow-sm transition-shadow" padding="md">
                   <div className="mb-4">
-                    <h4 className="font-bold text-gray-900 text-lg mb-2 text-center">
+                    <h4 className="font-semibold text-text text-lg mb-2 text-center font-serif">
                       LINEでのご予約
                     </h4>
-                    <p className="text-center text-sm text-gray-600 mb-4">
+                    <p className="text-center text-sm text-muted mb-4">
                       24時間いつでも予約・相談が可能です
                     </p>
                   </div>
 
                   {/* シンプルなリスト表示 */}
-                  <div className="bg-gray-50 rounded-lg p-4 mb-4">
+                  <div className="bg-surface2 rounded-lg p-4 mb-4">
                     <ul className="space-y-2">
                       {lineReservationFeatures.map((feature, index) => (
                         <li key={index} className="flex items-center text-sm">
-                          <span className="w-2 h-2 bg-green-500 rounded-full mr-3 flex-shrink-0"></span>
-                          <span className="text-gray-700">{feature}</span>
+                          <span className="w-2 h-2 bg-accent2 rounded-full mr-3 flex-shrink-0"></span>
+                          <span className="text-muted">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -228,24 +203,23 @@ export const Access = () => {
                     className="w-full"
                   />
 
-                  <p className="text-gray-500 text-xs mt-3 text-center">
+                  <p className="text-muted text-xs mt-3 text-center">
                     友だち追加後、トークからご予約いただけます
                   </p>
-                </div>
               </Card>
 
               {/* 電話予約 */}
-              <Card className="hover:shadow-md transition-shadow">
-                <div className="p-6 text-center">
-                  <h4 className="font-bold text-gray-900 text-lg mb-2">
+              <Card className="hover:shadow-sm transition-shadow" padding="md">
+                <div className="text-center">
+                  <h4 className="font-semibold text-text text-lg mb-2 font-serif">
                     お電話でのご予約
                   </h4>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-muted mb-4">
                     営業時間内（9:00-18:00）
                   </p>
                   <a
                     href="tel:058-241-3375"
-                    className="inline-flex items-center px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors font-medium"
+                    className="inline-flex items-center px-6 py-3 bg-accent text-white rounded-xl hover:bg-primary-700 transition-colors font-medium"
                   >
                     058-241-3375
                   </a>

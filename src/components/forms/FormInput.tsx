@@ -26,10 +26,10 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     ref
   ) => {
     const baseStyles =
-      'w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors';
+      'w-full h-11 px-3 border rounded-xl bg-surface text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:border-transparent transition-colors';
     const errorStyles = error
-      ? 'border-red-300 focus:ring-red-500'
-      : 'border-gray-300';
+      ? 'border-red-300 focus-visible:ring-red-500'
+      : 'border-border';
 
     return (
       <input

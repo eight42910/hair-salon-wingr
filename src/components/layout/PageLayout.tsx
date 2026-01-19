@@ -20,9 +20,9 @@ export const PageLayout = ({
   className = '',
 }: PageLayoutProps) => {
   return (
-    <main className={`min-h-screen pt-20 bg-white ${className}`}>
+    <main className={`min-h-screen pt-20 bg-bg ${className}`}>
       {/* ヒーローセクション */}
-      <section className="py-16 bg-gradient-to-br from-primary-50 to-secondary-50">
+      <section className="py-16 bg-surface2">
         <div className="container mx-auto px-4">
           <div
             className={`${

@@ -81,23 +81,23 @@ export default async function NoticeDetailPage({
     ];
 
     return (
-      <main className="min-h-screen bg-white pt-20">
+      <main className="min-h-screen bg-bg pt-20">
         <article className="max-w-3xl mx-auto px-4 py-12">
           {/* パンくずナビ */}
           <nav className="mb-8" aria-label="パンくずナビ">
-            <ol className="flex flex-wrap items-center text-sm text-gray-500">
+            <ol className="flex flex-wrap items-center text-sm text-muted">
               {breadcrumbItems.map((item, index) => (
                 <li key={index} className="flex items-center">
-                  {index > 0 && <span className="mx-2 text-gray-400">›</span>}
+                  {index > 0 && <span className="mx-2 text-muted">›</span>}
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="hover:text-primary-600 transition-colors"
+                      className="hover:text-accent transition-colors"
                     >
                       {item.label}
                     </Link>
                   ) : (
-                    <span className="text-gray-900 font-medium">
+                    <span className="text-text font-medium">
                       {item.label}
                     </span>
                   )}
@@ -107,15 +107,15 @@ export default async function NoticeDetailPage({
           </nav>
 
           {/* ヘッダー */}
-          <header className="mb-8 border-b pb-8">
+          <header className="mb-8 border-b border-border pb-8">
             {/* 日付とカテゴリ */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-sm text-gray-500">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-sm text-muted">
               <time dateTime={notice.publishedAt}>
                 {formatDate(notice.publishedAt)}
               </time>
               <CategoryBadge category={notice.category} size="sm" />
               {notice.isPinned && (
-                <span className="inline-flex items-center gap-1 bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full font-medium">
+                <span className="inline-flex items-center gap-1 bg-accent2/15 text-accent text-xs px-2 py-1 rounded-full font-medium">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 16 16"
@@ -132,7 +132,7 @@ export default async function NoticeDetailPage({
             </div>
 
             {/* タイトル */}
-            <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-2xl lg:text-3xl font-semibold text-text leading-tight font-serif">
               {notice.title}
             </h1>
           </header>
@@ -143,12 +143,12 @@ export default async function NoticeDetailPage({
           </div>
 
           {/* CTA セクション */}
-          <div className="bg-gray-50 border-t border-b border-gray-200 py-12">
+          <div className="bg-surface2 border-t border-b border-border py-12">
             <div className="max-w-2xl mx-auto text-center px-4">
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold text-text mb-3 font-serif">
                 ご予約・お問い合わせ
               </h3>
-              <p className="text-gray-600 mb-6 text-sm">
+              <p className="text-muted mb-6 text-sm">
                 ご不明な点がございましたら、お気軽にご連絡ください。
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

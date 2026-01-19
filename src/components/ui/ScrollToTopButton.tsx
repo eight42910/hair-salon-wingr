@@ -5,29 +5,18 @@ import { ChevronUp } from 'lucide-react';
 
 export const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
-    let scrollTimer: NodeJS.Timeout;
-
     const handleScroll = () => {
       const scrolled = window.pageYOffset;
 
       // 600px以上スクロールで表示（ヒーローセクションを完全に過ぎてから）
       setIsVisible(scrolled > 600);
-
-      // スクロール中の状態管理
-      setIsScrolling(true);
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(() => {
-        setIsScrolling(false);
-      }, 150);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimer);
     };
   }, []);
 
@@ -41,7 +30,7 @@ export const ScrollToTopButton = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-50 group transition-all duration-300 ease-out ${
+      className={`fixed bottom-28 right-6 md:bottom-28 md:right-8 z-50 group transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
         isVisible
           ? 'opacity-100 translate-y-0 scale-100'
           : 'opacity-0 translate-y-6 scale-75 pointer-events-none'
@@ -52,46 +41,28 @@ export const ScrollToTopButton = () => {
         {/* メインボタン */}
         <div
           className={`
-            w-12 h-12 bg-white border-2 border-gray-300 rounded-full 
-            shadow-lg hover:shadow-xl
+            w-12 h-12 bg-surface border border-border rounded-full 
+            shadow-sm hover:shadow-md
             flex items-center justify-center
-            transition-all duration-300 ease-out
-            hover:border-primary-400 hover:-translate-y-1 hover:scale-110
-            active:scale-95 active:translate-y-0
-            ${isScrolling ? 'animate-pulse' : ''}
+            transition-colors duration-200
+            hover:border-accent2
           `}
         >
           <ChevronUp
             className={`
-              w-5 h-5 text-gray-600 group-hover:text-primary-600 
-              transition-all duration-300
-              ${isScrolling ? 'animate-bounce' : 'group-hover:-translate-y-0.5'}
+              w-5 h-5 text-muted group-hover:text-accent 
+              transition-colors duration-200
             `}
           />
         </div>
 
-        {/* ホバー時のリング効果 */}
-        <div className="absolute inset-0 rounded-full border-2 border-primary-300 opacity-0 group-hover:opacity-50 scale-100 group-hover:scale-125 transition-all duration-500 ease-out"></div>
-
-        {/* 初回表示時の注目効果（3秒後に消える） */}
-        <div
-          className={`
-            absolute inset-0 rounded-full border-2 border-primary-400 
-            animate-ping opacity-75
-            ${isVisible ? 'animate-ping' : 'hidden'}
-          `}
-          style={{
-            animationDuration: '2s',
-            animationIterationCount: '3',
-          }}
-        ></div>
       </div>
 
       {/* ツールチップ */}
       <div className="absolute bottom-full right-0 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-        <div className="bg-gray-800 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap shadow-lg">
+        <div className="bg-text text-surface text-xs px-3 py-2 rounded-lg whitespace-nowrap shadow-sm">
           ページトップに戻る
-          <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
+          <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-text"></div>
         </div>
       </div>
     </button>

@@ -4,12 +4,7 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { featureAnimations, featureDelays } from '@/lib/animations';
 import Image from 'next/image';
-import {
-  motion,
-  Variants,
-  TargetAndTransition,
-  useReducedMotion,
-} from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 // 特徴のデータ配列
 const features = [
@@ -53,41 +48,11 @@ const features = [
 
 // Featureコンポーネントの定義
 export const Feature = () => {
-  const prefersReduced = useReducedMotion();
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* 背景グラデーション */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-primary-50 to-secondary-50" />
+    <section className="py-16 sm:py-20 bg-bg relative">
+      <div className="absolute inset-0 bg-surface2/60" />
 
-      {/* 装飾的な背景パターン */}
-      <div className="absolute inset-0 opacity-3">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-primary-200 rounded-full blur-xl" />
-        <div className="absolute bottom-32 right-20 w-40 h-40 bg-secondary-200 rounded-full blur-xl" />
-        <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-accent-200 rounded-full blur-xl" />
-      </div>
-
-      {/* セクション全体の背景装飾 */}
-      {!prefersReduced && (
-        <motion.div
-          className="absolute top-0 left-0 w-full h-full pointer-events-none"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary-100/20 to-accent-100/20 rounded-full blur-3xl"
-            animate={
-              {
-                rotate: 360,
-                transition: { duration: 30, repeat: Infinity, ease: 'linear' },
-              } as TargetAndTransition
-            }
-          />
-        </motion.div>
-      )}
-
-      <div className="container mx-auto px-4 max-w-7xl relative">
+      <div className="container mx-auto px-4 max-w-6xl relative">
         {/* セクションタイトル */}
         <AnimatedSection delay={0.2}>
           <SectionTitle
@@ -122,23 +87,6 @@ export const Feature = () => {
                   }`}
                   variants={featureAnimations.text as unknown as Variants}
                 >
-                  {/* 背景装飾 */}
-                  {!prefersReduced && (
-                    <motion.div
-                      className="absolute -top-8 -right-8 w-24 h-24 bg-gradient-to-br from-secondary-100/10 to-accent-100/10 rounded-full blur-2xl pointer-events-none"
-                      animate={
-                        {
-                          rotate: 360,
-                          transition: {
-                            duration: 40,
-                            repeat: Infinity,
-                            ease: 'linear',
-                          },
-                        } as TargetAndTransition
-                      }
-                    />
-                  )}
-
                   <motion.div
                     className="space-y-4 relative"
                     initial={{ opacity: 0, y: 20 }}
@@ -157,18 +105,13 @@ export const Feature = () => {
                         }}
                         viewport={{ once: true }}
                       >
-                        <motion.div
-                          className="w-2 h-2 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full mr-2"
-                          animate={
-                            featureAnimations.pulsing as TargetAndTransition
-                          }
-                        />
-                        <p className="text-sm font-medium text-primary-600 uppercase tracking-widest">
+                        <div className="w-2 h-2 bg-accent2 rounded-full mr-2" />
+                        <p className="text-sm font-medium text-accent2 uppercase tracking-widest">
                           {feature.titleEn}
                         </p>
                       </motion.div>
                       <motion.h3
-                        className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight"
+                        className="text-2xl lg:text-3xl font-semibold text-text leading-tight font-serif"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{
@@ -182,7 +125,7 @@ export const Feature = () => {
                     </div>
 
                     <motion.p
-                      className="text-gray-600 leading-relaxed text-base lg:text-lg"
+                      className="text-muted leading-relaxed text-base lg:text-lg"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{
@@ -194,7 +137,6 @@ export const Feature = () => {
                       {feature.description}
                     </motion.p>
 
-                    {/* 装飾的なライン */}
                     <motion.div
                       className="flex items-center space-x-4 pt-4"
                       initial={{ opacity: 0, y: 20 }}
@@ -206,7 +148,7 @@ export const Feature = () => {
                       viewport={{ once: true }}
                     >
                       <motion.div
-                        className="w-16 h-0.5 bg-gradient-to-r from-primary-400 to-accent-400 rounded-full"
+                        className="w-16 h-px bg-accent2 rounded-full"
                         initial={{ width: 0 }}
                         whileInView={{ width: '4rem' }}
                         transition={{
@@ -215,12 +157,7 @@ export const Feature = () => {
                         }}
                         viewport={{ once: true }}
                       />
-                      <motion.div
-                        className="w-2 h-2 bg-gradient-to-br from-primary-400 to-accent-400 rounded-full"
-                        animate={
-                          featureAnimations.pulsing as TargetAndTransition
-                        }
-                      />
+                      <div className="w-2 h-2 bg-accent2 rounded-full" />
                     </motion.div>
                   </motion.div>
                 </motion.div>
@@ -232,71 +169,19 @@ export const Feature = () => {
                   }`}
                   variants={featureAnimations.image as unknown as Variants}
                 >
-                  <div className="relative aspect-[5/4] bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl overflow-hidden shadow-lg">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-accent-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                    <div className="absolute inset-4 bg-white rounded-xl overflow-hidden">
+                  <div className="relative aspect-[5/4] bg-surface rounded-2xl overflow-hidden shadow-sm border border-border">
+                    <div className="absolute inset-3 bg-surface rounded-xl overflow-hidden">
                       <Image
                         loading="lazy"
                         src={feature.imagePath}
                         alt={feature.imageAlt}
-                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
+                        className="object-cover w-full h-full"
                         width={800}
                         height={600}
                         quality={70}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                       />
                     </div>
-
-                    {/* 装飾要素 */}
-                    {!prefersReduced && (
-                      <motion.div
-                        className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-primary-400 to-primary-500 rounded-full opacity-40 shadow-lg"
-                        animate={
-                          {
-                            y: [0, -4, 0],
-                            transition: { duration: 8, repeat: Infinity },
-                          } as TargetAndTransition
-                        }
-                      />
-                    )}
-                    {!prefersReduced && (
-                      <motion.div
-                        className="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-accent-400 to-accent-500 rounded-full opacity-30 shadow-lg"
-                        animate={
-                          {
-                            x: [0, 4, 0],
-                            transition: { duration: 10, repeat: Infinity },
-                          } as TargetAndTransition
-                        }
-                      />
-                    )}
-                    {!prefersReduced && (
-                      <motion.div
-                        className="absolute top-4 left-4 w-5 h-5 bg-gradient-to-br from-secondary-400 to-secondary-500 rounded-full opacity-30"
-                        animate={
-                          {
-                            rotate: 360,
-                            transition: {
-                              duration: 60,
-                              repeat: Infinity,
-                              ease: 'linear',
-                            },
-                          } as TargetAndTransition
-                        }
-                      />
-                    )}
-                    {!prefersReduced && (
-                      <motion.div
-                        className="absolute top-1/2 right-4 w-4 h-4 bg-gradient-to-br from-primary-300 to-accent-300 rounded-full opacity-20"
-                        animate={
-                          {
-                            y: [0, -6, 0],
-                            transition: { duration: 12, repeat: Infinity },
-                          } as TargetAndTransition
-                        }
-                      />
-                    )}
                   </div>
                 </motion.div>
               </motion.div>

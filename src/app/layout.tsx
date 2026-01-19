@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import { Noto_Sans_JP, Roboto } from 'next/font/google';
+import { Noto_Sans_JP, Noto_Serif_JP, Roboto } from 'next/font/google';
 import '@/styles/globals.css';
 import { Header, Footer } from '@/components/layout';
 import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
+import { MobileReservationBar } from '@/components/ui/MobileReservationBar';
 
 // 日本語フォント（Noto Sans JP）- 最適化
 const notoSansJP = Noto_Sans_JP({
@@ -22,6 +23,16 @@ const roboto = Roboto({
   variable: '--font-english',
   preload: false, // 初期レンダーブロック回避
   fallback: ['system-ui', 'arial'],
+});
+
+// 見出し用フォント（Noto Serif JP）
+const notoSerifJP = Noto_Serif_JP({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['600'],
+  variable: '--font-serif',
+  preload: false,
+  fallback: ['serif'],
 });
 
 export const metadata: Metadata = {
@@ -156,11 +167,12 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${notoSansJP.variable} ${roboto.variable} font-combined`}
+        className={`${notoSansJP.variable} ${roboto.variable} ${notoSerifJP.variable} font-combined`}
       >
         <Header />
         {children}
         <Footer />
+        <MobileReservationBar />
         <ScrollToTopButton />
       </body>
     </html>

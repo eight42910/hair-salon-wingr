@@ -22,25 +22,25 @@ export interface NoticeListResponse {
 export const categoryConfig = {
   notice: {
     label: 'お知らせ',
-    color: 'bg-blue-100 text-blue-800',
+    color: 'bg-surface2 text-accent',
     icon: 'Info',
     description: '一般的なお知らせ',
   },
   campaign: {
     label: 'キャンペーン',
-    color: 'bg-pink-100 text-pink-800',
+    color: 'bg-surface2 text-accent',
     icon: 'Gift',
     description: '特別割引・キャンペーン情報',
   },
   schedule: {
     label: '営業時間変更',
-    color: 'bg-orange-100 text-orange-800',
+    color: 'bg-surface2 text-accent',
     icon: 'Clock',
     description: '営業時間・定休日の変更',
   },
   important: {
     label: '重要',
-    color: 'bg-red-100 text-red-800',
+    color: 'bg-accent2/15 text-accent',
     icon: 'AlertTriangle',
     description: '緊急・重要なお知らせ',
   },

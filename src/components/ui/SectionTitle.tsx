@@ -31,11 +31,11 @@ export const SectionTitle = ({
   const displayTitle =
     mainTitle || title || (typeof children === 'string' ? children : '');
 
-  const baseStyles = 'font-bold tracking-wide text-gray-900';
+  const baseStyles = 'font-semibold tracking-wide text-text font-serif';
   const sizeStyles = {
     h1: 'text-3xl md:text-4xl lg:text-5xl mb-6',
-    h2: 'text-2xl md:text-3xl lg:text-4xl mb-4',
-    h3: 'text-xl md:text-2xl lg:text-3xl mb-3',
+    h2: 'text-2xl md:text-3xl lg:text-4xl mb-5',
+    h3: 'text-xl md:text-2xl lg:text-3xl mb-4',
   };
   const alignStyles = {
     left: 'text-left',
@@ -51,24 +51,24 @@ export const SectionTitle = ({
       : 'text-left';
 
   return (
-    <div className={`mb-8 ${containerClass} ${className}`}>
+    <div className={`mb-10 ${containerClass} ${className}`}>
       {/* 英語サブタイトル：装飾的（小さく上部に） */}
       {subTitle && (
-        <span className="inline-block text-xs md:text-sm text-primary-600 font-medium tracking-widest uppercase mb-2 opacity-80">
+        <span className="inline-block text-xs md:text-sm text-accent2 font-medium tracking-widest uppercase mb-2 opacity-80">
           {subTitle}
         </span>
       )}
 
       {/* 日本語メインタイトル */}
       <Component
-        className={`${baseStyles} ${sizeStyles[level]} ${alignStyles[align]} text-primary-900`}
+        className={`${baseStyles} ${sizeStyles[level]} ${alignStyles[align]}`}
       >
         {displayTitle}
       </Component>
 
       {/* 日本語説明文 */}
       {description && (
-        <p className="text-sm md:text-base text-gray-600 mt-3 max-w-2xl mx-auto leading-relaxed inline-block text-left">
+        <p className="text-sm md:text-base text-muted mt-4 max-w-2xl mx-auto leading-[1.9] inline-block text-left">
           {description}
         </p>
       )}
@@ -76,9 +76,9 @@ export const SectionTitle = ({
       {/* 装飾ライン */}
       {showDivider && (
         <div
-          className={`h-0.5 bg-primary-400 mt-4 ${
-            align === 'center'
-              ? 'w-24 mx-auto'
+        className={`h-0.5 bg-accent2 mt-4 ${
+          align === 'center'
+            ? 'w-24 mx-auto'
               : align === 'right'
               ? 'w-24 ml-auto'
               : 'w-24'

@@ -10,7 +10,6 @@ import 'swiper/css/pagination';
 import Image from 'next/image';
 
 import { SectionTitle } from '@/components/ui';
-import { Quote, User } from 'lucide-react';
 import { TestimonialsProps } from '@/types/sections';
 
 export const Testimonials = ({ testimonials }: TestimonialsProps) => {
@@ -33,16 +32,8 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
   }
 
   return (
-    <section id="testimonials" className="relative py-20 sm:py-32 bg-slate-50">
-      {/* 背景グラデーション */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-secondary-50 to-primary-50" />
-
-      {/* 装飾的な背景パターン */}
-      <div className="absolute inset-0 opacity-3">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-primary-200 rounded-full blur-xl" />
-        <div className="absolute bottom-32 right-20 w-40 h-40 bg-secondary-200 rounded-full blur-xl" />
-        <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-accent-200 rounded-full blur-xl" />
-      </div>
+    <section id="testimonials" className="relative py-16 sm:py-20 bg-bg">
+      <div className="absolute inset-0 bg-surface2/60" />
 
       <div className="container mx-auto px-4 relative z-10">
         <SectionTitle
@@ -92,12 +83,7 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
           >
             {testimonials.map((testimonial) => (
               <SwiperSlide key={testimonial.id} className="h-auto">
-                <article className="group relative bg-white/95 backdrop-blur-sm p-8 pt-12 rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col transition-all duration-500 hover:shadow-xl hover:bg-white hover:-translate-y-2">
-                  {/* 上部装飾 */}
-                  <div className="absolute top-4 left-4 w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <Quote className="w-5 h-5 text-white transform -scale-x-100" />
-                  </div>
-
+                <article className="group relative bg-surface p-8 pt-12 rounded-2xl shadow-sm border border-border h-full flex flex-col transition-colors duration-200 hover:border-accent2">
                   {/* コメント */}
                   <blockquote className="text-gray-700 leading-relaxed flex-grow mb-6 text-base mt-4">
                     &ldquo;{testimonial.comment}&rdquo;
@@ -105,7 +91,7 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
 
                   {/* プロフィール */}
                   <footer className="flex items-center">
-                    <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-primary-100 to-secondary-100 flex items-center justify-center mr-4 flex-shrink-0 overflow-hidden shadow-md">
+                    <div className="relative w-14 h-14 rounded-full bg-surface2 flex items-center justify-center mr-4 flex-shrink-0 overflow-hidden border border-border">
                       {testimonial.image ? (
                         <Image
                           src={testimonial.image.url}
@@ -115,21 +101,20 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
                           className="w-full h-full object-cover rounded-full"
                         />
                       ) : (
-                        <User className="w-7 h-7 text-primary-600" />
+                        <span className="text-base font-semibold text-accent">
+                          {testimonial.name.slice(0, 1)}
+                        </span>
                       )}
                     </div>
                     <div className="flex-1">
-                      <cite className="font-bold text-primary-900 not-italic text-lg">
+                      <cite className="font-semibold text-text not-italic text-lg">
                         {testimonial.name}
                       </cite>
-                      <p className="text-sm text-primary-600 font-medium mt-1">
+                      <p className="text-sm text-accent2 font-medium mt-1">
                         {testimonial.attribute}
                       </p>
                     </div>
                   </footer>
-
-                  {/* 右下装飾 */}
-                  <div className="absolute bottom-2 right-2 w-4 h-4 bg-gradient-to-br from-secondary-300 to-accent-400 rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                 </article>
               </SwiperSlide>
             ))}
@@ -182,6 +167,22 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
             </svg>
           </button>
         </div>
+
+        {/* スワイプヒント（モバイルのみ） */}
+        <div className="mt-4 mb-20 text-center md:hidden">
+          <p className="text-sm text-accent opacity-75 flex items-center justify-center gap-2">
+            <span>←</span>
+            <span>スワイプして他の声も見る</span>
+            <span>→</span>
+          </p>
+        </div>
+
+        {/* 下部メッセージ */}
+        <div className="mt-20 text-center">
+          <p className="text-accent font-medium">
+            皆様からの温かいお言葉が、私たちの励みとなっています
+          </p>
+        </div>
       </div>
 
       <style jsx global>{`
@@ -211,7 +212,7 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
           height: 12px;
           margin: 0 8px;
           opacity: 0.6;
-          background: #8b5e3c;
+          background: #8a6a3c;
           border-radius: 50%;
           transition: all 0.3s ease;
           cursor: pointer;
@@ -224,9 +225,9 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
 
         .testimonials-bullet-active {
           opacity: 1;
-          background: #8b5e3c;
+          background: #8a6a3c;
           transform: scale(1.3);
-          box-shadow: 0 2px 8px rgba(139, 94, 60, 0.4);
+          box-shadow: 0 2px 8px rgba(138, 106, 60, 0.3);
         }
       `}</style>
     </section>

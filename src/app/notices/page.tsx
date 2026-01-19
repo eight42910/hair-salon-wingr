@@ -49,14 +49,14 @@ export default async function NoticesPage() {
         description="美容室ウイング Rからの最新情報をお届けします"
       >
         <div className="text-center">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
-            <p className="text-red-600 text-lg font-semibold mb-2">
+          <div className="bg-surface2 border border-border rounded-lg p-8 max-w-md mx-auto">
+            <p className="text-accent text-lg font-semibold mb-2">
               お知らせの読み込みに失敗しました
             </p>
-            <p className="text-red-500 text-sm mb-4">
+            <p className="text-muted text-sm mb-4">
               しばらく経ってから再度お試しください。
             </p>
-            <p className="text-gray-600 text-sm">
+            <p className="text-muted text-sm">
               問題が続く場合は、お電話でお問い合わせください。
               <br />
               <strong>TEL: 058-241-3375</strong>
