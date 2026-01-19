@@ -4,7 +4,7 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 
 export default function NotFoundPage() {
   return (
-    <main className="min-h-screen pt-20 bg-white">
+    <main className="min-h-screen pt-20 bg-bg">
       <section className="py-16">
         <div className="container mx-auto px-4 text-center">
           <SectionTitle
@@ -14,12 +14,12 @@ export default function NotFoundPage() {
           />
 
           <div className="max-w-md mx-auto">
-            <div className="bg-gray-50 rounded-2xl p-8 mb-8">
-              <div className="text-6xl text-gray-300 mb-4">📋</div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            <div className="bg-surface rounded-2xl p-8 mb-8 border border-border shadow-sm">
+              <div className="text-6xl text-muted mb-4">📋</div>
+              <h2 className="text-xl font-semibold text-text mb-4">
                 お知らせが見つかりません
               </h2>
-              <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+              <p className="text-muted text-sm mb-6 leading-relaxed">
                 お探しのお知らせは存在しないか、既に削除されている可能性があります。
                 <br />
                 URLをご確認いただくか、お知らせ一覧から最新の情報をご覧ください。
@@ -47,8 +47,8 @@ export default function NotFoundPage() {
               </Link>
             </div>
 
-            <div className="mt-8 pt-8 border-t border-gray-200">
-              <p className="text-gray-500 text-sm mb-2">
+            <div className="mt-8 pt-8 border-t border-border">
+              <p className="text-muted text-sm mb-2">
                 お困りの際はお気軽にお問い合わせください
               </p>
               <Link href="/contact">

@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/Button';
 import { LineButton } from '@/components/ui/LineButton';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Scissors, Sparkles } from 'lucide-react';
 
 export const AnimatedHero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -46,26 +45,6 @@ export const AnimatedHero = () => {
 
       {/* 装飾的な背景エレメント */}
       <div className="absolute inset-0 z-5">
-        {/* フローティングハサミ */}
-        <Scissors
-          className={`absolute top-20 left-10 w-6 h-6 text-white/20 transition-all duration-1000 ${
-            isLoaded ? 'animate-float opacity-100' : 'opacity-0'
-          }`}
-          style={{ animationDelay: '0s' }}
-        />
-        <Scissors
-          className={`absolute top-40 right-20 w-4 h-4 text-white/15 transition-all duration-1000 ${
-            isLoaded ? 'animate-float-delayed opacity-100' : 'opacity-0'
-          }`}
-          style={{ animationDelay: '1s' }}
-        />
-        <Sparkles
-          className={`absolute bottom-40 left-20 w-5 h-5 text-white/25 transition-all duration-1000 ${
-            isLoaded ? 'animate-float-slow opacity-100' : 'opacity-0'
-          }`}
-          style={{ animationDelay: '2s' }}
-        />
-
         {/* グラデーション装飾 */}
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-primary-300/10 to-accent-300/10 rounded-full blur-xl animate-pulse" />
@@ -105,16 +84,6 @@ export const AnimatedHero = () => {
               )}
             </span>
 
-            {/* タイトル装飾 */}
-            <div
-              className={`absolute -top-4 -right-4 transition-all duration-1000 ${
-                subTitle.isComplete
-                  ? 'opacity-100 scale-100'
-                  : 'opacity-0 scale-0'
-              }`}
-            >
-              <Sparkles className="w-6 h-6 text-accent-300 animate-pulse" />
-            </div>
           </h1>
 
           {/* 説明文 */}

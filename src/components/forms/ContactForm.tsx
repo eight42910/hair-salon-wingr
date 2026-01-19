@@ -118,20 +118,20 @@ export const ContactForm = () => {
   // 送信成功時の表示
   if (submitStatus === 'success') {
     return (
-      <Card className="text-center bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+      <Card className="text-center bg-surface2 border-border">
         <div className="py-8">
-          <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+          <div className="w-16 h-16 bg-accent rounded-full mx-auto mb-4 flex items-center justify-center">
             <CheckCircle className="w-8 h-8 text-white" />
           </div>
-          <h3 className="text-xl font-bold text-green-800 mb-2">
+          <h3 className="text-xl font-semibold text-text mb-2 font-serif">
             お問い合わせありがとうございます
           </h3>
-          <p className="text-green-700 mb-4">
+          <p className="text-muted mb-4">
             お問い合わせ内容を確認後、24時間以内にご連絡いたします。
           </p>
           <button
             onClick={() => setSubmitStatus('idle')} // 新しいお問い合わせボタンの処理
-            className="bg-gradient-to-r from-primary-500 to-primary-700 text-white px-6 py-2 rounded-lg transition-all duration-300 hover:shadow-lg"
+            className="bg-accent text-white px-6 py-2 rounded-xl transition-colors duration-200 hover:bg-primary-700"
           >
             新しいお問い合わせをする
           </button>
@@ -148,16 +148,16 @@ export const ContactForm = () => {
         className="space-y-8"
       >
         {/* 基本情報セクション */}
-        <Card className="bg-primary-50 to-indigo-50 border-l-4 border-blue-300">
+        <Card className="border-l-4 border-accent2/40">
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="form-label">
-                お名前 <span className="text-red-500">*</span>
+                お名前 <span className="text-accent2">*</span>
               </label>
               <input
                 type="text"
                 className={`form-input ${
-                  errors.name ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                  errors.name ? 'border-red-500 bg-red-50' : 'border-border'
                 }`}
                 placeholder="山田 太郎"
                 {...register('name')} // フォームフィールドの登録
@@ -171,14 +171,14 @@ export const ContactForm = () => {
 
             <div>
               <label className="form-label">
-                フリガナ <span className="text-red-500">*</span>
+                フリガナ <span className="text-accent2">*</span>
               </label>
               <input
                 type="text"
                 className={`form-input ${
                   errors.furigana
                     ? 'border-red-500 bg-red-50'
-                    : 'border-gray-300'
+                    : 'border-border'
                 }`}
                 placeholder="ヤマダ タロウ"
                 {...register('furigana')}
@@ -192,12 +192,12 @@ export const ContactForm = () => {
 
             <div>
               <label className="form-label">
-                メールアドレス <span className="text-red-500">*</span>
+                メールアドレス <span className="text-accent2">*</span>
               </label>
               <input
                 type="email"
                 className={`form-input ${
-                  errors.email ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                  errors.email ? 'border-red-500 bg-red-50' : 'border-border'
                 }`}
                 placeholder="example@email.com"
                 {...register('email')}
@@ -213,7 +213,7 @@ export const ContactForm = () => {
               <label className="form-label">電話番号（任意）</label>
               <input
                 type="tel"
-                className="form-input border-gray-300"
+                className="form-input border-border"
                 placeholder="090-1234-5678"
                 {...register('phone')}
               />
@@ -222,22 +222,22 @@ export const ContactForm = () => {
         </Card>
 
         {/* お問い合わせ内容セクション */}
-        <Card className="bg-primary-50 to-indigo-50 border-l-4 border-blue-300">
+        <Card className="border-l-4 border-accent2/40">
           <div className="space-y-6">
             <div>
               <label className="form-label">
-                お問い合わせの種類 <span className="text-red-500">*</span>
+                お問い合わせの種類 <span className="text-accent2">*</span>
               </label>
               <div className="grid md:grid-cols-2 gap-3">
                 {subjectOptions.map((option) => (
                   <label
                     key={option.value}
-                    className="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-white/50 transition-colors"
+                    className="flex items-center p-3 border border-border rounded-lg cursor-pointer hover:bg-surface2 transition-colors"
                   >
                     <input
                       type="radio"
                       value={option.value}
-                      className="mr-3 text-primary-500"
+                      className="mr-3 text-accent"
                       {...register('subject')}
                     />
                     <span>{option.label}</span>
@@ -253,13 +253,13 @@ export const ContactForm = () => {
 
             <div>
               <label className="form-label">
-                お問い合わせ詳細 <span className="text-red-500">*</span>
+                お問い合わせ詳細 <span className="text-accent2">*</span>
               </label>
               <textarea
                 className={`form-input min-h-32 ${
                   errors.message
                     ? 'border-red-500 bg-red-50'
-                    : 'border-gray-300'
+                    : 'border-border'
                 }`}
                 placeholder="お問い合わせ内容を詳しくお書きください"
                 rows={6}
@@ -275,14 +275,14 @@ export const ContactForm = () => {
         </Card>
 
         {/* 入力進捗セクション */}
-        <Card className="bg-secondary-100 to-indigo-50 border-l-4 border-blue-300 shadow-lg">
+        <Card className="bg-surface2 border-l-4 border-accent2/40">
           <div>
-            <h3 className="font-bold text-lg text-primary-900 mb-3">
+            <h3 className="font-semibold text-lg text-text mb-3 font-serif">
               入力進捗
             </h3>
-            <div className="w-full bg-gray-200 rounded-full h-3 mb-3">
+            <div className="w-full bg-surface rounded-full h-3 mb-3 border border-border">
               <div
-                className="bg-gradient-to-r from-secondary-500 to-secondary-700 h-3 rounded-full transition-all duration-500"
+                className="bg-accent2 h-3 rounded-full transition-all duration-500"
                 style={{ width: `${progressPercentage}%` }} // 進捗バーの幅を設定
               ></div>
             </div>
@@ -290,13 +290,13 @@ export const ContactForm = () => {
               {checkItems.map((item) => (
                 <div key={item.key} className="flex items-center space-x-2">
                   {item.completed ? (
-                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <CheckCircle className="w-4 h-4 text-accent2" />
                   ) : (
-                    <Circle className="w-4 h-4 text-gray-300" />
+                    <Circle className="w-4 h-4 text-border" />
                   )}
                   <span
                     className={
-                      item.completed ? 'text-green-700' : 'text-gray-500'
+                      item.completed ? 'text-accent' : 'text-muted'
                     }
                   >
                     {item.label}
@@ -308,20 +308,20 @@ export const ContactForm = () => {
         </Card>
 
         {/* プライバシーポリシーと送信ボタンセクション */}
-        <Card className="bg-primary-50 to-indigo-50 border-l-4 border-blue-300">
+        <Card className="border-l-4 border-accent2/40">
           <div className="space-y-4">
             <div>
               <label className="flex items-start space-x-2">
                 <input
                   type="checkbox"
-                  className="mt-1 text-primary-500"
+                  className="mt-1 text-accent"
                   {...register('agreement')}
                 />
-                <span className="text-sm text-gray-700">
-                  <span className="text-red-500">*</span>
+                <span className="text-sm text-muted">
+                  <span className="text-accent2">*</span>
                   <a
                     href="/privacy"
-                    className="text-primary-600 underline hover:text-primary-800"
+                    className="text-accent underline hover:text-primary-700"
                   >
                     プライバシーポリシー
                   </a>
@@ -339,10 +339,10 @@ export const ContactForm = () => {
               type="submit" // フォーム送信ボタン
               form="contact-form"
               disabled={!isValid || isSubmitting} // 無効化条件
-              className={`w-full px-6 py-3 rounded-lg font-bold text-white transition-all duration-300 ${
+              className={`w-full h-12 px-6 py-3 rounded-xl font-semibold text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
                 isValid && !isSubmitting
-                  ? 'bg-gradient-to-r from-secondary-500 to-secondary-700 hover:from-secondary-600 hover:to-secondary-800 hover:scale-105 shadow-lg hover:shadow-xl'
-                  : 'bg-gray-300 cursor-not-allowed'
+                  ? 'bg-accent hover:bg-primary-700 shadow-sm'
+                  : 'bg-border text-muted cursor-not-allowed'
               }`}
             >
               {isSubmitting ? (
@@ -359,7 +359,7 @@ export const ContactForm = () => {
 
         {/* エラーメッセージ表示セクション */}
         {submitStatus === 'error' && (
-          <Card className="bg-gradient-to-br from-red-50 to-pink-50 border-red-200 text-center">
+          <Card className="bg-surface2 border-red-200 text-center">
             <p className="text-red-700">
               送信中にエラーが発生しました。お手数ですが、お電話にてお問い合わせください。
               <br />
