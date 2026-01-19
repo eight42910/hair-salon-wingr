@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Phone } from 'lucide-react';
 import { MobileMenu } from './MobileMenu';
-import { LineButton, Logo } from '../ui';
+import { Logo } from '../ui';
 
 const navigation = [
   { nameJa: 'ホーム', nameEn: 'Home', href: '/', sectionId: 'home' },
@@ -74,18 +74,6 @@ export const Header = () => {
             </div>
 
             <div className="flex items-center space-x-2 sm:space-x-3">
-              {/* LINE予約ボタン: スクロール後に表示 (SP/PC共通) */}
-              <div
-                className={`transition-all duration-300 ${isScrolled ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4 pointer-events-none'}`}
-              >
-                <LineButton
-                  variant="line-official"
-                  text="LINE予約"
-                  size="sm"
-                  className="shadow-sm"
-                />
-              </div>
-
               <a
                 href="tel:058-241-3375"
                 className="hidden xl:flex items-center space-x-2 text-accent hover:text-primary-700 transition-colors"

@@ -167,7 +167,7 @@ export const FAQ = () => {
             <Button
               variant="primary"
               size="lg"
-              className="shadow-sm"
+              className="bg-primary-700 text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-800 hover:shadow-md"
             >
               お問い合わせはこちら
             </Button>

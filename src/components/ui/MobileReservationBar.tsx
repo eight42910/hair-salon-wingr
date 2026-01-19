@@ -3,7 +3,7 @@ import { LineButton } from '@/components/ui/LineButton';
 
 export const MobileReservationBar = () => {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40">
       <div className="bg-surface/95 backdrop-blur border-t border-border">
         <div className="container mx-auto px-4 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3">
           <div className="grid grid-cols-2 gap-3">

@@ -1,28 +1,22 @@
 import { Card } from '@/components/ui/Card';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { LineButton } from '@/components/ui/LineButton';
-import { Clock, MessageCircle, Gift, Bell } from 'lucide-react';
-
 const lineFeatures = [
   {
     title: '24時間いつでも予約',
     description: 'お忙しい時でも、いつでも予約・変更が可能です',
-    icon: Clock,
   },
   {
     title: 'ヘアケア相談',
     description: '髪のお悩みやスタイルのご相談ができます',
-    icon: MessageCircle,
   },
   {
     title: 'お得な情報配信',
     description: '限定クーポンやキャンペーン情報をお届けします',
-    icon: Gift,
   },
   {
     title: '予約の確認・変更',
     description: 'ご予約の確認やリマインドで安心です',
-    icon: Bell,
   },
 ];
 
@@ -52,30 +46,21 @@ export const LineReservation = () => {
               </h3>
 
               <div className="grid sm:grid-cols-2 gap-6">
-                {lineFeatures.map((feature, index) => {
-                  const IconComponent = feature.icon;
-                  return (
-                    <Card
-                      key={index}
-                      className="relative overflow-hidden transition-colors duration-200 hover:border-accent2"
-                    >
-                      <div className="relative p-6">
-                        {/* アイコン */}
-                        <div className="w-12 h-12 bg-surface2 rounded-xl flex items-center justify-center mb-4 border border-border">
-                          <IconComponent className="w-6 h-6 text-accent" />
-                        </div>
-
-                        {/* コンテンツ */}
-                        <h4 className="font-semibold text-text mb-3 text-lg">
-                          {feature.title}
-                        </h4>
-                        <p className="text-muted text-sm leading-relaxed">
-                          {feature.description}
-                        </p>
-                      </div>
-                    </Card>
-                  );
-                })}
+                {lineFeatures.map((feature, index) => (
+                  <Card
+                    key={index}
+                    className="relative overflow-hidden transition-colors duration-200 hover:border-accent2"
+                  >
+                    <div className="relative p-6">
+                      <h4 className="font-semibold text-text mb-3 text-lg">
+                        {feature.title}
+                      </h4>
+                      <p className="text-muted text-sm leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </Card>
+                ))}
               </div>
             </div>
 
