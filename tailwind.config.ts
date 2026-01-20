@@ -69,7 +69,6 @@ const config: Config = {
         text: 'var(--text)',
         muted: 'var(--muted)',
         border: 'var(--border)',
-        accent: 'var(--accent)',
         accent2: 'var(--accent2)',
         ring: 'var(--ring)',
         primary: {
@@ -97,6 +96,7 @@ const config: Config = {
           900: 'var(--secondary-900)',
         },
         accent: {
+          DEFAULT: 'var(--accent)',
           50: 'var(--accent-50)',
           100: 'var(--accent-100)',
           200: 'var(--accent-200)',
