@@ -51,7 +51,7 @@ export default function ContactPage() {
             <p className="text-sm text-muted mb-4">
               営業時間：9:00〜18:00
               <br />
-              定休日：第2火曜日・第3日曜日
+              定休日：第2火曜・第3日曜
             </p>
             <a
               href="tel:058-241-3375"

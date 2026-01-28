@@ -32,7 +32,7 @@ export const Footer = () => {
               </div>
               <div className="flex items-center justify-center">
                 <Clock className="w-4 h-4 mr-3 text-accent2 flex-shrink-0" />
-                <span>9:00-18:00（定休日：第2火曜・第3日曜）</span>
+                <span>9:00-18:00／第2火曜・第3日曜 定休</span>
               </div>
             </div>
           </div>

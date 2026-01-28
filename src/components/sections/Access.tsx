@@ -22,7 +22,7 @@ const accessInfo = [
   {
     icon: Clock,
     title: '営業時間',
-    content: '9:00 - 18:00',
+    content: '9:00 - 18:00（第2火曜・第3日曜 定休）',
   },
   {
     icon: Car,
@@ -33,12 +33,12 @@ const accessInfo = [
 
 const businessHours = [
   { day: '月曜日', hours: '9:00 - 18:00' },
-  { day: '火曜日', hours: '9:00 - 18:00 ※第2火曜定休' },
+  { day: '火曜日', hours: '9:00 - 18:00（第2火曜定休）' },
   { day: '水曜日', hours: '9:00 - 18:00' },
   { day: '木曜日', hours: '9:00 - 18:00' },
   { day: '金曜日', hours: '9:00 - 18:00' },
   { day: '土曜日', hours: '9:00 - 18:00' },
-  { day: '日曜日', hours: '9:00 - 18:00 ※第3日曜定休' },
+  { day: '日曜日', hours: '9:00 - 18:00（第3日曜定休）' },
 ];
 
 // LINE予約の特徴をシンプルなテキストで表現
