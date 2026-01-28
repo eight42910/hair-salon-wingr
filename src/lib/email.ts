@@ -65,7 +65,7 @@ export async function sendConfirmationEmail(data: ContactFormData) {
       <h3>美容室ウイング R</h3>
       <p>住所：岐阜県岐阜市加野2-25-8<br>
       電話：058-241-3375<br>
-      営業時間：9:00-18:00（定休日：第2火曜・第3日曜）</p>
+      営業時間：9:00-18:00（定休日：月曜・第2火曜・第3日曜）</p>
       
       <p><small>※このメールは自動送信です。</small></p>
     `,
