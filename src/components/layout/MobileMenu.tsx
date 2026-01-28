@@ -147,7 +147,9 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                 </div>
                 <div className="flex items-center text-accent transition-colors duration-200">
                   <Clock className="w-4 h-4 mr-2" />
-                  <span className="text-sm">9:00 - 18:00</span>
+                  <span className="text-sm">
+                    9:00 - 18:00／第2火曜・第3日曜 定休
+                  </span>
                 </div>
                 <div className="flex items-start text-accent transition-colors duration-200">
                   <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
