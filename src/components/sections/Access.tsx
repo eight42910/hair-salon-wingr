@@ -22,7 +22,7 @@ const accessInfo = [
   {
     icon: Clock,
     title: '営業時間',
-    content: '9:00 - 18:00（第2火曜・第3日曜 定休）',
+    content: '9:00 - 18:00（定休日：月曜・第2火曜・第3日曜）',
   },
   {
     icon: Car,
@@ -32,7 +32,7 @@ const accessInfo = [
 ];
 
 const businessHours = [
-  { day: '月曜日', hours: '9:00 - 18:00' },
+  { day: '月曜日', hours: '定休日' },
   { day: '火曜日', hours: '9:00 - 18:00（第2火曜定休）' },
   { day: '水曜日', hours: '9:00 - 18:00' },
   { day: '木曜日', hours: '9:00 - 18:00' },
@@ -215,7 +215,7 @@ export const Access = () => {
                     お電話でのご予約
                   </h4>
                   <p className="text-sm text-muted mb-4">
-                    営業時間内（9:00-18:00）
+                    営業時間内（9:00-18:00／定休日：月曜・第2火曜・第3日曜）
                   </p>
                   <a
                     href="tel:058-241-3375"
