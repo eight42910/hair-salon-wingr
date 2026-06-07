@@ -30,7 +30,7 @@ export const ScrollToTopButton = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-28 right-6 md:bottom-28 md:right-8 z-50 group transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
+      className={`fixed bottom-28 right-6 md:right-8 lg:bottom-8 z-50 group transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
         isVisible
           ? 'opacity-100 translate-y-0 scale-100'
           : 'opacity-0 translate-y-6 scale-75 pointer-events-none'

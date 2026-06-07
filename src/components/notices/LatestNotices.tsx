@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { NoticeList } from './NoticeList';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
-import { getNotices } from '@/lib/microcms';
+import { getLatestNoticeSummaries } from '@/lib/microcms';
 
 interface LatestNoticesProps {
   limit?: number;
@@ -14,7 +14,7 @@ export const LatestNotices: React.FC<LatestNoticesProps> = async ({
   className = '',
 }) => {
   try {
-    const { contents: notices } = await getNotices({ limit });
+    const { contents: notices } = await getLatestNoticeSummaries(limit);
 
     return (
       <section className={`py-16 sm:py-20 bg-bg relative ${className}`}>

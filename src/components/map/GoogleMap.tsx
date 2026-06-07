@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MapPin, ExternalLink } from 'lucide-react';
 
 interface GoogleMapProps {
@@ -14,8 +14,13 @@ interface GoogleMapProps {
 export const GoogleMap = ({
   className = 'w-full h-80 rounded-lg',
 }: GoogleMapProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+
+  const mapUrl =
+    'https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR';
 
   // APIキーなしの簡易埋め込みURL（住所ベース）
   const generateSimpleEmbedUrl = () => {
@@ -25,6 +30,29 @@ export const GoogleMap = ({
     // Google Maps 簡易埋め込み（APIキー不要）
     return `https://maps.google.com/maps?q=${encodedAddress}&t=m&z=16&output=embed&iwloc=near`;
   };
+
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element || shouldLoad) return;
+
+    if (!('IntersectionObserver' in window)) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '240px 0px', threshold: 0.01 }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [shouldLoad]);
 
   const handleIframeLoad = () => {
     setIsLoaded(true);
@@ -49,7 +77,7 @@ export const GoogleMap = ({
             岐阜県岐阜市加野2-25-8
           </p>
           <a
-            href="https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR"
+            href={mapUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-4 py-2 bg-accent text-white text-sm rounded-lg hover:bg-primary-700 transition-colors"
@@ -62,8 +90,47 @@ export const GoogleMap = ({
     );
   }
 
+  if (!shouldLoad) {
+    return (
+      <div ref={containerRef} className="relative">
+        <div
+          className={`${className} bg-surface2 flex flex-col items-center justify-center text-muted border border-border rounded-lg px-4`}
+        >
+          <MapPin className="w-12 h-12 mb-4 text-accent" />
+          <div className="text-center">
+            <h3 className="font-semibold mb-2 text-text">店舗所在地</h3>
+            <p className="text-sm mb-4">
+              〒501-3107
+              <br />
+              岐阜県岐阜市加野2-25-8
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button
+                type="button"
+                onClick={() => setShouldLoad(true)}
+                className="inline-flex items-center justify-center px-4 py-2 bg-accent text-white text-sm rounded-lg hover:bg-primary-700 transition-colors"
+              >
+                <MapPin className="w-4 h-4 mr-2" />
+                地図を表示
+              </button>
+              <a
+                href={mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-4 py-2 border border-border bg-surface text-accent text-sm rounded-lg hover:bg-surface2 transition-colors"
+              >
+                <ExternalLink className="w-4 h-4 mr-2" />
+                Googleマップで開く
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="relative">
+    <div ref={containerRef} className="relative">
       <iframe
         src={generateSimpleEmbedUrl()}
         className={className}
@@ -103,8 +170,8 @@ export const AccessMap = () => {
           href="https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center text-accent hover:text-primary-700 transition-colors font-medium text-sm"
-        >
+        className="inline-flex items-center text-accent hover:text-primary-700 transition-colors font-medium text-sm"
+      >
           <MapPin className="w-4 h-4 mr-2" />
           大きな地図で確認
         </a>

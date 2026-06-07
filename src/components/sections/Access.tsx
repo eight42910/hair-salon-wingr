@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { MapPin, Clock, Phone, Car } from 'lucide-react';
 import { AccessMap } from '@/components/map/GoogleMap';
 import { SectionTitle } from '@/components/ui/SectionTitle';
@@ -68,13 +65,7 @@ export const Access = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* 店舗情報 */}
-          <motion.div
-            className="lg:col-span-1"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          <div className="lg:col-span-1">
             <div className="relative">
               <h3 className="text-xl font-semibold text-text mb-6 relative font-serif">
                 店舗情報
@@ -84,13 +75,9 @@ export const Access = () => {
                 {accessInfo.map((info, index) => {
                   const IconComponent = info.icon;
                   return (
-                    <motion.div
+                    <div
                       key={index}
                       className="flex items-start group"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                      viewport={{ once: true }}
                     >
                       <div className="w-12 h-12 bg-surface rounded-xl flex items-center justify-center mr-4 flex-shrink-0 border border-border">
                         <IconComponent className="w-6 h-6 text-accent" />
@@ -110,19 +97,13 @@ export const Access = () => {
                           <p className="text-muted">{info.content}</p>
                         )}
                       </div>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
 
               {/* 営業時間詳細 */}
-              <motion.div
-                className="mt-8"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                viewport={{ once: true }}
-              >
+              <div className="mt-8">
                 <h4 className="font-medium text-text mb-4">
                   営業時間詳細
                 </h4>
@@ -138,18 +119,12 @@ export const Access = () => {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* 地図エリア */}
-          <motion.div
-            className="lg:col-span-1"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
+          <div className="lg:col-span-1">
             <div className="relative">
               <h3 className="text-xl font-semibold text-text mb-6 relative font-serif">
                 地図
@@ -169,7 +144,7 @@ export const Access = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* ご予約方法 - アイコンなし版 */}
           <div className="lg:col-span-1">

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Metadata } from 'next';
 
 // 動的インポートを削除して直接インポートに戻す
@@ -22,9 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: '美容室ウイング R | 岐阜市のファミリーサロン',
     description: '41年間地域に愛され続ける、岐阜市のファミリーサロン',
-    images: [
-      '/api/og?title=美容室ウイング%20R&description=岐阜市のファミリーサロン&page=home',
-    ],
+    images: ['/images/wingr/og-local-seo.jpg'],
   },
 };
 
@@ -41,22 +38,18 @@ export default async function HomePage() {
       >
         <div className="absolute inset-0 z-0">
           <Image
-            src={'/images/salon/salon-bg.jpg'}
-            alt="美容室ウイング Rの店内"
+            src={'/images/wingr/hero-storefront-desktop.jpg'}
+            alt="岐阜市加野の美容室ウイング Rの外観"
             fill
-            className="object-cover"
+            className="object-cover object-center"
             priority
             quality={70}
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/45 to-black/60" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(250,247,242,0.18),transparent_60%)]" />
         </div>
-        <AnimatedSection
-          className="container mx-auto px-4 text-center relative z-10"
-          direction="up"
-          distance={20}
-        >
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h1 className="heading-1 mb-6 text-white">
             41年間地域に愛され続ける
             <br />
@@ -67,40 +60,40 @@ export default async function HomePage() {
             お客様一人ひとりに寄り添った丁寧な施術と、くつろぎの空間をご提供いたします。
           </p>
           <div className="mt-6 h-6" aria-hidden="true" />
-        </AnimatedSection>
+        </div>
       </section>
 
       {/* お知らせセクション - ヒーローの直後 */}
-      <AnimatedSection id="notices" direction="up">
+      <div id="notices">
         <LatestNotices />
-      </AnimatedSection>
+      </div>
 
       {/* 直接インポートに戻す */}
-      <AnimatedSection id="feature" direction="up">
+      <div id="feature">
         <Feature />
-      </AnimatedSection>
+      </div>
 
-      <AnimatedSection id="menu" direction="up">
+      <div id="menu">
         <MenuContent />
-      </AnimatedSection>
+      </div>
 
       {testimonials && testimonials.length > 0 && (
-        <AnimatedSection id="testimonials" direction="up">
+        <div id="testimonials">
           <Testimonials testimonials={testimonials} />
-        </AnimatedSection>
+        </div>
       )}
 
-      <AnimatedSection id="staff" direction="up">
+      <div id="staff">
         <Staff />
-      </AnimatedSection>
+      </div>
 
-      <AnimatedSection id="faq" direction="up">
+      <div id="faq">
         <FAQ />
-      </AnimatedSection>
+      </div>
 
-      <AnimatedSection id="access" direction="up">
+      <div id="access">
         <Access />
-      </AnimatedSection>
+      </div>
     </main>
   );
 }

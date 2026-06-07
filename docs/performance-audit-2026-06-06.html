@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>美容室ウイング R パフォーマンス分析レポート 2026-06-06</title>
+    <style>
+      :root {
+        --bg: #faf7f2;
+        --surface: #ffffff;
+        --surface-soft: #f4efe6;
+        --text: #1f2937;
+        --muted: #64748b;
+        --border: rgba(31, 41, 55, 0.14);
+        --accent: #1f4d3a;
+        --accent-soft: #e8f0ec;
+        --bronze: #8a6a3c;
+        --warning: #9a5b13;
+        --danger: #9f2f2f;
+        --ok: #2d6f4b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        line-height: 1.75;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 40px 20px 64px;
+      }
+
+      header {
+        padding: 40px 0 28px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.35;
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin-top: 44px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--accent);
+        font-size: clamp(1.45rem, 3vw, 2rem);
+      }
+
+      h3 {
+        margin-top: 28px;
+        font-size: 1.18rem;
+      }
+
+      p {
+        margin: 12px 0 0;
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      code {
+        padding: 0.12em 0.35em;
+        border-radius: 4px;
+        background: var(--surface-soft);
+        font-family:
+          ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Consolas,
+          monospace;
+        font-size: 0.92em;
+      }
+
+      table {
+        width: 100%;
+        margin-top: 18px;
+        border-collapse: collapse;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--surface);
+      }
+
+      th,
+      td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: var(--surface-soft);
+        font-weight: 700;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      ul,
+      ol {
+        margin: 12px 0 0;
+        padding-left: 1.35rem;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .lead {
+        max-width: 860px;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 4px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--surface);
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .metric,
+      .card,
+      .priority {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--surface);
+      }
+
+      .metric {
+        padding: 16px;
+      }
+
+      .metric strong {
+        display: block;
+        margin-top: 6px;
+        color: var(--accent);
+        font-size: 1.55rem;
+        line-height: 1.2;
+      }
+
+      .metric span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .card {
+        margin-top: 18px;
+        padding: 18px;
+      }
+
+      .priority {
+        margin-top: 16px;
+        padding: 18px;
+      }
+
+      .priority h3 {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        margin-top: 0;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 2px 9px;
+        border-radius: 6px;
+        color: #ffffff;
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .p1 {
+        background: var(--danger);
+      }
+
+      .p2 {
+        background: var(--warning);
+      }
+
+      .p3 {
+        background: var(--ok);
+      }
+
+      .note {
+        border-left: 4px solid var(--bronze);
+        background: #fffaf1;
+      }
+
+      .source-list {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nowrap {
+        white-space: nowrap;
+      }
+
+      @media (max-width: 860px) {
+        main {
+          padding: 28px 14px 48px;
+        }
+
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        table {
+          display: block;
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        th,
+        td {
+          padding: 10px 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="pill">Performance Audit</p>
+        <h1>美容室ウイング R パフォーマンス分析レポート</h1>
+        <p class="lead">
+          本番 URL と現在のローカル実装を突き合わせ、コンソールで懸念されているパフォーマンス低下の要因を実装面・デザイン面から整理したレポートです。
+        </p>
+        <div class="meta">
+          <span class="pill">作成日: 2026-06-06</span>
+          <span class="pill">対象: https://hair-salon-wingr.vercel.app/</span>
+          <span class="pill">Next.js 14.2.29 / App Router</span>
+        </div>
+      </header>
+
+      <section>
+        <h2>概要</h2>
+        <p>
+          PageSpeed Insights API は共有クォータ制限により正式スコアを取得できませんでした。そのため、本レポートでは本番 HTML、レスポンスヘッダー、Chrome ヘッドレス確認、リポジトリ内の実装確認を根拠にしています。
+        </p>
+        <p>
+          大きな問題は、初期表示に必要な HTML・CSS・JS・フォント・ヒーロー画像の負荷に加えて、静的に見えるセクションまで広く Client Component 化されている点です。視覚面では、デスクトップでも下部予約バーが常時表示され、ヒーローの情報領域を圧迫しています。
+        </p>
+
+        <div class="card note">
+          <strong>本番とローカルの差分に注意:</strong>
+          本番 HTML ではヒーロー画像が <code>/images/salon/salon-bg.jpg</code> ですが、現在の
+          <code>src/app/page.tsx</code> では
+          <code>/images/wingr/hero-storefront-desktop.jpg</code> に変わっています。改善時は、どちらが次回デプロイ対象かを確認してから最適化してください。
+        </div>
+      </section>
+
+      <section>
+        <h2>計測結果</h2>
+        <div class="grid" aria-label="主要計測値">
+          <div class="metric">
+            <span>本番 HTML decoded</span>
+            <strong>112.9KB</strong>
+          </div>
+          <div class="metric">
+            <span>本番 HTML br 転送</span>
+            <strong>19KB</strong>
+          </div>
+          <div class="metric">
+            <span>初期 CSS 転送</span>
+            <strong>約 76KB</strong>
+          </div>
+          <div class="metric">
+            <span>初期 JS 転送</span>
+            <strong>約 210KB</strong>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>確認結果</th>
+              <th>所見</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>レスポンス</td>
+              <td><code>x-vercel-cache: HIT</code>、<code>content-length: 112866</code></td>
+              <td>キャッシュ HIT は良好。ただし HTML 自体はやや大きく、Next Flight の埋め込みも含まれる。</td>
+            </tr>
+            <tr>
+              <td>CSS</td>
+              <td>5 ファイル、合計約 76KB 転送</td>
+              <td>初期描画に必要な CSS としては許容範囲だが、分割数と未使用スタイルの確認余地あり。</td>
+            </tr>
+            <tr>
+              <td>JS</td>
+              <td>初期 JS 合計約 210KB 転送</td>
+              <td>サイズだけでなく、静的セクションの hydration と framer-motion の使用範囲がメインスレッド負荷になり得る。</td>
+            </tr>
+            <tr>
+              <td>ヒーロー画像</td>
+              <td>desktop 約 226KB、mobile 約 32KB</td>
+              <td>mobile は適切に 640w が選択されている。desktop はファーストビューの LCP 候補として継続最適化対象。</td>
+            </tr>
+            <tr>
+              <td>フォント</td>
+              <td>Noto 系 woff2 が複数ロード</td>
+              <td>日本語フォントは分割されやすく、体感速度と描画安定性に影響する可能性がある。</td>
+            </tr>
+            <tr>
+              <td>Console</td>
+              <td>mobile / desktop ともにエラー未検出</td>
+              <td>機能エラーよりも、初期読み込み量と hydration 範囲が主な懸念。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>改善優先度</h2>
+
+        <article class="priority">
+          <h3><span class="badge p1">Priority 1</span> ファーストビューを JS 依存から外す</h3>
+          <p>
+            本番 HTML ではヒーロー内テキストのラッパーが SSR 時点で <code>opacity:0</code> になっており、IntersectionObserver と JS 実行後に表示されます。LCP や FCP の見た目に悪影響が出やすいため、ヒーローだけは初期表示状態を visible にしてください。
+          </p>
+          <ul>
+            <li><code>src/app/page.tsx</code> のヒーロー内 <code>AnimatedSection</code> を外す、または <code>initialVisible</code> のような明示オプションを追加する。</li>
+            <li>初期表示の h1 / リード文は CSS の軽いフェード程度に留め、非表示開始にしない。</li>
+            <li><code>prefers-reduced-motion</code> 時は常にアニメーションなしで表示する。</li>
+          </ul>
+        </article>
+
+        <article class="priority">
+          <h3><span class="badge p1">Priority 1</span> トップのお知らせ取得で本文を含めない</h3>
+          <p>
+            本番 HTML の <code>self.__next_f</code> に最新お知らせの詳細本文 HTML が含まれていました。トップページの一覧表示ではタイトル・日付・カテゴリ・ID だけで足りるため、詳細本文は詳細ページのみで取得するべきです。
+          </p>
+          <ul>
+            <li><code>getNotices</code> 呼び出し時に microCMS の <code>fields</code> を指定する。</li>
+            <li>トップ用に <code>getLatestNoticeSummaries</code> などの小さい取得関数を作る。</li>
+            <li>一覧カードに本文抜粋が必要な場合も、本文全量ではなく短い要約フィールドを使う。</li>
+          </ul>
+        </article>
+
+        <article class="priority">
+          <h3><span class="badge p1">Priority 1</span> 静的セクションの Client Component 化を減らす</h3>
+          <p>
+            <code>Feature</code>、<code>MenuContent</code>、<code>Staff</code>、<code>Access</code>、<code>NoticeList</code> などが <code>use client</code> と <code>framer-motion</code> に依存しています。表示だけのセクションは Server Component に戻し、必要な操作だけを小さな Client Component に分離してください。
+          </p>
+          <ul>
+            <li>表示専用コンテンツは通常の JSX と CSS transition に寄せる。</li>
+            <li>FAQ、LINE モーダル、モバイルメニュー、地図読み込みなど実インタラクションがある箇所だけ Client Component とする。</li>
+            <li>framer-motion はカルーセルなど効果が明確な部分に限定する。</li>
+          </ul>
+        </article>
+
+        <article class="priority">
+          <h3><span class="badge p2">Priority 2</span> Google Maps iframe をさらに遅延する</h3>
+          <p>
+            <code>AccessMap</code> の iframe は <code>loading="lazy"</code> ですが、下部セクションの第三者リソースは Lighthouse 上の負荷要因になりやすいです。クリック後読み込み、またはセクション接近後読み込みに変更すると安定します。
+          </p>
+          <ul>
+            <li>初期状態は住所カードと「Googleマップで開く」リンクを表示する。</li>
+            <li>「地図を表示」ボタン押下、または IntersectionObserver で接近した時だけ iframe を作る。</li>
+          </ul>
+        </article>
+
+        <article class="priority">
+          <h3><span class="badge p2">Priority 2</span> フォント読み込みを削減する</h3>
+          <p>
+            現在は <code>Noto_Sans_JP</code>、<code>Noto_Serif_JP</code>、<code>Roboto</code> を使っています。日本語サイトではフォントファイルが複数に分割され、表示速度と再描画に影響します。
+          </p>
+          <ul>
+            <li>本文は system font を既定にし、ブランド上必要な見出しだけ日本語フォントを使う。</li>
+            <li>Roboto は英字ラベル用途が主なので、system font で代替できるか確認する。</li>
+            <li>見出しフォントも使用箇所を限定し、重みを増やさない。</li>
+          </ul>
+        </article>
+
+        <article class="priority">
+          <h3><span class="badge p3">Priority 3</span> CSS と画像の継続最適化</h3>
+          <p>
+            画像最適化はある程度進んでいますが、desktop ヒーロー画像は LCP 候補です。表示サイズに合わせた素材、AVIF/WebP の採用、品質再調整を継続してください。
+          </p>
+          <ul>
+            <li>ヒーローは desktop / mobile で最適な実寸素材を使い分ける。</li>
+            <li><code>next.config.mjs</code> の <code>minimumCacheTTL</code> は 60 秒なので、安定素材は長めにする余地がある。</li>
+            <li>Tailwind の未使用スタイル、重複 CSS、過剰な影・ぼかしを棚卸しする。</li>
+          </ul>
+        </article>
+      </section>
+
+      <section>
+        <h2>実装改善</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>対象</th>
+              <th>改善案</th>
+              <th>期待効果</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>AnimatedSection</code></td>
+              <td>ヒーローでは使わない。下層セクションでも初期非表示の範囲を減らす。</td>
+              <td>FCP/LCP の見た目改善、JS 実行前の空白リスク低減。</td>
+            </tr>
+            <tr>
+              <td><code>Feature</code> / <code>Staff</code></td>
+              <td>表示部分を Server Component 化し、装飾アニメーションを CSS に置換する。</td>
+              <td>hydration 対象と framer-motion 依存の削減。</td>
+            </tr>
+            <tr>
+              <td><code>LatestNotices</code></td>
+              <td>トップでは microCMS の <code>fields</code> を絞る。</td>
+              <td>HTML と Next Flight の肥大化を抑制。</td>
+            </tr>
+            <tr>
+              <td><code>GoogleMap</code></td>
+              <td>iframe をクリック後または接近後に生成する。</td>
+              <td>第三者リソースの初期負荷とメインスレッド影響を回避。</td>
+            </tr>
+            <tr>
+              <td><code>LineButton</code></td>
+              <td>LINE QR モーダルが不要な表示箇所では単純リンク版を使う。</td>
+              <td>ボタン数に比例する state/effect/portal の負荷を抑制。</td>
+            </tr>
+            <tr>
+              <td><code>layout.tsx</code></td>
+              <td>フォント構成を見直し、Roboto または本文用 Noto を削減する。</td>
+              <td>woff2 リクエスト数と描画待ちの低減。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>デザイン改善</h2>
+        <div class="card">
+          <h3>固定 CTA の表示範囲</h3>
+          <p>
+            <code>MobileReservationBar</code> は名前に反して desktop でも表示されます。デスクトップはヘッダーに電話導線があり、固定バーがヒーロー下部の視認領域を圧迫するため、原則 <code>lg:hidden</code> などで mobile/tablet 限定にしてください。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>ヒーロー画像と文字の重なり</h3>
+          <p>
+            店舗外観の実写は信頼感につながっていますが、看板・ドア・店内表示と白文字が重なり、viewport によっては読みづらくなります。テキストの配置、オーバーレイ濃度、背景画像の焦点位置を mobile / desktop で分けると改善できます。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>過剰なモーションと装飾</h3>
+          <p>
+            3世代向けの美容室サイトでは、情報への到達速度と安心感が重要です。登場アニメーションは控えめにし、主要 CTA・営業時間・住所・電話番号の視認性を優先してください。
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>確認方法</h2>
+        <ol>
+          <li><code>npm run lint</code>、<code>npm test</code>、<code>npm run build</code> を実行し、静的チェックとビルドを確認する。</li>
+          <li>本番相当ビルドでトップページ HTML サイズ、初期 JS/CSS、ヒーロー画像転送量を再計測する。</li>
+          <li>mobile 390px / desktop 1440px でスクリーンショットを取り、ヒーローの文字可読性と固定 CTA の表示範囲を確認する。</li>
+          <li>Chrome DevTools または Lighthouse で LCP、TBT、CLS、ネットワークリクエストを再確認する。</li>
+          <li>microCMS のトップ一覧取得に本文が含まれていないことを、本番 HTML または Network タブで確認する。</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>根拠と制約</h2>
+        <ul class="source-list">
+          <li>本番 URL: <a href="https://hair-salon-wingr.vercel.app/">https://hair-salon-wingr.vercel.app/</a></li>
+          <li>本番 HTML とヘッダー: <code>curl</code> で取得し、HTML decoded 112,866 bytes を確認。</li>
+          <li>Chrome ヘッドレス確認: mobile 390x844 / desktop 1440x900、console エラーなし。</li>
+          <li>PageSpeed Insights API: <code>RESOURCE_EXHAUSTED</code> / quota exceeded のため正式スコア未取得。</li>
+          <li>ローカル確認ファイル: <code>src/app/page.tsx</code>、<code>src/app/layout.tsx</code>、<code>src/components/ui/AnimatedSection.tsx</code>、<code>src/components/sections/Feature.tsx</code>、<code>src/components/sections/Access.tsx</code>、<code>src/components/ui/MobileReservationBar.tsx</code>、<code>src/components/ui/LineButton.tsx</code>。</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

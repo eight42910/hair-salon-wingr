@@ -1,10 +1,8 @@
-'use client';
-
-import { NoticeCategory } from '@/types/notice';
+import { NoticeCategoryInput } from '@/types/notice';
 import { getCategoryInfo } from '@/lib/utils/notice-utils';
 
 interface CategoryBadgeProps {
-  category: NoticeCategory;
+  category: NoticeCategoryInput;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 }

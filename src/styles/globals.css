@@ -63,17 +63,19 @@
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-japanese), system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   line-height: 1.9;
   text-rendering: optimizeLegibility;
 }
 
 .font-combined {
-  font-family: var(--font-japanese), system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
 .font-serif {
-  font-family: var(--font-serif), var(--font-japanese), serif;
+  font-family: var(--font-serif), "Hiragino Mincho ProN", "Yu Mincho", serif;
 }
 
 ::selection {
@@ -235,7 +237,7 @@ main p + p {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   main {
     padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
   }

@@ -2,17 +2,41 @@ import { MicroCMSImage, MicroCMSDate, MicroCMSListContent } from './microcms';
 
 export type NoticeCategory = 'notice' | 'campaign' | 'schedule' | 'important';
 
+export interface MicroCMSNoticeCategory extends MicroCMSListContent {
+  name?: string;
+}
+
+export type NoticeCategoryInput =
+  | NoticeCategory
+  | MicroCMSNoticeCategory
+  | null
+  | undefined;
+
 export interface Notice extends MicroCMSListContent, MicroCMSDate {
   title: string;
   content: string;
-  category: NoticeCategory;
+  category: NoticeCategoryInput;
   isPinned: boolean;
   thumbnailImage?: MicroCMSImage;
   publishedAt: string;
 }
 
+export interface NoticeSummary extends MicroCMSListContent {
+  title: string;
+  category: NoticeCategoryInput;
+  isPinned: boolean;
+  publishedAt: string;
+}
+
 export interface NoticeListResponse {
   contents: Notice[];
+  totalCount: number;
+  offset: number;
+  limit: number;
+}
+
+export interface NoticeSummaryListResponse {
+  contents: NoticeSummary[];
   totalCount: number;
   offset: number;
   limit: number;
