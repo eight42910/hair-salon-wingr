@@ -1,29 +1,9 @@
 import type { Metadata } from 'next';
-import { Noto_Sans_JP, Noto_Serif_JP, Roboto } from 'next/font/google';
+import { Noto_Serif_JP } from 'next/font/google';
 import '@/styles/globals.css';
 import { Header, Footer } from '@/components/layout';
 import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
 import { MobileReservationBar } from '@/components/ui/MobileReservationBar';
-
-// 日本語フォント（Noto Sans JP）- 最適化
-const notoSansJP = Noto_Sans_JP({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400'], // ウェイトを最小化
-  variable: '--font-japanese',
-  preload: false, // 初期レンダーブロック回避
-  fallback: ['system-ui', 'arial'],
-});
-
-// 英語フォント（Roboto）- 最適化
-const roboto = Roboto({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400'], // ウェイトを最小化
-  variable: '--font-english',
-  preload: false, // 初期レンダーブロック回避
-  fallback: ['system-ui', 'arial'],
-});
 
 // 見出し用フォント（Noto Serif JP）
 const notoSerifJP = Noto_Serif_JP({
@@ -55,10 +35,10 @@ export const metadata: Metadata = {
       '41年間地域に愛され続ける、岐阜市のファミリーサロン。老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。',
     images: [
       {
-        url: '/api/og?title=美容室ウイング%20R&description=岐阜市のファミリーサロン&page=home',
+        url: '/images/wingr/og-local-seo.jpg',
         width: 1200,
         height: 630,
-        alt: '美容室ウイング R - 岐阜市のファミリーサロン',
+        alt: '美容室ウイング R - 岐阜市加野のファミリーサロン',
       },
     ],
     siteName: '美容室ウイング R',
@@ -68,9 +48,7 @@ export const metadata: Metadata = {
     title: '美容室ウイング R | 岐阜市のファミリーサロン',
     description:
       '41年間地域に愛され続ける、岐阜市のファミリーサロン。老舗の安心感とモダンな使いやすさを兼ね備えた美容室です。',
-    images: [
-      '/api/og?title=美容室ウイング%20R&description=岐阜市のファミリーサロン&page=home',
-    ],
+    images: ['/images/wingr/og-local-seo.jpg'],
   },
   verification: {
     google: 'c8DNBiFfM1tr0fxgA6IWBDmjpzHMRXYI73-Z0Mu5NJ0', // Google Search Consoleから取得
@@ -130,8 +108,14 @@ export default function RootLayout({
               },
               telephone: '+81-58-241-3375',
               url: 'https://hair-salon-wingr.vercel.app/',
-              image:
-                'https://hair-salon-wingr.vercel.app/images/salon/salon-bg.jpg',
+              image: [
+                'https://hair-salon-wingr.vercel.app/images/wingr/og-local-seo.jpg',
+                'https://hair-salon-wingr.vercel.app/images/wingr/local-seo-storefront.jpg',
+                'https://hair-salon-wingr.vercel.app/images/wingr/local-seo-staff-work.jpg',
+              ],
+              hasMap:
+                'https://www.google.com/maps/search/?api=1&query=岐阜県岐阜市加野2-25-8+美容室ウイングR',
+              areaServed: ['岐阜市', '岐阜市加野'],
               openingHoursSpecification: [
                 {
                   '@type': 'OpeningHoursSpecification',
@@ -154,7 +138,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${notoSansJP.variable} ${roboto.variable} ${notoSerifJP.variable} font-combined`}
+        className={`${notoSerifJP.variable} font-combined`}
       >
         <Header />
         {children}

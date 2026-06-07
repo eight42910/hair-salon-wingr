@@ -9,8 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-japanese)', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-serif)', 'serif'],
+        sans: [
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          'sans-serif',
+        ],
+        serif: ['var(--font-serif)', '"Hiragino Mincho ProN"', '"Yu Mincho"', 'serif'],
       },
       typography: {
         DEFAULT: {

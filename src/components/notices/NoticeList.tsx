@@ -1,44 +1,14 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { NoticeCard } from './NoticeCard';
-import { Notice } from '@/types/notice';
+import { Notice, NoticeSummary } from '@/types/notice';
 import { sortNotices } from '@/lib/utils/notice-utils';
 
 interface NoticeListProps {
-  notices: Notice[];
+  notices: Array<Notice | NoticeSummary>;
   isLoading?: boolean;
   variant?: 'default' | 'compact';
   showCategory?: boolean;
   className?: string;
 }
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 20,
-    scale: 0.95,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.4,
-    },
-  },
-};
 
 const LoadingSkeleton = () => (
   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -97,21 +67,16 @@ export const NoticeList: React.FC<NoticeListProps> = ({
   };
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className={`${gridClasses[variant]} ${className}`}
-    >
+    <div className={`${gridClasses[variant]} ${className}`}>
       {sortedNotices.map((notice) => (
-        <motion.div key={notice.id} variants={itemVariants}>
+        <div key={notice.id}>
           <NoticeCard
             notice={notice}
             variant={variant === 'compact' ? 'compact' : 'default'}
             showCategory={showCategory}
           />
-        </motion.div>
+        </div>
       ))}
-    </motion.div>
+    </div>
   );
 };

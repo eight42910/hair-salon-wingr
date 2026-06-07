@@ -1,6 +1,10 @@
 import { createClient } from 'microcms-js-sdk';
 import type { MicroCMSQueries } from '@/types/microcms';
-import type { Notice, NoticeListResponse } from '@/types/notice';
+import type {
+  Notice,
+  NoticeListResponse,
+  NoticeSummaryListResponse,
+} from '@/types/notice';
 import type { BlogPost, BlogListResponse } from '@/types/blog';
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
@@ -26,6 +30,21 @@ export const getNotices = async (
       orders: '-publishedAt',
       limit: 10,
       ...queries,
+    },
+  });
+};
+
+// トップページのお知らせ一覧用（本文HTMLを含めない）
+export const getLatestNoticeSummaries = async (
+  limit: number = 3
+): Promise<NoticeSummaryListResponse> => {
+  return await client.get({
+    endpoint: 'notices',
+    queries: {
+      orders: '-publishedAt',
+      limit,
+      fields: 'id,title,publishedAt,category,isPinned',
+      depth: 1,
     },
   });
 };

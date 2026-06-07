@@ -1,10 +1,5 @@
-'use client';
-
 import { SectionTitle } from '@/components/ui/SectionTitle';
-import { AnimatedSection } from '@/components/ui/AnimatedSection';
-import { featureAnimations, featureDelays } from '@/lib/animations';
 import Image from 'next/image';
-import { motion, Variants } from 'framer-motion';
 
 // 特徴のデータ配列
 const features = [
@@ -14,8 +9,8 @@ const features = [
     titleEn: 'Family Salon',
     description:
       'ファミリー対応のサロン。お子様からご年配の方まで、それぞれのライフスタイルに合わせた施術をご提供。家族みんなで通える温かな空間で、美容を通じて笑顔をお届けします。',
-    imagePath: '/images/feature/feature-01.jpg',
-    imageAlt: 'ファミリーサロンでの施術風景',
+    imagePath: '/images/wingr/service-family-salon.jpg',
+    imageAlt: '家族で通える美容室ウイング Rのカット施術風景',
   },
   {
     id: 2,
@@ -23,8 +18,8 @@ const features = [
     titleEn: 'Head Spa',
     description:
       'CAC製品を使用した本格ヘッドスパで頭皮環境を根本から改善。血行促進と毛穴の汚れを除去し、健やかな髪の成長をサポート。心地よいマッサージで日頃の疲れも癒やします。',
-    imagePath: '/images/feature/feature-02.jpg',
-    imageAlt: '頭皮改善ヘッドスパの施術風景',
+    imagePath: '/images/wingr/service-head-care.jpg',
+    imageAlt: '美容室ウイング Rの頭皮改善ヘッドケア施術',
   },
   {
     id: 3,
@@ -32,8 +27,8 @@ const features = [
     titleEn: 'Hair Straightening',
     description:
       '髪質に合わせた丁寧な縮毛矯正で、クセやうねりを自然にストレートに。ダメージを最小限に抑えながら、手触りの良いサラサラヘアを実現。毎朝のスタイリングが格段に楽になります。',
-    imagePath: '/images/feature/feature-03.jpg',
-    imageAlt: '縮毛矯正の施術風景',
+    imagePath: '/images/wingr/service-straight-repair.jpg',
+    imageAlt: '美容室ウイング Rの縮毛矯正後の自然なストレートヘア',
   },
   {
     id: 4,
@@ -41,8 +36,8 @@ const features = [
     titleEn: 'Professional Technique',
     description:
       '1983年の創業から41年間で培った確かな技術に、最新のトレンドを融合。お客様一人ひとりの骨格や髪質を見極め、その方だけの美しさを引き出します。伝統と革新の技術で、理想のヘアスタイルを実現します。',
-    imagePath: '/images/feature/feature-04.jpg',
-    imageAlt: '技術追求の施術風景',
+    imagePath: '/images/wingr/local-seo-staff-work.jpg',
+    imageAlt: '美容室ウイング Rのオーナースタイリストによる施術風景',
   },
 ];
 
@@ -53,121 +48,58 @@ export const Feature = () => {
       <div className="absolute inset-0 bg-surface2/60" />
 
       <div className="container mx-auto px-4 max-w-6xl relative">
-        {/* セクションタイトル */}
-        <AnimatedSection delay={0.2}>
-          <SectionTitle
-            subTitle="Our Features"
-            mainTitle="私たちの特徴"
-            description="41年の歴史で培った技術と、お客様への想いをご紹介いたします"
-            level="h2"
-            align="center"
-            showDivider={true}
-          />
-        </AnimatedSection>
+        <SectionTitle
+          subTitle="Our Features"
+          mainTitle="私たちの特徴"
+          description="41年の歴史で培った技術と、お客様への想いをご紹介いたします"
+          level="h2"
+          align="center"
+          showDivider={true}
+        />
 
-        <motion.div
-          className="space-y-32 mt-16"
-          variants={featureAnimations.container as Variants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
+        <div className="space-y-32 mt-16">
           {features.map((feature, index) => {
             const isEven = index % 2 === 0;
             return (
-              <motion.div
+              <div
                 key={feature.id}
-                variants={featureAnimations.item as unknown as Variants}
                 className="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-16 lg:gap-20"
               >
                 {/* テキストエリア - モバイルで最初に表示 */}
-                <motion.div
+                <div
                   className={`flex flex-col justify-center space-y-8 px-4 lg:px-8 relative order-1 ${
                     isEven ? 'lg:order-2' : 'lg:order-1'
                   }`}
-                  variants={featureAnimations.text as unknown as Variants}
                 >
-                  <motion.div
-                    className="space-y-4 relative"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: featureDelays.title }}
-                    viewport={{ once: true }}
-                  >
+                  <div className="space-y-4 relative">
                     <div className="space-y-2">
-                      <motion.div
-                        className="inline-flex items-center"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{
-                          duration: 0.5,
-                          delay: featureDelays.subtitle,
-                        }}
-                        viewport={{ once: true }}
-                      >
+                      <div className="inline-flex items-center">
                         <div className="w-2 h-2 bg-accent2 rounded-full mr-2" />
                         <p className="text-sm font-medium text-accent2 uppercase tracking-widest">
                           {feature.titleEn}
                         </p>
-                      </motion.div>
-                      <motion.h3
-                        className="text-2xl lg:text-3xl font-semibold text-text leading-tight font-serif"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.6,
-                          delay: featureDelays.title,
-                        }}
-                        viewport={{ once: true }}
-                      >
+                      </div>
+                      <h3 className="text-2xl lg:text-3xl font-semibold text-text leading-tight font-serif">
                         {feature.titleJa}
-                      </motion.h3>
+                      </h3>
                     </div>
 
-                    <motion.p
-                      className="text-muted leading-relaxed text-base lg:text-lg"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.6,
-                        delay: featureDelays.description,
-                      }}
-                      viewport={{ once: true }}
-                    >
+                    <p className="text-muted leading-relaxed text-base lg:text-lg">
                       {feature.description}
-                    </motion.p>
+                    </p>
 
-                    <motion.div
-                      className="flex items-center space-x-4 pt-4"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.6,
-                        delay: featureDelays.line,
-                      }}
-                      viewport={{ once: true }}
-                    >
-                      <motion.div
-                        className="w-16 h-px bg-accent2 rounded-full"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: '4rem' }}
-                        transition={{
-                          duration: 0.6,
-                          delay: featureDelays.line + 0.2,
-                        }}
-                        viewport={{ once: true }}
-                      />
+                    <div className="flex items-center space-x-4 pt-4">
+                      <div className="w-16 h-px bg-accent2 rounded-full" />
                       <div className="w-2 h-2 bg-accent2 rounded-full" />
-                    </motion.div>
-                  </motion.div>
-                </motion.div>
+                    </div>
+                  </div>
+                </div>
 
                 {/* 画像エリア - モバイルで2番目に表示 */}
-                <motion.div
+                <div
                   className={`relative group order-2 ${
                     isEven ? 'lg:order-1' : 'lg:order-2'
                   }`}
-                  variants={featureAnimations.image as unknown as Variants}
                 >
                   <div className="relative aspect-[5/4] bg-surface rounded-2xl overflow-hidden shadow-sm border border-border">
                     <div className="absolute inset-3 bg-surface rounded-xl overflow-hidden">
@@ -183,11 +115,11 @@ export const Feature = () => {
                       />
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
